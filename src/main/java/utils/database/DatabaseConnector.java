@@ -58,9 +58,5 @@ public class DatabaseConnector {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(DatabaseConnector.getInstance().getConnection());
-        DatabaseConnector.getInstance().closeConnection();
-    }
 
 }
