@@ -1,7 +1,7 @@
 package utils.database;
 
-import utils.XProperties;
-
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class DatabaseConnector {
     private Connection connection;
 
     private DatabaseConnector() {
-        Properties properties = XProperties.loadProperties("database.properties");
+        Properties properties = loadProperties();
         String host = properties.getProperty("database.host");
         String port = properties.getProperty("database.port");
         username = properties.getProperty("database.username");
@@ -38,7 +38,7 @@ public class DatabaseConnector {
     public Connection getConnection() {
         try {
             if(connection == null || connection.isClosed()) {
-                DriverManager.setLoginTimeout(10);
+                DriverManager.setLoginTimeout(10); // Quá 10 giây = kết nối thất bại
                 connection = DriverManager.getConnection(connectionUrl,username,password);
             }
             return connection;
@@ -51,10 +51,22 @@ public class DatabaseConnector {
         if(connection != null) {
             try {
                 connection.close();
+                connection = null;
+                instance = null;
             } catch (SQLException e) {
                 // Message here
                 throw new RuntimeException(e);
             }
+        }
+    }
+
+    private Properties loadProperties() {
+        try(InputStream isr = getClass().getClassLoader().getResourceAsStream("database.properties")) {
+            Properties properties = new Properties();
+            properties.load(isr);
+            return properties;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
