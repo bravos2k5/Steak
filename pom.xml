@@ -67,6 +67,15 @@
             <version>6.2.1</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.bravos2k5</groupId>
+            <artifactId>CustomButton</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/RojeruSan.jar</systemPath>
+        </dependency>
+
+
     </dependencies>
 
 </project>
