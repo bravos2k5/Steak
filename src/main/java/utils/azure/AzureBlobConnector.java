@@ -21,7 +21,6 @@ public class AzureBlobConnector {
                 .credential(sharedKeyCredential);
         builder.httpClient(new NettyAsyncHttpClientBuilder()
                 .connectTimeout(Duration.ofSeconds(8))
-                .readTimeout(Duration.ofSeconds(180))
                 .build());
         return builder.buildClient();
     }

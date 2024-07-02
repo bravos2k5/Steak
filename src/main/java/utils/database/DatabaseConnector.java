@@ -24,7 +24,7 @@ public class DatabaseConnector {
         String dbName = properties.getProperty("database.name");
         connectionUrl = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + dbName + "; " +
                 "encrypt=false;" +
-                "trustServerCertificate=false;" +
+                "trustServerCertificate=true;" +
                 "integratedSecurity=false;";
     }
 
@@ -43,6 +43,7 @@ public class DatabaseConnector {
             }
             return connection;
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -68,6 +69,11 @@ public class DatabaseConnector {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        DatabaseConnector connector = DatabaseConnector.getInstance();
+        System.out.println(connector.getConnection());
     }
 
 }

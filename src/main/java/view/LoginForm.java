@@ -9,19 +9,22 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
+
+import controller.LoginController;
 import rojerusan.*;
 
 /**
  *
  * @author User
  */
-public class LoginForm extends JFrame {
+public class LoginForm extends JFrame implements LoginController {
 
     /**
      * Creates new form LoginForm
      */
     public LoginForm() {
         initComponents();
+        initialize();
     }
 
     /**
@@ -35,7 +38,7 @@ public class LoginForm extends JFrame {
         Body = new JPanel();
         left = new JPanel();
         animationLogin = new JLabel();
-        btnSignin = new RSMaterialButtonRectangle();
+        btnLogin = new RSMaterialButtonRectangle();
         jLabel1 = new JLabel();
         txtUsername = new JTextField();
         lms_icon = new JLabel();
@@ -46,8 +49,8 @@ public class LoginForm extends JFrame {
         jLabel8 = new JLabel();
         jLabel7 = new JLabel();
         panel1 = new JPanel();
-        label1 = new JLabel();
-        label2 = new JLabel();
+        lblForgot = new JLabel();
+        lblRegister = new JLabel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -84,10 +87,10 @@ public class LoginForm extends JFrame {
                 }
             }
 
-            //---- btnSignin ----
-            btnSignin.setBackground(new Color(0xe54d42));
-            btnSignin.setText("\u0110\u0103ng nh\u1eadp");
-            btnSignin.addActionListener(e -> signInActionPerformed(e));
+            //---- btnLogin ----
+            btnLogin.setBackground(new Color(0xe54d42));
+            btnLogin.setText("\u0110\u0103ng nh\u1eadp");
+            btnLogin.addActionListener(e -> signInActionPerformed(e));
 
             //---- jLabel1 ----
             jLabel1.setFont(new Font("Segoe UI", Font.BOLD, 48));
@@ -154,6 +157,7 @@ public class LoginForm extends JFrame {
             jLabel8.setFont(new Font("Tahoma", Font.BOLD, 30));
             jLabel8.setHorizontalAlignment(SwingConstants.CENTER);
             jLabel8.setText("-");
+            jLabel8.setForeground(Color.white);
             jLabel8.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -165,6 +169,7 @@ public class LoginForm extends JFrame {
             jLabel7.setFont(new Font("Tahoma", Font.BOLD, 17));
             jLabel7.setHorizontalAlignment(SwingConstants.CENTER);
             jLabel7.setText("X");
+            jLabel7.setForeground(Color.white);
             jLabel7.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -187,16 +192,16 @@ public class LoginForm extends JFrame {
                 );
             }
 
-            //---- label1 ----
-            label1.setText("Qu\u00ean m\u1eadt kh\u1ea9u?");
-            label1.setForeground(Color.white);
-            label1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            //---- lblForgot ----
+            lblForgot.setText("Qu\u00ean m\u1eadt kh\u1ea9u?");
+            lblForgot.setForeground(Color.white);
+            lblForgot.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-            //---- label2 ----
-            label2.setText("Ch\u01b0a c\u00f3 t\u00e0i kho\u1ea3n? \u0110\u0103ng k\u00fd ngay!");
-            label2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            label2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            label2.setForeground(Color.white);
+            //---- lblRegister ----
+            lblRegister.setText("Ch\u01b0a c\u00f3 t\u00e0i kho\u1ea3n? \u0110\u0103ng k\u00fd ngay!");
+            lblRegister.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            lblRegister.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lblRegister.setForeground(Color.white);
 
             GroupLayout BodyLayout = new GroupLayout(Body);
             Body.setLayout(BodyLayout);
@@ -207,7 +212,7 @@ public class LoginForm extends JFrame {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addGroup(BodyLayout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
-                                .addComponent(btnSignin, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 214, GroupLayout.PREFERRED_SIZE)
                                 .addGap(91, 91, 91))
                             .addGroup(GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
                                 .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -216,7 +221,7 @@ public class LoginForm extends JFrame {
                                 .addContainerGap())
                             .addGroup(GroupLayout.Alignment.TRAILING, BodyLayout.createSequentialGroup()
                                 .addGroup(BodyLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(label1)
+                                    .addComponent(lblForgot)
                                     .addGroup(BodyLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addGroup(BodyLayout.createSequentialGroup()
                                             .addComponent(padding, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
@@ -235,7 +240,7 @@ public class LoginForm extends JFrame {
                                                         .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                     .addGap(0, 0, 0)
                                                     .addComponent(jLabel3, GroupLayout.PREFERRED_SIZE, 34, GroupLayout.PREFERRED_SIZE)))))
-                                    .addComponent(label2))
+                                    .addComponent(lblRegister))
                                 .addGap(74, 74, 74))))
             );
             BodyLayout.setVerticalGroup(
@@ -260,11 +265,11 @@ public class LoginForm extends JFrame {
                             .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
-                        .addComponent(label1)
+                        .addComponent(lblForgot)
                         .addGap(18, 18, 18)
-                        .addComponent(btnSignin, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(label2)
+                        .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                        .addComponent(lblRegister)
                         .addGap(26, 26, 26))
             );
         }
@@ -380,7 +385,7 @@ public class LoginForm extends JFrame {
     private JPanel Body;
     private JPanel left;
     private JLabel animationLogin;
-    private RSMaterialButtonRectangle btnSignin;
+    private RSMaterialButtonRectangle btnLogin;
     private JLabel jLabel1;
     public static JTextField txtUsername;
     private JLabel lms_icon;
@@ -391,12 +396,17 @@ public class LoginForm extends JFrame {
     private JLabel jLabel8;
     private JLabel jLabel7;
     private JPanel panel1;
-    private JLabel label1;
-    private JLabel label2;
+    private JLabel lblForgot;
+    private JLabel lblRegister;
     // End of variables declaration//GEN-END:variables
 
 
-    private void initEvent() {
+    @Override
+    public void initialize() {
+
+    }
+
+    private void loginAction() {
 
     }
 
