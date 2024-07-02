@@ -16,8 +16,8 @@ public class XJdbc {
             } else {
                 ps = connection.prepareStatement(sql);
             }
-            for(int i = 1; i <= args.length; i++) {
-                ps.setObject(i,args[i]);
+            for(int i = 0; i < args.length; i++) {
+                ps.setObject(i + 1,args[i]);
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());

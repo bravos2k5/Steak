@@ -24,7 +24,7 @@ public class DatabaseConnector {
         String dbName = properties.getProperty("database.name");
         connectionUrl = "jdbc:sqlserver://" + host + ":" + port + ";databaseName=" + dbName + "; " +
                 "encrypt=false;" +
-                "trustServerCertificate=false;" +
+                "trustServerCertificate=true;" +
                 "integratedSecurity=false;";
     }
 
@@ -40,10 +40,10 @@ public class DatabaseConnector {
             if(connection == null || connection.isClosed()) {
                 DriverManager.setLoginTimeout(10); // Quá 10 giây = kết nối thất bại
                 connection = DriverManager.getConnection(connectionUrl,username,password);
-                System.out.println("thanh cong");
             }
             return connection;
         } catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -72,7 +72,8 @@ public class DatabaseConnector {
     }
 
     public static void main(String[] args) {
-        new DatabaseConnector().getConnection();
+        DatabaseConnector connector = DatabaseConnector.getInstance();
+        System.out.println(connector.getConnection());
     }
 
 }

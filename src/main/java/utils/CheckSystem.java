@@ -56,4 +56,5 @@ public class CheckSystem {
     public static long getAvailableSpace(File disk) {
         return disk.getUsableSpace() / (1024 * 1024);
     }
+
 }
