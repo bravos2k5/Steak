@@ -168,7 +168,4 @@ public class AccountDAO implements DataAccessObject<Account> {
         XJdbc.update(sql,account.getId());
     }
 
-
-
-
 }

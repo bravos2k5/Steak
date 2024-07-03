@@ -2,15 +2,11 @@ package utils.azure;
 
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
-import com.azure.storage.blob.specialized.BlobInputStream;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 public class AzureBlobService {
     // Created by QuocBao
 
-    private static BlobContainerClient getContainerClient(String containerName) {
+    public static BlobContainerClient getContainerClient(String containerName) {
         return AzureBlobConnector.getClient().getBlobContainerClient(containerName);
     }
 
@@ -27,14 +23,7 @@ public class AzureBlobService {
         client.uploadFromFile(localPath,true);
     }
 
-    /**
-     * Dung lượng của file (dùng để lấy size và tính toán tiến trình tải xuống)
-     * @param name tên file trên đám mây
-     * @param container tên container chứa file
-     * @return dung lượng của file
-     */
-    public static long getBlobSize(String name, String container) {
-        BlobClient client = getContainerClient(container).getBlobClient(name);
+    public static long getBlobSize(BlobClient client) {
         return client.exists() ? client.getProperties().getBlobSize() : -1;
     }
 
@@ -63,22 +52,5 @@ public class AzureBlobService {
     public synchronized static boolean delete(String name, String container) {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         return client.deleteIfExists();
-    }
-
-    public static void main(String[] args) throws IOException {
-        final long totalBytes = getBlobSize("test.png","images");
-        BlobClient blobClient = getContainerClient("images").getBlobClient("test.png");
-        try (BlobInputStream blobInputStream = blobClient.openInputStream()) {
-            try(FileOutputStream fos = new FileOutputStream("./data/test.png")) {
-                byte[] buffer = new byte[8192];
-                int bytesRead;
-                long totalBytesRead = 0;
-                while ((bytesRead = blobInputStream.read(buffer)) != -1) {
-                    fos.write(buffer,0,bytesRead);
-                    totalBytesRead += bytesRead;
-                }
-            }
-        }
-
     }
 }

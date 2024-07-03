@@ -9,8 +9,8 @@ import java.time.Duration;
 
 public class AzureBlobConnector {
 
-    private static final String acName = "bravosrepo";
-    private static final String acKey = "A3EsMcR/Hxhh5EIVWRf05jI0BjbvSZMblx+ZYFtZ9T+V7xKV/7G2pkwdu1RCRhNsLZCT2FPqA57z+AStu2UaGg==";
+    private static final String acName = "bravosrepo2";
+    private static final String acKey = "krW4iedw8IjiYHMDRX7WwsdhrAjQlgY9YRBK+z6TMOzFFF2IUPjealQVaUg7orDaAMcMepkAT+Ab+AStgav+9A==";
     private static final String endPoint = String.format("https://%s.blob.core.windows.net/",acName);
     private static final StorageSharedKeyCredential sharedKeyCredential = new StorageSharedKeyCredential(acName,acKey);
     private static final BlobServiceClient blobServiceClient = buildClient();
