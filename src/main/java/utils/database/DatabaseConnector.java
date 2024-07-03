@@ -38,7 +38,7 @@ public class DatabaseConnector {
     public Connection getConnection() {
         try {
             if(connection == null || connection.isClosed()) {
-                DriverManager.setLoginTimeout(10); // Quá 10 giây = kết nối thất bại
+                DriverManager.setLoginTimeout(120); // Quá 120 giây = kết nối thất bại
                 connection = DriverManager.getConnection(connectionUrl,username,password);
             }
             return connection;

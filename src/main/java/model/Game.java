@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Game {
@@ -15,8 +16,8 @@ public class Game {
     private String moTa;
     private int ram;
     private int rom;
-    private Date release_date;
-    private Date update_date;
+    private Date releaseDate;
+    private Date updateDate;
     private String version;
     private boolean isOpened;
 
@@ -107,20 +108,20 @@ public class Game {
         this.rom = rom;
     }
 
-    public Date getRelease_date() {
-        return release_date;
+    public Date getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRelease_date(Date release_date) {
-        this.release_date = release_date;
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
     }
 
-    public Date getUpdate_date() {
-        return update_date;
+    public Date getUpdateDate() {
+        return updateDate;
     }
 
-    public void setUpdate_date(Date update_date) {
-        this.update_date = update_date;
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 
     public String getVersion() {
@@ -138,4 +139,18 @@ public class Game {
     public void setOpened(boolean opened) {
         isOpened = opened;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Game game = (Game) o;
+        return Objects.equals(id, game.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
 }
