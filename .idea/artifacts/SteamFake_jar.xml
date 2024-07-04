@@ -1,0 +1,64 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="SteamFake:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/SteamFake_jar</output-path>
+    <root id="archive" name="SteamFake.jar">
+      <element id="module-output" name="SteamFake" />
+      <element id="library" level="project" name="Maven: com.azure:azure-core-http-netty:1.15.1" />
+      <element id="library" level="project" name="Maven: com.azure:azure-core:1.49.1" />
+      <element id="library" level="project" name="Maven: com.azure:azure-json:1.1.0" />
+      <element id="library" level="project" name="Maven: com.azure:azure-storage-blob:12.26.1" />
+      <element id="library" level="project" name="Maven: com.azure:azure-storage-common:12.25.1" />
+      <element id="library" level="project" name="Maven: com.azure:azure-storage-internal-avro:12.11.1" />
+      <element id="library" level="project" name="Maven: com.azure:azure-xml:1.0.0" />
+      <element id="library" level="module" name="Maven: com.bravos2k5:CustomButton:1.0" module-name="SteamFake" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.17.1" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.17.1" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.17.1" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.5" />
+      <element id="library" level="project" name="Maven: com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.5" />
+      <element id="library" level="project" name="Maven: com.fasterxml.woodstox:woodstox-core:6.4.0" />
+      <element id="library" level="project" name="Maven: com.formdev:flatlaf:3.4.1" />
+      <element id="library" level="project" name="Maven: com.formdev:jide-oss:3.7.15" />
+      <element id="library" level="project" name="Maven: com.github.oshi:oshi-core:6.6.1" />
+      <element id="library" level="project" name="Maven: com.microsoft.sqlserver:mssql-jdbc:12.6.1.jre11" />
+      <element id="library" level="project" name="Maven: io.netty:netty-buffer:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-codec-dns:4.1.109.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-codec-http2:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-codec-http:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: javax.activation:activation:1.1" />
+      <element id="library" level="project" name="Maven: org.springframework.security:spring-security-crypto:6.2.1" />
+      <element id="library" level="project" name="Maven: io.projectreactor:reactor-core:3.4.38" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-api:2.0.13" />
+      <element id="library" level="project" name="Maven: io.projectreactor.netty:reactor-netty-core:1.0.45" />
+      <element id="library" level="project" name="Maven: net.java.dev.jna:jna:5.14.0" />
+      <element id="library" level="project" name="Maven: org.slf4j:slf4j-simple:2.0.13" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:linux-aarch_64:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.projectreactor.netty:reactor-netty-http:1.0.45" />
+      <element id="library" level="project" name="Maven: org.reactivestreams:reactive-streams:1.0.4" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-classes-kqueue:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-resolver-dns-classes-macos:4.1.109.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-handler-proxy:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-native-kqueue:osx-x86_64:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-resolver:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-common:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-codec:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:osx-aarch_64:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-resolver-dns:4.1.109.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:linux-x86_64:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-native-epoll:linux-x86_64:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-classes:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: net.java.dev.jna:jna-platform:5.14.0" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:windows-x86_64:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-handler:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-tcnative-boringssl-static:osx-x86_64:2.0.65.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-codec-socks:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: org.codehaus.woodstox:stax2-api:4.2.1" />
+      <element id="library" level="project" name="Maven: javax.mail:mail:1.5.0-b01" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-native-unix-common:4.1.110.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-resolver-dns-native-macos:osx-x86_64:4.1.109.Final" />
+      <element id="library" level="project" name="Maven: io.netty:netty-transport-classes-epoll:4.1.110.Final" />
+    </root>
+  </artifact>
+</component>
