@@ -1,0 +1,44 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {par l {seq {space :::p, par l {comp scrollPane1::::846:x, seq {space :p:13:p, comp label1:::p::p, space :0:690:x}}}, seq l {space :p:10:p, par l {comp scrollPane2::::842:x, seq l {space :p:13:p, comp label2:::p::p, space :0:687:x}}}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space u:::p, comp scrollPane1:::p:241:p, space :p:18:p, comp label2:::p::p, space s:::p, comp scrollPane2::::225:x, space :::p}}"
+		} ) {
+			name: "this"
+			"resizable": false
+			"modal": true
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "panel1"
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Hàng đợi tải xuống"
+				"font": &Font0 new java.awt.Font( "Inter", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Tải xuống hoàn tất"
+				"font": #Font0
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane2"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "panel2"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 860, 605 )
+		} )
+	}
+}
