@@ -40,6 +40,7 @@ public class DatabaseConnector {
             if(connection == null || connection.isClosed()) {
                 DriverManager.setLoginTimeout(10); // Quá 10 giây = kết nối thất bại
                 connection = DriverManager.getConnection(connectionUrl,username,password);
+                System.out.println("thanh cong");
             }
             return connection;
         } catch (SQLException e) {
@@ -68,6 +69,10 @@ public class DatabaseConnector {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static void main(String[] args) {
+        new DatabaseConnector().getConnection();
     }
 
 }

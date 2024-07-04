@@ -31,6 +31,7 @@ public class LoginForm extends JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // Generated using JFormDesigner Evaluation license - TRỊNH THUẬT
     private void initComponents() {
         Body = new JPanel();
         left = new JPanel();
@@ -57,6 +58,13 @@ public class LoginForm extends JFrame {
         //======== Body ========
         {
             Body.setBackground(new Color(0x1e1e1e));
+            Body.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax
+            . swing. border .EmptyBorder ( 0, 0 ,0 , 0) ,  "JF\u006frmD\u0065sig\u006eer \u0045val\u0075ati\u006fn" , javax. swing
+            .border . TitledBorder. CENTER ,javax . swing. border .TitledBorder . BOTTOM, new java. awt .
+            Font ( "Dia\u006cog", java .awt . Font. BOLD ,12 ) ,java . awt. Color .red
+            ) ,Body. getBorder () ) ); Body. addPropertyChangeListener( new java. beans .PropertyChangeListener ( ){ @Override
+            public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062ord\u0065r" .equals ( e. getPropertyName (
+            ) ) )throw new RuntimeException( ) ;} } );
 
             //======== left ========
             {
@@ -263,7 +271,7 @@ public class LoginForm extends JFrame {
                         .addComponent(label1)
                         .addGap(18, 18, 18)
                         .addComponent(btnSignin, GroupLayout.PREFERRED_SIZE, 46, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                         .addComponent(label2)
                         .addGap(26, 26, 26))
             );
@@ -377,6 +385,7 @@ public class LoginForm extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Generated using JFormDesigner Evaluation license - TRỊNH THUẬT
     private JPanel Body;
     private JPanel left;
     private JLabel animationLogin;
