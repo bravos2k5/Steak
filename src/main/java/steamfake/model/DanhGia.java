@@ -2,19 +2,19 @@ package steamfake.model;
 
 import java.util.UUID;
 
-public class DanhGIa {
+public class DanhGia {
 
     private UUID accountID;
     private UUID gameID;
     private int rate;
     private String comment;
 
-    public DanhGIa(UUID accountID, UUID gameID) {
+    public DanhGia(UUID accountID, UUID gameID) {
         this.accountID = accountID;
         this.gameID = gameID;
     }
 
-    public DanhGIa() {
+    public DanhGia() {
     }
 
     public UUID getAccountID() {

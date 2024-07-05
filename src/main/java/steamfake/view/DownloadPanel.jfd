@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:25:p, par l {comp lblGameName::l:p:120:p, seq l {comp prbProgress:::p:530:p, space :p:29:p, comp lblProgress:::p::p}}, space ::183:x}}"
-			"$verticalGroup": "par l {seq {space :::p, par t {comp lblProgress:::p::p, seq {comp lblGameName:::p::p, space s:::p, comp prbProgress:::p:13:p}}, space :p:20:p}}"
+			"$horizontalGroup": "par l {seq {space :p:25:p, par l {comp lblGameName::l:p:120:p, seq l {comp prbProgress:::p:530:p, space :p:29:p, comp lblProgress:::p::p}}, space ::183:x}}"
+			"$verticalGroup": "par l {seq {space :::p, par t {comp lblProgress:::p::p, seq {comp lblGameName:::p::p, space s:::p, comp prbProgress:::p:13:p}}, space ::256:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -22,7 +22,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 10 )
-			"size": new java.awt.Dimension( 800, 75 )
+			"size": new java.awt.Dimension( 800, 310 )
 		} )
 	}
 }
