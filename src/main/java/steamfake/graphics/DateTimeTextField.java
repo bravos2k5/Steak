@@ -23,7 +23,7 @@ public class DateTimeTextField extends JFormattedTextField {
 
     public DateTimeTextField() {
         datePicker = new DatePicker();
-        datePicker.setDateFormat("dd/mm/yyyy");
+        datePicker.setDateFormat("dd/MM/yyyy");
         datePicker.setEditor(this);
     }
 
