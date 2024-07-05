@@ -1,7 +1,7 @@
-package dao;
+package steamfake.dao;
 
-import model.Bank;
-import utils.database.XJdbc;
+import steamfake.model.Bank;
+import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,6 +18,8 @@ public class BankDAO {
         }
         return instance;
     }
+
+    private BankDAO() {}
 
     public static Bank selectByID(String id) {
         String sql = "SELECT * FROM Bank WHERE id = ?";

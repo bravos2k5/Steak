@@ -1,4 +1,4 @@
-package utils;
+package steamfake.utils;
 
 import oshi.SystemInfo;
 import oshi.hardware.GlobalMemory;

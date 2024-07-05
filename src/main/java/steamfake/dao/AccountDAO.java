@@ -1,8 +1,8 @@
-package dao;
+package steamfake.dao;
 
-import model.Account;
-import utils.XSecurity;
-import utils.database.XJdbc;
+import steamfake.model.Account;
+import steamfake.utils.XSecurity;
+import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

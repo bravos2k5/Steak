@@ -113,7 +113,7 @@ public class KGradientPanel extends JPanel {
 
         // g2d.fillRect(0, 0, w, h);
         g2d.setPaint(gp);
-        if (kFillBackground == true) {
+        if (kFillBackground) {
             g2d.fillRoundRect(0, 0, w - 1, h - 1, arcs.width, arcs.height);
         }
 

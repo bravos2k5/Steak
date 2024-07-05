@@ -1,4 +1,4 @@
-package utils;
+package steamfake.utils;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;

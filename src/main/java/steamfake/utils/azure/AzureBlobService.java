@@ -1,4 +1,4 @@
-package utils.azure;
+package steamfake.utils.azure;
 
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;

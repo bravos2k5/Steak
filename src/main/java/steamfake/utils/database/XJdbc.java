@@ -1,4 +1,4 @@
-package utils.database;
+package steamfake.utils.database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

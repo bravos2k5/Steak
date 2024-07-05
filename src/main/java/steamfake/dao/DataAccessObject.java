@@ -1,4 +1,4 @@
-package dao;
+package steamfake.dao;
 
 import java.util.List;
 

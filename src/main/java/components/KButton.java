@@ -322,7 +322,7 @@ public class KButton extends JButton {
 //                g.drawImage((Image) getIcon(), 0, 0, newImageWidth, newImageHeight, null);
 //              
 //            }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
 
     }
