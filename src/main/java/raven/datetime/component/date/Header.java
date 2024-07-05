@@ -58,8 +58,7 @@ public class Header extends JPanel {
     }
 
     private Icon createIcon(String name) {
-        FlatSVGIcon icon = new FlatSVGIcon("raven/datetime/icon/" + name);
-
+        FlatSVGIcon icon = new FlatSVGIcon("icon/" + name);
         return icon;
     }
 
