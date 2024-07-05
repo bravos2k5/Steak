@@ -9,9 +9,6 @@ public class Utils {
         Window window = SwingUtilities.getWindowAncestor(component);
         Insets frameInsets = window.getInsets();
         Dimension popupSize = popupMenu.getComponent().getPreferredSize();
-        if (window == null) {
-            return new Point(0, component.getHeight());
-        }
         int frameWidth = window.getWidth() - (frameInsets.left + frameInsets.right);
         int frameHeight = window.getHeight() - (frameInsets.top + frameInsets.bottom);
         Point locationOnFrame = SwingUtilities.convertPoint(component, new Point(0, component.getHeight()), window);

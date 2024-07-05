@@ -4,17 +4,16 @@
 
 package steamfake.view;
 
+import com.azure.storage.blob.BlobClient;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.specialized.BlobInputStream;
+import steamfake.utils.azure.AzureBlobService;
+
+import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-
-import com.azure.storage.blob.BlobClient;
-import com.azure.storage.blob.BlobContainerClient;
-import com.azure.storage.blob.specialized.BlobInputStream;
-import utils.azure.AzureBlobService;
 
 /**
  * @author BRAVOS
@@ -112,6 +111,9 @@ public class DownloadPanel extends JPanel {
         return status;
     }
 
+    private void initEvent() {
+        
+    }
     private void cancelAction() {
 
     }
@@ -121,23 +123,23 @@ public class DownloadPanel extends JPanel {
     }
 
     private void download() {
-        System.out.println("Init");
         BlobClient blobClient = containerClient.getBlobClient(blobName);
         final long totalSize = AzureBlobService.getBlobSize(blobClient);
         String path = "./Games/" + lblGameName.getText();
         new File(path).mkdirs();
         path += "/" + lblGameName.getText() + ".zip";
+        File file = new File(path);
         if(totalSize == -1) {
             status = Status.FAILED;
             return;
         }
         try(BlobInputStream bis= blobClient.openInputStream()) {
-            try(FileOutputStream fos = new FileOutputStream(path)) {
+            try(FileOutputStream fos = new FileOutputStream(file)) {
                 byte[] buffer = new byte[8192];
                 int bytesRead;
                 long downloadedSize = 0;
                 int progressTmp = -1;
-                System.out.println("Start download");
+                System.out.println("Start download " + lblGameName.getText());
                 lblProgress.setText("0%");
                 while ((bytesRead = bis.read(buffer)) != -1 && status != Status.CANCELED) {
                     fos.write(buffer,0,bytesRead);
@@ -157,19 +159,19 @@ public class DownloadPanel extends JPanel {
                 }
                 if(totalSize == downloadedSize) {
                     SwingUtilities.invokeLater(() -> {
-                        lblProgress.setText("Xong");
-//                        btnCancel.setText("Play");
-//                        btnCancel.setBackground(Color.GREEN);
+                        lblProgress.setText("Đang giải nén");
+                        // Cho btn mở đi
                         status = Status.COMPLETE;
                     });
+
                 }
                 else status = Status.FAILED;
             } catch (IOException e) {
                 status = Status.FAILED;
                 System.err.println(e.getMessage());
             } finally {
-                if(status == Status.FAILED) {
-                    new File(path).delete();
+                if(status == Status.FAILED || status == Status.CANCELED) {
+                    file.delete();
                 }
             }
         }

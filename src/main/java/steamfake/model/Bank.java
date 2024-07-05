@@ -1,4 +1,4 @@
-package model;
+package steamfake.model;
 
 public class Bank {
 

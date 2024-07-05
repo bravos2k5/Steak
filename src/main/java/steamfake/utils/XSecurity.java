@@ -1,4 +1,4 @@
-package utils;
+package steamfake.utils;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 

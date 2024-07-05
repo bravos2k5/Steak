@@ -1,6 +1,6 @@
-package utils;
+package steamfake.utils;
 
-import model.Account;
+import steamfake.model.Account;
 
 public class SessionManager {
 

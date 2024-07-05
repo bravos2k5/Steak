@@ -31,8 +31,8 @@ public class DownloadQueue extends JDialog {
     private DownloadQueue(Window owner) {
         super(owner);
         initComponents();
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         downloadThread();
+        this.setVisible(true);
     }
 
     private void initComponents() {
@@ -148,25 +148,25 @@ public class DownloadQueue extends JDialog {
     }
 
     private void downloadThread() {
-        addNewDownload("Road 1", "admin/Road_Rash_Game.zip");
-        addNewDownload("Road 2", "admin/Road_Rash_Game.zip");
-        addNewDownload("Road 3", "admin/Road_Rash_Game.zip");
         Timer timer = new Timer(1000, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(!downloadQueue.isEmpty()) {
-                    if(downloadQueue.peek().getStatus() == DownloadPanel.Status.COMPLETE) {
+                    DownloadPanel.Status status = downloadQueue.peek().getStatus();
+                    if(status == DownloadPanel.Status.COMPLETE || status == DownloadPanel.Status.CANCELED) {
                         DownloadPanel dp = downloadQueue.poll();
                         downloadedStack.addFirst(dp);
-                        panel2.removeAll();
-                        for(DownloadPanel dpp : downloadedStack) {
-                            panel2.add(dpp);
-                        }
-                        panel2.revalidate();
-                        panel2.repaint();
                         panel1.remove(dp);
                         panel1.revalidate();
                         panel1.repaint();
+                        if (status == DownloadPanel.Status.COMPLETE) {
+                            panel2.removeAll();
+                            for(DownloadPanel dpp : downloadedStack) {
+                                panel2.add(dpp);
+                            }
+                            panel2.revalidate();
+                            panel2.repaint();
+                        }
                     }
                     else if(downloadQueue.peek() != null)
                         downloadQueue.peek().start();
@@ -178,6 +178,6 @@ public class DownloadQueue extends JDialog {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new DownloadQueue(null).setVisible(true);
+        new DownloadQueue(null);
     }
 }
