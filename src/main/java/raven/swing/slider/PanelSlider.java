@@ -61,9 +61,9 @@ public class PanelSlider extends JLayeredPane {
         return snapshot;
     }
 
-    private static class PanelSnapshot extends JComponent {
+    private class PanelSnapshot extends JComponent {
 
-        private final Animator animator;
+        private Animator animator;
         private Component component;
         private float animate;
 
