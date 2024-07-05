@@ -36,7 +36,7 @@ public class PanelDate extends JPanel {
         final int t = col * row;
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, year);
-        calendar.set(Calendar.MONTH, month);
+        calendar.set(Calendar.MONDAY, month);
         calendar.set(Calendar.DATE, 1);
         int startDay = calendar.get(Calendar.DAY_OF_WEEK) - 1;
         calendar.add(Calendar.DATE, -startDay);
@@ -44,7 +44,7 @@ public class PanelDate extends JPanel {
         for (int i = 1; i <= t; i++) {
             SingleDate singleDate = new SingleDate(calendar);
             boolean selectable = dateSelection.getDateSelectionAble() == null || dateSelection.getDateSelectionAble().isDateSelectedAble(singleDate.toLocalDate());
-            boolean enable = calendar.get(Calendar.MONTH) == month && calendar.get(Calendar.YEAR) == year;
+            boolean enable = calendar.get(Calendar.MONDAY) == month && calendar.get(Calendar.YEAR) == year;
             JButton button = createButton(new SingleDate(calendar), enable, rowIndex);
             if (!selectable) {
                 button.setEnabled(false);
@@ -61,7 +61,7 @@ public class PanelDate extends JPanel {
     }
 
     protected void createDateHeader() {
-        String[] weekdays = DateFormatSymbols.getInstance().getShortWeekdays();
+        String weekdays[] = DateFormatSymbols.getInstance().getShortWeekdays();
         for (String week : weekdays) {
             if (!week.isEmpty()) {
                 add(createLabel(week));
@@ -88,7 +88,8 @@ public class PanelDate extends JPanel {
     protected void checkSelection() {
         for (int i = 0; i < getComponentCount(); i++) {
             Component com = getComponent(i);
-            if (com instanceof ButtonDate buttonDate) {
+            if (com instanceof ButtonDate) {
+                ButtonDate buttonDate = (ButtonDate) com;
                 if (dateSelection.dateSelectionMode == DatePicker.DateSelectionMode.SINGLE_DATE_SELECTED) {
                     buttonDate.setSelected(buttonDate.getDate().same(dateSelection.getDate()));
                 } else {

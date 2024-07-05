@@ -120,7 +120,8 @@ public class PanelClock extends JPanel {
 
     private void init() {
         animationChange = new AnimationChange(this);
-        putClientProperty(FlatClientProperties.STYLE, "border:5,15,5,15;" +
+        putClientProperty(FlatClientProperties.STYLE, "" +
+                "border:5,15,5,15;" +
                 "background:null;" +
                 "foreground:contrast($Component.accentColor,$Panel.background,#fff)");
         MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -146,10 +147,10 @@ public class PanelClock extends JPanel {
 
             private void mouseChanged(MouseEvent e) {
                 if (hourSelectionView) {
-                    int hour = getValueOf(e.getPoint(), true);
+                    int hour = getValueOf(e.getPoint(), hourSelectionView);
                     setHour(hour);
                 } else {
-                    int minute = getValueOf(e.getPoint(), false);
+                    int minute = getValueOf(e.getPoint(), hourSelectionView);
                     setMinute(minute);
                 }
             }
@@ -218,7 +219,7 @@ public class PanelClock extends JPanel {
     protected void paintClockNumber(Graphics2D g2, int x, int y, int size, int margin, int start, int add) {
         final int mg = UIScale.scale(margin);
         float center = size / 2f;
-        float angle = (float) 360 / 12;
+        float angle = 360 / 12;
         for (int i = 1; i <= 12; i++) {
             float ag = angle * i - 90;
             int num = fixHour((start + i * add), hourSelectionView);
@@ -231,8 +232,8 @@ public class PanelClock extends JPanel {
     protected void paintNumber(Graphics2D g2, float x, float y, String num, boolean isSelected) {
         FontMetrics fm = g2.getFontMetrics();
         Rectangle2D rec = fm.getStringBounds(num, g2);
-        x -= (float) (rec.getWidth() / 2);
-        y -= (float) (rec.getHeight() / 2);
+        x -= rec.getWidth() / 2;
+        y -= rec.getHeight() / 2;
         if (isSelected) {
             g2.setColor(getSelectedForeground());
         } else {
@@ -287,7 +288,7 @@ public class PanelClock extends JPanel {
      * Return value hour or minute
      */
     private int getValueOf(Point point, boolean hourView) {
-        float angle = getAngleOf(point) + (hourView ? (float) 360 / 12 / 2 : (float) 360 / 60 / 2);
+        float angle = getAngleOf(point) + (hourView ? 360 / 12 / 2 : 360 / 60 / 2);
         int value = getValueOf(angle, hourView);
         if (hourView && use24hour && is24hourSelect(point)) {
             return fixHour(value + 12, true);
@@ -313,7 +314,7 @@ public class PanelClock extends JPanel {
      * Return angle vales
      */
     private float getAngleOf(int number, boolean hourView) {
-        float ag = (float) 360 / (hourView ? 12 : 60);
+        float ag = 360 / (hourView ? 12 : 60);
         return fixAngle(ag * number);
     }
 
@@ -325,8 +326,8 @@ public class PanelClock extends JPanel {
         Insets insets = getInsets();
         int width = getWidth() - (insets.left + insets.right);
         int height = getHeight() - (insets.top + insets.bottom);
-        float centerX = insets.left + (float) width / 2;
-        float centerY = insets.top + (float) height / 2;
+        float centerX = insets.left + width / 2;
+        float centerY = insets.top + height / 2;
         float x = point.x - centerX;
         float y = point.y - centerY;
         double angle = Math.toDegrees(Math.atan2(y, x)) + 90;
