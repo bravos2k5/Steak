@@ -32,11 +32,8 @@ public class XFile {
 
     public static void unzip(String zipFilePath, String destDir) {
         File dir = new File(destDir);
-        // Tạo thư mục đích nếu chưa tồn tại
         if (!dir.exists()) dir.mkdirs();
-
         byte[] buffer = new byte[1024];
-
         try (ZipInputStream zis = new ZipInputStream(new FileInputStream(zipFilePath))) {
             ZipEntry zipEntry = zis.getNextEntry();
             while (zipEntry != null) {
@@ -46,18 +43,16 @@ public class XFile {
                         throw new IOException("Failed to create directory " + newFile);
                     }
                 } else {
-                    // Tạo thư mục cha của file nếu chưa tồn tại
                     File parent = newFile.getParentFile();
                     if (!parent.isDirectory() && !parent.mkdirs()) {
                         throw new IOException("Failed to create directory " + parent);
                     }
-
-                    // Ghi dữ liệu từ zip vào file
                     try (FileOutputStream fos = new FileOutputStream(newFile)) {
                         int len;
                         while ((len = zis.read(buffer)) > 0) {
                             fos.write(buffer, 0, len);
                         }
+                        fos.flush();
                     }
                 }
                 zipEntry = zis.getNextEntry();
@@ -71,7 +66,7 @@ public class XFile {
         }
     }
 
-    public static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
+    private static File newFile(File destinationDir, ZipEntry zipEntry) throws IOException {
         File destFile = new File(destinationDir, zipEntry.getName());
 
         String destDirPath = destinationDir.getCanonicalPath();
