@@ -1,4 +1,4 @@
-package controller;
+package steamfake.controller;
 
 public interface Navigator {
     void moveNext();

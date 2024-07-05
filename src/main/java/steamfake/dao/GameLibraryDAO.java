@@ -1,7 +1,7 @@
-package dao;
+package steamfake.dao;
 
-import model.GameLibrary;
-import utils.database.XJdbc;
+import steamfake.model.GameLibrary;
+import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

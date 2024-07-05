@@ -1,4 +1,4 @@
-package model;
+package steamfake.model;
 
 import java.sql.Date;
 import java.util.UUID;
