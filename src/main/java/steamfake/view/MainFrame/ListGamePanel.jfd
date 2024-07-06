@@ -1,0 +1,73 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::78:x, comp radiusPanel1:::p::p, space :p:67:p}}"
+			"$verticalGroup": "par l {seq l {space :p:23:p, comp radiusPanel1:::p::p, space ::27:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:21:p, comp lblImageGame:::p:200:p, space s:::p, par l {comp lblNameGame:::p:360:p, seq {comp lblReviews:::p:100:p, space :0:0:p, comp label4:::p:30:p, space :::p, comp lblDownload:::p:104:p, space s:::p, comp label6:::p:30:p}}, space :::p, comp lblPrice:::p:200:p, space s:::p, comp lblNameCreator:::p:200:p, space ::27:x}}"
+				"$verticalGroup": "par l {seq {par l {seq {space :p:23:p, par l {comp lblImageGame:::p:100:p, seq {comp lblNameGame:::p:50:p, space :::p, par l:::p {comp lblReviews:::::x, comp label4::l:::x, comp lblDownload::l:::x, comp label6::l:p:30:p}}, comp lblNameCreator::l:p:100:p}}, seq l {space :p:50:p, comp lblPrice:::p:40:p}}, space ::27:x}}"
+			} ) {
+				name: "radiusPanel1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"radius": 22
+				"borderColor": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblImageGame"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/DownloadHotgame.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNameGame"
+					"text": "Zenless Zone Zero"
+					"font": new java.awt.Font( "SansSerif", 1, 22 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblReviews"
+					"text": "95/100"
+					"font": new java.awt.Font( "Inter", 1, 24 )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Star.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Windows 12.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+					name: "lblDownload"
+					"text": "110k"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Downloadsmall.png" )
+					"componentOrientation": sfield java.awt.ComponentOrientation RIGHT_TO_LEFT
+					"font": new java.awt.Font( "Inter", 1, 22 )
+					"radius": 0
+					"borderColor": sfield java.awt.Color white
+				} )
+				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+					name: "lblPrice"
+					"text": "9.990$"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
+					"font": new java.awt.Font( "Inter", 1, 24 )
+				} )
+				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+					name: "lblNameCreator"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
+					"radius": 11
+					"font": new java.awt.Font( "Inter", 1, 24 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1195, 200 )
+		} )
+	}
+}

@@ -1,0 +1,83 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space :p:21:p, comp lblAvata:::p:50:p, space s:::p, par l {comp lblName:::p:150:p, comp lblRole:::p:150:p}, space u:::p, comp txtSearch:::p:500:p, space :0:0:p, comp lblSearch:::p::p, space ::41:x, comp lblMoney:::p:140:p, space :p:36:p, comp iconAddMoney:::p::p, space s:::p, comp separator3:::p:3:p, space u:::p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
+			"$verticalGroup": "par l {seq t {space ::18:x, par l {comp txtSearch:::p:30:p, comp lblSearch:::p:30:p}, space :p:17:p}, seq {par l {seq l {space :::p, par l:::p {seq {comp lblName:::p::p, space :::x, comp lblRole:::p::p}, par t {comp lblAvata:::p:50:p, comp separator3::t:p:50:p}}}, seq l {space :p:16:p, comp iconAddMoney:::p::p}, seq l {space :p:16:p, par t {comp iconLogOut:::p::p, comp iconSettingAccount:::p:30:p}}, seq l {space :::p, comp lblMoney:::p:50:p}}, space ::8:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAvata"
+				"text": "Icon"
+				"opaque": true
+				"horizontalTextPosition": 0
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "Trịnh Văn Thuật"
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblRole"
+				"text": "Thành viên"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/User.png" )
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+				"foreground": new java.awt.Color( 112, 255, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtSearch"
+				"foreground": new java.awt.Color( 103, 109, 131, 255 )
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"opaque": true
+				"cursor": new java.awt.Cursor( 2 )
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+				"text": "Search"
+				"caretPosition": 6
+				"margin": new java.awt.Insets( 3, 6, 2, 6 )
+				"background": new java.awt.Color( 48, 51, 61, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblSearch"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Search.png" )
+				"background": new java.awt.Color( 48, 51, 61, 255 )
+				"opaque": true
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblMoney"
+				"text": "100M"
+				"horizontalAlignment": 0
+				"labelFor": new FormReference( "txtSearch" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Dollar Coin.png" )
+				"font": new java.awt.Font( "Inter", 1, 20 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"opaque": true
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "iconAddMoney"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Add Dollar.png" )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator3"
+				"orientation": 1
+				"opaque": true
+				"background": sfield java.awt.Color white
+				"foreground": sfield java.awt.Color white
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "iconSettingAccount"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Accessibility Tools.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "iconLogOut"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Shutdown.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1190, 65 )
+		} )
+	}
+}

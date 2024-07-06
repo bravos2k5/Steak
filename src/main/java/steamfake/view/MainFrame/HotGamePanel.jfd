@@ -1,0 +1,95 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:10:p, comp lblLeft:::p::p, space u:::p, par l:::p {comp panel1:::::x, comp lbImage:::::x}, space u:::p, comp lblRight:::p::p, space ::8:x}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:17:p, comp lbImage:::p:430:p}, seq l {space :p:195:p, comp lblLeft:::p::p}, seq l {space :p:181:p, comp lblRight:::p::p}}, space s:::p, comp panel1:::p::p, space ::25:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+				name: "lbImage"
+				"borderColor": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"borderWidth": 0
+				"radius": 7
+				"background": new java.awt.Color( 25, 27, 32, 255 )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:14:p, comp lblNameGame:::p:325:p, space :p:43:p, comp separator1:::p:3:p, space :p:44:p, comp lblDownloads:::p:100:p, space :0:0:p, comp label3:::p:30:p, space :p:30:p, comp separator2:::p::p, space :p:28:p, comp lblReviews:::p:100:p, space :::p, comp label5:::p::p, space :p:29:p, comp separator3:::p::p, space s:::p, comp lblPrice:::p:200:p, space :0:0:p, comp label7:::p:40:p, space ::7:x}}"
+				"$verticalGroup": "par l {comp lblNameGame::t:::x, comp lblDownloads::l:::x, seq t {space :0:0:x, comp label3:::p:60:p}, seq {space :::p, par l {comp separator1:::::x, seq {par l {comp separator2::l:p:48:p, comp separator3::l:p:48:p}, space :0:0:x}}, space :::p}, seq {par l:::p {comp label5::l::60:x, comp lblReviews::l::60:x, comp lblPrice::l::60:x, comp label7::l::60:x}, space :0:0:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNameGame"
+					"text": "Zenless Zone Zero"
+					"font": new java.awt.Font( "SansSerif", 1, 28 )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator1"
+					"orientation": 1
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color white
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDownloads"
+					"text": "110k"
+					"font": new java.awt.Font( "SansSerif", 1, 28 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/DownloadHotgame.png" )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator2"
+					"orientation": 1
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color white
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblReviews"
+					"text": "95/100"
+					"font": new java.awt.Font( "Inter", 1, 24 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Star.png" )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator3"
+					"orientation": 1
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color white
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPrice"
+					"text": "9.900 $"
+					"font": new java.awt.Font( "Inter", 1, 24 )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Windows 12.png" )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblLeft"
+				"horizontalAlignment": 0
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Back.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblRight"
+				"horizontalAlignment": 0
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Next.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1195, 550 )
+		} )
+	}
+}
