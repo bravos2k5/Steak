@@ -4,6 +4,7 @@
 
 package steamfake.view;
 
+import java.awt.*;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
 import javax.swing.*;
