@@ -1,0 +1,28 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:25:p, par l {comp lblGameName::l:p:120:p, seq l {comp prbProgress:::p:530:p, space :p:29:p, comp lblProgress:::p::p}}, space ::187:x}}"
+			"$verticalGroup": "par l {seq {space :::p, par t {comp lblProgress:::p::p, seq {comp lblGameName:::p::p, space s:::p, comp prbProgress:::p:13:p}}, space ::256:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblGameName"
+				"text": "Title"
+				"font": new java.awt.Font( "Inter", 0, 13 )
+			} )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "prbProgress"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblProgress"
+				"text": "100%"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 10 )
+			"size": new java.awt.Dimension( 800, 310 )
+		} )
+	}
+}
