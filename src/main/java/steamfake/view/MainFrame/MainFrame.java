@@ -5,10 +5,11 @@
 package steamfake.view.MainFrame;
 
 import com.formdev.flatlaf.FlatDarkLaf;
-import steamfake.graphics.*;
-import steamfake.graphics.RadiusButton;
+import steamfake.view.LibraryFrame.HeaderLibraryPanel;
+import steamfake.view.LibraryFrame.ListGameLibraryPanel;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -25,23 +26,67 @@ public class MainFrame extends JDialog {
         initComponents();
 
         panelHeader.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.WHITE));
+        JLabel[] labels = {lblHome, lblLibrary};
+        sclMain.getVerticalScrollBar().setUnitIncrement(16);
+        lblHome.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mouseClickedBorder(lblHome, labels);
+                panelMain.removeAll();
+                HeaderPanel headerPanel = new HeaderPanel();
+                headerPanel.setVisible(true);
+                panelMain.add(headerPanel);
+                HotGamePanel hotGamePanel = new HotGamePanel();
+                hotGamePanel.setVisible(true);
+                panelMain.add(hotGamePanel);
+                for (int i = 0; i < 5; i++) {
+                    ListGamePanel listGamePanel = new ListGamePanel();
+                    listGamePanel.setVisible(true);
+                    panelMain.add(listGamePanel);
+                }
+                panelMain.repaint();
+                panelMain.validate();
+            }
+        });
+        lblLibrary.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                mouseClickedBorder(lblLibrary, labels);
+                panelMain.removeAll();
+                HeaderLibraryPanel headerLibraryPanel = new HeaderLibraryPanel();
+                headerLibraryPanel.setVisible(true);
+                panelMain.add(headerLibraryPanel);
+                for (int i = 0; i < 20; i++) {
+                    ListGameLibraryPanel listGameLibraryPanel = new ListGameLibraryPanel();
+                    listGameLibraryPanel.setVisible(true);
+                    panelMain.add(listGameLibraryPanel);
+                }
+                panelMain.repaint();
+                panelMain.validate();
+            }
+        });
 
+    }
 
-        HeaderPanel headerPanel = new HeaderPanel();
-        headerPanel.setVisible(true);
-        HotGamePanel hotGamePanel = new HotGamePanel();
-        hotGamePanel.setVisible(true);
-        panelMain.add(headerPanel);
-        panelMain.add(hotGamePanel);
-        for (int i = 0; i < 5; i++) {
-            ListGamePanel listGamePanel = new ListGamePanel();
-            listGamePanel.setVisible(true);
-
-            panelMain.add(listGamePanel);
-
-
+    private void mouseClickedBorder(JLabel labelBorder, JLabel[] labelAll) {
+        for (JLabel lbl : arrayJLabel(labelAll)) {
+            if (lbl != labelBorder) {
+                lbl.setBorder(null);
+            }
+            labelBorder.setBorder(borderLabel(Color.WHITE,2));
         }
+    }
 
+    private Border borderLabel(Color color, int thickness) {
+        return BorderFactory.createLineBorder(color, thickness);
+    }
+
+    private JLabel[] arrayJLabel(JLabel[] value) {
+        JLabel[] arrayJlabel = new JLabel[value.length];
+        for (int i = 0; i < arrayJlabel.length; i++) {
+            arrayJlabel[i] =value[i];
+        }
+        return arrayJlabel;
     }
 
 

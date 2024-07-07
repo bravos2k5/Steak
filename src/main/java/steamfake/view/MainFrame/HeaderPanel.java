@@ -6,6 +6,7 @@ package steamfake.view.MainFrame;
 
 import java.awt.*;
 import javax.swing.*;
+import steamfake.graphics.*;
 
 /**
  * @author ACER
