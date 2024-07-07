@@ -4,6 +4,11 @@ import java.sql.Date;
 import java.util.UUID;
 
 public class PhieuKiemDuyet {
+
+    public static final int PENDING = 0;
+    public static final int ACCEPTED = 1;
+    public static final int REJECTED = 2;
+
     private UUID id;
     private UUID publisherID;
     private String moTa;
