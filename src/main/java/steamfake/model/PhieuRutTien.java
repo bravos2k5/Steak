@@ -5,6 +5,12 @@ import java.util.UUID;
 
 public class PhieuRutTien {
 
+    public static final int METHOD_ATM = 0;
+    public static final int METHOD_GAME = 1;
+    public static final int PENDING = 0;
+    public static final int ACCEPTED = 1;
+    public static final int REJECTED = 2;
+
     private UUID id;
     private UUID accountID;
     private float soTienRut;
