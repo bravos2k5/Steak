@@ -4,9 +4,12 @@
 
 package steamfake.view.MainFrame;
 
-import java.awt.*;
+import steamfake.graphics.RadiusTextField;
+
 import javax.swing.*;
-import steamfake.graphics.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author ACER
@@ -14,7 +17,7 @@ import steamfake.graphics.*;
 public class HeaderPanel extends JPanel {
     public HeaderPanel() {
         initComponents();
-        lblName.setText("nguyen quoc bao");
+        initialize();
     }
 
     private void initComponents() {
@@ -22,16 +25,16 @@ public class HeaderPanel extends JPanel {
         lblAvata = new JLabel();
         lblName = new JLabel();
         lblRole = new JLabel();
-        txtSearch = new JTextField();
         lblSearch = new JLabel();
         lblMoney = new JLabel();
         iconAddMoney = new JLabel();
         separator3 = new JSeparator();
         iconSettingAccount = new JLabel();
         iconLogOut = new JLabel();
+        radiusTextField1 = new RadiusTextField();
 
         //======== this ========
-        setBackground(new Color(0x191b20));
+        setBackground(new Color(0x252730));
 
         //---- lblAvata ----
         lblAvata.setText("Icon");
@@ -49,17 +52,6 @@ public class HeaderPanel extends JPanel {
         lblRole.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
         lblRole.setForeground(new Color(0x70ff00));
 
-        //---- txtSearch ----
-        txtSearch.setForeground(new Color(0x676d83));
-        txtSearch.setBorder(null);
-        txtSearch.setOpaque(true);
-        txtSearch.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
-        txtSearch.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-        txtSearch.setText("Search");
-        txtSearch.setCaretPosition(6);
-        txtSearch.setMargin(new Insets(3, 6, 2, 6));
-        txtSearch.setBackground(new Color(0x30333d));
-
         //---- lblSearch ----
         lblSearch.setIcon(new ImageIcon(getClass().getResource("/icon/Search.png")));
         lblSearch.setBackground(new Color(0x30333d));
@@ -68,7 +60,6 @@ public class HeaderPanel extends JPanel {
         //---- lblMoney ----
         lblMoney.setText("100M");
         lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
-        lblMoney.setLabelFor(txtSearch);
         lblMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Dollar Coin.png")));
         lblMoney.setFont(new Font("Inter", Font.BOLD, 20));
         lblMoney.setBackground(new Color(0x252730));
@@ -89,6 +80,11 @@ public class HeaderPanel extends JPanel {
         //---- iconLogOut ----
         iconLogOut.setIcon(new ImageIcon(getClass().getResource("/icon/Shutdown.png")));
 
+        //---- radiusTextField1 ----
+        radiusTextField1.setForeground(Color.white);
+        radiusTextField1.setPlaceholder("Search");
+        radiusTextField1.setEndGradientColor(Color.white);
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -100,12 +96,12 @@ public class HeaderPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(lblSearch)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
                     .addGap(36, 36, 36)
                     .addComponent(iconAddMoney)
                     .addGap(18, 18, 18)
@@ -119,10 +115,10 @@ public class HeaderPanel extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(18, Short.MAX_VALUE)
+                    .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                        .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(17, 17, 17))
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
@@ -156,14 +152,31 @@ public class HeaderPanel extends JPanel {
     private JLabel lblAvata;
     private JLabel lblName;
     private JLabel lblRole;
-    private JTextField txtSearch;
     private JLabel lblSearch;
     private JLabel lblMoney;
     private JLabel iconAddMoney;
     private JSeparator separator3;
     private JLabel iconSettingAccount;
     private JLabel iconLogOut;
+    private RadiusTextField radiusTextField1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
+
+    private void initialize() {
+        lblName.setText("nguyen quoc bao");
+        lblMoney.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lblMoney.setBackground(Color.LIGHT_GRAY);
+                lblMoney.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lblMoney.setBackground(new Color(30,30,30));
+                lblMoney.repaint();
+            }
+        });
+    }
 
 }
