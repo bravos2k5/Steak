@@ -20,6 +20,9 @@ public class GameDAO implements DataAccessObject<Game> {
         return instance;
     }
 
+    private GameDAO() {
+    }
+
     @Override
     public int insert(Game object) {
         String sql = "insert into GAME (id, publisher_id, name, avatar, gia_tien, age," +

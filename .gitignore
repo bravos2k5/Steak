@@ -16,6 +16,8 @@ src/main/resources/database.properties
 data
 src/main/java/Test.java
 src/main/java/demo
+Games
+out
 
 ### Eclipse ###
 .apt_generated
