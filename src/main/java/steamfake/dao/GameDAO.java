@@ -20,13 +20,23 @@ public class GameDAO implements DataAccessObject<Game> {
         return instance;
     }
 
+    private GameDAO() {
+    }
+
     @Override
     public int insert(Game object) {
         String sql = "insert into GAME (id, publisher_id, name, avatar, gia_tien, age," +
-                " images, mo_ta, ram, rom, update_date, version, isOpened, exec_file)";
+                " images, mo_ta, ram, rom, update_date, version, isOpened, exec_file) " +
+                "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         return XJdbc.update(sql,object.getId(),object.getPublisherID(),object.getName(),
                 object.getAvatar(),object.getGiaTien(),object.getAge(),object.getImages(),object.getMoTa(),
                 object.getRam(),object.getRom(),object.getUpdateDate(),object.getVersion(),object.isOpened(),object.getExecPath());
+    }
+
+    public Game selectMostDownloadedGame() {
+        String sql = "{CALL SP_LAY_GAME_TOP1()}";
+        List<Game> gameList = selectBySQL(sql);
+        return gameList.isEmpty() ? null : gameList.getFirst();
     }
 
     @Override
@@ -81,17 +91,16 @@ public class GameDAO implements DataAccessObject<Game> {
     public List<Game> selectBySQL(String sql, Object... args) {
         List<Game> gameList = new ArrayList<>();
         try(ResultSet rs = XJdbc.getResultSet(sql,args)){
-
             while (rs.next()) {
                 Game game = new Game();
                 game.setId(UUID.fromString(rs.getString("id")));
-                game.setPublisherID(UUID.fromString(rs.getString("publish_id")));
+                game.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
                 game.setName(rs.getNString("name"));
                 game.setAvatar(rs.getString("avatar"));
                 game.setGiaTien(rs.getFloat("gia_tien"));
                 game.setAge(rs.getInt("age"));
                 game.setImages(rs.getString("images"));
-                game.setMoTa(rs.getNString("mo_ta"));
+                game.setMoTa(rs.getString("mo_ta"));
                 game.setRam(rs.getInt("ram"));
                 game.setRom(rs.getInt("rom"));
                 game.setReleaseDate(rs.getDate("release_date"));
@@ -105,6 +114,30 @@ public class GameDAO implements DataAccessObject<Game> {
             throw new RuntimeException(e);
         }
         return gameList;
+    }
+
+    public int selectLuotTai(Game game) {
+        String sql = "{CALL SP_TINH_LUOT_TAI(?)}";
+        try(ResultSet rs = XJdbc.getResultSet(sql,game.getId())) {
+            if(rs.next()) {
+                return rs.getInt("luot_tai");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
+
+    public int selectAvgRate(Game game) {
+        String sql = "{CALL SP_TINH_DIEM_DANH_GIA(?)}";
+        try(ResultSet rs = XJdbc.getResultSet(sql,game.getId())) {
+            if(rs.next()) {
+                return rs.getInt("diem_tb");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
     }
 
 }

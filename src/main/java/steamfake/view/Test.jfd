@@ -1,0 +1,19 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:123:p, comp dateTimeTextField1:::p:215:p, space ::60:x}}"
+			"$verticalGroup": "par l {seq l {space :p:81:p, comp dateTimeTextField1:::p:135:p, space ::53:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "steamfake.graphics.DateTimeTextField" ) {
+				name: "dateTimeTextField1"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 65, 20 )
+			"size": new java.awt.Dimension( 400, 300 )
+		} )
+	}
+}
