@@ -4,10 +4,10 @@
 
 package steamfake.view.MainFrame;
 
-import steamfake.graphics.RadiusLabel;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +17,11 @@ import java.util.List;
 public class HotGamePanel extends JPanel {
     public HotGamePanel() {
         initComponents();
+        initialize();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        lbImage = new RadiusLabel();
         panel1 = new JPanel();
         lblNameGame = new JLabel();
         separator1 = new JSeparator();
@@ -35,15 +35,11 @@ public class HotGamePanel extends JPanel {
         label7 = new JLabel();
         lblLeft = new JLabel();
         lblRight = new JLabel();
+        panel2 = new JPanel();
+        lblImage = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
-
-        //---- lbImage ----
-        lbImage.setBorderColor(null);
-        lbImage.setBorderWidth(0);
-        lbImage.setRadius(7);
-        lbImage.setBackground(new Color(0x191b20));
 
         //======== panel1 ========
         {
@@ -155,43 +151,63 @@ public class HotGamePanel extends JPanel {
         lblRight.setHorizontalAlignment(SwingConstants.CENTER);
         lblRight.setIcon(new ImageIcon(getClass().getResource("/icon/Next.png")));
 
+        //======== panel2 ========
+        {
+
+            //---- lblImage ----
+            lblImage.setHorizontalAlignment(SwingConstants.CENTER);
+            lblImage.setIcon(new ImageIcon(getClass().getResource("/icon/Steambig.png")));
+
+            GroupLayout panel2Layout = new GroupLayout(panel2);
+            panel2.setLayout(panel2Layout);
+            panel2Layout.setHorizontalGroup(
+                panel2Layout.createParallelGroup()
+                    .addComponent(lblImage, GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+            );
+            panel2Layout.setVerticalGroup(
+                panel2Layout.createParallelGroup()
+                    .addComponent(lblImage, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+            );
+        }
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
+                    .addGap(27, 27, 27)
                     .addComponent(lblLeft)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbImage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                    .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(40, 40, 40)
                     .addComponent(lblRight)
-                    .addContainerGap(8, Short.MAX_VALUE))
+                    .addGap(28, 28, 28))
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(lbImage, GroupLayout.PREFERRED_SIZE, 430, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(195, 195, 195)
-                            .addComponent(lblLeft))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(181, 181, 181)
-                            .addComponent(lblRight)))
-                    .addGap(18, 18, 18)
+                            .addGap(343, 343, 343)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(lblRight)
+                                .addComponent(lblLeft))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addContainerGap(72, Short.MAX_VALUE)
+                            .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(63, 63, 63)))
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(25, Short.MAX_VALUE))
+                    .addGap(55, 55, 55))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private RadiusLabel lbImage;
     private JPanel panel1;
     private JLabel lblNameGame;
     private JSeparator separator1;
@@ -205,17 +221,70 @@ public class HotGamePanel extends JPanel {
     private JLabel label7;
     private JLabel lblLeft;
     private JLabel lblRight;
+    private JPanel panel2;
+    private JLabel lblImage;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private final List<ImageIcon> imageIconList = new ArrayList<>();
+    private int i = 0;
 
     private void initialize() {
-
+        lblImage.setSize(new Dimension(960, 540));
+        lblLeft.setOpaque(true);
+        lblRight.setOpaque(true);
+        initEvent();
     }
 
-    public RadiusLabel getLbImage() {
-        return lbImage;
+    private void initEvent() {
+        lblLeft.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(i == 0) i = imageIconList.size() - 1;
+                else i--;
+                lblImage.setIcon(imageIconList.get(i));
+                lblImage.validate();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lblLeft.setBackground(Color.GRAY);
+                lblLeft.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lblLeft.setBackground(new Color(0x191B20));
+                lblLeft.repaint();
+            }
+        });
+
+        lblRight.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(i == imageIconList.size() - 1) i = 0;
+                else i++;
+                lblImage.setIcon(imageIconList.get(i));
+                lblImage.validate();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lblRight.setBackground(Color.GRAY);
+                lblRight.repaint();
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lblRight.setBackground(new Color(0x191B20));
+                lblRight.repaint();
+            }
+        });
+    }
+
+
+    public JLabel getLbImage() {
+        return lblImage;
     }
 
     public JLabel getLblNameGame() {
@@ -245,4 +314,5 @@ public class HotGamePanel extends JPanel {
     public List<ImageIcon> getImageIconList() {
         return imageIconList;
     }
+
 }

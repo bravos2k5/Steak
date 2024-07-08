@@ -6,13 +6,13 @@ package steamfake.view;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.Timer;
+import java.util.Queue;
 
 /**
  * @author BRAVOS
