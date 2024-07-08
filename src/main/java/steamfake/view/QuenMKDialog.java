@@ -51,7 +51,7 @@ public class QuenMKDialog extends JDialog {
         label4 = new JLabel();
         txtEmail = new JTextField();
         label5 = new JLabel();
-        txtNhapMkMoi = new JPasswordField();
+        txtNewMK = new JPasswordField();
         label6 = new JLabel();
         txtNhapLaiMK = new JPasswordField();
         label7 = new JLabel();
@@ -174,7 +174,7 @@ public class QuenMKDialog extends JDialog {
                                 .addGroup(panelBorder1Layout.createSequentialGroup()
                                     .addGroup(panelBorder1Layout.createParallelGroup()
                                         .addComponent(label5)
-                                        .addComponent(txtNhapMkMoi, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNewMK, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label6)
                                         .addComponent(txtNhapLaiMK, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label7)
@@ -203,7 +203,7 @@ public class QuenMKDialog extends JDialog {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label5)
                         .addGap(6, 6, 6)
-                        .addComponent(txtNhapMkMoi, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNewMK, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label6)
                         .addGap(6, 6, 6)
@@ -249,7 +249,7 @@ public class QuenMKDialog extends JDialog {
     private JLabel label4;
     private JTextField txtEmail;
     private JLabel label5;
-    private JPasswordField txtNhapMkMoi;
+    private JPasswordField txtNewMK;
     private JLabel label6;
     private JPasswordField txtNhapLaiMK;
     private JLabel label7;
