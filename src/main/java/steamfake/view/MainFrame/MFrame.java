@@ -5,6 +5,8 @@
 package steamfake.view.MainFrame;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import steamfake.dao.GameDAO;
+import steamfake.model.Game;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,6 +16,7 @@ import java.awt.*;
  */
 public class MFrame extends JFrame {
     public MFrame() {
+        setUndecorated(true);
         initComponents();
         initialize();
     }
@@ -149,7 +152,8 @@ public class MFrame extends JFrame {
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addComponent(scrollPane1)
@@ -176,9 +180,14 @@ public class MFrame extends JFrame {
     private JScrollPane scrollPane1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
+    private Game theMostDownloadedGame;
+
+
 
     private void initialize() {
+        headerPanel.add(new LogoPanel());
         headerPanel.add(new HeaderPanel());
+        theMostDownloadedGame = GameDAO.gI().selectMostDownloadedGame();
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {

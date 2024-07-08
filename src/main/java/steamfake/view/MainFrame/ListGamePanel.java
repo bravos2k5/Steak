@@ -4,12 +4,11 @@
 
 package steamfake.view.MainFrame;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.GroupLayout;
+import steamfake.graphics.RadiusLabel;
+import steamfake.graphics.RadiusPanel;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import steamfake.graphics.*;
+import javax.swing.*;
+import java.awt.*;
 
 
 /**
@@ -18,8 +17,6 @@ import steamfake.graphics.*;
 public class ListGamePanel extends JPanel {
     public ListGamePanel() {
         initComponents();
-
-        lblNameCreator.setText("<html><p style=\\\"max-width:180px;text-align:center\\\">COGNOSPHERE PTE. LTD.");
     }
 
     private void initComponents() {
@@ -160,4 +157,69 @@ public class ListGamePanel extends JPanel {
     private RadiusLabel lblPrice;
     private RadiusLabel lblNameCreator;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+    public JLabel getLblImageGame() {
+        return lblImageGame;
+    }
+
+    public void setLblImageGame(JLabel lblImageGame) {
+        this.lblImageGame = lblImageGame;
+    }
+
+    public JLabel getLblNameGame() {
+        return lblNameGame;
+    }
+
+    public void setLblNameGame(JLabel lblNameGame) {
+        this.lblNameGame = lblNameGame;
+    }
+
+    public JLabel getLabel4() {
+        return label4;
+    }
+
+    public void setLabel4(JLabel label4) {
+        this.label4 = label4;
+    }
+
+    public JLabel getLabel6() {
+        return label6;
+    }
+
+    public void setLabel6(JLabel label6) {
+        this.label6 = label6;
+    }
+
+    public RadiusLabel getLblDownload() {
+        return lblDownload;
+    }
+
+    public void setLblDownload(RadiusLabel lblDownload) {
+        this.lblDownload = lblDownload;
+    }
+
+    public RadiusLabel getLblPrice() {
+        return lblPrice;
+    }
+
+    public void setLblPrice(RadiusLabel lblPrice) {
+        this.lblPrice = lblPrice;
+    }
+
+    public RadiusLabel getLblNameCreator() {
+        return lblNameCreator;
+    }
+
+    public void setLblNameCreator(RadiusLabel lblNameCreator) {
+        this.lblNameCreator = lblNameCreator;
+    }
+
+    public JLabel getLblReviews() {
+        return lblReviews;
+    }
+
+    public void setLblReviews(JLabel lblReviews) {
+        this.lblReviews = lblReviews;
+    }
 }

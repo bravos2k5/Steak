@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1210:x}, comp headerPanel::::1598:x}"
-			"$verticalGroup": "par l {seq t {comp headerPanel:::p:66:p, space :0:0:p, par l {comp scrollPane1:::::x, seq {space :0:0:x, comp panelSelectFunction:::p::p}}, space :0:0:p}}"
+			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1210:x}, comp headerPanel::l::1598:x}"
+			"$verticalGroup": "par l {seq t {space :0:0:p, comp headerPanel:::p:94:p, space :0:0:p, par l {comp scrollPane1:::::x, seq {space :0:0:x, comp panelSelectFunction:::p::p}}, space :0:0:p}}"
 		} ) {
 			name: "this"
 			"defaultCloseOperation": 2
