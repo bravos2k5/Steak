@@ -1,0 +1,123 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp panelBorder1::l:::x}"
+			"$verticalGroup": "par l {seq l {comp panelBorder1:::p:617:p, space :0:22:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::92:x, par l {seq t {comp label3:::p::p, space :p:150:p}, seq t {par t {seq l {comp label10:::p::p, space :::p, comp txtNhapMa:::p:64:p, space :::p, comp btnGui:::p:52:p}, par l {par l:t::p {comp label4:::p::p, comp txtTaiKhoan::l:::x, comp label5::l:p::p, comp txtHoTen::l:p:426:p, comp label6::l:p::p, comp txtMk::l:::x, comp label7::l:p::p, comp txtNhapLaiMk::l:p:426:p, comp label8::l:p::p}, comp label9:::p::p, comp txtEmail:::p:426:p}, comp lbQuayLai::l:p::p}, space :p:60:p}, seq t {comp btnDangKy:::p:148:p, space :p:188:p}, seq l {comp txtNgaySinh:::p:127:p, space :::p}}}}"
+				"$verticalGroup": "par l {comp oneRoundedPanel1::l:::x, seq l {space :p:14:p, comp label3:::p:49:p, space :::p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space :::p, comp label5:::p::p, space :::p, comp txtHoTen:::p::p, space :::p, comp label6:::p::p, space :::p, comp txtMk:::p::p, space :::p, comp label7:::p::p, space :::p, comp txtNhapLaiMk:::p::p, space :::p, comp label8:::p::p, space :::p, comp txtNgaySinh:::p::p, space :::p, comp label9:::p::p, space :6:6:p, comp txtEmail:::p::p, space :::p, par b {comp label10::b:p::p, comp txtNhapMa::b:p::p, comp btnGui::b:p:24:p}, space :::p, comp lbQuayLai:::p::p, space :::x, comp btnDangKy:::p:40:p, space :p:60:p}}"
+			} ) {
+				name: "panelBorder1"
+				"background": new java.awt.Color( 25, 27, 32, 255 )
+				add( new FormContainer( "steamfake.graphics.OneRoundedPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq {par l {seq {space :p:39:p, comp label2:::p::p}, seq l {space :p:100:p, comp label1:::p:117:p}}, space ::42:x}}"
+					"$verticalGroup": "par l {seq l {space :p:220:p, comp label1:::p:99:p, space :::p, comp label2:::p::p, space :::x}}"
+				} ) {
+					name: "oneRoundedPanel1"
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "text"
+						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png" )
+						"background": new java.awt.Color( 0, 0, 0, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "Register"
+						"font": new java.awt.Font( "Segoe UI", 1, 62 )
+						"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					} )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Register Account"
+					"font": new java.awt.Font( "SansSerif", 1, 30 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"text": "Tài khoản:"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtTaiKhoan"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Họ tên:"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtHoTen"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "Mật khẩu:"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "txtMk"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label7"
+					"text": "Nhập lại mật khẩu:"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
+					name: "txtNhapLaiMk"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label8"
+					"text": "Ngày sinh:"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "steamfake.graphics.DateTimeTextField" ) {
+					name: "txtNgaySinh"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label9"
+					"text": "Email:"
+					"font": &Font0 new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtEmail"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label10"
+					"text": "Nhập mã:"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "txtNhapMa"
+				} )
+				add( new FormComponent( "steamfake.graphics.ButtonGradient" ) {
+					name: "btnDangKy"
+					"text": "Đăng ký"
+					"color1": new java.awt.Color( 138, 138, 138, 255 )
+					"color2": new java.awt.Color( 57, 57, 57, 255 )
+					"sizeSpeed": 20.0f
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+					"foreground": new java.awt.Color( 25, 27, 32, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbQuayLai"
+					"text": "Quay lại"
+					"foreground": new java.awt.Color( 111, 111, 111, 255 )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbQuayLaiMouseEntered", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbQuayLaiMouseExited", true ) )
+					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "lbQuayLaiMouseClicked", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnGui"
+					"text": "Gửi"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 900, 670 )
+		} )
+	}
+}

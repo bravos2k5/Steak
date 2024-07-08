@@ -1,0 +1,43 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp curvesPanel1::l:::x}"
+			"$verticalGroup": "par l {comp curvesPanel1::l:::x}"
+		} ) {
+			name: "this"
+			"undecorated": true
+			addEvent( new FormEvent( "java.awt.event.WindowListener", "windowOpened", "thisWindowOpened", true ) )
+			add( new FormContainer( "steamfake.graphics.CurvesPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:738:p, comp label1:::p::p, space ::740:x}, seq t {space ::410:x, par l {seq t {comp label2:::p::p, space :p:710:p}, seq t {comp pro:::p:783:p, space :p:405:p}, seq t {comp lbStatus:::p::p, space :p:753:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:218:p, comp label1:::p::p, space s:::p, comp label2:::p:62:p, space :p:38:p, comp pro:::p::p, space s:::p, comp lbStatus:::p::p, space ::393:x}}"
+			} ) {
+				name: "curvesPanel1"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Steak"
+					"font": new java.awt.Font( "SansSerif", 1, 64 )
+					"foreground": new java.awt.Color( 200, 200, 200, 255 )
+				} )
+				add( new FormComponent( "steamfake.graphics.ProgressBarCustom" ) {
+					name: "pro"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbStatus"
+					"text": "Status"
+					"font": new java.awt.Font( "SansSerif", 0, 20 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 5 )
+			"size": new java.awt.Dimension( 1600, 930 )
+		} )
+	}
+}
