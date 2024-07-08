@@ -7,6 +7,7 @@ package steamfake.view.MainFrame;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
+import steamfake.view.Factory.GamePanelFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -33,6 +34,7 @@ public class MFrame extends JFrame {
         lblDownload = new JLabel();
         headerPanel = new JPanel();
         scrollPane1 = new JScrollPane();
+        mainPanel = new JPanel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -139,6 +141,16 @@ public class MFrame extends JFrame {
             headerPanel.setLayout(new BoxLayout(headerPanel, BoxLayout.Y_AXIS));
         }
 
+        //======== scrollPane1 ========
+        {
+
+            //======== mainPanel ========
+            {
+                mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+            }
+            scrollPane1.setViewportView(mainPanel);
+        }
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -178,6 +190,7 @@ public class MFrame extends JFrame {
     private JLabel lblDownload;
     private JPanel headerPanel;
     private JScrollPane scrollPane1;
+    private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private Game theMostDownloadedGame;
@@ -187,12 +200,20 @@ public class MFrame extends JFrame {
     private void initialize() {
         headerPanel.add(new LogoPanel());
         headerPanel.add(new HeaderPanel());
-        theMostDownloadedGame = GameDAO.gI().selectMostDownloadedGame();
+        initHomePage();
     }
+
+    private void initHomePage() {
+        theMostDownloadedGame = GameDAO.gI().selectMostDownloadedGame();
+        HotGamePanel hotGamePanel = GamePanelFactory.createHotGamePanel(theMostDownloadedGame);
+        mainPanel.add(hotGamePanel);
+    }
+
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
         new MFrame().setVisible(true);
     }
+
 
 }

@@ -31,11 +31,12 @@ public class GamePanelFactory {
         return listGamePanel;
     }
 
-    public static HotGamePanel createHostGamePanel(Game game) {
+    public static HotGamePanel createHotGamePanel(Game game) {
         HotGamePanel hotGamePanel = new HotGamePanel();
         String folderResource = "data/images/games/" + game.getId() + "/demo";
-        if(new File(folderResource).mkdirs()) {
-            AzureBlobService.downloadManyFile(folderResource,"games/" + game.getId(),"images");
+        File folderResourceFile = new File(folderResource);
+        if(folderResourceFile.mkdirs() || folderResourceFile.listFiles().length <= 1){
+            AzureBlobService.downloadManyFile(folderResource,"games/" + game.getId() + "/","images");
         }
         File[] files = new File(folderResource).listFiles();
         List<ImageIcon> imageIconList = hotGamePanel.getImageIconList();
@@ -43,6 +44,7 @@ public class GamePanelFactory {
             for(File file : files) {
                 imageIconList.add(XImage.scaleImageForLabel(new ImageIcon(file.getAbsolutePath()),hotGamePanel.getLbImage()));
             }
+            hotGamePanel.getLbImage().setText("");
             hotGamePanel.getLbImage().setIcon(imageIconList.getFirst());
         }
         hotGamePanel.getLblDownloads().setText(GameDAO.gI().selectLuotTai(game) + "");

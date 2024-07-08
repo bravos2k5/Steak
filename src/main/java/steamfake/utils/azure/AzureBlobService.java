@@ -3,6 +3,8 @@ package steamfake.utils.azure;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 
+import java.io.File;
+
 public class AzureBlobService {
     // Created by QuocBao
 
@@ -37,7 +39,8 @@ public class AzureBlobService {
     public static boolean download(String destination, String name, String container) {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         if(client.exists()) {
-            client.downloadToFile(destination);
+            System.out.println(destination);
+            client.downloadToFile(destination,true);
             return true;
         }
         return false;
@@ -56,7 +59,7 @@ public class AzureBlobService {
 
     /**
      * Xóa nhiều file trên cloud
-     * @param destinationFolder thư mục chứa các file cần xóa
+     * @param destinationFolder thư mục chứa các file cần download
      * @param startWith tên file bắt đầu bằng chuỗi này
      * @param container tên container
      */
@@ -64,10 +67,19 @@ public class AzureBlobService {
         BlobContainerClient blobContainerClient = getContainerClient(container);
         blobContainerClient.listBlobs().forEach(blobItem -> {
             if(blobItem.getName().startsWith(startWith)) {
-                download(destinationFolder + "/" + blobItem.getName(),blobItem.getName(),container);
+                download(destinationFolder + blobItem.getName().replaceAll(startWith,"/"),blobItem.getName(),container);
             }
         });
         System.out.println("Load ảnh thành công");
+    }
+
+    public synchronized static void uploadManyFile(String folderPath, String prefix, String container) {
+        BlobContainerClient blobContainerClient = getContainerClient(container);
+        blobContainerClient.createIfNotExists();
+        File[] files = new File(folderPath).listFiles();
+        for (File file : files) {
+            upload(file.getAbsolutePath(),prefix + "/" + file.getName(),container);
+        }
     }
 
 }
