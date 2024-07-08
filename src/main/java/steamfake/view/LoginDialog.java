@@ -18,6 +18,16 @@ import steamfake.graphics.*;
 public class LoginDialog extends JDialog {
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
+        LoadingScreen loadingScreen = new LoadingScreen(null);
+        loadingScreen.setVisible(true);
+
+        while (loadingScreen.isVisible()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         new LoginDialog(null).setVisible(true);
     }
     public LoginDialog(Window owner) {
