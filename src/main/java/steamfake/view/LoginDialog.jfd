@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::125:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp textField2::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp label3:::p::p, space :p:173:p}, seq t {comp buttonGradient1:::p:155:p, space :p:210:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp textField2:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp buttonGradient1:::p::p, space ::164:x}, comp oneRoundedPanel1::l:::x}"
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::125:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp txtPassword::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp label3:::p::p, space :p:173:p}, seq t {comp buttonGradient1:::p:155:p, space :p:210:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp buttonGradient1:::p::p, space ::164:x}, comp oneRoundedPanel1::l:::x}"
 			} ) {
 				name: "panelBorder1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -52,7 +52,7 @@ new FormModel {
 					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JPasswordField" ) {
-					name: "textField2"
+					name: "txtPassword"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lbDangKy"

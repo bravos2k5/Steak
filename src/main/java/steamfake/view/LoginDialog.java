@@ -67,7 +67,7 @@ public class LoginDialog extends JDialog {
         txtTaiKhoan = new JTextField();
         label4 = new JLabel();
         label5 = new JLabel();
-        textField2 = new JPasswordField();
+        txtPassword = new JPasswordField();
         lbDangKy = new JLabel();
         lbQuenMK = new JLabel();
         buttonGradient1 = new ButtonGradient();
@@ -195,7 +195,7 @@ public class LoginDialog extends JDialog {
                                             .addComponent(lbDangKy)
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
                                             .addComponent(lbQuenMK))
-                                        .addComponent(textField2, GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtPassword, GroupLayout.Alignment.LEADING)
                                         .addComponent(txtTaiKhoan, GroupLayout.Alignment.LEADING))
                                     .addGap(103, 103, 103)))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
@@ -217,7 +217,7 @@ public class LoginDialog extends JDialog {
                         .addGap(18, 18, 18)
                         .addComponent(label5)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(textField2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPassword, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(lbDangKy)
@@ -253,7 +253,7 @@ public class LoginDialog extends JDialog {
     private JTextField txtTaiKhoan;
     private JLabel label4;
     private JLabel label5;
-    private JPasswordField textField2;
+    private JPasswordField txtPassword;
     private JLabel lbDangKy;
     private JLabel lbQuenMK;
     private ButtonGradient buttonGradient1;

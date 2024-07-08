@@ -57,7 +57,7 @@ public class RegisterDialog extends JDialog {
         label7 = new JLabel();
         txtNhapLaiMk = new JPasswordField();
         label8 = new JLabel();
-        txtNgay = new DateTimeTextField();
+        txtNgaySinh = new DateTimeTextField();
         label9 = new JLabel();
         txtEmail = new JTextField();
         label10 = new JLabel();
@@ -210,7 +210,7 @@ public class RegisterDialog extends JDialog {
                                 .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
                                 .addGap(188, 188, 188))
                             .addGroup(panelBorder1Layout.createSequentialGroup()
-                                .addComponent(txtNgay, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNgaySinh, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
             );
             panelBorder1Layout.setVerticalGroup(
@@ -238,7 +238,7 @@ public class RegisterDialog extends JDialog {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label8)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNgay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNgaySinh, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label9)
                         .addGap(6, 6, 6)
@@ -288,7 +288,7 @@ public class RegisterDialog extends JDialog {
     private JLabel label7;
     private JPasswordField txtNhapLaiMk;
     private JLabel label8;
-    private DateTimeTextField txtNgay;
+    private DateTimeTextField txtNgaySinh;
     private JLabel label9;
     private JTextField txtEmail;
     private JLabel label10;
