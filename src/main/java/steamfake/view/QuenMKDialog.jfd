@@ -50,7 +50,7 @@ new FormModel {
 					"text": "Mật khẩu mới:"
 					"font": #Font0
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
 					name: "txtNhapMkMoi"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
@@ -58,7 +58,7 @@ new FormModel {
 					"text": "Nhập lại mật khẩu:"
 					"font": #Font0
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
 					name: "txtNhapLaiMK"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

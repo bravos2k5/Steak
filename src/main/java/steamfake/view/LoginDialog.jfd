@@ -51,7 +51,7 @@ new FormModel {
 					"text": "Mật Khẩu:"
 					"font": #Font0
 				} )
-				add( new FormComponent( "javax.swing.JTextField" ) {
+				add( new FormComponent( "javax.swing.JPasswordField" ) {
 					name: "textField2"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {

@@ -51,9 +51,9 @@ public class QuenMKDialog extends JDialog {
         label4 = new JLabel();
         txtEmail = new JTextField();
         label5 = new JLabel();
-        txtNhapMkMoi = new JTextField();
+        txtNhapMkMoi = new JPasswordField();
         label6 = new JLabel();
-        txtNhapLaiMK = new JTextField();
+        txtNhapLaiMK = new JPasswordField();
         label7 = new JLabel();
         txtNhapMa = new JTextField();
         btnGui = new JButton();
@@ -249,9 +249,9 @@ public class QuenMKDialog extends JDialog {
     private JLabel label4;
     private JTextField txtEmail;
     private JLabel label5;
-    private JTextField txtNhapMkMoi;
+    private JPasswordField txtNhapMkMoi;
     private JLabel label6;
-    private JTextField txtNhapLaiMK;
+    private JPasswordField txtNhapLaiMK;
     private JLabel label7;
     private JTextField txtNhapMa;
     private JButton btnGui;

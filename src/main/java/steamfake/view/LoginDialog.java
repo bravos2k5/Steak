@@ -67,7 +67,7 @@ public class LoginDialog extends JDialog {
         txtTaiKhoan = new JTextField();
         label4 = new JLabel();
         label5 = new JLabel();
-        textField2 = new JTextField();
+        textField2 = new JPasswordField();
         lbDangKy = new JLabel();
         lbQuenMK = new JLabel();
         buttonGradient1 = new ButtonGradient();
@@ -253,7 +253,7 @@ public class LoginDialog extends JDialog {
     private JTextField txtTaiKhoan;
     private JLabel label4;
     private JLabel label5;
-    private JTextField textField2;
+    private JPasswordField textField2;
     private JLabel lbDangKy;
     private JLabel lbQuenMK;
     private ButtonGradient buttonGradient1;

@@ -53,9 +53,9 @@ public class RegisterDialog extends JDialog {
         label5 = new JLabel();
         txtHoTen = new JTextField();
         label6 = new JLabel();
-        txtMk = new JTextField();
+        txtMk = new JPasswordField();
         label7 = new JLabel();
-        txtNhapLaiMk = new JTextField();
+        txtNhapLaiMk = new JPasswordField();
         label8 = new JLabel();
         txtNgay = new DateTimeTextField();
         label9 = new JLabel();
@@ -64,6 +64,7 @@ public class RegisterDialog extends JDialog {
         txtNhapMa = new JTextField();
         btnDangKy = new ButtonGradient();
         lbQuayLai = new JLabel();
+        btnGui = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -168,6 +169,9 @@ public class RegisterDialog extends JDialog {
                 }
             });
 
+            //---- btnGui ----
+            btnGui.setText("G\u1eedi");
+
             GroupLayout panelBorder1Layout = new GroupLayout(panelBorder1);
             panelBorder1.setLayout(panelBorder1Layout);
             panelBorder1Layout.setHorizontalGroup(
@@ -184,7 +188,9 @@ public class RegisterDialog extends JDialog {
                                     .addGroup(GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
                                         .addComponent(label10)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelBorder1Layout.createParallelGroup()
                                         .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                             .addComponent(label4)
@@ -195,15 +201,17 @@ public class RegisterDialog extends JDialog {
                                             .addComponent(txtMk)
                                             .addComponent(label7)
                                             .addComponent(txtNhapLaiMk, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(label8)
-                                            .addComponent(txtNgay, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(label8))
                                         .addComponent(label9)
                                         .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(lbQuayLai, GroupLayout.Alignment.LEADING))
                                 .addGap(60, 60, 60))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                                 .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
-                                .addGap(188, 188, 188))))
+                                .addGap(188, 188, 188))
+                            .addGroup(panelBorder1Layout.createSequentialGroup()
+                                .addComponent(txtNgay, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())))
             );
             panelBorder1Layout.setVerticalGroup(
                 panelBorder1Layout.createParallelGroup()
@@ -238,7 +246,8 @@ public class RegisterDialog extends JDialog {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label10)
-                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lbQuayLai)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,9 +284,9 @@ public class RegisterDialog extends JDialog {
     private JLabel label5;
     private JTextField txtHoTen;
     private JLabel label6;
-    private JTextField txtMk;
+    private JPasswordField txtMk;
     private JLabel label7;
-    private JTextField txtNhapLaiMk;
+    private JPasswordField txtNhapLaiMk;
     private JLabel label8;
     private DateTimeTextField txtNgay;
     private JLabel label9;
@@ -286,5 +295,6 @@ public class RegisterDialog extends JDialog {
     private JTextField txtNhapMa;
     private ButtonGradient btnDangKy;
     private JLabel lbQuayLai;
+    private JButton btnGui;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
