@@ -32,6 +32,12 @@ public class GameDAO implements DataAccessObject<Game> {
                 object.getRam(),object.getRom(),object.getUpdateDate(),object.getVersion(),object.isOpened(),object.getExecPath());
     }
 
+    public Game selectMostDownloadedGame() {
+        String sql = "SELECT * FROM Game ORDER BY downloads DESC LIMIT 1";
+        List<Game> gameList = selectBySQL(sql);
+        return gameList.isEmpty() ? null : gameList.getFirst();
+    }
+
     @Override
     public int update(Game object) {
         String sql = "UPDATE Game " +
@@ -108,6 +114,30 @@ public class GameDAO implements DataAccessObject<Game> {
             throw new RuntimeException(e);
         }
         return gameList;
+    }
+
+    public int selectLuotTai(Game game) {
+        String sql = "{CALL SP_TINH_LUOT_TAI(?)}";
+        try(ResultSet rs = XJdbc.getResultSet(sql,game.getId())) {
+            if(rs.next()) {
+                return rs.getInt("luot_tai");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
+
+    public int selectAvgRate(Game game) {
+        String sql = "{CALL SP_TINH_DIEM_DANH_GIA(?)}";
+        try(ResultSet rs = XJdbc.getResultSet(sql,game.getId())) {
+            if(rs.next()) {
+                return rs.getInt("diem_tb");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
     }
 
 }

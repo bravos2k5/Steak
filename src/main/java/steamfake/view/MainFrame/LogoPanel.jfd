@@ -1,0 +1,42 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+			"axis": 1
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::x, comp label4:::p:40:p, space :0:0:p, comp label3:::p:80:p, space :p:623:p, comp lblMinimize:::p:40:p, space :0:0:p, comp lblExit:::p:40:p}}"
+				"$verticalGroup": "par l {comp lblExit:::::x, comp lblMinimize::l:::x, comp label3::l:::x, comp label4::l:::x}"
+			} ) {
+				name: "panelHeader"
+				"background": new java.awt.Color( 25, 27, 32, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblExit"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Multiply.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblMinimize"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/-.png" )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "SteaK"
+					"font": new com.jformdesigner.model.SwingDerivedFont( "SansSerif", 1, 12, false )
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label4"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steam.png" )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1600, 45 )
+		} )
+	}
+}

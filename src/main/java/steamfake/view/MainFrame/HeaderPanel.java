@@ -8,8 +8,6 @@ import steamfake.graphics.RadiusTextField;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 /**
  * @author ACER
@@ -96,12 +94,12 @@ public class HeaderPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                    .addGap(18, 18, 18)
-                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 617, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(lblSearch)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)
+                    .addGap(31, 31, 31)
+                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
                     .addGap(36, 36, 36)
                     .addComponent(iconAddMoney)
                     .addGap(18, 18, 18)
@@ -163,20 +161,8 @@ public class HeaderPanel extends JPanel {
 
 
     private void initialize() {
-        lblName.setText("nguyen quoc bao");
-        lblMoney.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                lblMoney.setBackground(Color.LIGHT_GRAY);
-                lblMoney.repaint();
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                lblMoney.setBackground(new Color(30,30,30));
-                lblMoney.repaint();
-            }
-        });
+        lblName.setText("Nguyễn Quốc Bảo");
+        lblRole.setText("Quản trị viên");
     }
 
 }

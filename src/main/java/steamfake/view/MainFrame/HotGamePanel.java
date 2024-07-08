@@ -4,10 +4,12 @@
 
 package steamfake.view.MainFrame;
 
-import java.awt.*;
+import steamfake.graphics.RadiusLabel;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import steamfake.graphics.*;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author ACER
@@ -204,4 +206,43 @@ public class HotGamePanel extends JPanel {
     private JLabel lblLeft;
     private JLabel lblRight;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+    private final List<ImageIcon> imageIconList = new ArrayList<>();
+
+    private void initialize() {
+
+    }
+
+    public RadiusLabel getLbImage() {
+        return lbImage;
+    }
+
+    public JLabel getLblNameGame() {
+        return lblNameGame;
+    }
+
+    public JLabel getLblDownloads() {
+        return lblDownloads;
+    }
+
+    public JLabel getLblReviews() {
+        return lblReviews;
+    }
+
+    public JLabel getLblPrice() {
+        return lblPrice;
+    }
+
+    public JLabel getLblLeft() {
+        return lblLeft;
+    }
+
+    public JLabel getLblRight() {
+        return lblRight;
+    }
+
+    public List<ImageIcon> getImageIconList() {
+        return imageIconList;
+    }
 }

@@ -53,4 +53,21 @@ public class AzureBlobService {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         return client.deleteIfExists();
     }
+
+    /**
+     * Xóa nhiều file trên cloud
+     * @param destinationFolder thư mục chứa các file cần xóa
+     * @param startWith tên file bắt đầu bằng chuỗi này
+     * @param container tên container
+     */
+    public synchronized static void downloadManyFile(String destinationFolder, String startWith, String container) {
+        BlobContainerClient blobContainerClient = getContainerClient(container);
+        blobContainerClient.listBlobs().forEach(blobItem -> {
+            if(blobItem.getName().startsWith(startWith)) {
+                download(destinationFolder + "/" + blobItem.getName(),blobItem.getName(),container);
+            }
+        });
+        System.out.println("Load ảnh thành công");
+    }
+
 }
