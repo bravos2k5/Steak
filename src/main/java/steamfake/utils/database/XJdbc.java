@@ -20,7 +20,7 @@ public class XJdbc {
                 ps.setObject(i + 1,args[i]);
             }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            e.printStackTrace();
         }
         return ps;
     }

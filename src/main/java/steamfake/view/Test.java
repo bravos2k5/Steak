@@ -25,7 +25,7 @@ public class Test extends JFrame {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - baonqps41272
+        dateTimeTextField1 = new DateTimeTextField();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -34,11 +34,17 @@ public class Test extends JFrame {
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGap(0, 398, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(123, 123, 123)
+                    .addComponent(dateTimeTextField1, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(60, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
-                .addGap(0, 269, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGap(81, 81, 81)
+                    .addComponent(dateTimeTextField1, GroupLayout.PREFERRED_SIZE, 135, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(53, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -46,6 +52,6 @@ public class Test extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - baonqps41272
+    private DateTimeTextField dateTimeTextField1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

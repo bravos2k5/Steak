@@ -1,0 +1,27 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space ::60:x, par l {seq t {comp progressBar1:::p::p, space :p:52:p}, seq t {comp label1:::p::p, space :p:102:p}}}}"
+			"$verticalGroup": "par l {seq t {space :p:44:p, comp label1:::p::p, space ::54:x, comp progressBar1:::p::p, space :p:56:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 0
+			"resizable": false
+			"modal": true
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "progressBar1"
+				"indeterminate": true
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Loading..."
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 310, 270 )
+			"size": new java.awt.Dimension( 260, 205 )
+		} )
+	}
+}

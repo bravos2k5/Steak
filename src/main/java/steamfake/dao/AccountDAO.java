@@ -79,6 +79,12 @@ public class AccountDAO implements DataAccessObject<Account> {
         return accountList.isEmpty() ? null : accountList.getFirst();
     }
 
+    public Account selectByAccount(Account account) {
+        String sql = "SELECT * FROM Account WHERE username = ?";
+        List<Account> accountList = selectBySQL(sql,account.getUsername());
+        return accountList.isEmpty() ? null : accountList.getFirst();
+    }
+
     @Override
     public List<Account> selectAll() {
         String sql = "SELECT * FROM Account";
@@ -99,7 +105,7 @@ public class AccountDAO implements DataAccessObject<Account> {
                 account.setGioiTinh(rs.getInt("gioi_tinh"));
                 account.setPhone(rs.getString("phone"));
                 account.setBan(rs.getBoolean("isBan"));
-                account.setAdmin(rs.getBoolean("admin"));
+                account.setAdmin(rs.getBoolean("isAdmin"));
                 account.setAvatar(rs.getString("avatar"));
                 account.setDob(rs.getDate("dob"));
                 account.setSoDuGame(rs.getFloat("so_du_game"));

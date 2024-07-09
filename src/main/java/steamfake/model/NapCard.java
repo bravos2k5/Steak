@@ -4,13 +4,9 @@ import java.util.UUID;
 
 public class NapCard extends NapTien{
 
-    public static final int MOBIFONE = 0;
-    public static final int VIETTEL = 1;
-    public static final int VINAPHONE = 2;
-
     private String secretKey;
     private String seri;
-    private int nhaMang;
+    private float menhGia;
 
     public NapCard(UUID id) {
         super(id);
@@ -36,11 +32,12 @@ public class NapCard extends NapTien{
         this.seri = seri;
     }
 
-    public int getNhaMang() {
-        return nhaMang;
+    public float getMenhGia() {
+        return menhGia;
     }
 
-    public void setNhaMang(int nhaMang) {
-        this.nhaMang = nhaMang;
+    public void setMenhGia(float menhGia) {
+        this.menhGia = menhGia;
     }
+
 }

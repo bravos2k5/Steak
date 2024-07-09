@@ -6,13 +6,13 @@ package steamfake.view;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.Timer;
+import java.util.Queue;
 
 /**
  * @author BRAVOS
@@ -37,7 +37,7 @@ public class DownloadQueue extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - baonqps41272
+        // Generated using JFormDesigner Evaluation license - TRỊNH THUẬT
         scrollPane1 = new JScrollPane();
         panel1 = new JPanel();
         label1 = new JLabel();
@@ -55,12 +55,13 @@ public class DownloadQueue extends JDialog {
 
             //======== panel1 ========
             {
-                panel1.setBorder ( new javax . swing. border .CompoundBorder ( new javax . swing. border .TitledBorder ( new javax . swing. border
-                .EmptyBorder ( 0, 0 ,0 , 0) ,  "" , javax. swing .border . TitledBorder. CENTER ,javax
-                . swing. border .TitledBorder . BOTTOM, new java. awt .Font ( "D\u0069alog", java .awt . Font. BOLD ,
-                12 ) ,java . awt. Color .red ) ,panel1. getBorder () ) ); panel1. addPropertyChangeListener( new java. beans
-                .PropertyChangeListener ( ){ @Override public void propertyChange (java . beans. PropertyChangeEvent e) { if( "\u0062order" .equals ( e.
-                getPropertyName () ) )throw new RuntimeException( ) ;} } );
+                panel1.setBorder(new javax.swing.border.CompoundBorder(new javax.swing.border.TitledBorder(new javax.swing
+                .border.EmptyBorder(0,0,0,0), "JF\u006frmDes\u0069gner \u0045valua\u0074ion",javax.swing.border.TitledBorder
+                .CENTER,javax.swing.border.TitledBorder.BOTTOM,new java.awt.Font("D\u0069alog",java.
+                awt.Font.BOLD,12),java.awt.Color.red),panel1. getBorder()))
+                ;panel1. addPropertyChangeListener(new java.beans.PropertyChangeListener(){@Override public void propertyChange(java.beans.PropertyChangeEvent e
+                ){if("\u0062order".equals(e.getPropertyName()))throw new RuntimeException();}})
+                ;
                 panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
             }
             scrollPane1.setViewportView(panel1);
@@ -127,7 +128,7 @@ public class DownloadQueue extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - baonqps41272
+    // Generated using JFormDesigner Evaluation license - TRỊNH THUẬT
     private JScrollPane scrollPane1;
     private JPanel panel1;
     private JLabel label1;

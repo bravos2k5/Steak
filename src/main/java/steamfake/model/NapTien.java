@@ -10,7 +10,6 @@ public abstract class NapTien {
     private int method;
     private Date ngayNap;
     private int status;
-    private float soTien;
 
     public static final int NAP_CARD = 0;
     public static final int NAP_CK = 1;
@@ -60,13 +59,5 @@ public abstract class NapTien {
 
     public void setStatus(int status) {
         this.status = status;
-    }
-
-    public float getSoTien() {
-        return soTien;
-    }
-
-    public void setSoTien(float soTien) {
-        this.soTien = soTien;
     }
 }

@@ -1,0 +1,92 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1210:x}, comp headerPanel::l::1598:x}"
+			"$verticalGroup": "par l {seq t {space :0:0:p, comp headerPanel:::p:94:p, space :0:0:p, par l {comp scrollPane1:::::x, seq {space :0:0:x, comp panelSelectFunction:::p::p}}, space :0:0:p}}"
+		} ) {
+			name: "this"
+			"defaultCloseOperation": 2
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {seq l {space :p:61:p, par l {comp lblHome::l:p:280:p, comp lblLibrary::l:p:280:p, comp lblAddMoney::l:p:280:p, comp lblManage::l:p:280:p, comp lblOut::l:p:280:p}}, seq l {space :p:148:p, comp lblLogo:::p:100:p}}, space ::47:x}, seq t {space :0:96:x, comp lblDownload:::p:202:p, space :p:90:p}}"
+				"$verticalGroup": "par l {seq l {space :p:36:p, comp lblLogo:::p:100:p, space :p:36:p, comp lblHome:::p:80:p, space :p:29:p, comp lblLibrary:::p:80:p, space :p:38:p, comp lblAddMoney:::p:80:p, space :p:37:p, comp lblManage:::p:80:p, space :p:35:p, comp lblOut:::p:80:p, space ::33:x, comp lblDownload:::p:50:p, space :p:19:p}}"
+			} ) {
+				name: "panelSelectFunction"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblLogo"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblHome"
+					"font": &Font0 new java.awt.Font( "SansSerif", 1, 32 )
+					"horizontalAlignment": 0
+					"text": " Trang chủ"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Home.png" )
+					"background": &Color0 new java.awt.Color( 25, 27, 32, 255 )
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblLibrary"
+					"font": #Font0
+					"horizontalAlignment": 11
+					"text": " Thư viện      "
+					"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 0, "/icon/Book Shelf.png" )
+					"background": #Color0
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblAddMoney"
+					"font": #Font0
+					"text": " Nạp tiền       "
+					"icon": #SwingIcon0
+					"background": #Color0
+					"opaque": true
+					"horizontalAlignment": 11
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblManage"
+					"font": #Font0
+					"horizontalAlignment": 11
+					"text": " Quản lý        "
+					"icon": #SwingIcon0
+					"background": #Color0
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblOut"
+					"font": #Font0
+					"horizontalAlignment": 0
+					"text": " Thoát       "
+					"icon": #SwingIcon0
+					"background": #Color0
+					"opaque": true
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDownload"
+					"text": "    Download"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Download.png" )
+					"font": new java.awt.Font( "SansSerif", 0, 24 )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "headerPanel"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "mainPanel"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1600, 900 )
+		} )
+	}
+}
