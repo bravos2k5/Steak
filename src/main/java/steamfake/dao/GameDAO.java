@@ -140,4 +140,9 @@ public class GameDAO implements DataAccessObject<Game> {
         return -1;
     }
 
+    public List<Game> selectTop10Game() {
+        String sql = "{CALL SP_TOP10_GAME()}";
+        return selectBySQL(sql);
+    }
+
 }

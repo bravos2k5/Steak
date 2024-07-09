@@ -4,6 +4,8 @@
 
 package steamfake.view.MainFrame;
 
+import steamfake.utils.database.DatabaseConnector;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -111,6 +113,7 @@ public class LogoPanel extends JPanel {
 
         lblExit.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
+                DatabaseConnector.getInstance().closeConnection();
                 System.exit(0);
             }
 

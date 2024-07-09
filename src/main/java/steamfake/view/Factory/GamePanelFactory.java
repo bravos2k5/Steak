@@ -17,9 +17,10 @@ public class GamePanelFactory {
 
     public static ListGamePanel createListGamePanel(Game game) {
         ListGamePanel listGamePanel = new ListGamePanel();
-        String folderResource = "data/images/games/" + game.getId() + "/avatar";
+        String folderResource = getFolderResource(game);
         if(new File(folderResource).mkdirs()) {
-            AzureBlobService.download(folderResource + "/" + game.getAvatar(), "games/" + game.getId().toString() + "/" + game.getAvatar(),"images");
+            AzureBlobService.download(folderResource + "/" + game.getAvatar(),
+                    "games/" + game.getId().toString() + "/" + game.getAvatar(),"images");
         }
         listGamePanel.getLblImageGame().setIcon(XImage.scaleImageForLabel(new ImageIcon(folderResource + "/avatar.png"), listGamePanel.getLblImageGame()));
         listGamePanel.getLblDownload().setText(GameDAO.gI().selectLuotTai(game) + "");
@@ -33,7 +34,7 @@ public class GamePanelFactory {
 
     public static HotGamePanel createHotGamePanel(Game game) {
         HotGamePanel hotGamePanel = new HotGamePanel();
-        String folderResource = "data/images/games/" + game.getId() + "/demo";
+        String folderResource = getFolderResource(game);
         File folderResourceFile = new File(folderResource);
         if(folderResourceFile.mkdirs() || folderResourceFile.listFiles().length <= 1){
             AzureBlobService.downloadManyFile(folderResource,"games/" + game.getId() + "/","images");
@@ -52,6 +53,10 @@ public class GamePanelFactory {
         hotGamePanel.getLblPrice().setText(game.getGiaTien() + "");
         hotGamePanel.getLblReviews().setText(GameDAO.gI().selectAvgRate(game) + "");
         return hotGamePanel;
+    }
+
+    private static String getFolderResource(Game game) {
+        return "data/images/games/" + game.getId() + "/demo";
     }
 
 

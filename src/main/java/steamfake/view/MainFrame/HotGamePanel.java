@@ -153,6 +153,7 @@ public class HotGamePanel extends JPanel {
 
         //======== panel2 ========
         {
+            panel2.setOpaque(false);
 
             //---- lblImage ----
             lblImage.setHorizontalAlignment(SwingConstants.CENTER);

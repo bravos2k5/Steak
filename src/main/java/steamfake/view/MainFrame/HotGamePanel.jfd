@@ -85,6 +85,7 @@ new FormModel {
 				"$verticalGroup": "par l {comp lblImage::l::540:x}"
 			} ) {
 				name: "panel2"
+				"opaque": false
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lblImage"
 					"horizontalAlignment": 0
