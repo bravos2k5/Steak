@@ -4,13 +4,14 @@
 
 package steamfake.view.MainFrame;
 
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
 import steamfake.view.Factory.GamePanelFactory;
+import steamfake.view.LoadingScreen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 /**
  * @author BRAVOS
@@ -194,26 +195,146 @@ public class MFrame extends JFrame {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private Game theMostDownloadedGame;
-
-
+    private List<Game> gameList;
 
     private void initialize() {
+        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(new HeaderPanel());
-        initHomePage();
+        initEventMenu();
     }
 
-    private void initHomePage() {
-        theMostDownloadedGame = GameDAO.gI().selectMostDownloadedGame();
+    private void initEventMenu() {
+        lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanel.removeAll();
+                initHomePage();
+                mainPanel.repaint();
+                mainPanel.revalidate();
+                setEffectMenu(lblHome);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblHome.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblHome.setBackground(new Color(0x191b20));
+            }
+        });
+
+        lblLibrary.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanel.removeAll();
+                initLibraryPage();
+                mainPanel.repaint();
+                mainPanel.revalidate();
+                setEffectMenu(lblLibrary);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblLibrary.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblLibrary.setBackground(new Color(0x191b20));
+            }
+        });
+
+        lblAddMoney.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanel.removeAll();
+                initAddMoneyPage();
+                mainPanel.repaint();
+                mainPanel.revalidate();
+                setEffectMenu(lblAddMoney);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblAddMoney.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblAddMoney.setBackground(new Color(0x191b20));
+            }
+        });
+
+        lblManage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanel.removeAll();
+                initManagePage();
+                mainPanel.repaint();
+                mainPanel.revalidate();
+                setEffectMenu(lblManage);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblManage.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblManage.setBackground(new Color(0x191b20));
+            }
+        });
+
+        lblOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                System.exit(0);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblOut.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblOut.setBackground(new Color(0x191b20));
+            }
+        });
+
+        lblDownload.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mainPanel.removeAll();
+                initDownloadPage();
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            }
+        });
+    }
+
+    private void setEffectMenu(JLabel label) {
+        lblHome.setBorder(null);
+        lblLibrary.setBorder(null);
+        lblManage.setBorder(null);
+        lblAddMoney.setBorder(null);
+        label.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.WHITE));
+        panelSelectFunction.repaint();
+    }
+
+    public void initHomePage() {
+        if (gameList == null) {
+            gameList = GameDAO.gI().selectTop10Game();
+            theMostDownloadedGame = gameList.getFirst();
+        }
         HotGamePanel hotGamePanel = GamePanelFactory.createHotGamePanel(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
+        for (Game game : gameList) {
+            if (!game.equals(theMostDownloadedGame)) {
+                ListGamePanel listGamePanel = GamePanelFactory.createListGamePanel(game);
+                mainPanel.add(listGamePanel);
+            }
+        }
+        mainPanel.repaint();
+        mainPanel.validate();
+    }
+
+    private void initLibraryPage() {
+
+    }
+
+    private void initAddMoneyPage() {
+
+    }
+
+    private void initManagePage() {
+
+    }
+
+    private void initDownloadPage() {
+
     }
 
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new MFrame().setVisible(true);
-    }
+
 
 
 }

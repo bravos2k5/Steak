@@ -81,6 +81,7 @@ public class LoginDialog extends JDialog {
         lbDangKy = new JLabel();
         lbQuenMK = new JLabel();
         buttonGradient1 = new ButtonGradient();
+        label6 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -94,8 +95,7 @@ public class LoginDialog extends JDialog {
                 oneRoundedPanel1.setBackground(new Color(0x990099));
 
                 //---- label1 ----
-                label1.setText("text");
-                label1.setIcon(new ImageIcon("D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png"));
+                label1.setIcon(new ImageIcon(getClass().getResource("/icon/Steambig.png")));
                 label1.setBackground(Color.black);
 
                 //---- label2 ----
@@ -108,14 +108,13 @@ public class LoginDialog extends JDialog {
                 oneRoundedPanel1Layout.setHorizontalGroup(
                     oneRoundedPanel1Layout.createParallelGroup()
                         .addGroup(oneRoundedPanel1Layout.createSequentialGroup()
-                            .addGroup(oneRoundedPanel1Layout.createParallelGroup()
-                                .addGroup(oneRoundedPanel1Layout.createSequentialGroup()
-                                    .addGap(97, 97, 97)
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(oneRoundedPanel1Layout.createSequentialGroup()
-                                    .addGap(76, 76, 76)
-                                    .addComponent(label2)))
+                            .addGap(76, 76, 76)
+                            .addComponent(label2)
                             .addContainerGap(76, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, oneRoundedPanel1Layout.createSequentialGroup()
+                            .addContainerGap(109, Short.MAX_VALUE)
+                            .addComponent(label1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)
+                            .addGap(95, 95, 95))
                 );
                 oneRoundedPanel1Layout.setVerticalGroup(
                     oneRoundedPanel1Layout.createParallelGroup()
@@ -129,7 +128,7 @@ public class LoginDialog extends JDialog {
             }
 
             //---- label3 ----
-            label3.setText("Login Account");
+            label3.setText("SteaK");
             label3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
 
             //---- label4 ----
@@ -137,12 +136,14 @@ public class LoginDialog extends JDialog {
             label4.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
 
             //---- label5 ----
-            label5.setText("M\u1eadt Kh\u1ea9u:");
+            label5.setText("M\u1eadt kh\u1ea9u:");
             label5.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
 
             //---- lbDangKy ----
             lbDangKy.setText("\u0110\u0103ng k\u00fd");
             lbDangKy.setForeground(new Color(0x6f6f6f));
+            lbDangKy.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lbDangKy.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             lbDangKy.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -161,6 +162,8 @@ public class LoginDialog extends JDialog {
             //---- lbQuenMK ----
             lbQuenMK.setText("Qu\u00ean m\u1eadt kh\u1ea9u?");
             lbQuenMK.setForeground(new Color(0x6f6f6f));
+            lbQuenMK.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lbQuenMK.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             lbQuenMK.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -185,13 +188,16 @@ public class LoginDialog extends JDialog {
             buttonGradient1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
             buttonGradient1.setForeground(new Color(0x191b20));
 
+            //---- label6 ----
+            label6.setText("\u00a9 B\u1ea3n quy\u1ec1n thu\u1ed9c v\u1ec1 SteaK 1884 - 2024");
+
             GroupLayout panelBorder1Layout = new GroupLayout(panelBorder1);
             panelBorder1.setLayout(panelBorder1Layout);
             panelBorder1Layout.setHorizontalGroup(
                 panelBorder1Layout.createParallelGroup()
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addComponent(oneRoundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 120, Short.MAX_VALUE)
                         .addGroup(panelBorder1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup()
                                 .addGroup(panelBorder1Layout.createSequentialGroup()
@@ -209,11 +215,14 @@ public class LoginDialog extends JDialog {
                                         .addComponent(txtTaiKhoan, GroupLayout.Alignment.LEADING))
                                     .addGap(103, 103, 103)))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
-                                .addComponent(label3)
-                                .addGap(173, 173, 173))
-                            .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                                 .addComponent(buttonGradient1, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
-                                .addGap(210, 210, 210))))
+                                .addGap(210, 210, 210))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                                .addComponent(label6)
+                                .addGap(181, 181, 181))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                                .addComponent(label3)
+                                .addGap(240, 240, 240))))
             );
             panelBorder1Layout.setVerticalGroup(
                 panelBorder1Layout.createParallelGroup()
@@ -234,7 +243,9 @@ public class LoginDialog extends JDialog {
                             .addComponent(lbQuenMK))
                         .addGap(52, 52, 52)
                         .addComponent(buttonGradient1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(164, Short.MAX_VALUE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
+                        .addComponent(label6)
+                        .addGap(39, 39, 39))
                     .addComponent(oneRoundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
         }
@@ -267,5 +278,6 @@ public class LoginDialog extends JDialog {
     private JLabel lbDangKy;
     private JLabel lbQuenMK;
     private ButtonGradient buttonGradient1;
+    private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

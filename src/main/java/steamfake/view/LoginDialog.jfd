@@ -9,21 +9,20 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::125:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp txtPassword::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp label3:::p::p, space :p:173:p}, seq t {comp buttonGradient1:::p:155:p, space :p:210:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp buttonGradient1:::p::p, space ::164:x}, comp oneRoundedPanel1::l:::x}"
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::120:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp txtPassword::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp buttonGradient1:::p:155:p, space :p:210:p}, seq t {comp label6:::p::p, space :p:181:p}, seq t {comp label3:::p::p, space :p:240:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp buttonGradient1:::p::p, space ::130:x, comp label6:::p::p, space :p:39:p}, comp oneRoundedPanel1::l:::x}"
 			} ) {
 				name: "panelBorder1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
 				add( new FormContainer( "steamfake.graphics.OneRoundedPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {seq {space :p:97:p, comp label1:::p:117:p}, seq l {space :p:76:p, comp label2:::p::p}}, space ::76:x}}"
+					"$horizontalGroup": "par l {seq {space :p:76:p, comp label2:::p::p, space ::76:x}, seq t {space ::109:x, comp label1:::p:117:p, space :p:95:p}}"
 					"$verticalGroup": "par l {seq l {space :p:117:p, comp label1:::p:99:p, space s:::p, comp label2:::p::p, space ::303:x}}"
 				} ) {
 					name: "oneRoundedPanel1"
 					"background": new java.awt.Color( 153, 0, 153, 255 )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
-						"text": "text"
-						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
 						"background": new java.awt.Color( 0, 0, 0, 255 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -35,7 +34,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
-					"text": "Login Account"
+					"text": "SteaK"
 					"font": new java.awt.Font( "SansSerif", 1, 32 )
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
@@ -48,7 +47,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
-					"text": "Mật Khẩu:"
+					"text": "Mật khẩu:"
 					"font": #Font0
 				} )
 				add( new FormComponent( "javax.swing.JPasswordField" ) {
@@ -58,6 +57,8 @@ new FormModel {
 					name: "lbDangKy"
 					"text": "Đăng ký"
 					"foreground": &Color0 new java.awt.Color( 111, 111, 111, 255 )
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					"cursor": &Cursor0 new java.awt.Cursor( 12 )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbDangKyMouseEntered", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbDangKyMouseExited", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "lbDangKyMouseClicked", true ) )
@@ -66,6 +67,8 @@ new FormModel {
 					name: "lbQuenMK"
 					"text": "Quên mật khẩu?"
 					"foreground": #Color0
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+					"cursor": #Cursor0
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbQuenMKMouseEntered", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbQuenMKMouseExited", true ) )
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "lbQuenMKMouseClicked", true ) )
@@ -79,6 +82,10 @@ new FormModel {
 					"sizeSpeed": 20.0f
 					"font": new java.awt.Font( "SansSerif", 1, 14 )
 					"foreground": new java.awt.Color( 25, 27, 32, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label6"
+					"text": "© Bản quyền thuộc về SteaK 1884 - 2024"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
