@@ -77,8 +77,7 @@ public class RegisterDialog extends JDialog {
             {
 
                 //---- label1 ----
-                label1.setText("text");
-                label1.setIcon(new ImageIcon("D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png"));
+                label1.setIcon(new ImageIcon(getClass().getResource("/icon/Steambig.png")));
                 label1.setBackground(Color.black);
 
                 //---- label2 ----
@@ -178,8 +177,8 @@ public class RegisterDialog extends JDialog {
                 panelBorder1Layout.createParallelGroup()
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addComponent(oneRoundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
-                        .addGroup(panelBorder1Layout.createParallelGroup()
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                        .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                                 .addComponent(label3)
                                 .addGap(150, 150, 150))
@@ -188,8 +187,8 @@ public class RegisterDialog extends JDialog {
                                     .addGroup(GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
                                         .addComponent(label10)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(panelBorder1Layout.createParallelGroup()
                                         .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -203,14 +202,15 @@ public class RegisterDialog extends JDialog {
                                             .addComponent(txtNhapLaiMk, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)
                                             .addComponent(label8))
                                         .addComponent(label9)
-                                        .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lbQuayLai, GroupLayout.Alignment.LEADING))
+                                        .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(60, 60, 60))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                                .addComponent(lbQuayLai)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 148, GroupLayout.PREFERRED_SIZE)
                                 .addGap(188, 188, 188))
                             .addGroup(panelBorder1Layout.createSequentialGroup()
-                                .addComponent(txtNgaySinh, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNgaySinh, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap())))
             );
             panelBorder1Layout.setVerticalGroup(
@@ -246,12 +246,12 @@ public class RegisterDialog extends JDialog {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label10)
-                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbQuayLai)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addGroup(panelBorder1Layout.createParallelGroup()
+                            .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbQuayLai))
                         .addGap(60, 60, 60))
             );
         }
@@ -265,7 +265,7 @@ public class RegisterDialog extends JDialog {
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(panelBorder1, GroupLayout.PREFERRED_SIZE, 617, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panelBorder1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 22, Short.MAX_VALUE))
         );
         pack();

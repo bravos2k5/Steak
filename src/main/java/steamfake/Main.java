@@ -1,7 +1,7 @@
 package steamfake;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import steamfake.view.MainFrame.MFrame;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 
