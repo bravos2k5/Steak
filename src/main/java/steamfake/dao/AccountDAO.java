@@ -170,4 +170,35 @@ public class AccountDAO implements DataAccessObject<Account> {
         XJdbc.update(sql,account.getId());
     }
 
+    public boolean isExistUsername(String username) {
+        String sql = "SELECT isBan FROM Account WHERE username = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,username)) {
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Quên mật khẩu
+     * @param username Tên đăng nhập
+     * @return email
+     */
+    public String forgetPassword(String username) {
+        String sql = "SELECT email FROM Account WHERE username = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,username)) {
+            return rs.next() ? rs.getString("email") : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int changePassword(String username, String newPassword) {
+        String sql = "UPDATE Account " +
+                "SET password = ? " +
+                "WHERE username = ?";
+        return XJdbc.update(sql,newPassword,username);
+    }
+
 }

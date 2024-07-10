@@ -2,18 +2,34 @@
  * Created by JFormDesigner on Fri Jul 05 21:10:33 ICT 2024
  */
 
-package steamfake.view.MainFrame;
+package steamfake.view.mainframe;
 
+import steamfake.constance.FilePath;
 import steamfake.graphics.RadiusTextField;
+import steamfake.model.Account;
+import steamfake.utils.SessionManager;
+import steamfake.utils.XImage;
+import steamfake.utils.azure.AzureBlobService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 
 /**
  * @author ACER
  */
 public class HeaderPanel extends JPanel {
-    public HeaderPanel() {
+
+    private static HeaderPanel instance;
+
+    public static HeaderPanel getInstance() {
+        if (instance == null) {
+            instance = new HeaderPanel();
+        }
+        return instance;
+    }
+
+    private HeaderPanel() {
         initComponents();
         initialize();
     }
@@ -164,8 +180,30 @@ public class HeaderPanel extends JPanel {
 
 
     private void initialize() {
-        lblName.setText("Nguyễn Quốc Bảo");
-        lblRole.setText("Quản trị viên");
+        lblName.setText("Chưa đăng nhập");
+        lblRole.setText("Khách");
+        lblMoney.setText("Cái nịt");
+        lblAvata.setText("");
+        lblAvata.setSize(new Dimension(50,50));
+        lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+    }
+
+    public void updateAccount() {
+        Account account = SessionManager.user;
+        if(account != null) {
+            lblName.setText(account.getHoTen());
+            lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
+            lblMoney.setText(account.getSoDuGame() + " VND");
+            if(account.getAvatar() != null && !account.getAvatar().isBlank() && !new File(FilePath.getLocalAvatarPath(account)).exists()) {
+                AzureBlobService.download(FilePath.getLocalAvatarPath(account), FilePath.getRemoteAvatarPath(account),"images");
+            }
+            if(account.getAvatar() == null || account.getAvatar().isBlank()) {
+                lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+                return;
+            }
+            lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(account.getAvatar()), lblAvata));
+            repaint();
+        }
     }
 
 }

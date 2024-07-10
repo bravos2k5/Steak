@@ -5,12 +5,14 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {comp panelBorder1::l:::x}"
-			"$verticalGroup": "par l {seq l {comp panelBorder1:::p:617:p, space :0:22:x}}"
+			"$verticalGroup": "par l {seq l {comp panelBorder1:::p::p, space :0:22:x}}"
 		} ) {
 			name: "this"
+			"defaultCloseOperation": 2
+			"modal": true
 			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::92:x, par l {seq t {comp label3:::p::p, space :p:150:p}, seq t {par t {seq l {comp label10:::p::p, space :::p, comp txtNhapMa:::p:64:p, space :::p, comp btnGui:::p:52:p}, par l {par l:t::p {comp label4:::p::p, comp txtTaiKhoan::l:::x, comp label5::l:p::p, comp txtHoTen::l:p:426:p, comp label6::l:p::p, comp txtMk::l:::x, comp label7::l:p::p, comp txtNhapLaiMk::l:p:426:p, comp label8::l:p::p}, comp label9:::p::p, comp txtEmail:::p:426:p}, comp lbQuayLai::l:p::p}, space :p:60:p}, seq t {comp btnDangKy:::p:148:p, space :p:188:p}, seq l {comp txtNgaySinh:::p:127:p, space :::p}}}}"
-				"$verticalGroup": "par l {comp oneRoundedPanel1::l:::x, seq l {space :p:14:p, comp label3:::p:49:p, space :::p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space :::p, comp label5:::p::p, space :::p, comp txtHoTen:::p::p, space :::p, comp label6:::p::p, space :::p, comp txtMk:::p::p, space :::p, comp label7:::p::p, space :::p, comp txtNhapLaiMk:::p::p, space :::p, comp label8:::p::p, space :::p, comp txtNgaySinh:::p::p, space :::p, comp label9:::p::p, space :6:6:p, comp txtEmail:::p::p, space :::p, par b {comp label10::b:p::p, comp txtNhapMa::b:p::p, comp btnGui::b:p:24:p}, space :::p, comp lbQuayLai:::p::p, space :::x, comp btnDangKy:::p:40:p, space :p:60:p}}"
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::91:x, par l:::p {seq t {par t {seq l {comp label10:::p::p, space :::p, comp txtNhapMa:::p:92:p, space u:::p, comp btnGui:::p:52:p, space :p:42:p, comp lblNhapMaStatus:::p::p}, par l {par l:t::p {seq {comp label4:::p::p, space s:::p, comp lblUsernameStatus:::p::p}, comp txtTaiKhoan::l:::x, seq l {comp label5:::p::p, space :p:40:p, comp label11:::p::p}, comp txtHoTen::l:p:426:p, seq l {comp label6:::p::p, space s:::p, comp lblPasswordStatus:::p::p}, comp txtMk::l:::x, seq l {comp label7:::p::p, space s:::p, comp lblPasswordStatus2:::p::p}, comp txtNhapLaiMk::l:p:426:p, comp label8::l:p::p}, seq {comp label9:::p::p, space :p:47:p, comp lblEmailStatus:::p::p}, comp txtEmail:::p:426:p}}, space :p:60:p}, seq t {comp lbQuayLai:::p::p, space :::x, comp btnDangKy:::p:148:p, space :p:188:p}, seq l {comp txtNgaySinh:::p:150:p, space :p:43:p, comp lblDobStatus:::p::p, space :::p}, seq t {comp label3:::p::p, space :p:150:p}}}}"
+				"$verticalGroup": "par l {comp oneRoundedPanel1::l:::x, seq l {space :p:14:p, comp label3:::p:49:p, space :::p, par b {comp label4::b:p::p, comp lblUsernameStatus::b:p::p}, space :::p, comp txtTaiKhoan:::p::p, space :::p, par b {comp label5::b:p::p, comp label11::b:p::p}, space :::p, comp txtHoTen:::p::p, space :::p, par b {comp label6::b:p::p, comp lblPasswordStatus::b:p::p}, space :::p, comp txtMk:::p::p, space :::p, par b {comp label7::b:p::p, comp lblPasswordStatus2::b:p::p}, space :::p, comp txtNhapLaiMk:::p::p, space :::p, comp label8:::p::p, space :::p, par b {comp txtNgaySinh::b:p::p, comp lblDobStatus::b:p::p}, space :::p, par b {comp label9::b:p::p, comp lblEmailStatus::b:p::p}, space :5:5:p, comp txtEmail:::p::p, space :::p, par b {comp label10::b:p::p, comp btnGui::b:p:24:p, comp txtNhapMa::b:p::p, comp lblNhapMaStatus::b:p::p}, space ::75:x, par l {comp btnDangKy:::p:40:p, comp lbQuayLai:::p::p}, space :p:60:p}}"
 			} ) {
 				name: "panelBorder1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -21,8 +23,7 @@ new FormModel {
 					name: "oneRoundedPanel1"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
-						"text": "text"
-						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
 						"background": new java.awt.Color( 0, 0, 0, 255 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -113,6 +114,34 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "btnGui"
 					"text": "Gửi"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblUsernameStatus"
+					"text": "Tên dùng để đăng nhập"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label11"
+					"text": "Họ tên hiển thị"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPasswordStatus"
+					"text": "Mật khẩu đăng nhập"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPasswordStatus2"
+					"text": "Nhập lại y chang ở trên"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDobStatus"
+					"text": "Nhập đi tôi coi bói cho bạn"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblEmailStatus"
+					"text": "Email khôi phục tài khoản"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNhapMaStatus"
+					"text": "Ấn gửi để nhận mã xác thực"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
