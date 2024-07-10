@@ -5,14 +5,20 @@
 package steamfake.view;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import steamfake.dao.AccountDAO;
 import steamfake.graphics.ButtonGradient;
 import steamfake.graphics.OneRoundedPanel;
 import steamfake.graphics.PanelBorder;
+import steamfake.utils.XEmail;
+import steamfake.utils.XMessage;
+import steamfake.utils.XSecurity;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 /**
  * @author ADMIN
@@ -38,7 +44,7 @@ public class QuenMKDialog extends JDialog {
     }
 
     private void label8MouseClicked(MouseEvent e) {
-        LoginDialog LoginDialog = new LoginDialog(null);
+        LoginDialog LoginDialog = new LoginDialog(MFrame.getInstance());
         QuenMKDialog.this.dispose();
         LoginDialog.setVisible(true);
     }
@@ -259,4 +265,53 @@ public class QuenMKDialog extends JDialog {
     private ButtonGradient btnConfirm;
     private JLabel lbQuayLai;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private String verifyUsername;
+    private String verifyCode;
+
+    private void initialize() {
+        btnGui.addActionListener(e -> sendCode());
+        btnConfirm.addActionListener(e -> confirmAction());
+    }
+
+    private void sendCode() {
+        String username = txtUsername.getText();
+        if(username.isBlank()) {
+            XMessage.alert(this,"Vui lòng nhập tên tài khoản");
+        }
+        else if (username.length() >= 5) {
+            String email = AccountDAO.gI().forgetPassword(username);
+            String code = 100000 + new Random().nextInt(899999) + "";
+            if(email == null) {
+                XMessage.alert(this,"Tài khoản không tồn tại");
+            }
+            else {
+                XEmail.sendEmail(email, "SteaK forget password","Mã xác nhận đổi mật khẩu của bạn là: <b> " + code + "</b>");
+                verifyUsername = username;
+                verifyCode = code;
+                XMessage.notificate(this,"Mã xác nhận đã được gửi đến email đăng ký của bạn");
+            }
+        }
+    }
+
+    private void confirmAction() {
+        String code = txtNhapMa.getText();
+        String newMK = new String(txtNewMK.getPassword());
+        String confirmMK = new String(txtNhapLaiMK.getPassword());
+        if(code.equals(verifyCode)) {
+            if(newMK.equals(confirmMK) && AccountDAO.gI().changePassword(verifyUsername, XSecurity.hashPassword(newMK)) > 0) {
+                XMessage.notificate(this,"Đổi mật khẩu thành công");
+                LoginDialog loginDialog = new LoginDialog(MFrame.getInstance());
+                QuenMKDialog.this.dispose();
+                loginDialog.setVisible(true);
+            }
+            else {
+                XMessage.alert(this,"Mật khẩu không khớp");
+            }
+        }
+        else {
+            XMessage.alert(this,"Mã xác nhận không đúng");
+        }
+    }
+
 }
