@@ -8,10 +8,10 @@ import steamfake.dao.GameDAO;
 import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
+import steamfake.view.HotGamePanel2;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -216,6 +216,7 @@ public class MFrame extends JFrame {
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
+        scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         initEventMenu();
     }
 
@@ -344,7 +345,7 @@ public class MFrame extends JFrame {
             gameList = GameDAO.gI().selectTop10Game();
             theMostDownloadedGame = gameList.getFirst();
         }
-        HotGamePanel hotGamePanel = GamePanelFactory.createHotGamePanel(theMostDownloadedGame);
+        HotGamePanel2 hotGamePanel = GamePanelFactory.createHotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
         for (Game game : gameList) {
             if (!game.equals(theMostDownloadedGame)) {
