@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jul 05 21:47:12 ICT 2024
  */
 
-package steamfake.view.MainFrame;
+package steamfake.view.mainframe;
 
 import javax.swing.*;
 import java.awt.*;

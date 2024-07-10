@@ -2,17 +2,12 @@
  * Created by JFormDesigner on Sun Jul 07 12:08:40 ICT 2024
  */
 
-package steamfake.view.LibraryFrame;
+package steamfake.view;
 
-import java.awt.*;
+import steamfake.graphics.RadiusLabel;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
-
-
-
-
-
-import steamfake.graphics.*;
+import java.awt.*;
 
 /**
  * @author ACER

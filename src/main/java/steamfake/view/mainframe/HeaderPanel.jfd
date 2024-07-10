@@ -5,7 +5,7 @@ new FormModel {
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq t {space :p:21:p, comp lblAvata:::p:50:p, space s:::p, par l {comp lblName:::p:150:p, comp lblRole:::p:150:p}, space ::204:x, comp radiusTextField1:::p:617:p, space :::p, comp lblSearch:::p::p, space :p:31:p, comp lblMoney:::p:245:p, space :p:36:p, comp iconAddMoney:::p::p, space s:::p, comp separator3:::p:3:p, space u:::p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
-			"$verticalGroup": "par l {seq t {space :p:18:p, par l {comp lblSearch::::30:x, comp radiusTextField1:::::x}, space :p:17:p}, seq {par l {seq l {space :::p, par l:::p {seq {comp lblName:::p::p, space :::x, comp lblRole:::p::p}, par t {comp lblAvata:::p:50:p, comp separator3::t:p:50:p}}}, seq l {space :p:16:p, comp iconAddMoney:::p::p}, seq l {space :p:16:p, par t {comp iconLogOut:::p::p, comp iconSettingAccount:::p:30:p}}, seq l {space :::p, comp lblMoney:::p:50:p}}, space ::8:x}}"
+			"$verticalGroup": "par l {seq t {space :p:18:p, par l {comp lblSearch::::30:x, comp radiusTextField1:::::x}, space :p:17:p}, seq {par l {seq l {space :::p, par l:::p {seq {comp lblName:::p::p, space :::x, comp lblRole:::p::p}, comp separator3:::p:50:p}}, seq l {space :p:16:p, comp iconAddMoney:::p::p}, seq l {space :p:16:p, par t {comp iconLogOut:::p::p, comp iconSettingAccount:::p:30:p}}, seq l {space :::p, comp lblMoney:::p:50:p}, seq t {space :::p, comp lblAvata:::p:50:p, space :1:1:p}}, space ::8:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 37, 39, 48, 255 )

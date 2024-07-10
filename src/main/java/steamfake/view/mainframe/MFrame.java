@@ -2,12 +2,15 @@
  * Created by JFormDesigner on Sun Jul 07 15:32:27 ICT 2024
  */
 
-package steamfake.view.MainFrame;
+package steamfake.view.mainframe;
 
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
-import steamfake.view.Factory.GamePanelFactory;
+import steamfake.utils.SessionManager;
+import steamfake.utils.XMessage;
 import steamfake.view.LoadingScreen;
+import steamfake.view.LoginDialog;
+import steamfake.view.factory.GamePanelFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -200,7 +203,7 @@ public class MFrame extends JFrame {
     private void initialize() {
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
-        headerPanel.add(new HeaderPanel());
+        headerPanel.add(HeaderPanel.getInstance());
         initEventMenu();
     }
 
@@ -223,11 +226,17 @@ public class MFrame extends JFrame {
 
         lblLibrary.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initLibraryPage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
-                setEffectMenu(lblLibrary);
+                if (SessionManager.isLogin()) {
+                    mainPanel.removeAll();
+                    initLibraryPage();
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
+                    setEffectMenu(lblLibrary);
+                }
+                else {
+                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.this).setVisible(true);
+                }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblLibrary.setBackground(Color.GRAY);
@@ -239,11 +248,17 @@ public class MFrame extends JFrame {
 
         lblAddMoney.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initAddMoneyPage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
-                setEffectMenu(lblAddMoney);
+                if (SessionManager.isLogin()) {
+                    mainPanel.removeAll();
+                    initAddMoneyPage();
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
+                    setEffectMenu(lblAddMoney);
+                }
+                else {
+                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.this).setVisible(true);
+                }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblAddMoney.setBackground(Color.GRAY);
@@ -255,11 +270,17 @@ public class MFrame extends JFrame {
 
         lblManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initManagePage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
-                setEffectMenu(lblManage);
+                if (SessionManager.isLogin()) {
+                    mainPanel.removeAll();
+                    initManagePage();
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
+                    setEffectMenu(lblManage);
+                }
+                else {
+                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.this).setVisible(true);
+                }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblManage.setBackground(Color.GRAY);
@@ -283,10 +304,16 @@ public class MFrame extends JFrame {
 
         lblDownload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initDownloadPage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
+                if (SessionManager.isLogin()) {
+                    mainPanel.removeAll();
+                    initDownloadPage();
+                    mainPanel.repaint();
+                    mainPanel.revalidate();
+                }
+                else {
+                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.this).setVisible(true);
+                }
             }
         });
     }

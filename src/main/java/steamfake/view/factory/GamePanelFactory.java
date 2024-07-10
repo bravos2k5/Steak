@@ -1,4 +1,4 @@
-package steamfake.view.Factory;
+package steamfake.view.factory;
 
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
@@ -6,8 +6,8 @@ import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.utils.XImage;
 import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.MainFrame.HotGamePanel;
-import steamfake.view.MainFrame.ListGamePanel;
+import steamfake.view.mainframe.HotGamePanel;
+import steamfake.view.mainframe.ListGamePanel;
 
 import javax.swing.*;
 import java.io.File;

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Tue Jul 09 01:07:13 ICT 2024
  */
 
-package steamfake.view.MainFrame;
+package steamfake.view.mainframe;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 
