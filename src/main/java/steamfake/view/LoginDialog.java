@@ -51,7 +51,7 @@ public class LoginDialog extends JDialog {
     }
 
     private void lbDangKyMouseClicked(MouseEvent e) {
-        RegisterDialog RegisterDialog = new RegisterDialog(this);
+        RegisterDialog RegisterDialog = new RegisterDialog(MFrame.getInstance());
         LoginDialog.this.dispose();
         RegisterDialog.setVisible(true);
     }
@@ -80,6 +80,7 @@ public class LoginDialog extends JDialog {
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         var contentPane = getContentPane();
 
         //======== panelBorder1 ========
