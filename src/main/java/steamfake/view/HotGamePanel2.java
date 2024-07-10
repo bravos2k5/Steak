@@ -2,7 +2,9 @@
  * Created by JFormDesigner on Fri Jul 05 21:47:12 ICT 2024
  */
 
-package steamfake.view.mainframe;
+package steamfake.view;
+
+import steamfake.graphics.slider.SlideShow;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,8 +16,8 @@ import java.util.List;
 /**
  * @author ACER
  */
-public class HotGamePanel extends JPanel {
-    public HotGamePanel() {
+public class HotGamePanel2 extends JPanel {
+    public HotGamePanel2() {
         initComponents();
         initialize();
     }
@@ -36,7 +38,7 @@ public class HotGamePanel extends JPanel {
         lblLeft = new JLabel();
         lblRight = new JLabel();
         panel2 = new JPanel();
-        lblImage = new JLabel();
+        slsImages = new SlideShow();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -155,20 +157,21 @@ public class HotGamePanel extends JPanel {
         {
             panel2.setOpaque(false);
 
-            //---- lblImage ----
-            lblImage.setHorizontalAlignment(SwingConstants.CENTER);
-            lblImage.setIcon(new ImageIcon(getClass().getResource("/icon/Steambig.png")));
-
             GroupLayout panel2Layout = new GroupLayout(panel2);
             panel2.setLayout(panel2Layout);
             panel2Layout.setHorizontalGroup(
                 panel2Layout.createParallelGroup()
-                    .addComponent(lblImage, GroupLayout.DEFAULT_SIZE, 960, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
             );
             panel2Layout.setVerticalGroup(
                 panel2Layout.createParallelGroup()
-                    .addComponent(lblImage, GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
             );
+        }
+
+        //======== slsImages ========
+        {
+            slsImages.setPreferredSize(new Dimension(960, 540));
         }
 
         GroupLayout layout = new GroupLayout(this);
@@ -178,8 +181,12 @@ public class HotGamePanel extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(27, 27, 27)
                     .addComponent(lblLeft)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                    .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup()
+                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(slsImages, GroupLayout.PREFERRED_SIZE, 960, GroupLayout.PREFERRED_SIZE)))
                     .addGap(40, 40, 40)
                     .addComponent(lblRight)
                     .addGap(28, 28, 28))
@@ -191,17 +198,19 @@ public class HotGamePanel extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(343, 343, 343)
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(lblRight)
                                 .addComponent(lblLeft))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 282, Short.MAX_VALUE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap(72, Short.MAX_VALUE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addGap(63, 63, 63)))
+                            .addGap(14, 14, 14)
+                            .addComponent(slsImages, GroupLayout.PREFERRED_SIZE, 552, GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)))
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(55, 55, 55))
         );
@@ -223,15 +232,17 @@ public class HotGamePanel extends JPanel {
     private JLabel lblLeft;
     private JLabel lblRight;
     private JPanel panel2;
-    private JLabel lblImage;
+    private SlideShow slsImages;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private final List<ImageIcon> imageIconList = new ArrayList<>();
-    private int i = 0;
+
+    public SlideShow getSlsImages() {
+        return slsImages;
+    }
 
     private void initialize() {
-        lblImage.setSize(new Dimension(960, 540));
         lblLeft.setOpaque(true);
         lblRight.setOpaque(true);
         initEvent();
@@ -241,10 +252,7 @@ public class HotGamePanel extends JPanel {
         lblLeft.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(i == 0) i = imageIconList.size() - 1;
-                else i--;
-                lblImage.setIcon(imageIconList.get(i));
-                lblImage.validate();
+                slsImages.back();
             }
 
             @Override
@@ -263,10 +271,7 @@ public class HotGamePanel extends JPanel {
         lblRight.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(i == imageIconList.size() - 1) i = 0;
-                else i++;
-                lblImage.setIcon(imageIconList.get(i));
-                lblImage.validate();
+                slsImages.next();
             }
 
             @Override
@@ -283,10 +288,6 @@ public class HotGamePanel extends JPanel {
         });
     }
 
-
-    public JLabel getLbImage() {
-        return lblImage;
-    }
 
     public JLabel getLblNameGame() {
         return lblNameGame;
