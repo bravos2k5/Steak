@@ -394,7 +394,7 @@ public class RegisterDialog extends JDialog {
 
     private void registerAction() {
         String username = txtTaiKhoan.getText();
-        String password = Arrays.toString(txtMk.getPassword());
+        String password = new String(txtMk.getPassword());
         String hoTen = txtHoTen.getText();
         String email = txtEmail.getText();
         LocalDate dob = txtNgaySinh.getDatePicker().getSelectedDate();

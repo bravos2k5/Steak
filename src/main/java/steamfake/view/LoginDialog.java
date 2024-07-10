@@ -57,7 +57,7 @@ public class LoginDialog extends JDialog {
     }
 
     private void lbQuenMKMouseClicked(MouseEvent e) {
-        QuenMKDialog QuenMKDialog = new QuenMKDialog(this);
+        QuenMKDialog QuenMKDialog = new QuenMKDialog(MFrame.getInstance());
         LoginDialog.this.dispose();
         QuenMKDialog.setVisible(true);
     }
