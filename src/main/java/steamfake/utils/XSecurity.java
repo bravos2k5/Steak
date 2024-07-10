@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 public class XSecurity {
 
     public static String hashPassword(String originPassword) {
+        System.out.println(originPassword);
         return BCrypt.hashpw(originPassword,BCrypt.gensalt());
     }
 
