@@ -170,4 +170,9 @@ public class AccountDAO implements DataAccessObject<Account> {
         XJdbc.update(sql,account.getId());
     }
 
+    public boolean isExistUsername(String username) {
+        String sql = "SELECT * FROM Account WHERE username = ?";
+        return !selectBySQL(sql,username).isEmpty();
+    }
+
 }

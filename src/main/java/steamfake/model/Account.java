@@ -6,6 +6,10 @@ import java.util.UUID;
 
 public class Account {
 
+    public static final int FEMALE = 0;
+    public static final int MALE = 1;
+    public static final int OTHER = 2;
+
     private UUID id;
     private String username;
     private String password;

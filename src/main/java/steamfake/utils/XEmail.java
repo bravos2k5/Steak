@@ -45,7 +45,7 @@ public class XEmail {
             msg.setSubject(subject);
             msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             msg.setSentDate(new Date());
-            msg.setText(text,"UTF-8");
+            msg.setContent(text,"text/html; charset=UTF-8");
             Transport.send(msg);
             System.out.println("Sent");
         } catch (MessagingException e) {

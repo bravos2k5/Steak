@@ -20,7 +20,17 @@ import java.util.List;
  * @author BRAVOS
  */
 public class MFrame extends JFrame {
-    public MFrame() {
+
+    private static MFrame instance;
+
+    public static MFrame getInstance() {
+        if (instance == null) {
+            instance = new MFrame();
+        }
+        return instance;
+    }
+
+    private MFrame() {
         setUndecorated(true);
         initComponents();
         initialize();
