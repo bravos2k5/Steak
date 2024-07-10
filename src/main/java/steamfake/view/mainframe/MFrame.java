@@ -12,6 +12,7 @@ import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
 
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
@@ -211,6 +212,7 @@ public class MFrame extends JFrame {
     private List<Game> gameList;
 
     private void initialize() {
+        this.setVisible(true);
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());

@@ -97,7 +97,10 @@ public class HeaderPanel extends JPanel {
         //---- radiusTextField1 ----
         radiusTextField1.setForeground(Color.white);
         radiusTextField1.setPlaceholder("Search");
-        radiusTextField1.setEndGradientColor(Color.white);
+        radiusTextField1.setEndGradientColor(new Color(0x30333d));
+        radiusTextField1.setBackground(new Color(0x30333d));
+        radiusTextField1.setStartGradientColor(new Color(0x30333d));
+        radiusTextField1.setForcusColor(new Color(0x0c8ce9));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -110,10 +113,10 @@ public class HeaderPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
                     .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 617, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblSearch)
+                    .addGap(0, 0, 0)
+                    .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
                     .addGap(31, 31, 31)
                     .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
                     .addGap(36, 36, 36)
@@ -131,8 +134,8 @@ public class HeaderPanel extends JPanel {
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(18, 18, 18)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                        .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                     .addGap(17, 17, 17))
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
@@ -143,7 +146,9 @@ public class HeaderPanel extends JPanel {
                                     .addComponent(lblName)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblRole))
-                                .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(16, 16, 16)
                             .addComponent(iconAddMoney))
@@ -154,11 +159,7 @@ public class HeaderPanel extends JPanel {
                                 .addComponent(iconSettingAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                            .addGap(1, 1, 1)))
+                            .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(8, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
