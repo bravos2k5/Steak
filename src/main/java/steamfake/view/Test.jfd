@@ -4,16 +4,32 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:123:p, comp dateTimeTextField1:::p:215:p, space ::60:x}}"
-			"$verticalGroup": "par l {seq l {space :p:81:p, comp dateTimeTextField1:::p:135:p, space ::53:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:50:p, comp radiusPanel1:::p::p, space ::226:x}}"
+			"$verticalGroup": "par l {seq l {space :p:107:p, comp radiusPanel1:::p::p, space ::137:x}}"
 		} ) {
 			name: "this"
-			add( new FormComponent( "steamfake.graphics.DateTimeTextField" ) {
-				name: "dateTimeTextField1"
+			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space :::p, comp textField1::::131:x, space :::p, comp radioButton1:::p::p, space :::p}}"
+				"$verticalGroup": "par l {seq l {comp radioButton1:::p:50:p, space :0:0:x}, seq l {space :::p, comp textField1:::::x, space :::p}}"
+			} ) {
+				name: "radiusPanel1"
+				"borderColor": sfield java.awt.Color pink
+				add( new FormComponent( "javax.swing.JRadioButton" ) {
+					name: "radioButton1"
+					"text": "text"
+				} )
+				add( new FormComponent( "javax.swing.JTextField" ) {
+					name: "textField1"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 65, 20 )
-			"size": new java.awt.Dimension( 400, 300 )
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 470, 325 )
+		} )
+		add( new FormNonVisual( "javax.swing.ButtonGroup" ) {
+			name: "buttonGroup1"
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 341 )
 		} )
 	}
 }

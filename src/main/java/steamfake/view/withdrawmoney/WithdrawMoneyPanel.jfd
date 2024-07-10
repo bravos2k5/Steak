@@ -1,0 +1,208 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:50:p, comp panel1:::p::p, space ::50:x}}"
+			"$verticalGroup": "par l {seq l {space :p:40:p, comp panel1:::p::p, space ::40:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:35:p, comp panel2:::p::p, space :p:40:p, par l:::p {comp panel3:::::x, comp scrollPane1::::500:x}, space ::25:x}}"
+				"$verticalGroup": "par l {seq l {space :p:35:p, par l {comp panel2:::p::p, seq {comp panel3:::p::p, space :0:0:p, comp scrollPane1:::p:600:p}}, space :0:35:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :23:23:p, par l:::p {comp label4::l:p:300:p, seq l {comp radiusLabel1:::p:200:p, space :::x, comp radiusLabel2:::p:200:p}, par t:l {seq {comp radiusButton5:::p:120:p, space :48:48:p, comp radiusButton4:::p:120:p, space :42:42:p, comp radiusButton6:::p:120:p}, par l:::p {seq {comp label1:::p:170:p, space :::x, comp label2:::p:200:p}, comp radiusTextField1:::::x, comp label3::l:p:200:p, seq {comp radiusButton1:::p:120:p, space ::48:x, comp radiusButton2:::p:120:p, space :p:42:p, comp radiusButton3:::p:120:p}}}, comp comboBox1::l:::x, seq l {comp label5:::p:250:p, space :::x, comp radiusButton8:::p:60:p, space s:::p, comp radiusButton7:::p:60:p}}, space ::27:x}}"
+					"$verticalGroup": "par l {seq l {space :p:21:p, par b {comp label1::b:p:30:p, comp label2::b:p::p}, space :::p, comp radiusTextField1:::p:59:p, space u:::p, comp label3:::p:30:p, space s:::p, par b {comp radiusButton1::b:p:50:p, comp radiusButton3::b:p:50:p, comp radiusButton2::b:p:50:p}, space :p:52:p, par l {comp radiusButton5:::p:50:p, comp radiusButton4:::p:50:p, comp radiusButton6:::p:50:p}, space :p:37:p, comp label4:::p:30:p, space :p:35:p, par b {comp radiusLabel1::b:p:50:p, comp radiusLabel2::b:p:50:p}, space :p:30:p, comp comboBox1:::p:49:p, space :p:35:p, par b {comp label5::b:p:20:p, comp radiusButton7::b:p:30:p, comp radiusButton8::b:p:30:p}, space ::26:x}}"
+				} ) {
+					name: "panel2"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
+					add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+						name: "radiusTextField1"
+						"radius": 7
+						"font": new java.awt.Font( "Inter", 0, 20 )
+						"placeholder": "Nhấp số tiền(đ)"
+						"horizontalAlignment": 2
+						"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+						"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+						"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label1"
+						"text": "Số dư doanh thu :"
+						"font": new java.awt.Font( "Inter", 0, 20 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label2"
+						"text": "0"
+						"font": new java.awt.Font( "Inter", 0, 20 )
+						"horizontalAlignment": 4
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label3"
+						"text": "Chọn nhanh số tiền"
+						"font": &Font0 new java.awt.Font( "Inter", 0, 20 )
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton1"
+						"text": "50.000"
+						"radius": 5
+						"font": &Font1 new java.awt.Font( "Inter", 1, 16 )
+						"background": &Color0 new java.awt.Color( 37, 39, 48, 255 )
+						"hoverColor": sfield java.awt.Color darkGray
+						"originColor": &Color1 new java.awt.Color( 37, 39, 48, 255 )
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton2"
+						"text": "50.000"
+						"radius": 5
+						"font": #Font1
+						"background": &Color2 new java.awt.Color( 37, 39, 48, 255 )
+						"hoverColor": sfield java.awt.Color darkGray
+						"originColor": &Color3 new java.awt.Color( 37, 39, 48, 255 )
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton3"
+						"text": "50.000"
+						"radius": 5
+						"font": #Font1
+						"background": &Color4 new java.awt.Color( 37, 39, 48, 255 )
+						"originColor": &Color5 new java.awt.Color( 37, 39, 48, 255 )
+						"hoverColor": sfield java.awt.Color darkGray
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton4"
+						"text": "50.000"
+						"radius": 5
+						"font": #Font1
+						"background": #Color2
+						"hoverColor": sfield java.awt.Color darkGray
+						"originColor": #Color3
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton5"
+						"text": "50.000"
+						"radius": 5
+						"font": #Font1
+						"background": #Color0
+						"hoverColor": sfield java.awt.Color darkGray
+						"originColor": #Color1
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton6"
+						"text": "50.000"
+						"radius": 5
+						"font": #Font1
+						"background": #Color4
+						"originColor": #Color5
+						"hoverColor": sfield java.awt.Color darkGray
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label4"
+						"text": "Hãy chọn phương thức rút tiền"
+						"font": #Font0
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+						name: "radiusLabel1"
+						"text": "Tài khoản game"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Wallet.png" )
+						"horizontalAlignment": 2
+						"font": &Font2 new java.awt.Font( "Inter", 1, 18 )
+						"background": &Color6 new java.awt.Color( 37, 39, 48, 255 )
+						"radius": 5
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+						name: "radiusLabel2"
+						"text": "Ngân hàng"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Euro Bank Building.png" )
+						"horizontalAlignment": 2
+						"font": #Font2
+						"background": #Color6
+						"radius": 5
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "comboBox1"
+						"font": new java.awt.Font( "Inter", 1, 20 )
+						"maximumRowCount": 5
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "1"
+							addElement( "1" )
+							addElement( "2" )
+							addElement( "3" )
+							addElement( "4" )
+							addElement( "5" )
+							addElement( "6" )
+							addElement( "7" )
+						}
+						"background": new java.awt.Color( 37, 39, 48, 255 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label5"
+						"text": "Bảo mật tuyệt đối theo chuẩn cao nhất"
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Protect.png" )
+						"font": new java.awt.Font( "Inter", 0, 12 )
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton7"
+						"text": "Xác nhận"
+						"originColor": new java.awt.Color( 53, 69, 42, 255 )
+						"background": new java.awt.Color( 53, 69, 42, 255 )
+						"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+						"radius": 5
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+						name: "radiusButton8"
+						"text": "Hủy bỏ"
+						"originColor": new java.awt.Color( 62, 55, 55, 255 )
+						"background": new java.awt.Color( 62, 55, 55, 255 )
+						"hoverColor": new java.awt.Color( 242, 54, 54, 255 )
+						"radius": 5
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {comp label6:::p:150:p, space :0:0:p, comp label7:::p:200:p, space :0:0:p, comp label8::::150:x}}"
+					"$verticalGroup": "par l {comp label6::l::50:x, comp label7::l::50:x, comp label8::l::50:x}"
+				} ) {
+					name: "panel3"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label6"
+						"text": "Ngày rút"
+						"horizontalAlignment": 0
+						"font": new java.awt.Font( "Inter", 1, 16 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label7"
+						"text": "Số tiền rút"
+						"horizontalAlignment": 0
+						"font": new java.awt.Font( "Inter", 1, 16 )
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label8"
+						"text": "HÌnh thức"
+						"horizontalAlignment": 0
+						"font": new java.awt.Font( "Inter", 1, 16 )
+					} )
+				} )
+				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+					name: "scrollPane1"
+					"horizontalScrollBarPolicy": 31
+					"verticalScrollBarPolicy": 21
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+						"axis": 1
+					} ) {
+						name: "panel4"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1200, 800 )
+		} )
+	}
+}

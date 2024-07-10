@@ -7,7 +7,7 @@ package steamfake.view.MainFrame;
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
 import steamfake.view.Factory.GamePanelFactory;
-import steamfake.view.LoadingScreen;
+import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -198,10 +198,12 @@ public class MFrame extends JFrame {
     private List<Game> gameList;
 
     private void initialize() {
-        new LoadingScreen(this).setVisible(true);
+        this.setVisible(true);
+//        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(new HeaderPanel());
-        initEventMenu();
+        mainPanel.add(new WithdrawMoneyPanel());
+//        initEventMenu();
     }
 
     private void initEventMenu() {

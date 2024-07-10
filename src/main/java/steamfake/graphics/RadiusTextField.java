@@ -9,6 +9,8 @@ public class RadiusTextField extends JTextField {
     private Color endGradientColor = new Color(230, 230, 230);
     private String placeholder = "";
     private int radius = 8;
+    private Color forcusColor =Color.blue;
+    private Color noForcusColor = Color.GRAY;
 
     public RadiusTextField() {
         super();
@@ -44,7 +46,7 @@ public class RadiusTextField extends JTextField {
     protected void paintBorder(Graphics g) {
         Graphics2D g2 = (Graphics2D) g.create();
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-        g2.setColor(hasFocus() ? Color.BLUE : Color.GRAY);
+        g2.setColor(hasFocus() ? getForcusColor() : getNoForcusColor());
         g2.draw(new RoundRectangle2D.Double(0, 0, getWidth() - 1, getHeight() - 1, radius, radius));
         g2.dispose();
     }
@@ -77,5 +79,20 @@ public class RadiusTextField extends JTextField {
         this.radius = radius;
     }
 
+    public Color getForcusColor() {
+        return forcusColor;
+    }
+
+    public void setForcusColor(Color forcusColor) {
+        this.forcusColor = forcusColor;
+    }
+
+    public Color getNoForcusColor() {
+        return noForcusColor;
+    }
+
+    public void setNoForcusColor(Color noForcusColor) {
+        this.noForcusColor = noForcusColor;
+    }
     // Getters and setters for startGradientColor, endGradientColor, and radius
 }
