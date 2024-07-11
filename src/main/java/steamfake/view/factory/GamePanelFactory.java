@@ -2,15 +2,17 @@ package steamfake.view.factory;
 
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
+import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.utils.XImage;
 import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.mainframe.HotGamePanel;
+import steamfake.view.HotGamePanel2;
 import steamfake.view.mainframe.ListGamePanel;
 
 import javax.swing.*;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class GamePanelFactory {
@@ -32,22 +34,25 @@ public class GamePanelFactory {
         return listGamePanel;
     }
 
-    public static HotGamePanel createHotGamePanel(Game game) {
-        HotGamePanel hotGamePanel = new HotGamePanel();
+
+    public static HotGamePanel2 createHotGamePanel2(Game game) {
+        HotGamePanel2 hotGamePanel = new HotGamePanel2();
         String folderResource = getFolderResource(game);
         File folderResourceFile = new File(folderResource);
         if(folderResourceFile.mkdirs() || folderResourceFile.listFiles().length <= 1){
             AzureBlobService.downloadManyFile(folderResource,"games/" + game.getId() + "/","images");
         }
         File[] files = new File(folderResource).listFiles();
-        List<ImageIcon> imageIconList = hotGamePanel.getImageIconList();
+        List<PictureBox> pictureBoxes = new ArrayList<>();
         if (files != null) {
             for(File file : files) {
-                imageIconList.add(XImage.scaleImageForLabel(new ImageIcon(file.getAbsolutePath()),hotGamePanel.getLbImage()));
+                if(file.getName().equals(game.getAvatar())) continue;
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.setImage(new ImageIcon(file.getAbsolutePath()));
+                pictureBoxes.add(pictureBox);
             }
-            hotGamePanel.getLbImage().setText("");
-            hotGamePanel.getLbImage().setIcon(imageIconList.getFirst());
         }
+        hotGamePanel.getSlsImages().initSlideshow(pictureBoxes);
         hotGamePanel.getLblDownloads().setText(GameDAO.gI().selectLuotTai(game) + "");
         hotGamePanel.getLblNameGame().setText(game.getName());
         hotGamePanel.getLblPrice().setText(game.getGiaTien() + "");

@@ -61,6 +61,8 @@ public class QuenMKDialog extends JDialog {
         lbQuayLai = new JLabel();
 
         //======== this ========
+        setModal(true);
+        setResizable(false);
         var contentPane = getContentPane();
 
         //======== panelBorder1 ========
