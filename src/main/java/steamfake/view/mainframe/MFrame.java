@@ -12,6 +12,7 @@ import steamfake.view.HotGamePanel2;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
+import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -362,7 +363,10 @@ public class MFrame extends JFrame {
     }
 
     private void initAddMoneyPage() {
-
+        WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
+        mainPanel.add(panel);
+        mainPanel.repaint();
+        mainPanel.revalidate();
     }
 
     private void initManagePage() {

@@ -1,6 +1,10 @@
 package steamfake.utils;
 
+import steamfake.dao.BankAccountDAO;
 import steamfake.model.Account;
+import steamfake.model.BankAccount;
+
+import java.util.List;
 
 public class SessionManager {
 
@@ -12,6 +16,14 @@ public class SessionManager {
 
     public static void logOut() {
         user = null;
+    }
+
+    public static List<BankAccount> bankAccountList = null;
+
+    public static void loadBankAccountList() {
+        if(user != null && bankAccountList == null) {
+            bankAccountList = BankAccountDAO.gI().selectByAccount(user);
+        }
     }
 
 }
