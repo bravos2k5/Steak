@@ -1,0 +1,45 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:50:p, comp panel1:::p::p, space ::50:x}}"
+			"$verticalGroup": "par l {seq l {space :p:40:p, comp panel1:::p::p, space ::40:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:50:p, par l {comp separator1:::p:1000:p, comp label1:::p:300:p, comp scrollPane1:::p:1000:p}, space ::50:x}, seq t {space ::900:x, comp radiusButton1:::p:150:p, space ::50:x}}"
+				"$verticalGroup": "par l {seq l {comp label1:::p:50:p, space :0:0:p, comp scrollPane1:::p:600:p, space :0:0:p, comp separator1:::p:1:p, space :::p, comp radiusButton1:::p:50:p, space ::13:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label1"
+					"text": "Quản lý Game"
+					"font": new java.awt.Font( "SansSerif", 1, 32 )
+				} )
+				add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+					name: "scrollPane1"
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator1"
+					"background": sfield java.awt.Color white
+					"foreground": sfield java.awt.Color white
+					"opaque": true
+				} )
+				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+					name: "radiusButton1"
+					"text": "Thêm"
+					"radius": 5
+					"font": new java.awt.Font( "SansSerif", 1, 20 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1200, 800 )
+		} )
+	}
+}

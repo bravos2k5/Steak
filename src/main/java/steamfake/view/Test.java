@@ -43,6 +43,7 @@ public class Test extends JFrame {
         radiusPanel1 = new RadiusPanel();
         radioButton1 = new JRadioButton();
         textField1 = new JTextField();
+        separator1 = new JSeparator();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -77,6 +78,9 @@ public class Test extends JFrame {
             );
         }
 
+        //---- separator1 ----
+        separator1.setOrientation(SwingConstants.VERTICAL);
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
@@ -84,14 +88,18 @@ public class Test extends JFrame {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(50, 50, 50)
                     .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(226, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
+                    .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE)
+                    .addGap(93, 93, 93))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(107, 107, 107)
-                    .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(137, Short.MAX_VALUE))
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(95, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -102,5 +110,6 @@ public class Test extends JFrame {
     private RadiusPanel radiusPanel1;
     private JRadioButton radioButton1;
     private JTextField textField1;
+    private JSeparator separator1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -1,0 +1,284 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:50:p, comp panel1:::p::p, space ::50:x}}"
+			"$verticalGroup": "par l {seq t {space ::40:x, comp panel1:::p::p, space :p:40:p}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:50:p, comp tabbedPane1:::p:1000:p, space ::50:x}}"
+				"$verticalGroup": "par l {comp tabbedPane1::l:::x}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
+					name: "tabbedPane1"
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+					"font": new java.awt.Font( "Inter", 1, 16 )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {comp radiusPanel1:::::x, comp scrollPane1::::1000:x, comp panel3::l::1000:x, seq l {comp label1:::p:210:p, space :0:790:x}}"
+						"$verticalGroup": "par l {seq l {space :0:0:p, comp radiusPanel1:::p::p, space ::15:x, comp label1:::p:50:p, space :::p, comp panel3:::p::p, space :0:0:p, comp scrollPane1:::p:150:p, space :p:16:p}}"
+					} ) {
+						name: "panel2"
+						"background": new java.awt.Color( 37, 39, 48, 255 )
+						add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {space :p:25:p, comp radiusPanel2:::p::p, space ::25:x}}"
+							"$verticalGroup": "par l {seq l {space :p:25:p, comp radiusPanel2:::p::p, space ::25:x}}"
+						} ) {
+							name: "radiusPanel1"
+							"borderColor": sfield java.awt.Color white
+							"borderWidth": 1
+							"background": &Color0 new java.awt.Color( 25, 27, 32, 255 )
+							add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+								"$horizontalGroup": "par l {seq {space :p:24:p, par t {comp comboBox1::t::400:x, comp textField1::l:::x, comp radiusButton1::l::400:x}, space :p:100:p, par t:::p {comp comboBox2::l::400:x, comp textField2::l::400:x, comp radiusLabel1::l::400:x}, space :p:26:p}}"
+								"$verticalGroup": "par l {seq t {space :p:35:p, par b {comp comboBox1::b:p:50:p, comp comboBox2::b:p:50:p}, space ::56:x, par b {comp textField1::b:p:50:p, comp textField2::b:p:50:p}, space :p:50:p, par l:::p {comp radiusButton1::::69:x, comp radiusLabel1::::69:x}, space :p:40:p}}"
+							} ) {
+								name: "radiusPanel2"
+								"background": &Color1 new java.awt.Color( 37, 39, 48, 255 )
+								add( new FormComponent( "javax.swing.JComboBox" ) {
+									name: "comboBox1"
+									"background": &Color2 new java.awt.Color( 25, 27, 32, 255 )
+									"font": &Font0 new java.awt.Font( "Inter", 1, 16 )
+								} )
+								add( new FormComponent( "javax.swing.JComboBox" ) {
+									name: "comboBox2"
+									"background": new java.awt.Color( 25, 27, 32, 255 )
+									"font": new java.awt.Font( "Inter", 0, 16 )
+								} )
+								add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+									name: "textField1"
+									"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
+									"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+									"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+									"radius": 7
+									"noForcusColor": new java.awt.Color( 25, 27, 32, 255 )
+									"font": new java.awt.Font( "Inter", 1, 16 )
+									"background": new java.awt.Color( 25, 27, 32, 255 )
+								} )
+								add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+									name: "textField2"
+									"radius": 7
+									"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
+									"noForcusColor": new java.awt.Color( 25, 27, 32, 255 )
+									"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+									"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+									"font": new java.awt.Font( "Inter", 1, 16 )
+									"background": new java.awt.Color( 25, 27, 32, 255 )
+								} )
+								add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+									name: "radiusButton1"
+									"text": "Nạp thẻ"
+									"originColor": &Color3 new java.awt.Color( 53, 69, 42, 255 )
+									"background": &Color4 new java.awt.Color( 53, 69, 42, 255 )
+									"radius": 7
+									"hoverColor": &Color5 new java.awt.Color( 66, 149, 9, 255 )
+									"font": &Font1 new java.awt.Font( "Inter", 1, 16 )
+								} )
+								add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+									name: "radiusLabel1"
+									"text": "10.000 VNĐ =10.000 coin"
+									"background": &Color6 new java.awt.Color( 35, 48, 77, 255 )
+									"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "SansSerif", 1, 4, false )
+									"borderColor": &Color7 new java.awt.Color( 65, 109, 209, 255 )
+									"foreground": &Color8 new java.awt.Color( 74, 194, 108, 255 )
+								} )
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane1"
+							"horizontalScrollBarPolicy": 31
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+								"axis": 1
+							} ) {
+								name: "panel4"
+								"background": &Color9 new java.awt.Color( 37, 39, 48, 255 )
+							} )
+						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {space :0:0:p, comp label2:::p:200:p, space :0:0:p, comp label3:::p:300:p, space :0:0:p, comp label4:::p:300:p, space :0:0:p, comp label5:::p:200:p, space :::x}}"
+							"$verticalGroup": "par l {par b:l {comp label3::b:p:50:p, comp label4::b:p:50:p, comp label2::b:p:50:p, comp label5::b:p:50:p}}"
+						} ) {
+							name: "panel3"
+							"background": &Color10 new java.awt.Color( 25, 27, 32, 255 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label2"
+								"text": "ID"
+								"font": &Font2 new java.awt.Font( "Inter", 1, 16 )
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label3"
+								"text": "Ngày Nạp"
+								"font": #Font2
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label4"
+								"text": "Trạng thái"
+								"font": #Font2
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label5"
+								"text": "ID"
+								"font": #Font2
+								"horizontalAlignment": 0
+							} )
+						} )
+						add( new FormComponent( "javax.swing.JLabel" ) {
+							name: "label1"
+							"text": "Lịch sử nạp thẻ"
+							"font": &Font3 new java.awt.Font( "Inter", 1, 16 )
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "Nạp thẻ cào"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {comp panel6::l:::x}"
+						"$verticalGroup": "par l {comp panel6::l:::x}"
+					} ) {
+						name: "panel5"
+						"background": new java.awt.Color( 37, 39, 48, 255 )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq t {space :0:0:x, par l {comp radiusPanel3::t:p::p, comp panel8::t:p:1000:p, comp scrollPane2::l:p:1000:p, comp label10:::p:210:p}}}"
+							"$verticalGroup": "par l {seq l {comp radiusPanel3:::p::p, space u:::p, comp label10:::p:50:p, space ::9:x, comp panel8:::p::p, space :0:0:p, comp scrollPane2:::p:150:p, space :p:16:p}}"
+						} ) {
+							name: "panel6"
+							"background": new java.awt.Color( 37, 39, 48, 255 )
+							add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+								"$horizontalGroup": "par l {seq l {space :p:25:p, comp radiusPanel4:::p::p, space ::51:x}}"
+								"$verticalGroup": "par l {seq l {space :p:25:p, comp radiusPanel4:::p::p, space ::25:x}}"
+							} ) {
+								name: "radiusPanel3"
+								"borderColor": sfield java.awt.Color white
+								"borderWidth": 1
+								"background": #Color0
+								add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+									"$horizontalGroup": "par l {seq {space :p:24:p, par l {comp radiusButton2:::p:400:p, comp comboBox3:::::x}, space ::60:x, comp radiusLabel2:::p::p, space :p:40:p}}"
+									"$verticalGroup": "par l {seq {space ::109:x, comp comboBox3:::p:50:p, space :p:82:p, comp radiusButton2:::p:69:p, space :p:40:p}, seq l {space :p:49:p, comp radiusLabel2:::p::p, space ::51:x}}"
+								} ) {
+									name: "radiusPanel4"
+									"background": #Color1
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "comboBox3"
+										"background": #Color2
+										"font": #Font0
+									} )
+									add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+										name: "radiusButton2"
+										"text": "Nạp tiền"
+										"originColor": #Color3
+										"background": #Color4
+										"radius": 7
+										"hoverColor": #Color5
+										"font": #Font1
+									} )
+									add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+										"$horizontalGroup": "par l {comp label11:::::x, seq {par l {comp label13:::p:400:p, comp label12:::p:400:p, comp label14::l:p:400:p, comp label15::l:p:400:p}, space :0:0:x}}"
+										"$verticalGroup": "par l {seq l {comp label11:::p:50:p, space :0:0:p, comp label12:::p:50:p, space :0:0:p, comp label13:::p:50:p, space :0:0:p, comp label14:::p:50:p, space :0:0:p, comp label15:::p:50:p}}"
+									} ) {
+										name: "radiusLabel2"
+										"background": #Color6
+										"font": #SwingDerivedFont0
+										"borderColor": #Color7
+										"foreground": #Color8
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label11"
+											"text": "10.000 VNĐ = 12.000 coin"
+											"horizontalAlignment": 0
+											"font": new java.awt.Font( "SansSerif", 1, 16 )
+											"foreground": new java.awt.Color( 74, 194, 108, 255 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label12"
+											"text": "20.000 VNĐ = 24.000 coin"
+											"horizontalAlignment": 0
+											"font": new java.awt.Font( "SansSerif", 1, 16 )
+											"foreground": new java.awt.Color( 74, 194, 108, 255 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label13"
+											"text": "100.000 VNĐ = 120.000 coin"
+											"horizontalAlignment": 0
+											"font": new java.awt.Font( "SansSerif", 1, 16 )
+											"foreground": new java.awt.Color( 74, 194, 108, 255 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label14"
+											"text": "200.000 VNĐ = 250.000 coin"
+											"horizontalAlignment": 0
+											"font": &Font4 new java.awt.Font( "Inter", 1, 16 )
+											"foreground": new java.awt.Color( 74, 194, 108, 255 )
+										} )
+										add( new FormComponent( "javax.swing.JLabel" ) {
+											name: "label15"
+											"text": "500.000 VNĐ = 600.000 coin"
+											"horizontalAlignment": 0
+											"font": #Font4
+											"foreground": new java.awt.Color( 74, 194, 108, 255 )
+										} )
+									} )
+								} )
+							} )
+							add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+								name: "scrollPane2"
+								"horizontalScrollBarPolicy": 31
+								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+									"axis": 1
+								} ) {
+									name: "panel7"
+									"background": #Color9
+								} )
+							} )
+							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+								"$horizontalGroup": "par l {seq l {space :0:0:p, comp label6:::p:200:p, space :0:0:p, comp label7:::p:300:p, space :0:0:p, comp label8:::p:300:p, space :0:0:p, comp label9:::p:200:p, space :::x}}"
+								"$verticalGroup": "par l {par b:l {comp label7::b:p:50:p, comp label8::b:p:50:p, comp label6::b:p:50:p, comp label9::b:p:50:p}}"
+							} ) {
+								name: "panel8"
+								"background": #Color10
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label6"
+									"text": "ID"
+									"font": #Font2
+									"horizontalAlignment": 0
+								} )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label7"
+									"text": "Ngày Nạp"
+									"font": #Font2
+									"horizontalAlignment": 0
+								} )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label8"
+									"text": "Trạng thái"
+									"font": #Font2
+									"horizontalAlignment": 0
+								} )
+								add( new FormComponent( "javax.swing.JLabel" ) {
+									name: "label9"
+									"text": "ID"
+									"font": #Font2
+									"horizontalAlignment": 0
+								} )
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label10"
+								"text": "Lịch sử nạp ngân hàng "
+								"font": #Font3
+							} )
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "Ngân hàng"
+					} )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1200, 800 )
+		} )
+	}
+}

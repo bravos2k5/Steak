@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:50:p, comp radiusPanel1:::p::p, space ::226:x}}"
-			"$verticalGroup": "par l {seq l {space :p:107:p, comp radiusPanel1:::p::p, space ::137:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:50:p, comp radiusPanel1:::p::p, space ::123:x, comp separator1:::p:10:p, space :p:93:p}}"
+			"$verticalGroup": "par l {seq l {space :p:107:p, par l {comp radiusPanel1:::p::p, comp separator1:::p:92:p}, space ::95:x}}"
 		} ) {
 			name: "this"
 			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -21,6 +21,10 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "textField1"
 				} )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+				"orientation": 1
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
