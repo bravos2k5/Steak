@@ -11,9 +11,8 @@ import steamfake.utils.XMessage;
 import steamfake.view.HotGamePanel2;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
-import steamfake.view.addmoney.AddMoney;
 import steamfake.view.factory.GamePanelFactory;
-import steamfake.view.managegame.ManageGame;
+import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -215,13 +214,11 @@ public class MFrame extends JFrame {
 
     private void initialize() {
         this.setVisible(true);
-        scrollPane1.setBorder(null);
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         initEventMenu();
-
     }
 
     private void initEventMenu() {
@@ -366,7 +363,10 @@ public class MFrame extends JFrame {
     }
 
     private void initAddMoneyPage() {
-
+        WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
+        mainPanel.add(panel);
+        mainPanel.repaint();
+        mainPanel.revalidate();
     }
 
     private void initManagePage() {

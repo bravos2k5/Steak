@@ -131,12 +131,19 @@ public class AccountDAO implements DataAccessObject<Account> {
                 account.getDob());
     }
 
+    private Account tempAccount = null;
+
     public Account login(String username, String password) {
         String sql = "SELECT * FROM Account WHERE username = ?";
-        List<Account> accountList = selectBySQL(sql,username);
-        Account account = accountList.isEmpty() ? null : accountList.getFirst();
-        if(account == null || !XSecurity.isValidPassword(password,account.getPassword())) return null;
-        return account;
+        List<Account> accountList = null;
+        if (tempAccount == null || !username.equals(tempAccount.getUsername())) {
+            accountList = selectBySQL(sql,username);
+        }
+        if (accountList != null) {
+            tempAccount = accountList.isEmpty() ? null : accountList.getFirst();
+        }
+        if(tempAccount == null || !XSecurity.isValidPassword(password,tempAccount.getPassword())) return null;
+        return tempAccount;
     }
 
     public void updateViGame(Account account, float money) {

@@ -5,10 +5,7 @@
 package steamfake.view.withdrawmoney;
 
 import javax.swing.*;
-import javax.swing.GroupLayout;
 import java.awt.*;
-import java.util.Random;
-import components.*;
 
 /**
  * @author ACER
@@ -21,53 +18,103 @@ public class ListWithdrawMoney extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        label1 = new JLabel();
-        label2 = new JLabel();
-        label3 = new JLabel();
+        colNgayRut = new JLabel();
+        colSoTien = new JLabel();
+        colType = new JLabel();
+        colStatus = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x252730));
+        setPreferredSize(new Dimension(550, 50));
+        setMinimumSize(new Dimension(550, 20));
 
-        //---- label1 ----
-        label1.setText("text");
-        label1.setFont(new Font("Inter", Font.BOLD, 16));
-        label1.setHorizontalAlignment(SwingConstants.CENTER);
+        //---- colNgayRut ----
+        colNgayRut.setText("text");
+        colNgayRut.setFont(new Font("Inter", Font.BOLD, 16));
+        colNgayRut.setHorizontalAlignment(SwingConstants.CENTER);
+        colNgayRut.setPreferredSize(new Dimension(73, 20));
 
-        //---- label2 ----
-        label2.setText("text");
-        label2.setHorizontalAlignment(SwingConstants.CENTER);
-        label2.setFont(new Font("Inter", Font.BOLD, 16));
-        label2.setForeground(new Color(0x33ff33));
+        //---- colSoTien ----
+        colSoTien.setText("text");
+        colSoTien.setHorizontalAlignment(SwingConstants.CENTER);
+        colSoTien.setFont(new Font("Inter", Font.BOLD, 16));
+        colSoTien.setForeground(Color.white);
+        colSoTien.setPreferredSize(new Dimension(73, 20));
 
-        //---- label3 ----
-        label3.setText("Bank");
-        label3.setHorizontalAlignment(SwingConstants.CENTER);
-        label3.setFont(new Font("Inter", Font.BOLD, 16));
+        //---- colType ----
+        colType.setText("Bank");
+        colType.setHorizontalAlignment(SwingConstants.CENTER);
+        colType.setFont(new Font("Inter", Font.BOLD, 16));
+        colType.setPreferredSize(new Dimension(73, 20));
+
+        //---- colStatus ----
+        colStatus.setText("\u0110ang ch\u1edd");
+        colStatus.setHorizontalAlignment(SwingConstants.CENTER);
+        colStatus.setFont(new Font("Inter", Font.BOLD, 16));
+        colStatus.setPreferredSize(new Dimension(73, 20));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colNgayRut, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colSoTien, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(colType, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addComponent(label1, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addComponent(label2, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
-                .addComponent(label3, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(colNgayRut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(colSoTien, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(colType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel label1;
-    private JLabel label2;
-    private JLabel label3;
+    private JLabel colNgayRut;
+    private JLabel colSoTien;
+    private JLabel colType;
+    private JLabel colStatus;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+    public JLabel getColNgayRut() {
+        return colNgayRut;
+    }
+
+    public void setColNgayRut(JLabel colNgayRut) {
+        this.colNgayRut = colNgayRut;
+    }
+
+    public JLabel getColSoTien() {
+        return colSoTien;
+    }
+
+    public void setColSoTien(JLabel colSoTien) {
+        this.colSoTien = colSoTien;
+    }
+
+    public JLabel getColType() {
+        return colType;
+    }
+
+    public void setColType(JLabel colType) {
+        this.colType = colType;
+    }
+
+    public JLabel getColStatus() {
+        return colStatus;
+    }
+
+    public void setColStatus(JLabel colStatus) {
+        this.colStatus = colStatus;
+    }
 }

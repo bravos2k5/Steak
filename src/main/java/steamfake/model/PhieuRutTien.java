@@ -16,7 +16,7 @@ public class PhieuRutTien {
     private float soTienRut;
     private int method;
     private Date ngayRut;
-    private boolean trangThai;
+    private int trangThai;
 
     public PhieuRutTien(UUID id) {
         this.id = id;
@@ -65,11 +65,11 @@ public class PhieuRutTien {
         this.ngayRut = ngayRut;
     }
 
-    public boolean isTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
