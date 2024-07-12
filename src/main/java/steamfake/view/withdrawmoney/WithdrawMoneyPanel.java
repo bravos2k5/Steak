@@ -80,6 +80,7 @@ public class WithdrawMoneyPanel extends JPanel {
                 txtWithdrawMoney.setStartGradientColor(new Color(0x191b20));
                 txtWithdrawMoney.setEndGradientColor(new Color(0x191b20));
                 txtWithdrawMoney.setForcusColor(new Color(0x0c8ce9));
+                txtWithdrawMoney.setBackground(new Color(0x191b20));
 
                 //---- label1 ----
                 label1.setText("S\u1ed1 d\u01b0 doanh thu :");

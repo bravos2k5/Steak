@@ -66,6 +66,14 @@ public class RadiusButton extends JButton {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth(), getHeight(), radius, radius);
+        Icon icon = getIcon();
+        if (icon != null) {
+            int iconWidth = icon.getIconWidth();
+            int iconHeight = icon.getIconHeight();
+            int iconX = (getWidth() - iconWidth) / 2;
+            int iconY = (getHeight() - iconHeight) / 2;
+            icon.paintIcon(this, g2, iconX, iconY);
+        }
         FontMetrics fm = g.getFontMetrics();
         Rectangle r = fm.getStringBounds(getText(), g).getBounds();
         int textX = (getWidth() - r.width) / 2;
