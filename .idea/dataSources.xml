@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlserver://steak.crquk22cu39i.ap-southeast-1.rds.amazonaws.com:1433;database=bravosdb</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="bravosdb@localhost" uuid="1c12f984-e22d-4313-8bd6-fc84e98ecc0d">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://localhost\MSSQLSERVER:1433;database=bravosdb</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
