@@ -16,6 +16,7 @@ import steamfake.graphics.*;
 public class Test extends JFrame {
     public Test() {
         initComponents();
+
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
@@ -24,6 +25,7 @@ public class Test extends JFrame {
     }
 
     private void initComponents() {
+
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         dateTimeTextField1 = new DateTimeTextField();
 

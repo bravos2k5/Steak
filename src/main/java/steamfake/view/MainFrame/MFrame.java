@@ -8,6 +8,7 @@ import steamfake.dao.GameDAO;
 import steamfake.model.Game;
 import steamfake.view.Factory.GamePanelFactory;
 import steamfake.view.LoadingScreen;
+import steamfake.view.gameDetalPanel.GameDetal;
 
 import javax.swing.*;
 import java.awt.*;
@@ -144,6 +145,7 @@ public class MFrame extends JFrame {
 
         //======== scrollPane1 ========
         {
+            scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== mainPanel ========
             {
@@ -158,8 +160,9 @@ public class MFrame extends JFrame {
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
+                    .addContainerGap())
                 .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
@@ -167,13 +170,14 @@ public class MFrame extends JFrame {
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
                     .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(scrollPane1)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, 0))
+                            .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                            .addComponent(scrollPane1)
+                            .addContainerGap())))
         );
         pack();
         setLocationRelativeTo(getOwner());

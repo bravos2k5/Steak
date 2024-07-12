@@ -1,0 +1,294 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:34:p, comp btnBack:::p:32:p, space s:::p, par l {seq l {par l {comp lbNoidung::l:p:718:p, comp panel1::l:p::p}, space ::398:x}, seq l {par l {seq l {par t:::p {comp lbSalamGame::l::720:x, comp lbNameGame::l::720:x, comp LayerPanelSlide::l::720:x}, space s:::p, comp btnNext:::p:32:p}, seq l {comp separator1:::p:1:p, space u:::p, par l {comp label1::l:p:63:p, seq l {comp lbAction:::p::p, space :::p, comp lbAdveture:::p::p, space :::p, comp lbRPG:::p::p}}, space :p:150:p, comp separator2:::p:1:p, space u:::p, par l {comp label5:::p:63:p, comp lbSignlePlayer:::p::p}}}, space ::36:x, par l:::p {seq l {space :p:2:p, par l {comp button1::t:::x, seq l {par l {comp label53:::p::p, comp label55::l:p::p}, space :::x, par l {comp label54::t:p::p, comp label56::t:p::p}}, comp separator3::t:::x}}, comp separator7:::::x, seq {comp label59:::p::p, space :::x, comp label62:::p::p}, comp separator6:::::x, comp separator4::t:::x, seq l {comp label57:::p::p, space :::x, comp label58:::p::p}, comp label51:::p::p, comp PanelTuoi::l:p::p, comp label52::l:p:171:p, seq l {space :p:12:p, comp button2:::p:100:p, space :::x, comp button3:::p:100:p, space :p:13:p}}, space :p:46:p}}}}"
+			"$verticalGroup": "par l {seq {par l {seq {space :p:42:p, comp lbNameGame:::p:33:p, par l {seq {space u:::p, comp LayerPanelSlide:::p:340:p}, seq l {space :p:178:p, comp btnNext:::p:32:p}, seq l {space :p:172:p, comp btnBack:::p:32:p}}, space :p:46:p, comp lbSalamGame:::p:32:p, space s:::p, par l {seq {comp label1:::p::p, space :::p, par b {comp lbAction::b:p::p, comp lbAdveture::b:p::p, comp lbRPG::b:p::p}}, comp separator1:::p:54:p, comp label5:::p::p, comp separator2::l:p:54:p}, space :p:23:p, comp lbNoidung:::p:701:p, space s:::p, comp panel1:::p::p}, seq l {space :p:212:p, comp PanelTuoi:::p::p, space s:::p, comp label51:::p::p, space u:::p, comp label52:::p::p, space :p:12:p, comp button1:::p:37:p, space :p:28:p, par b {comp label54::b:p::p, comp label53::b:p::p}, space :::p, comp separator3:::p::p, space :::p, par b {comp label55::b:p::p, comp label56::b:p::p}, space :p:6:p, comp separator4:::p:3:p, space :p:3:p, par b {comp label57::b:p::p, comp label58::b:p::p}, space :::p, comp separator6:::p::p, space :::p, par b {comp label59::b:p::p, comp label62::b:p::p}, space :::p, par l {comp lbSignlePlayer:::p::p, comp separator7:::p::p}, space s:::p, par b {comp button2::b:p::p, comp button3::b:p::p}}}, space ::191:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 25, 25, 255 )
+			"font": new java.awt.Font( "SansSerif", 0, 12 )
+			add( new FormContainer( "steamfake.graphics.slideShow.Slideshow", new FormLayoutManager( class javax.swing.JLayeredPane ) ) {
+				name: "LayerPanelSlide"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnBack"
+				"text": "<"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBack", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnNext"
+				"text": ">"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNext", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbNameGame"
+				"text": "Zenless Zone Zero"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "SansSerif", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbSalamGame"
+				"text": "Welcome to New Eridu — Where Humanity Rises Anew!"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "SansSerif", 0, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+				"background": &Color0 new java.awt.Color( 147, 147, 147, 255 )
+				"orientation": 1
+				"opaque": true
+				"foreground": &Color1 new java.awt.Color( 147, 147, 147, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Genres"
+				"foreground": &Color2 new java.awt.Color( 147, 147, 147, 255 )
+				"font": &Font0 new java.awt.Font( "SansSerif", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbAction"
+				"text": "Action,"
+				"font": &Font1 new java.awt.Font( "SansSerif", 0, 14 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbActionMouseEntered", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbActionMouseExited", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "lbActionMousePressed", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbAdveture"
+				"text": "Adveture,"
+				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbAdvetureMouseEntered", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbAdvetureMouseExited", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbRPG"
+				"text": "RPG"
+				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbRPGMouseEntered", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbRPGMouseExited", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator2"
+				"background": #Color0
+				"orientation": 1
+				"opaque": true
+				"foreground": #Color1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Features"
+				"foreground": #Color2
+				"font": #Font0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbSignlePlayer"
+				"text": "Signle Player "
+				"font": #Font1
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "lbSignlePlayerMouseEntered", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "lbSignlePlayerMouseExited", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbNoidung"
+				"verticalAlignment": 1
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:85:p, par l {seq {comp lbWindows:::p::p, space :::x}, seq {par l {comp label33::l:p::p, comp lbMinimum::l:p::p, comp label37::l:p::p, comp lbi5::l:p::p, comp label41::l:p::p, comp lb8gbv1::l:p::p, comp label45::l:p::p, comp lbGTX970::l:p::p}, space ::154:x, par l {comp lbGTX1660:::p::p, comp label47:::p::p, comp lbi7:::p::p, comp label39:::p::p, comp lbRecommended:::p::p, comp label34:::p::p, comp label43::l:p::p, comp lb8gbv2::l:p::p}, space :p:173:p}, seq {par l {comp lbText:::p::p, comp lbAudio:::p::p, comp label49:::p::p}, space :0:352:x}}}}"
+				"$verticalGroup": "par l {seq l {space :p:50:p, comp lbWindows:::p::p, space :p:38:p, par t {seq {comp label33:::p::p, space :::p, comp lbMinimum:::p::p, space :p:26:p, comp label37:::p::p, space :::p, comp lbi5:::p::p, space :p:29:p, comp label41:::p::p, space :::p, comp lb8gbv1:::p::p, space :p:25:p, comp label45:::p::p, space :::p, comp lbGTX970:::p::p}, seq {comp label34:::p::p, space :::p, comp lbRecommended:::p::p, space :p:26:p, comp label39:::p::p, space :::p, comp lbi7:::p::p, space :p:29:p, comp label43:::p::p, space :::p, comp lb8gbv2:::p::p, space :p:25:p, comp label47:::p::p, space :::p, comp lbGTX1660:::p::p}}, space :p:28:p, comp label49:::p::p, space :::p, comp lbAudio:::p::p, space :::p, comp lbText:::p::p, space ::82:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 68, 68, 68, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbWindows"
+					"text": "WINDOWS"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label33"
+					"text": "Minimum"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label34"
+					"text": "Recommended"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbMinimum"
+					"text": "Windows 10 or later versions"
+					"foreground": &Color3 new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbRecommended"
+					"text": "Windows 10 or later versions"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label37"
+					"text": "CPU"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbi5"
+					"text": "7th Gen Intel Core i5"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label39"
+					"text": "CPU "
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbi7"
+					"text": "10th Gen Intel Core i7"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label41"
+					"text": "Memory"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lb8gbv1"
+					"text": "8GB"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label43"
+					"text": "Memory"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lb8gbv2"
+					"text": "8GB"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label45"
+					"text": "GPU"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbGTX970"
+					"text": "Nvidia GeForce GTX970"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label47"
+					"text": "GPU"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbGTX1660"
+					"text": "Nvidia GeForce GTX1660"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label49"
+					"text": "Languages Supported"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbAudio"
+					"text": "Audio: English, Chinese (Simplified), Japanese, Korean"
+					"foreground": #Color3
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbText"
+					"text": "Text: Chinese, English, Indonesian, Japanese, Korean"
+					"foreground": #Color3
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "BUY"
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+				"background": new java.awt.Color( 0, 127, 255, 255 )
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label51"
+				"text": "9.999$"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "SansSerif", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label52"
+				"text": "May include in-app purchases"
+			} )
+			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq t {space ::22:x, par l {comp label61:::p::p, comp label60:::p::p}, space :p:15:p}}"
+				"$verticalGroup": "par l {seq l {space :p:12:p, comp label60:::p::p, space :::p, comp label61:::p::p, space ::21:x}}"
+			} ) {
+				name: "PanelTuoi"
+				"background": new java.awt.Color( 25, 25, 25, 255 )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseEntered", "PanelTuoiMouseEntered", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseExited", "PanelTuoiMouseExited", true ) )
+				addEvent( new FormEvent( "java.awt.event.MouseListener", "mousePressed", "PanelTuoiMousePressed", true ) )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label60"
+					"text": "12+"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "SansSerif", 1, 18 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label61"
+					"text": "Moderate Violence, Sexual Innuendo"
+					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 2, false )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label53"
+				"text": "Developer "
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label54"
+				"text": "COGNOSPHERE PTE. LTD."
+				"foreground": &Color4 new java.awt.Color( 255, 255, 255, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label55"
+				"text": "Publisher "
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label56"
+				"text": "COGNOSPHERE PTE. LTD."
+				"foreground": #Color4
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator3"
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator4"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label57"
+				"text": "Release Date"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label58"
+				"text": "07/02/24"
+				"foreground": #Color4
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator6"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label59"
+				"text": "Platform "
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator7"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label62"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Windows 10.png" )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "COMMENT"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "VOTE"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 75, 5 )
+			"size": new java.awt.Dimension( 1200, 2020 )
+		} )
+	}
+}

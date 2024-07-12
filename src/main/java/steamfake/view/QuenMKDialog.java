@@ -92,7 +92,7 @@ public class QuenMKDialog extends JDialog {
                                 .addGroup(oneRoundedPanel1Layout.createSequentialGroup()
                                     .addGap(97, 97, 97)
                                     .addComponent(label1, GroupLayout.PREFERRED_SIZE, 117, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(29, Short.MAX_VALUE))
+                            .addContainerGap(27, Short.MAX_VALUE))
                 );
                 oneRoundedPanel1Layout.setVerticalGroup(
                     oneRoundedPanel1Layout.createParallelGroup()
@@ -116,6 +116,9 @@ public class QuenMKDialog extends JDialog {
             //---- label5 ----
             label5.setText("M\u1eadt kh\u1ea9u m\u1edbi:");
             label5.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+
+            //---- txtNewMK ----
+            txtNewMK.setCursor(Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR));
 
             //---- label6 ----
             label6.setText("Nh\u1eadp l\u1ea1i m\u1eadt kh\u1ea9u:");
@@ -160,7 +163,7 @@ public class QuenMKDialog extends JDialog {
                 panelBorder1Layout.createParallelGroup()
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addComponent(oneRoundedPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                         .addGroup(panelBorder1Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
@@ -192,7 +195,6 @@ public class QuenMKDialog extends JDialog {
             );
             panelBorder1Layout.setVerticalGroup(
                 panelBorder1Layout.createParallelGroup()
-                    .addComponent(oneRoundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(49, 49, 49)
                         .addComponent(label3, GroupLayout.PREFERRED_SIZE, 49, GroupLayout.PREFERRED_SIZE)
@@ -216,9 +218,10 @@ public class QuenMKDialog extends JDialog {
                             .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(buttonGradient1, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                         .addComponent(lbQuayLai)
                         .addGap(19, 19, 19))
+                    .addComponent(oneRoundedPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
         }
 

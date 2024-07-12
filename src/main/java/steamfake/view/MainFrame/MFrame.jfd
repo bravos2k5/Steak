@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1210:x}, comp headerPanel::l::1598:x}"
-			"$verticalGroup": "par l {seq t {space :0:0:p, comp headerPanel:::p:94:p, space :0:0:p, par l {comp scrollPane1:::::x, seq {space :0:0:x, comp panelSelectFunction:::p::p}}, space :0:0:p}}"
+			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :::p, comp scrollPane1::::1198:x, space :::p}, comp headerPanel::l::1598:x}"
+			"$verticalGroup": "par l {seq t {space :0:0:p, comp headerPanel:::p:94:p, space :::p, par l {seq {space :0:0:x, comp panelSelectFunction:::p::p}, seq t {comp scrollPane1:::::x, space :::p}}}}"
 		} ) {
 			name: "this"
 			"defaultCloseOperation": 2
@@ -78,6 +78,7 @@ new FormModel {
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 				name: "scrollPane1"
+				"horizontalScrollBarPolicy": 31
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 					"axis": 1
 				} ) {
