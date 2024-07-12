@@ -6,6 +6,7 @@ import steamfake.utils.database.XJdbc;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -143,6 +144,15 @@ public class GameDAO implements DataAccessObject<Game> {
     public List<Game> selectTop10Game() {
         String sql = "{CALL SP_TOP10_GAME()}";
         return selectBySQL(sql);
+    }
+
+    public List<Game> selectMultiGame(String...ids) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM Game WHERE id IN (");
+        if (ids.length > 1) {
+            sql.append("?,".repeat(ids.length - 1));
+        }
+        sql.append("?)");
+        return selectBySQL(sql.toString(), Arrays.stream(ids).toArray());
     }
 
 }

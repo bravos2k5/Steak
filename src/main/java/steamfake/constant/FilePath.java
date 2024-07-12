@@ -1,4 +1,4 @@
-package steamfake.constance;
+package steamfake.constant;
 
 import steamfake.model.Account;
 import steamfake.model.Game;

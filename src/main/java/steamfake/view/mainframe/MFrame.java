@@ -9,6 +9,7 @@ import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 import steamfake.view.HotGamePanel2;
+import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
@@ -359,14 +360,13 @@ public class MFrame extends JFrame {
     }
 
     private void initLibraryPage() {
-
+        LibraryPanel libraryPanel = new LibraryPanel();
+        mainPanel.add(libraryPanel);
     }
 
     private void initAddMoneyPage() {
         WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
         mainPanel.add(panel);
-        mainPanel.repaint();
-        mainPanel.revalidate();
     }
 
     private void initManagePage() {

@@ -1,16 +1,16 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:43:p, par l {seq l {comp separator2:::p:1050:p, space ::97:x}, seq l {comp radiusLabel1:::p:100:p, space s:::p, comp label1:::p:300:p, space ::458:x, comp label2:::p:50:p, space :::p, comp radiusLabel2:::p:110:p, space :p:105:p}}}}"
-			"$verticalGroup": "par l {seq t {space :p:11:p, par l {comp radiusLabel1:::p:60:p, par b {comp label1::b:p::p, comp radiusLabel2::b:p:60:p}, comp label2::l:p:60:p}, space u:::p, comp separator2:::p:2:p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:43:p, par l:::p {seq {comp lblIcon:::p:100:p, space s:::p, comp txtName:::p:300:p, space :::x, comp lblInfo:::p:50:p, space s:::p, comp lblPlay:::p:110:p}, comp separator2:::p:1093:p}, space ::54:x}}"
+			"$verticalGroup": "par l {seq t {space :p:11:p, par l {comp lblIcon:::p:60:p, comp lblPlay::l:p:60:p, seq l {space :p:17:p, comp txtName:::p::p}, comp lblInfo::l:p:60:p}, space u:::p, comp separator2:::p:2:p, space :::p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
-				name: "radiusLabel1"
+				name: "lblIcon"
 				"text": "text"
 				"borderColor": sfield java.awt.Color white
 				"radius": 10
@@ -22,14 +22,14 @@ new FormModel {
 				"foreground": new java.awt.Color( 129, 129, 129, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "txtName"
 				"text": "text"
 				"font": new java.awt.Font( "SansSerif", 1, 24 )
 				"horizontalAlignment": 0
 				"foreground": new java.awt.Color( 92, 92, 93, 255 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
-				name: "radiusLabel2"
+				name: "lblPlay"
 				"text": "Play"
 				"font": new java.awt.Font( "SansSerif", 1, 24 )
 				"background": new java.awt.Color( 61, 138, 0, 255 )
@@ -37,8 +37,8 @@ new FormModel {
 				"radius": 20
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label2"
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Settings.png" )
+				name: "lblInfo"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/info.png" )
 				"horizontalAlignment": 0
 			} )
 		}, new FormLayoutConstraints( null ) {
