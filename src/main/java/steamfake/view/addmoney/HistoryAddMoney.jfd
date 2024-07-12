@@ -1,0 +1,42 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :0:0:p, comp label1:::p:200:p, space :0:0:p, comp label2:::p:300:p, space :0:0:p, comp label3:::p:300:p, space :0:0:x, comp label4:::p:200:p}}"
+			"$verticalGroup": "par l {par b {comp label2::b:p:50:p, comp label3::b:p:50:p, comp label1::b:p:50:p, comp label4::b:p:50:p}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 37, 39, 48, 255 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "123"
+				"font": &Font0 new java.awt.Font( "Inter", 1, 16 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "01/01/2020"
+				"font": #Font0
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Đã duyệt"
+				"font": #Font0
+				"horizontalAlignment": 0
+				"foreground": new java.awt.Color( 3, 253, 103, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "10.000"
+				"font": #Font0
+				"horizontalAlignment": 0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1000, 50 )
+		} )
+	}
+}

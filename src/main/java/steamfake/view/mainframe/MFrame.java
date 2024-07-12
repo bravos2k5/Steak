@@ -9,9 +9,11 @@ import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 import steamfake.view.HotGamePanel2;
+import steamfake.view.ListGameLibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
+import steamfake.view.managegame.ManageGame;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -214,11 +216,12 @@ public class MFrame extends JFrame {
 
     private void initialize() {
         this.setVisible(true);
-        new LoadingScreen(this).setVisible(true);
+//        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
-        initEventMenu();
+        mainPanel.add(new ManageGame());
+//        initEventMenu();
     }
 
     private void initEventMenu() {

@@ -30,6 +30,7 @@ new FormModel {
 						"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
 						"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
 						"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
+						"background": new java.awt.Color( 25, 27, 32, 255 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
