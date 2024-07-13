@@ -1,11 +1,14 @@
 package steamfake.dao;
 
+import steamfake.model.Account;
+import steamfake.model.Game;
 import steamfake.model.GameLibrary;
 import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -76,14 +79,49 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
         return gameLibraryList;
     }
 
-    public List<GameLibrary> selectByAccountID(GameLibrary o) {
+    public List<GameLibrary> selectByAccountID(UUID id) {
         String sql = "SELECT * FROM THU_VIEN_GAME WHERE account_id = ?";
-        return selectBySQL(sql,o.getAccountId());
+        return selectBySQL(sql,id);
     }
 
-    public List<GameLibrary> selectByGameID(GameLibrary o) {
+    public List<GameLibrary> selectByGameID(UUID id) {
         String sql = "SELECT * FROM THU_VIEN_GAME WHERE game_id = ?";
-        return selectBySQL(sql,o.getGameId());
+        return selectBySQL(sql,id);
+    }
+
+    public HashMap<GameLibrary, Game> selectLibraryMap(Account account) {
+        String sql = "{CALL SP_GET_MAP_LIBRARY(?)}";
+        HashMap<GameLibrary,Game> libraryGameHashMap = new HashMap<>();
+        try(ResultSet rs = XJdbc.getResultSet(sql,account.getId())) {
+            while (rs.next()) {
+                GameLibrary gameLibrary = new GameLibrary();
+                gameLibrary.setAccountId(UUID.fromString(rs.getString("account_id")));
+                gameLibrary.setGameId(UUID.fromString(rs.getString("game_id")));
+                gameLibrary.setGiaMua(rs.getFloat("gia_mua"));
+                gameLibrary.setNgayMua(rs.getDate("ngay_mua"));
+                //
+                Game game = new Game();
+                game.setId(UUID.fromString(rs.getString("id")));
+                game.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
+                game.setName(rs.getNString("name"));
+                game.setAvatar(rs.getString("avatar"));
+                game.setGiaTien(rs.getFloat("gia_tien"));
+                game.setAge(rs.getInt("age"));
+                game.setImages(rs.getString("images"));
+                game.setMoTa(rs.getString("mo_ta"));
+                game.setRam(rs.getInt("ram"));
+                game.setRom(rs.getInt("rom"));
+                game.setReleaseDate(rs.getDate("release_date"));
+                game.setUpdateDate(rs.getDate("update_date"));
+                game.setVersion(rs.getNString("version"));
+                game.setOpened(rs.getBoolean("isOpened"));
+                game.setExecPath(rs.getString("exec_file"));
+                libraryGameHashMap.put(gameLibrary,game);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return libraryGameHashMap;
     }
 
 }

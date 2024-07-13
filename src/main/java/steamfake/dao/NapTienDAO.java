@@ -64,8 +64,5 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
         return List.of();
     }
 
-    public static void main(String[] args) {
-
-    }
 
 }

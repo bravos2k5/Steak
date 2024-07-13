@@ -4,7 +4,7 @@
 
 package steamfake.view.mainframe;
 
-import steamfake.constance.FilePath;
+import steamfake.constant.FilePath;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.utils.SessionManager;
@@ -52,7 +52,6 @@ public class HeaderPanel extends JPanel {
 
         //---- lblAvata ----
         lblAvata.setText("Icon");
-        lblAvata.setOpaque(true);
         lblAvata.setHorizontalTextPosition(SwingConstants.CENTER);
         lblAvata.setHorizontalAlignment(SwingConstants.CENTER);
 

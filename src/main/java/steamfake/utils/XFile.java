@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
+import java.util.zip.ZipOutputStream;
 
 public class XFile {
 
@@ -77,6 +78,52 @@ public class XFile {
         }
 
         return destFile;
+    }
+
+    public static void zipFolder(String sourceFolder, String zipFile) {
+        try {
+            FileOutputStream fos = new FileOutputStream(zipFile);
+            ZipOutputStream zos = new ZipOutputStream(fos);
+            new File(zipFile).delete();
+            File folder = new File(sourceFolder);
+            compressFolder(folder, folder.getName(), zos);
+
+            zos.close();
+            fos.close();
+        } catch (IOException e) {
+            new File(zipFile).deleteOnExit();
+            XMessage.alert(null, "Lỗi: " + e.getMessage());
+        }
+    }
+
+    private static void compressFolder(File folder, String parentFolder, ZipOutputStream zos) throws IOException {
+        File[] files = folder.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory()) {
+                    compressFolder(file, parentFolder + "/" + file.getName(), zos);
+                } else {
+                    addFileToZip(file, parentFolder, zos);
+                }
+            }
+        }
+    }
+
+    private static void addFileToZip(File file, String parentFolder, ZipOutputStream zos) throws IOException {
+        FileInputStream fis = new FileInputStream(file);
+        String zipEntryName = parentFolder + "/" + file.getName();
+        ZipEntry zipEntry = new ZipEntry(zipEntryName);
+        zos.putNextEntry(zipEntry);
+
+        byte[] buffer = new byte[1024];
+        int length;
+        while ((length = fis.read(buffer)) >= 0) {
+            zos.write(buffer, 0, length);
+        }
+
+        zos.closeEntry();
+        fis.close();
     }
 
     public static void runExeFile(String path) {
