@@ -63,11 +63,7 @@ public class AddMoney extends JPanel {
         comboBox3 = new JComboBox();
         radiusButton2 = new RadiusButton();
         radiusLabel2 = new RadiusPanel();
-        label11 = new JLabel();
-        label12 = new JLabel();
-        label13 = new JLabel();
-        label14 = new JLabel();
-        label15 = new JLabel();
+        radiusLabel3 = new RadiusLabel();
         scrollPane2 = new JScrollPane();
         panel7 = new JPanel();
         panel8 = new JPanel();
@@ -143,7 +139,7 @@ public class AddMoney extends JPanel {
                             radiusButton1.setFont(new Font("Inter", Font.BOLD, 16));
 
                             //---- radiusLabel1 ----
-                            radiusLabel1.setText("10.000 VN\u0110 =10.000 coin");
+                            radiusLabel1.setText("10.000 VN\u0110 =8.000 coin");
                             radiusLabel1.setBackground(new Color(0x23304d));
                             radiusLabel1.setFont(new Font(Font.SANS_SERIF, radiusLabel1.getFont().getStyle() | Font.BOLD, radiusLabel1.getFont().getSize() + 4));
                             radiusLabel1.setBorderColor(new Color(0x416dd1));
@@ -332,63 +328,24 @@ public class AddMoney extends JPanel {
                                     radiusLabel2.setBorderColor(new Color(0x416dd1));
                                     radiusLabel2.setForeground(new Color(0x4ac26c));
 
-                                    //---- label11 ----
-                                    label11.setText("10.000 VN\u0110 = 12.000 coin");
-                                    label11.setHorizontalAlignment(SwingConstants.CENTER);
-                                    label11.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
-                                    label11.setForeground(new Color(0x4ac26c));
-
-                                    //---- label12 ----
-                                    label12.setText("20.000 VN\u0110 = 24.000 coin");
-                                    label12.setHorizontalAlignment(SwingConstants.CENTER);
-                                    label12.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
-                                    label12.setForeground(new Color(0x4ac26c));
-
-                                    //---- label13 ----
-                                    label13.setText("100.000 VN\u0110 = 120.000 coin");
-                                    label13.setHorizontalAlignment(SwingConstants.CENTER);
-                                    label13.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 16));
-                                    label13.setForeground(new Color(0x4ac26c));
-
-                                    //---- label14 ----
-                                    label14.setText("200.000 VN\u0110 = 250.000 coin");
-                                    label14.setHorizontalAlignment(SwingConstants.CENTER);
-                                    label14.setFont(new Font("Inter", Font.BOLD, 16));
-                                    label14.setForeground(new Color(0x4ac26c));
-
-                                    //---- label15 ----
-                                    label15.setText("500.000 VN\u0110 = 600.000 coin");
-                                    label15.setHorizontalAlignment(SwingConstants.CENTER);
-                                    label15.setFont(new Font("Inter", Font.BOLD, 16));
-                                    label15.setForeground(new Color(0x4ac26c));
-
                                     GroupLayout radiusLabel2Layout = new GroupLayout(radiusLabel2);
                                     radiusLabel2.setLayout(radiusLabel2Layout);
                                     radiusLabel2Layout.setHorizontalGroup(
                                         radiusLabel2Layout.createParallelGroup()
-                                            .addComponent(label11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGroup(radiusLabel2Layout.createSequentialGroup()
-                                                .addGroup(radiusLabel2Layout.createParallelGroup()
-                                                    .addComponent(label13, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(label12, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(label14, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
-                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGap(0, 0, Short.MAX_VALUE)
                                     );
                                     radiusLabel2Layout.setVerticalGroup(
                                         radiusLabel2Layout.createParallelGroup()
-                                            .addGroup(radiusLabel2Layout.createSequentialGroup()
-                                                .addComponent(label11, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(label13, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0)
-                                                .addComponent(label15, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(0, 0, Short.MAX_VALUE)
                                     );
                                 }
+
+                                //---- radiusLabel3 ----
+                                radiusLabel3.setText("10.000 VN\u0110 =10.000 coin");
+                                radiusLabel3.setBackground(new Color(0x23304d));
+                                radiusLabel3.setFont(new Font(Font.SANS_SERIF, radiusLabel3.getFont().getStyle() | Font.BOLD, radiusLabel3.getFont().getSize() + 4));
+                                radiusLabel3.setBorderColor(new Color(0x416dd1));
+                                radiusLabel3.setForeground(new Color(0x4ac26c));
 
                                 GroupLayout radiusPanel4Layout = new GroupLayout(radiusPanel4);
                                 radiusPanel4.setLayout(radiusPanel4Layout);
@@ -397,24 +354,31 @@ public class AddMoney extends JPanel {
                                         .addGroup(radiusPanel4Layout.createSequentialGroup()
                                             .addGap(24, 24, 24)
                                             .addGroup(radiusPanel4Layout.createParallelGroup()
-                                                .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(comboBox3))
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                                            .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(radiusPanel4Layout.createSequentialGroup()
+                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(radiusPanel4Layout.createSequentialGroup()
+                                                    .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
+                                                    .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)))
                                             .addGap(40, 40, 40))
+                                        .addGroup(radiusPanel4Layout.createSequentialGroup()
+                                            .addGap(122, 122, 122)
+                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 692, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 136, Short.MAX_VALUE))
                                 );
                                 radiusPanel4Layout.setVerticalGroup(
                                     radiusPanel4Layout.createParallelGroup()
                                         .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                            .addContainerGap(109, Short.MAX_VALUE)
-                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(82, 82, 82)
-                                            .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(40, 40, 40))
-                                        .addGroup(radiusPanel4Layout.createSequentialGroup()
                                             .addGap(49, 49, 49)
                                             .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addContainerGap(51, Short.MAX_VALUE))
+                                            .addGap(53, 53, 53)
+                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                                            .addGroup(radiusPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                                .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(32, 32, 32))
                                 );
                             }
 
@@ -425,7 +389,7 @@ public class AddMoney extends JPanel {
                                     .addGroup(radiusPanel3Layout.createSequentialGroup()
                                         .addGap(25, 25, 25)
                                         .addComponent(radiusPanel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(51, Short.MAX_VALUE))
+                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             );
                             radiusPanel3Layout.setVerticalGroup(
                                 radiusPanel3Layout.createParallelGroup()
@@ -507,11 +471,11 @@ public class AddMoney extends JPanel {
                             panel6Layout.createParallelGroup()
                                 .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
-                                    .addGroup(panel6Layout.createParallelGroup()
-                                        .addComponent(radiusPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                         .addComponent(panel8, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(radiusPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         );
                         panel6Layout.setVerticalGroup(
                             panel6Layout.createParallelGroup()
@@ -602,11 +566,7 @@ public class AddMoney extends JPanel {
     private JComboBox comboBox3;
     private RadiusButton radiusButton2;
     private RadiusPanel radiusLabel2;
-    private JLabel label11;
-    private JLabel label12;
-    private JLabel label13;
-    private JLabel label14;
-    private JLabel label15;
+    private RadiusLabel radiusLabel3;
     private JScrollPane scrollPane2;
     private JPanel panel7;
     private JPanel panel8;

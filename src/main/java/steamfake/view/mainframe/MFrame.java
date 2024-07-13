@@ -12,6 +12,7 @@ import steamfake.view.HotGamePanel2;
 import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
+import steamfake.view.account.Account;
 import steamfake.view.addmoney.AddMoney;
 import steamfake.view.factory.GamePanelFactory;
 import steamfake.view.managegame.ManageGame;
@@ -177,9 +178,8 @@ public class MFrame extends JFrame {
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addGap(0, 0, 0)
+                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE))
                 .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
@@ -187,14 +187,12 @@ public class MFrame extends JFrame {
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
                     .addGap(0, 0, 0)
                     .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(0, 0, 0)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
                             .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                            .addComponent(scrollPane1)
-                            .addContainerGap())))
+                        .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -220,11 +218,12 @@ public class MFrame extends JFrame {
 
     private void initialize() {
         this.setVisible(true);
-        new LoadingScreen(this).setVisible(true);
+//        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
-        initEventMenu();
+        mainPanel.add(new Account());
+//        initEventMenu();
     }
 
     private void initEventMenu() {
