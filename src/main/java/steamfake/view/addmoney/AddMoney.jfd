@@ -43,6 +43,12 @@ new FormModel {
 									name: "comboBox1"
 									"background": &Color2 new java.awt.Color( 25, 27, 32, 255 )
 									"font": &Font0 new java.awt.Font( "Inter", 1, 16 )
+									"prototypeDisplayValue": "Card"
+									"model": new javax.swing.DefaultComboBoxModel {
+										selectedItem: "Viethel"
+										addElement( "Viethel" )
+									}
+									"selectedIndex": -1
 								} )
 								add( new FormComponent( "javax.swing.JComboBox" ) {
 									name: "comboBox2"

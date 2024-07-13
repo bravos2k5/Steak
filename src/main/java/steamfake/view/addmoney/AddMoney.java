@@ -5,9 +5,13 @@
 package steamfake.view.addmoney;
 
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicComboBoxEditor;
 
 import steamfake.graphics.*;
 
@@ -28,6 +32,7 @@ public class AddMoney extends JPanel {
                 new BankMoney(null).setVisible(true);
             }
         });
+
     }
 
     private void initComponents() {
@@ -37,7 +42,7 @@ public class AddMoney extends JPanel {
         panel2 = new JPanel();
         radiusPanel1 = new RadiusPanel();
         radiusPanel2 = new RadiusPanel();
-        comboBox1 = new JComboBox();
+        comboBox1 = new JComboBox<>();
         comboBox2 = new JComboBox();
         textField1 = new RadiusTextField();
         textField2 = new RadiusTextField();
@@ -101,6 +106,11 @@ public class AddMoney extends JPanel {
                             //---- comboBox1 ----
                             comboBox1.setBackground(new Color(0x191b20));
                             comboBox1.setFont(new Font("Inter", Font.BOLD, 16));
+                            comboBox1.setPrototypeDisplayValue("Card");
+                            comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                                "Viethel"
+                            }));
+                            comboBox1.setSelectedIndex(-1);
 
                             //---- comboBox2 ----
                             comboBox2.setBackground(new Color(0x191b20));
@@ -571,7 +581,7 @@ public class AddMoney extends JPanel {
     private JPanel panel2;
     private RadiusPanel radiusPanel1;
     private RadiusPanel radiusPanel2;
-    private JComboBox comboBox1;
+    private JComboBox<String> comboBox1;
     private JComboBox comboBox2;
     private RadiusTextField textField1;
     private RadiusTextField textField2;
