@@ -4,13 +4,16 @@
 
 package steamfake.view.managegame;
 
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusPanel;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.table.*;
-import steamfake.graphics.*;
 
 
 /**
@@ -240,4 +243,10 @@ public class ManageGame extends JPanel {
     private JScrollPane scrollPane2;
     private JTable table2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+
+    private void initialize() {
+
+    }
+
 }

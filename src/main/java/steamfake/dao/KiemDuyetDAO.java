@@ -27,7 +27,7 @@ public class KiemDuyetDAO {
         String sql = "{CALL SP_TAO_PHIEU_KIEM_DUYET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         return XJdbc.update(sql,
                 phieuKiemDuyet.getId(), phieuKiemDuyet.getPublisherID(), phieuKiemDuyet.getMoTa(),
-                phieuKiemDuyet.getThongBao(),pendingGame.getId(),pendingGame.getName(),
+                phieuKiemDuyet.getThongBao(),pendingGame.getGameID(),pendingGame.getName(),
                 pendingGame.getAvatar(),pendingGame.getGiaTien(),pendingGame.getAge(),
                 pendingGame.getImages(),pendingGame.getMoTa(),pendingGame.getRam(),
                 pendingGame.getRom(),pendingGame.getVersion(),pendingGame.getExecPath());

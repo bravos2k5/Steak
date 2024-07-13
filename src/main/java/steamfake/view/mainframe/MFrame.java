@@ -13,6 +13,7 @@ import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
 import steamfake.view.factory.GamePanelFactory;
+import steamfake.view.managegame.ManageGame;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -370,7 +371,8 @@ public class MFrame extends JFrame {
     }
 
     private void initManagePage() {
-
+        ManageGame manageGame = new ManageGame();
+        mainPanel.add(manageGame);
     }
 
     private void initDownloadPage() {

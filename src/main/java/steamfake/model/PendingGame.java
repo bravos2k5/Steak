@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class PendingGame {
 
-    private UUID id;
+    private UUID gameID;
     private UUID reviewID;
     private String name;
     private String avatar;
@@ -24,12 +24,12 @@ public class PendingGame {
         this.reviewID = reviewID;
     }
 
-    public UUID getId() {
-        return id;
+    public UUID getGameID() {
+        return gameID;
     }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public void setGameID(UUID gameID) {
+        this.gameID = gameID;
     }
 
     public UUID getReviewID() {

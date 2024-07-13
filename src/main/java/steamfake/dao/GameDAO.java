@@ -34,12 +34,6 @@ public class GameDAO implements DataAccessObject<Game> {
                 object.getRam(),object.getRom(),object.getUpdateDate(),object.getVersion(),object.isOpened(),object.getExecPath());
     }
 
-    public Game selectMostDownloadedGame() {
-        String sql = "{CALL SP_LAY_GAME_TOP1()}";
-        List<Game> gameList = selectBySQL(sql);
-        return gameList.isEmpty() ? null : gameList.getFirst();
-    }
-
     @Override
     public int update(Game object) {
         String sql = "UPDATE Game " +
@@ -153,6 +147,12 @@ public class GameDAO implements DataAccessObject<Game> {
         }
         sql.append("?)");
         return selectBySQL(sql.toString(), Arrays.stream(ids).toArray());
+    }
+
+    public Game selectMostDownloadedGame() {
+        String sql = "{CALL SP_LAY_GAME_TOP1()}";
+        List<Game> gameList = selectBySQL(sql);
+        return gameList.isEmpty() ? null : gameList.getFirst();
     }
 
 }
