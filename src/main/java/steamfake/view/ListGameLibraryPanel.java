@@ -2,17 +2,14 @@
  * Created by JFormDesigner on Sun Jul 07 12:08:40 ICT 2024
  */
 
-package steamfake.view.LibraryFrame;
+package steamfake.view;
 
-import java.awt.*;
+import steamfake.graphics.RadiusLabel;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
-
-
-
-
-
-import steamfake.graphics.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author ACER
@@ -20,6 +17,12 @@ import steamfake.graphics.*;
 public class ListGameLibraryPanel extends JPanel {
     public ListGameLibraryPanel() {
         initComponents();
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                JOptionPane.showMessageDialog(null,label1.getText());
+            }
+        });
     }
 
     private void initComponents() {
@@ -104,4 +107,5 @@ public class ListGameLibraryPanel extends JPanel {
     private RadiusLabel radiusLabel2;
     private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
 }

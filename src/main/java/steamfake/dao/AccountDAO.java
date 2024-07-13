@@ -131,12 +131,19 @@ public class AccountDAO implements DataAccessObject<Account> {
                 account.getDob());
     }
 
+    private Account tempAccount = null;
+
     public Account login(String username, String password) {
         String sql = "SELECT * FROM Account WHERE username = ?";
-        List<Account> accountList = selectBySQL(sql,username);
-        Account account = accountList.isEmpty() ? null : accountList.getFirst();
-        if(account == null || !XSecurity.isValidPassword(password,account.getPassword())) return null;
-        return account;
+        List<Account> accountList = null;
+        if (tempAccount == null || !username.equals(tempAccount.getUsername())) {
+            accountList = selectBySQL(sql,username);
+        }
+        if (accountList != null) {
+            tempAccount = accountList.isEmpty() ? null : accountList.getFirst();
+        }
+        if(tempAccount == null || !XSecurity.isValidPassword(password,tempAccount.getPassword())) return null;
+        return tempAccount;
     }
 
     public void updateViGame(Account account, float money) {
@@ -168,6 +175,37 @@ public class AccountDAO implements DataAccessObject<Account> {
                 "SET isBan = 1 " +
                 "WHERE id = ?";
         XJdbc.update(sql,account.getId());
+    }
+
+    public boolean isExistUsername(String username) {
+        String sql = "SELECT isBan FROM Account WHERE username = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,username)) {
+            return rs.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Quên mật khẩu
+     * @param username Tên đăng nhập
+     * @return email
+     */
+    public String forgetPassword(String username) {
+        String sql = "SELECT email FROM Account WHERE username = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,username)) {
+            return rs.next() ? rs.getString("email") : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public int changePassword(String username, String newPassword) {
+        String sql = "UPDATE Account " +
+                "SET password = ? " +
+                "WHERE username = ?";
+        return XJdbc.update(sql,newPassword,username);
     }
 
 }

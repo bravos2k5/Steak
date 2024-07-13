@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:27:p, comp lblLeft:::p::p, space ::40:x, comp panel2:::p::p, space :p:40:p, comp lblRight:::p::p, space :p:28:p}, seq t {space :::x, comp panel1:::p::p, space :p:70:p}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:343:p, par l {comp lblRight:::p::p, comp lblLeft:::p::p}, space ::282:x}, seq t {space ::72:x, comp panel2:::p::p, space :p:63:p}}, comp panel1:::p::p, space :p:55:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:27:p, comp lblLeft:::p::p, space ::34:x, par l {comp panel2:::p::p, seq {space :6:6:p, comp slsImages:::p:960:p}}, space :p:40:p, comp lblRight:::p::p, space :p:28:p}, seq t {space :::x, comp panel1:::p::p, space :p:70:p}}"
+			"$verticalGroup": "par l {seq l {par t {seq {space :p:343:p, par l {comp lblRight:::p::p, comp lblLeft:::p::p}, space ::282:x}, seq {space :::x, comp panel2:::p::p, space :p:14:p, comp slsImages:::p:552:p, space :p:55:p}}, comp panel1:::p::p, space :p:55:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -81,16 +81,15 @@ new FormModel {
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Next.png" )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {comp lblImage::l::960:x}"
-				"$verticalGroup": "par l {comp lblImage::l::540:x}"
+				"$horizontalGroup": "par l {space :0:0:x}"
+				"$verticalGroup": "par l {space :0:0:x}"
 			} ) {
 				name: "panel2"
 				"opaque": false
-				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "lblImage"
-					"horizontalAlignment": 0
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
-				} )
+			} )
+			add( new FormContainer( "steamfake.graphics.slider.SlideShow", new FormLayoutManager( class javax.swing.JLayeredPane ) ) {
+				name: "slsImages"
+				"preferredSize": new java.awt.Dimension( 960, 540 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 25, 20 )

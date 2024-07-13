@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sun Jul 07 16:47:13 ICT 2024
  */
 
-package steamfake.view.MainFrame;
+package steamfake.view.mainframe;
 
 import steamfake.utils.database.DatabaseConnector;
 

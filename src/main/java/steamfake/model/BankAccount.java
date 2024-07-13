@@ -1,5 +1,7 @@
 package steamfake.model;
 
+import steamfake.StaticData;
+
 import java.util.UUID;
 
 public class BankAccount {
@@ -48,4 +50,9 @@ public class BankAccount {
         this.soTaiKhoan = soTaiKhoan;
     }
 
+
+    @Override
+    public String toString() {
+        return StaticData.bankList.get(bankID) + " - " + soTaiKhoan;
+    }
 }

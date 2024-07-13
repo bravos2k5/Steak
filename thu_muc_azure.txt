@@ -1,0 +1,6 @@
+images: chứa ảnh
+games: chứa game
+
+images/avatar/id/.png: ảnh đại diện của người dùng
+images/games/game_id/...: ảnh của game
+games/game_id/: chứa file game

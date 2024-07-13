@@ -1,0 +1,207 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:50:p, par t {par l:t {par t {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp radiusTextField2:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp comboBox1:::p:184:p}}, comp radiusTextField1:::p:500:p}, space :p:148:p, comp label5:::p:150:p}, par l {comp label4:::p::p, comp scrollPane1:::p:798:p}}, comp label8::l:p:181:p, seq l {comp checkBox1:::::p, space u:::p, comp label15:::p:187:p}, par t:l {seq {par l {seq l {comp radiusTextField4:::p:216:p, space :::p, comp label10:::p:32:p}, comp label9::l:p::p}, space s:::p, par l {comp label12:::p::p, seq {comp radiusTextField5:::p:216:p, space :::p, comp label11:::p:32:p}}, space s:::p, par l {comp label14:::p::p, seq l {comp radiusTextField6:::p:216:p, space :6:6:p, par l {comp radiusButton1:::p:40:p, comp label13:::p:32:p}}}}, seq t {par l {seq t {comp label7:::p::p, space :::p, comp radiusTextField3:::p:300:p, space :p:52:p}, seq l {comp label6:::p:150:p, space :p:295:p}}, par l {comp label18:::p:150:p, comp radiusTextField7:::p:300:p}, space :p:53:p}}}, seq t {comp label17:::p:100:p, space s:::p, comp label16:::p:100:p}}, space ::42:x}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, comp label1:::p:30:p, space :::p, comp radiusTextField1:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par l {comp comboBox1:::p:30:p, comp radiusTextField2::l:p:30:p}}, seq l {space :p:35:p, comp label5:::p:150:p}}, space :p:44:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, par t {seq {par b {comp label6::b:p:30:p, comp label18::b:p:30:p}, space :::p, par b {comp label7::b:p:30:p, comp radiusTextField3::b:p:30:p, comp radiusTextField7::b:p:30:p, comp radiusButton1::b:p:30:p}, space s:::p, comp label8:::p:30:p, space :p:12:p, par b {comp label9::b:p:30:p, comp label12::b:p:30:p}, space :::p, par b {comp radiusTextField4::b:p:30:p, comp label10::b:p:30:p, comp radiusTextField5::b:p:30:p, comp label11::b:p:30:p}}, seq {comp label14:::p:30:p, space :6:6:p, par l {seq l {space :1:1:p, comp radiusTextField6:::p:30:p}, comp label13:::p:30:p}}}, space s:::p, par l {comp checkBox1:::p:30:p, comp label15:::p:30:p}, space ::66:x, par b {comp label16::b:p:30:p, comp label17::b:p:30:p}, space :p:47:p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField1"
+				"radius": 0
+				"forcusColor": &Color0 new java.awt.Color( 12, 140, 233, 255 )
+				"font": &Font0 new java.awt.Font( "SansSerif", 0, 14 )
+				"endGradientColor": &Color1 new java.awt.Color( 37, 39, 48, 255 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"noForcusColor": &Color2 new java.awt.Color( 25, 27, 32, 255 )
+				"text": "x"
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Tên game"
+				"font": &Font1 new java.awt.Font( "SansSerif", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Giá game"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField2"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": &Color3 new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Độ tuổi"
+				"font": #Font1
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+					"font": new java.awt.Font( "SansSerif", 0, 14 )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Mô tả"
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "text"
+				"background": sfield java.awt.Color white
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/image 8.png" )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Upload File"
+				"font": &Font2 new java.awt.Font( "SansSerif", 1, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "Upload File to :"
+				"font": new java.awt.Font( "SansSerif", 0, 10 )
+				"foreground": new java.awt.Color( 92, 92, 93, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField3"
+				"forcusColor": &Color4 new java.awt.Color( 12, 140, 233, 255 )
+				"font": &Font3 new java.awt.Font( "SansSerif", 0, 14 )
+				"background": &Color5 new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": &Color6 new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Yeu cau he thong"
+				"font": new java.awt.Font( "SansSerif", 1, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "RAM"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField4"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": #Color3
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "MB"
+				"horizontalAlignment": 0
+				"font": &Font4 new java.awt.Font( "SansSerif", 0, 16 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField5"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": #Color3
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "MB"
+				"horizontalAlignment": 0
+				"font": #Font4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label12"
+				"text": "ROM"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField6"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": #Color3
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label13"
+				"text": "MB"
+				"horizontalAlignment": 0
+				"font": #Font4
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label14"
+				"text": "Phien ban"
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox1"
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label15"
+				"text": "Bạn có đồng ý điều khoản vv..."
+				"font": new java.awt.Font( "SansSerif", 0, 10 )
+				"background": new java.awt.Color( 80, 80, 81, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "label16"
+				"text": "Đăng lên"
+				"horizontalAlignment": 0
+				"font": &Font5 new java.awt.Font( "SansSerif", 1, 14 )
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "label17"
+				"text": "Hủy bỏ"
+				"horizontalAlignment": 0
+				"font": #Font5
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"radius": 5
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "radiusTextField7"
+				"forcusColor": #Color4
+				"font": #Font3
+				"background": #Color5
+				"startGradientColor": #Color6
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label18"
+				"text": "Upload Ảnh"
+				"font": #Font2
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "radiusButton1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/+.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 900, 1000 )
+		} )
+	}
+}

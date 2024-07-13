@@ -8,9 +8,11 @@ new FormModel {
 			"$verticalGroup": "par l {comp panelBorder1::l:::x}"
 		} ) {
 			name: "this"
+			"defaultCloseOperation": 2
+			"modal": true
 			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::120:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp txtPassword::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp buttonGradient1:::p:155:p, space :p:210:p}, seq t {comp label6:::p::p, space :p:181:p}, seq t {comp label3:::p::p, space :p:240:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp buttonGradient1:::p::p, space ::130:x, comp label6:::p::p, space :p:39:p}, comp oneRoundedPanel1::l:::x}"
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::120:x, par l {par l:t {seq {par l {comp label4:::p::p, comp label5:::p::p}, space :::p}, seq t {par t:::p {seq {comp lbDangKy:::p::p, space ::201:x, comp lbQuenMK:::p::p}, comp txtPassword::l:::x, comp txtTaiKhoan::l:::x}, space :p:103:p}}, seq t {comp btnLogin:::p:155:p, space :p:210:p}, seq t {comp label6:::p::p, space :p:181:p}, seq t {comp label3:::p::p, space :p:240:p}}}}"
+				"$verticalGroup": "par l {seq l {space :p:86:p, comp label3:::p:49:p, space :p:48:p, comp label4:::p::p, space :::p, comp txtTaiKhoan:::p::p, space s:::p, comp label5:::p::p, space :::p, comp txtPassword:::p::p, space s:::p, par b {comp lbDangKy::b:p::p, comp lbQuenMK::b:p::p}, space :p:52:p, comp btnLogin:::p::p, space ::130:x, comp label6:::p::p, space :p:39:p}, comp oneRoundedPanel1::l:::x}"
 			} ) {
 				name: "panelBorder1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -74,7 +76,7 @@ new FormModel {
 					addEvent( new FormEvent( "java.awt.event.MouseListener", "mouseClicked", "lbQuenMKMouseClicked", true ) )
 				} )
 				add( new FormComponent( "steamfake.graphics.ButtonGradient" ) {
-					name: "buttonGradient1"
+					name: "btnLogin"
 					"text": "Đăng Nhập"
 					"background": new java.awt.Color( 153, 0, 255, 255 )
 					"color1": new java.awt.Color( 138, 138, 138, 255 )

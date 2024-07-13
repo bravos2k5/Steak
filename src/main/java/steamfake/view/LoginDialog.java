@@ -80,10 +80,12 @@ public class LoginDialog extends JDialog {
         txtPassword = new JPasswordField();
         lbDangKy = new JLabel();
         lbQuenMK = new JLabel();
-        buttonGradient1 = new ButtonGradient();
+        btnLogin = new ButtonGradient();
         label6 = new JLabel();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         var contentPane = getContentPane();
 
         //======== panelBorder1 ========
@@ -179,14 +181,14 @@ public class LoginDialog extends JDialog {
                 }
             });
 
-            //---- buttonGradient1 ----
-            buttonGradient1.setText("\u0110\u0103ng Nh\u1eadp");
-            buttonGradient1.setBackground(new Color(0x9900ff));
-            buttonGradient1.setColor1(new Color(0x8a8a8a));
-            buttonGradient1.setColor2(new Color(0x393939));
-            buttonGradient1.setSizeSpeed(20.0F);
-            buttonGradient1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-            buttonGradient1.setForeground(new Color(0x191b20));
+            //---- btnLogin ----
+            btnLogin.setText("\u0110\u0103ng Nh\u1eadp");
+            btnLogin.setBackground(new Color(0x9900ff));
+            btnLogin.setColor1(new Color(0x8a8a8a));
+            btnLogin.setColor2(new Color(0x393939));
+            btnLogin.setSizeSpeed(20.0F);
+            btnLogin.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+            btnLogin.setForeground(new Color(0x191b20));
 
             //---- label6 ----
             label6.setText("\u00a9 B\u1ea3n quy\u1ec1n thu\u1ed9c v\u1ec1 SteaK 1884 - 2024");
@@ -215,7 +217,7 @@ public class LoginDialog extends JDialog {
                                         .addComponent(txtTaiKhoan, GroupLayout.Alignment.LEADING))
                                     .addGap(103, 103, 103)))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
-                                .addComponent(buttonGradient1, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 155, GroupLayout.PREFERRED_SIZE)
                                 .addGap(210, 210, 210))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                                 .addComponent(label6)
@@ -242,7 +244,7 @@ public class LoginDialog extends JDialog {
                             .addComponent(lbDangKy)
                             .addComponent(lbQuenMK))
                         .addGap(52, 52, 52)
-                        .addComponent(buttonGradient1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 130, Short.MAX_VALUE)
                         .addComponent(label6)
                         .addGap(39, 39, 39))
@@ -277,7 +279,7 @@ public class LoginDialog extends JDialog {
     private JPasswordField txtPassword;
     private JLabel lbDangKy;
     private JLabel lbQuenMK;
-    private ButtonGradient buttonGradient1;
+    private ButtonGradient btnLogin;
     private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -8,42 +8,43 @@ new FormModel {
 			"$verticalGroup": "par l {seq t {space :::p, comp panelBorder1:::::x, space :::p}}"
 		} ) {
 			name: "this"
+			"modal": true
+			"resizable": false
 			add( new FormContainer( "steamfake.graphics.PanelBorder", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::76:x, par l {par l:t {seq t {comp label3:::p::p, space :p:168:p}, seq t {par l {comp label4:::p::p, comp txtEmail:::p:426:p}, space :p:58:p}, seq {par l {comp label5:::p::p, comp txtNewMK:::p:426:p, comp label6:::p::p, comp txtNhapLaiMK:::p:426:p, comp label7:::p::p, seq l {comp txtNhapMa:::p:84:p, space :::p, comp btnGui:::p:52:p}}, space :::p}}, seq t {comp buttonGradient1:::p:140:p, space :p:207:p}, seq {comp lbQuayLai:::p::p, space :::p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:49:p, comp label3:::p:49:p, space s:::p, comp label4:::p::p, space :6:6:p, comp txtEmail:::p::p, space :::p, comp label5:::p::p, space :6:6:p, comp txtNewMK:::p::p, space :::p, comp label6:::p::p, space :6:6:p, comp txtNhapLaiMK:::p::p, space :::p, comp label7:::p::p, space :::p, par b {comp txtNhapMa::b:p::p, comp btnGui::b:p:24:p}, space s:::p, comp buttonGradient1:::p:39:p, space ::57:x, comp lbQuayLai:::p::p, space :p:19:p}, comp oneRoundedPanel1::l:::x}"
+				"$horizontalGroup": "par l {seq l {comp oneRoundedPanel1:::p::p, space ::74:x, par l {par l:t {par l:t {seq t {par l {comp label4:::p::p, comp txtUsername:::p:426:p}, space :p:58:p}, seq {par l {comp label5:::p::p, comp txtNewMK:::p:426:p, comp label6:::p::p, comp txtNhapLaiMK:::p:426:p, comp label7:::p::p, seq l {comp txtNhapMa:::p:84:p, space :::p, comp btnGui:::p:52:p}}, space :::p}}, seq t {comp btnConfirm:::p:140:p, space :p:207:p}, seq {comp lbQuayLai:::p::p, space :::p}}, seq t {comp label3:::p::p, space :p:180:p}}}}"
+				"$verticalGroup": "par l {comp oneRoundedPanel1::l:::x, seq l {space :p:49:p, comp label3:::p:49:p, space :p:18:p, comp label4:::p::p, space :6:6:p, comp txtUsername:::p::p, space :::p, comp label5:::p::p, space :6:6:p, comp txtNewMK:::p::p, space :::p, comp label6:::p::p, space :6:6:p, comp txtNhapLaiMK:::p::p, space :::p, comp label7:::p::p, space :::p, par b {comp txtNhapMa::b:p::p, comp btnGui::b:p:24:p}, space s:::p, comp btnConfirm:::p:39:p, space ::43:x, comp lbQuayLai:::p::p, space :p:19:p}}"
 			} ) {
 				name: "panelBorder1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
 				add( new FormContainer( "steamfake.graphics.OneRoundedPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {par l {seq {space :p:28:p, comp label2:::p::p}, seq l {space :p:97:p, comp label1:::p:117:p}}, space ::27:x}}"
+					"$horizontalGroup": "par l {seq {space :p:28:p, comp label2:::p::p, space ::29:x}, seq t {space ::118:x, comp label1:::p:115:p, space :p:107:p}}"
 					"$verticalGroup": "par l {seq l {space :p:128:p, comp label1:::p:99:p, space s:::p, comp label2:::p::p, space ::184:x}}"
 				} ) {
 					name: "oneRoundedPanel1"
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label1"
-						"text": "text"
-						"icon": new com.jformdesigner.model.SwingIcon( 1, "D:\\DA1\\SteamFake\\src\\main\\java\\Icon\\Steam.png" )
+						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
 						"background": new java.awt.Color( 0, 0, 0, 255 )
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
-						"text": "Forgot Password"
+						"text": "Forgot password"
 						"font": new java.awt.Font( "Segoe UI", 1, 36 )
 						"foreground": new java.awt.Color( 255, 255, 255, 255 )
 					} )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label3"
-					"text": "Forgot Password"
+					"text": "Quên mật khẩu"
 					"font": new java.awt.Font( "SansSerif", 1, 24 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label4"
-					"text": "Email:"
+					"text": "Tên tài khoản:"
 					"font": &Font0 new java.awt.Font( "SansSerif", 1, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JTextField" ) {
-					name: "txtEmail"
+					name: "txtUsername"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label5"
@@ -52,7 +53,6 @@ new FormModel {
 				} )
 				add( new FormComponent( "javax.swing.JPasswordField" ) {
 					name: "txtNewMK"
-					"cursor": new java.awt.Cursor( 2 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
@@ -75,8 +75,8 @@ new FormModel {
 					"text": "Gửi"
 				} )
 				add( new FormComponent( "steamfake.graphics.ButtonGradient" ) {
-					name: "buttonGradient1"
-					"text": "Done"
+					name: "btnConfirm"
+					"text": "Xác nhận"
 					"foreground": new java.awt.Color( 25, 27, 32, 255 )
 					"font": new java.awt.Font( "SansSerif", 1, 12 )
 					"color1": new java.awt.Color( 138, 138, 138, 255 )
