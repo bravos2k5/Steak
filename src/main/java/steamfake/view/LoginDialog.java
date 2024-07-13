@@ -4,30 +4,35 @@
 
 package steamfake.view;
 
-import steamfake.dao.AccountDAO;
-import steamfake.graphics.ButtonGradient;
-import steamfake.graphics.OneRoundedPanel;
-import steamfake.graphics.PanelBorder;
-import steamfake.model.Account;
-import steamfake.utils.SessionManager;
-import steamfake.utils.XMessage;
-import steamfake.view.mainframe.HeaderPanel;
-import steamfake.view.mainframe.MFrame;
-
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.GroupLayout;
+
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import steamfake.graphics.*;
 
 /**
  * @author ADMIN
  */
 public class LoginDialog extends JDialog {
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatMacDarkLaf());
+        LoadingScreen loadingScreen = new LoadingScreen(null);
+        loadingScreen.setVisible(true);
 
-    public LoginDialog(MFrame owner) {
+        while (loadingScreen.isVisible()) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        new LoginDialog(null).setVisible(true);
+    }
+    public LoginDialog(Window owner) {
         super(owner);
         initComponents();
-        initialize();
     }
 
     private void lbDangKyMouseEntered(MouseEvent e) {
@@ -51,13 +56,13 @@ public class LoginDialog extends JDialog {
     }
 
     private void lbDangKyMouseClicked(MouseEvent e) {
-        RegisterDialog RegisterDialog = new RegisterDialog(MFrame.getInstance());
+        RegisterDialog RegisterDialog = new RegisterDialog(this);
         LoginDialog.this.dispose();
         RegisterDialog.setVisible(true);
     }
 
     private void lbQuenMKMouseClicked(MouseEvent e) {
-        QuenMKDialog QuenMKDialog = new QuenMKDialog(MFrame.getInstance());
+        QuenMKDialog QuenMKDialog = new QuenMKDialog(this);
         LoginDialog.this.dispose();
         QuenMKDialog.setVisible(true);
     }
@@ -277,26 +282,4 @@ public class LoginDialog extends JDialog {
     private ButtonGradient btnLogin;
     private JLabel label6;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
-    private void initialize() {
-        btnLogin.addActionListener(e -> loginAction());
-    }
-
-    private void loginAction() {
-        String username = txtTaiKhoan.getText();
-        char[] password = txtPassword.getPassword();
-        if(username.isBlank() || password.length == 0) {
-            XMessage.alert(this, "Tên tài khoản và mật khẩu không được để trống");
-            return;
-        }
-        Account account = AccountDAO.gI().login(username,new String(password));
-        if(account == null) {
-            XMessage.alert(this, "Tài khoản hoặc mật khẩu không đúng");
-            return;
-        }
-        SessionManager.user = account;
-        HeaderPanel.getInstance().updateAccount();
-        this.dispose();
-    }
-
 }
