@@ -18,6 +18,7 @@ src/main/java/Test.java
 src/main/java/demo
 Games
 out
+.idea
 
 ### Eclipse ###
 .apt_generated

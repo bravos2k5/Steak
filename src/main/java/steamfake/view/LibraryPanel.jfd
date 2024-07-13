@@ -1,0 +1,42 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {par t {seq {space :::p, comp scrollbar2::::1173:x}, seq l {space :p:26:p, par l {comp label1:::p::p, comp label2::l:p::p}, space :0:904:x}, seq l {space :::p, comp scrollbar1::::1173:x}}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:25:p, comp label1:::p::p, space :::p, comp scrollbar1::::375:x, space :::p, comp label2:::p::p, space u:::p, comp scrollbar2:::p:298:p, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Game đã tải xuống:"
+				"font": &Font0 new java.awt.Font( "Segoe UI", 0, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Game chưa tải xuống:"
+				"font": #Font0
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollbar1"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "downloadedPanel"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollbar2"
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+					"axis": 1
+				} ) {
+					name: "undownloadedPanel"
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1185, 800 )
+		} )
+	}
+}

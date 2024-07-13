@@ -112,6 +112,7 @@ public class DownloadPanel extends JPanel {
     private void initEvent() {
         
     }
+
     private void cancelAction() {
 
     }
