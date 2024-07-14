@@ -12,6 +12,8 @@ import steamfake.view.HotGamePanel2;
 import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
+import steamfake.view.account.Account;
+import steamfake.view.addmoney.AddMoney;
 import steamfake.view.factory.GamePanelFactory;
 import steamfake.view.managegame.ManageGame;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
@@ -161,6 +163,7 @@ public class MFrame extends JFrame {
 
         //======== scrollPane1 ========
         {
+            scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== mainPanel ========
             {
@@ -186,11 +189,10 @@ public class MFrame extends JFrame {
                     .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(scrollPane1)
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, 0))
+                            .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -216,11 +218,12 @@ public class MFrame extends JFrame {
 
     private void initialize() {
         this.setVisible(true);
-        new LoadingScreen(this).setVisible(true);
+//        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
-        initEventMenu();
+        mainPanel.add(new Account());
+//        initEventMenu();
     }
 
     private void initEventMenu() {
