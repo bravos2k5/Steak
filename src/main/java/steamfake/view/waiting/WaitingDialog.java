@@ -4,8 +4,6 @@
 
 package steamfake.view.waiting;
 
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,14 +12,9 @@ import java.awt.*;
  */
 public class WaitingDialog extends JDialog {
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new WaitingDialog(null).setVisible(true);
-    }
-
     public WaitingDialog(Window owner) {
         super(owner);
-        setUndecorated(true); // Loại bỏ toàn bộ thanh tiêu đề, bao gồm các nút
+        setUndecorated(true);
         getRootPane().setWindowDecorationStyle(JRootPane.PLAIN_DIALOG);
         initComponents();
     }
@@ -75,4 +68,16 @@ public class WaitingDialog extends JDialog {
     private JProgressBar progressBar1;
     private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private volatile boolean isRunning = true;
+
+    public void stop() {
+        isRunning = false;
+        SwingUtilities.invokeLater(this::dispose);
+    }
+
+    public void start() {
+        SwingUtilities.invokeLater(() -> setVisible(true));
+    }
+
 }
