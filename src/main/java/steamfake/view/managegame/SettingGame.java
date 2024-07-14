@@ -4,8 +4,6 @@
 
 package steamfake.view.managegame;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import steamfake.dao.KiemDuyetDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
@@ -13,6 +11,7 @@ import steamfake.model.PendingGame;
 import steamfake.model.PhieuKiemDuyet;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
+import steamfake.utils.XJson;
 import steamfake.utils.XMessage;
 import steamfake.view.waiting.UploadGameDialog;
 
@@ -482,7 +481,12 @@ public class SettingGame extends JDialog {
             });
             int result = fileChooser.showOpenDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
-                txtExecFilePath.setText(fileChooser.getSelectedFile().getAbsolutePath());
+                String path = fileChooser.getSelectedFile().getAbsolutePath();
+                if(!path.startsWith(txtFolderPath.getText())) {
+                    XMessage.alert(this, "File thực thi game phải nằm trong folder game");
+                } else {
+                    txtExecFilePath.setText(path);
+                }
             }
         });
     }
@@ -548,13 +552,7 @@ public class SettingGame extends JDialog {
         btnUpload.addActionListener(e -> {
             int choice = XMessage.confirm(this, "Bạn có chắc chắn muốn upload game này không?");
             if(choice == JOptionPane.YES_OPTION) {
-                PendingGame pendingGame = null;
-                try {
-                    pendingGame = isValidInfo();
-                } catch (JsonProcessingException ex) {
-                    XMessage.alert(this, "Upload game thất bại");
-                    return;
-                }
+                PendingGame pendingGame = isValidInfo();
                 if(pendingGame != null) {
                     PhieuKiemDuyet phieuKiemDuyet = createRequest();
                     List<String> images = new ArrayList<>();
@@ -583,7 +581,7 @@ public class SettingGame extends JDialog {
         return phieuKiemDuyet;
     }
 
-    private PendingGame isValidInfo() throws JsonProcessingException {
+    private PendingGame isValidInfo() {
         if(!txtExecFilePath.getText().startsWith(txtFolderPath.getText())) {
             XMessage.alert(this, "File thực thi game phải nằm trong folder game");
             return null;
@@ -592,10 +590,8 @@ public class SettingGame extends JDialog {
         String description = txtDescriptsion.getText();
         String folderPath = txtFolderPath.getText();
         String execFilePath = txtExecFilePath.getText().replace(folderPath + "\\", "");
-        System.out.println(execFilePath);
         String version = txtVersion.getText();
         String avatarPath = lblAvatar.getToolTipText().substring(lblAvatar.getToolTipText().lastIndexOf("\\") + 1);
-        System.out.println(avatarPath);
         String ram = txtRam.getText();
         String rom = txtRom.getText();
         String cost = txtCost.getText();
@@ -613,15 +609,15 @@ public class SettingGame extends JDialog {
         for (int i = 0; i < cboImages.getItemCount(); i++) {
             imagesPath.add(cboImages.getItemAt(i).substring(cboImages.getItemAt(i).lastIndexOf("\\") + 1));
         }
-        String imageJson = new ObjectMapper().writeValueAsString(imagesPath);
+        String imageJson = XJson.toJson(imagesPath);
         boolean isValidate = true;
         if(name.isEmpty() || cost.isEmpty() || description.isEmpty() || folderPath.isEmpty() ||
                 execFilePath.isEmpty() || version.isEmpty() || ram.isEmpty() || rom.isEmpty() || avatarPath.isEmpty()) {
             XMessage.alert(this, "Vui lòng điền đầy đủ thông tin");
             isValidate = false;
         }
-        if(cboImages.getItemCount() == 0) {
-            XMessage.alert(this, "Vui lòng chọn ít nhất 1 ảnh");
+        if(cboImages.getItemCount() < 2) {
+            XMessage.alert(this, "Vui lòng chọn ít nhất 2 ảnh");
             isValidate = false;
         }
         if(isValidate) {

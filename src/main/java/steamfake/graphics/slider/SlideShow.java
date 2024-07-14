@@ -22,13 +22,15 @@ public class SlideShow extends JLayeredPane {
     private int currentIndex;
     private boolean next;
     private int moveTime;
+    public int countImage = 0;
 
     public SlideShow() {
-        setOpaque(true);
+        setOpaque(false);
         moveTime = 3000;
         setBackground(new Color(200, 200, 200));
         layout = new MigLayout("inset 0");
         panel = new JPanel();
+        panel.setOpaque(false);
         pagination = new Pagination();
         pagination.setEventPagination(new EventPagination() {
             @Override
@@ -107,8 +109,9 @@ public class SlideShow extends JLayeredPane {
         this.moveTime = moveTime;
     }
 
-    public void initSlideshow(java.util.List<PictureBox> coms) {
-        if (coms.size() >= 2) {
+    public void initSlideShow(java.util.List<PictureBox> coms) {
+        countImage = coms.size();
+        if (countImage >= 2) {
             for (Component com : coms) {
                 com.setVisible(false);
                 panel.add(com, "pos 0 0 0 0");

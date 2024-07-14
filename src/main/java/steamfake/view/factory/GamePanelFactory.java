@@ -2,18 +2,14 @@ package steamfake.view.factory;
 
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
-import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.utils.XImage;
 import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.HotGamePanel2;
 import steamfake.view.mainframe.ListGamePanel;
 
 import javax.swing.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GamePanelFactory {
 
@@ -32,32 +28,6 @@ public class GamePanelFactory {
         listGamePanel.getLblPrice().setText(game.getGiaTien() + "");
         listGamePanel.getLblReviews().setText(GameDAO.gI().selectAvgRate(game) + "");
         return listGamePanel;
-    }
-
-
-    public static HotGamePanel2 createHotGamePanel2(Game game) {
-        HotGamePanel2 hotGamePanel = new HotGamePanel2();
-        String folderResource = getFolderResource(game);
-        File folderResourceFile = new File(folderResource);
-        if(folderResourceFile.mkdirs() || folderResourceFile.listFiles().length <= 1){
-            AzureBlobService.downloadManyFile(folderResource,"games/" + game.getId() + "/","images");
-        }
-        File[] files = new File(folderResource).listFiles();
-        List<PictureBox> pictureBoxes = new ArrayList<>();
-        if (files != null) {
-            for(File file : files) {
-                if(file.getName().equals(game.getAvatar())) continue;
-                PictureBox pictureBox = new PictureBox();
-                pictureBox.setImage(new ImageIcon(file.getAbsolutePath()));
-                pictureBoxes.add(pictureBox);
-            }
-        }
-        hotGamePanel.getSlsImages().initSlideshow(pictureBoxes);
-        hotGamePanel.getLblDownloads().setText(GameDAO.gI().selectLuotTai(game) + "");
-        hotGamePanel.getLblNameGame().setText(game.getName());
-        hotGamePanel.getLblPrice().setText(game.getGiaTien() + "");
-        hotGamePanel.getLblReviews().setText(GameDAO.gI().selectAvgRate(game) + "");
-        return hotGamePanel;
     }
 
     private static String getFolderResource(Game game) {
