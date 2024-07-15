@@ -331,28 +331,4 @@ public class HotGamePanel2 extends JPanel {
         });
     }
 
-    public JLabel getLblNameGame() {
-        return lblNameGame;
-    }
-
-    public JLabel getLblDownloads() {
-        return lblDownloads;
-    }
-
-    public JLabel getLblReviews() {
-        return lblReviews;
-    }
-
-    public JLabel getLblPrice() {
-        return lblPrice;
-    }
-
-    public JLabel getLblLeft() {
-        return lblLeft;
-    }
-
-    public JLabel getLblRight() {
-        return lblRight;
-    }
-
 }
