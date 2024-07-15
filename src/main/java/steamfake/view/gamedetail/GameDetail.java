@@ -1,10 +1,14 @@
 package steamfake.view.gamedetail;
 
 import steamfake.dao.AccountDAO;
+import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
+import steamfake.graphics.RadiusButton;
 import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Game;
+import steamfake.model.GameLibrary;
+import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XJson;
 import steamfake.utils.azure.AzureBlobService;
@@ -64,15 +68,16 @@ public class GameDetail extends JPanel {
         separator6 = new JSeparator();
         label59 = new JLabel();
         separator7 = new JSeparator();
-        btnComment = new JButton();
-        btnVote = new JButton();
+        btnComment = new RadiusButton();
         lblAge = new JLabel();
         lblLatestUpdate = new JLabel();
         panel4 = new JPanel();
         lblAvatar = new JLabel();
         lblGenres = new JLabel();
         panel3 = new JPanel();
+        hSpacer2 = new JPanel(null);
         txtContent = new CustomTextBox();
+        hSpacer1 = new JPanel(null);
 
         //======== this ========
         setBackground(new Color(0x191919));
@@ -207,10 +212,7 @@ public class GameDetail extends JPanel {
             label59.setText("Latest Update");
 
             //---- btnComment ----
-            btnComment.setText("COMMENT");
-
-            //---- btnVote ----
-            btnVote.setText("VOTE");
+            btnComment.setText("\u0110\u00c1NH GI\u00c1");
 
             //---- lblAge ----
             lblAge.setText("12+");
@@ -237,14 +239,14 @@ public class GameDetail extends JPanel {
                     panel4Layout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, panel4Layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(lblAvatar, GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                            .addComponent(lblAvatar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addContainerGap())
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
                         .addGroup(panel4Layout.createSequentialGroup()
                             .addContainerGap()
-                            .addComponent(lblAvatar, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                            .addComponent(lblAvatar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addContainerGap())
                 );
             }
@@ -276,11 +278,6 @@ public class GameDetail extends JPanel {
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(lblLatestUpdate))
                                     .addComponent(separator7, GroupLayout.Alignment.TRAILING)
-                                    .addGroup(panel2Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(btnComment, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btnVote, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                     .addComponent(label52))
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addGap(139, 139, 139)
@@ -288,7 +285,11 @@ public class GameDetail extends JPanel {
                                     .addGap(94, 94, 94)))
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
-                                .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(btnComment, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)))
                         .addContainerGap(44, Short.MAX_VALUE))
             );
             panel2Layout.setVerticalGroup(
@@ -323,10 +324,8 @@ public class GameDetail extends JPanel {
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(separator7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addGroup(panel2Layout.createParallelGroup()
-                            .addComponent(btnComment)
-                            .addComponent(btnVote))
-                        .addGap(31, 31, 31))
+                        .addComponent(btnComment, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
             );
         }
 
@@ -338,9 +337,18 @@ public class GameDetail extends JPanel {
             panel3.setOpaque(false);
             panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
 
+            //---- hSpacer2 ----
+            hSpacer2.setBackground(Color.white);
+            panel3.add(hSpacer2);
+
             //---- txtContent ----
             txtContent.setFont(new Font("Segoe UI", Font.PLAIN, 14));
             panel3.add(txtContent);
+
+            //---- hSpacer1 ----
+            hSpacer1.setBackground(Color.white);
+            hSpacer1.setForeground(Color.white);
+            panel3.add(hSpacer1);
         }
 
         GroupLayout layout = new GroupLayout(this);
@@ -442,15 +450,16 @@ public class GameDetail extends JPanel {
     private JSeparator separator6;
     private JLabel label59;
     private JSeparator separator7;
-    private JButton btnComment;
-    private JButton btnVote;
+    private RadiusButton btnComment;
     private JLabel lblAge;
     private JLabel lblLatestUpdate;
     private JPanel panel4;
     private JLabel lblAvatar;
     private JLabel lblGenres;
     private JPanel panel3;
+    private JPanel hSpacer2;
     private CustomTextBox txtContent;
+    private JPanel hSpacer1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
@@ -470,9 +479,11 @@ public class GameDetail extends JPanel {
         lblAvatar.setSize(new Dimension(219, 198));
         lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar()), lblAvatar));
         lblAvatar.setText("");
-        txtContent.setText(game.getMoTa());
+        txtContent.setText("<br></br>" + game.getMoTa());
         lblAge.setText(game.getAge() + "+");
         addImage();
+        buyEvent();
+        loadComment();
     }
 
     private void addImage() {
@@ -511,6 +522,21 @@ public class GameDetail extends JPanel {
         }
     }
 
+    private void buyEvent() {
+
+    }
+
+    private void loadComment() {
+
+    }
+
+    private void generalRole() {
+        GameLibrary gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
+        if(gameLibrary != null) {
+            btnBuy.setText("Play"); /// Tu tu xu ly
+        }
+    }
+
     private void btnBack(ActionEvent e) {
         slideImages.back();
     }
@@ -519,8 +545,6 @@ public class GameDetail extends JPanel {
         slideImages.next();
     }
 
-    private void buyEvent() {
 
-    }
 
 }

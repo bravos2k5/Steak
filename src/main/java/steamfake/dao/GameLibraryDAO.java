@@ -35,9 +35,11 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
         String sql = "UPDATE THU_VIEN_GAME " +
                 "SET " +
                 "gia_mua = ?," +
-                "ngay_mua = ? " +
+                "ngay_mua = ?," +
+                "rate = ?," +
+                "comment = ? " +
                 "WHERE account_id = ? and game_id = ?";
-        return XJdbc.update(sql,object.getGiaMua(),object.getNgayMua(),
+        return XJdbc.update(sql,object.getGiaMua(),object.getNgayMua(), object.getRate(), object.getComment(),
                 object.getAccountId(),object.getGiaMua());
     }
 
@@ -69,6 +71,8 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
                 GameLibrary gameLibrary = new GameLibrary();
                 gameLibrary.setAccountId(UUID.fromString(rs.getString("account_id")));
                 gameLibrary.setGameId(UUID.fromString(rs.getString("game_id")));
+                gameLibrary.setRate(rs.getObject("rate",Integer.class));
+                gameLibrary.setComment(rs.getNString("comment"));
                 gameLibrary.setGiaMua(rs.getFloat("gia_mua"));
                 gameLibrary.setNgayMua(rs.getDate("ngay_mua"));
                 gameLibraryList.add(gameLibrary);
@@ -82,6 +86,21 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
     public List<GameLibrary> selectByAccountID(UUID id) {
         String sql = "SELECT * FROM THU_VIEN_GAME WHERE account_id = ?";
         return selectBySQL(sql,id);
+    }
+
+    public int updateRateAndComment(GameLibrary object) {
+        String sql = "UPDATE THU_VIEN_GAME " +
+                "SET " +
+                "rate = ?," +
+                "comment = ? " +
+                "WHERE account_id = ? and game_id = ?";
+        return XJdbc.update(sql,object.getRate(),object.getComment(),object.getAccountId(),object.getGameId());
+    }
+
+    public GameLibrary selectByGameIdAndAccountId(UUID gameId, UUID accountId) {
+        String sql = "SELECT * FROM THU_VIEN_GAME WHERE game_id = ? and account_id = ?";
+        List<GameLibrary> gameLibraryList = selectBySQL(sql,gameId,accountId);
+        return gameLibraryList.isEmpty() ? null : gameLibraryList.getFirst();
     }
 
     public List<GameLibrary> selectByGameID(UUID id) {

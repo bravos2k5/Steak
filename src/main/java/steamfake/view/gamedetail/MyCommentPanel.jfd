@@ -1,0 +1,66 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:31:p, comp lblAvatar:::p:81:p, space s:::p, par l:::p {comp lblName:::p:490:p, seq {comp label5:::p::p, space s:::p, comp slideRate:::p:300:p, space s:::p, comp lblRate:::::x}}, space :::p, comp lblLevel:::p:107:p, space ::272:x}, seq t {space :::p, comp hSpacer1::::993:x, space :::p}, seq {space ::18:x, par t {comp btnSend:::p:100:p, par l {comp label4:::p::p, comp scrollPane1:::p:940:p}}, space :0:47:x}}"
+			"$verticalGroup": "par l {seq l {space :p:31:p, par l {seq {comp lblName:::p::p, space :p:25:p, par b {comp label5::b:p::p, comp slideRate::b:p::p, comp lblRate::b:p::p, comp lblLevel::b:p::p}}, comp lblAvatar:::p:81:p}, space ::27:x, comp label4:::p::p, space u:::p, comp scrollPane1:::p:165:p, space u:::p, comp btnSend:::p::p, space :p:15:p, comp hSpacer1:::p::p, space :::p}}"
+		} ) {
+			name: "this"
+			"opaque": false
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAvatar"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "txtComment"
+					"wrapStyleWord": true
+					"lineWrap": true
+					"opaque": false
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				} )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnSend"
+				"text": "Gửi"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Bình luận"
+				"font": new java.awt.Font( "Segoe UI", 0, 18 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Chấm điểm:"
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JSlider" ) {
+				name: "slideRate"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblRate"
+				"text": "100"
+				"font": new java.awt.Font( "Segoe UI", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblLevel"
+				"text": "Trung bình"
+				"font": new java.awt.Font( "Segoe UI", 0, 16 )
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer1"
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1005, 410 )
+		} )
+	}
+}
