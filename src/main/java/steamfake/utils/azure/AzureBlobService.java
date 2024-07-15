@@ -4,6 +4,7 @@ import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 
 import java.io.File;
+import java.util.List;
 
 public class AzureBlobService {
     // Created by QuocBao
@@ -31,19 +32,17 @@ public class AzureBlobService {
 
     /**
      * Tải xuống file từ trên trời xuống và lưu vào máy (dùng cho cơ bản thôi, tải game không dùng)
+     *
      * @param destination đường dẫn lưu file + /tên file.[extension]
-     * @param name tên file trên cloud
-     * @param container tên container chứa file
-     * @return true nếu tải thành công
+     * @param name        tên file trên cloud
+     * @param container   tên container chứa file
      */
-    public static boolean download(String destination, String name, String container) {
+    public static void download(String destination, String name, String container) {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         if(client.exists()) {
             System.out.println(destination);
             client.downloadToFile(destination,true);
-            return true;
         }
-        return false;
     }
 
     /**
@@ -60,19 +59,35 @@ public class AzureBlobService {
     /**
      * Xóa nhiều file trên cloud
      * @param destinationFolder thư mục chứa các file cần download
-     * @param startWith tên file bắt đầu bằng chuỗi này
+     * @param startWith tieenf tố của tên file trên cloud
      * @param container tên container
      */
     public synchronized static void downloadManyFile(String destinationFolder, String startWith, String container) {
+        new File(destinationFolder).mkdirs();
         BlobContainerClient blobContainerClient = getContainerClient(container);
         blobContainerClient.listBlobs().forEach(blobItem -> {
             if(blobItem.getName().startsWith(startWith)) {
                 download(destinationFolder + blobItem.getName().replaceAll(startWith,"/"),blobItem.getName(),container);
             }
         });
-        System.out.println("Load ảnh thành công");
     }
 
+    public synchronized static void downloadManyFileExcept(String destinationFolder, String startWith, String container, List<String> except) {
+        new File(destinationFolder).mkdirs();
+        BlobContainerClient blobContainerClient = getContainerClient(container);
+        blobContainerClient.listBlobs().forEach(blobItem -> {
+            if(blobItem.getName().startsWith(startWith) && !except.contains(blobItem.getName())) {
+                download(destinationFolder + blobItem.getName().replaceAll(startWith,"/"),blobItem.getName(),container);
+            }
+        });
+    }
+
+    /**
+     * Đẩy nhiều file lên cloud
+     * @param folderPath thư mục chứa các file cần đẩy lên
+     * @param prefix tiền tố của tên file trên cloud
+     * @param container tên container
+     */
     public synchronized static void uploadManyFile(String folderPath, String prefix, String container) {
         BlobContainerClient blobContainerClient = getContainerClient(container);
         blobContainerClient.createIfNotExists();

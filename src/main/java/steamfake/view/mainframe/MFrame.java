@@ -12,11 +12,9 @@ import steamfake.view.HotGamePanel2;
 import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
-import steamfake.view.account.Account;
-import steamfake.view.addmoney.AddMoney;
 import steamfake.view.factory.GamePanelFactory;
+import steamfake.view.gamedetail.GameDetail;
 import steamfake.view.managegame.ManageGame;
-import steamfake.view.manger.Manage;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -41,6 +39,10 @@ public class MFrame extends JFrame {
         setUndecorated(true);
         initComponents();
         initialize();
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
     }
 
     private void initComponents() {
@@ -219,12 +221,11 @@ public class MFrame extends JFrame {
 
     private void initialize() {
         this.setVisible(true);
-//        new LoadingScreen(this).setVisible(true);
+        new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
-        mainPanel.add(new Manage());
-//        initEventMenu();
+        initEventMenu();
     }
 
     private void initEventMenu() {
@@ -352,7 +353,7 @@ public class MFrame extends JFrame {
             gameList = GameDAO.gI().selectTop10Game();
             theMostDownloadedGame = gameList.getFirst();
         }
-        HotGamePanel2 hotGamePanel = GamePanelFactory.createHotGamePanel2(theMostDownloadedGame);
+        HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
         for (Game game : gameList) {
             if (!game.equals(theMostDownloadedGame)) {
@@ -383,8 +384,15 @@ public class MFrame extends JFrame {
 
     }
 
-
-
+    public void showGameDetail(Game game) {
+        SwingUtilities.invokeLater(() -> {
+            GameDetail gameDetail = new GameDetail(game);
+            mainPanel.removeAll();
+            mainPanel.add(gameDetail);
+            mainPanel.repaint();
+            mainPanel.revalidate();
+        });
+    }
 
 
 }

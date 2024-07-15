@@ -208,4 +208,13 @@ public class AccountDAO implements DataAccessObject<Account> {
         return XJdbc.update(sql,newPassword,username);
     }
 
+    public String selectUsernameByID(UUID id) {
+        String sql = "SELECT username FROM Account WHERE id = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,id)) {
+            return rs.next() ? rs.getString("username") : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -1,0 +1,190 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:15:p, comp btnBack:::p:32:p, space u:::p, par l {seq {par t {comp panel3::::1102:x, seq {par l {seq {comp slideImages::::720:x, space :p:12:p, comp btnNext:::p:32:p}, seq {par l {seq l {comp separator1:::p:1:p, space u:::p, par l {comp label1:::p:63:p, comp lblGenres:::p:278:p}}, comp panel1::l:p::p}, space :0:180:x}}, space s:::p, comp panel2:::p::p}}, space :p:39:p}, seq {comp lblGameName:::p:720:p, space ::421:x}}}}"
+			"$verticalGroup": "par l {seq {par l {seq l {space :p:22:p, comp lblGameName:::p:33:p, space u:::p, par l {seq t {comp btnNext:::p:32:p, space :p:318:p}, par l:t {seq l {comp panel2:::p::p, space :::p}, seq t {comp slideImages:::p:405:p, space s:::p, par l:::p {seq l {comp label1:::p::p, space :p:18:p, comp lblGenres:::p::p}, comp separator1::t:p:54:p}, space s:::p, comp panel1:::p::p}}}}, seq l {space :p:246:p, comp btnBack:::p:32:p, space :p:54:p}}, comp panel3:::p:100:p, space ::1211:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 25, 25, 25, 255 )
+			"font": new java.awt.Font( "SansSerif", 0, 12 )
+			add( new FormContainer( "steamfake.graphics.slider.SlideShow", new FormLayoutManager( class javax.swing.JLayeredPane ) ) {
+				name: "slideImages"
+				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+				"opaque": false
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnBack"
+				"text": "<"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnBack", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnNext"
+				"text": ">"
+				addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "btnNext", true ) )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblGameName"
+				"text": "Zenless Zone Zero"
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				"font": new java.awt.Font( "SansSerif", 1, 26 )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+				"background": new java.awt.Color( 147, 147, 147, 255 )
+				"orientation": 1
+				"opaque": true
+				"foreground": new java.awt.Color( 147, 147, 147, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Genres"
+				"foreground": new java.awt.Color( 147, 147, 147, 255 )
+				"font": new java.awt.Font( "SansSerif", 0, 14 )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:32:p, par l {comp lbWindows::l:p::p, seq l {comp label5:::p::p, space :p:24:p, comp label41:::p::p, space :::p, comp lblRam:::p:80:p, space u:::p, comp label42:::p::p, space u:::p, comp lblRom:::p::p}}, space ::50:x}}"
+				"$verticalGroup": "par l {seq l {space :p:49:p, comp lbWindows:::p::p, space u:::p, par b {comp label5::b:p::p, comp label42::b:p::p, comp lblRom::b:p::p, comp label41::b:p::p, comp lblRam::b:p::p}, space ::44:x}}"
+			} ) {
+				name: "panel1"
+				"background": new java.awt.Color( 68, 68, 68, 255 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbWindows"
+					"text": "Yêu cầu hệ thống"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label41"
+					"text": "RAM tối thiểu:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblRam"
+					"text": "1024 MB"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label42"
+					"text": "ROM tối thiểu:"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblRom"
+					"text": "2000 MB"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label5"
+					"text": "Hệ điều hành Window 10 trở lên"
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {par l {par t:l {par l:::p {comp lblCost:::p::p, seq l {space :2:2:p, comp btnBuy:::p:229:p}, seq l {comp label55:::p::p, space :::x, comp lblPublisher:::p:153:p}, comp separator4:::::x, seq l {comp lbl999:::p::p, space :119:119:p, comp lblRelease:::p::p}, comp separator6:::::x, seq l {comp label59:::p:93:p, space :::x, comp lblLatestUpdate:::p::p}, comp separator7::t:::x, seq l {space :12:12:p, comp btnComment:::p:100:p, space :6:6:p, comp btnVote:::p:100:p}, comp label52::l:p::p}, seq {space :p:139:p, comp lblAge:::p::p, space :p:94:p}}, seq l {space :p:45:p, comp panel4:::p::p}}, space ::44:x}}"
+				"$verticalGroup": "par l {seq t {space :::p, comp lblAge:::p::p, space :::x, comp panel4:::p::p, space :p:44:p, comp lblCost:::p::p, space :p:12:p, comp label52:::p::p, space :p:12:p, comp btnBuy:::p:37:p, space :p:59:p, par b {comp label55::b:p::p, comp lblPublisher::b:p::p}, space :6:6:p, comp separator4:::p::p, space :3:3:p, par l {comp lbl999:::p::p, comp lblRelease:::p::p}, space :6:6:p, comp separator6:::p::p, space :6:6:p, par b {comp label59::b:p::p, comp lblLatestUpdate::b:p::p}, space :::p, comp separator7:::p::p, space :35:35:p, par l {comp btnComment:::p::p, comp btnVote:::p::p}, space :p:31:p}}"
+			} ) {
+				name: "panel2"
+				"opaque": false
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnBuy"
+					"text": "Mua"
+					"font": new java.awt.Font( "SansSerif", 1, 14 )
+					"background": new java.awt.Color( 0, 127, 255, 255 )
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblCost"
+					"text": "9.999$"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "SansSerif", 0, 16 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label52"
+					"text": "Có thể chứa mua hàng trong ứng dụng"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label55"
+					"text": "Publisher "
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblPublisher"
+					"foreground": &Color0 new java.awt.Color( 255, 255, 255, 255 )
+					"horizontalAlignment": 4
+					"text": "aas"
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator4"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lbl999"
+					"text": "Release Date"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblRelease"
+					"text": "07/02/24"
+					"foreground": #Color0
+					"horizontalAlignment": 4
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator6"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label59"
+					"text": "Latest Update"
+				} )
+				add( new FormComponent( "javax.swing.JSeparator" ) {
+					name: "separator7"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnComment"
+					"text": "COMMENT"
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "btnVote"
+					"text": "VOTE"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblAge"
+					"text": "12+"
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
+					"font": new java.awt.Font( "SansSerif", 1, 26 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblLatestUpdate"
+					"text": "07/02/24"
+					"foreground": #Color0
+					"horizontalAlignment": 4
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq t {space :::p, comp lblAvatar::::219:x, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp lblAvatar::::198:x, space :::p}}"
+				} ) {
+					name: "panel4"
+					"opaque": false
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "lblAvatar"
+						"preferredSize": new java.awt.Dimension( 219, 198 )
+						"maximumSize": new java.awt.Dimension( 219, 198 )
+						"minimumSize": new java.awt.Dimension( 219, 198 )
+					} )
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblGenres"
+				"text": "text"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panel3"
+				"opaque": false
+				add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
+					name: "txtContent"
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				} )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 75, 0 )
+			"size": new java.awt.Dimension( 1200, 2020 )
+		} )
+	}
+}
