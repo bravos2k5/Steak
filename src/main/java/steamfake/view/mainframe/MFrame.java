@@ -16,6 +16,7 @@ import steamfake.view.account.Account;
 import steamfake.view.addmoney.AddMoney;
 import steamfake.view.factory.GamePanelFactory;
 import steamfake.view.managegame.ManageGame;
+import steamfake.view.manger.Manage;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -222,7 +223,7 @@ public class MFrame extends JFrame {
         headerPanel.add(new LogoPanel());
         headerPanel.add(HeaderPanel.getInstance());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
-        mainPanel.add(new Account());
+        mainPanel.add(new Manage());
 //        initEventMenu();
     }
 

@@ -1,0 +1,29 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp radiusButton1:::p:30:p, space s:::p, comp radiusButton2:::p:30:p, space ::2:x}}"
+			"$verticalGroup": "par l {seq {par l {comp radiusButton1:::p:30:p, comp radiusButton2:::p:30:p}, space :0:0:x}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 37, 39, 48, 255 )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "radiusButton1"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Checkmark.png" )
+				"radius": 0
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "radiusButton2"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Close Window.png" )
+				"radius": 0
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 10 )
+			"size": new java.awt.Dimension( 80, 30 )
+		} )
+	}
+}
