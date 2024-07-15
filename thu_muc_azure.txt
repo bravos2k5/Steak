@@ -1,6 +1,3 @@
-images: chứa ảnh
-games: chứa game
-
-images/avatar/gameID/.png: ảnh đại diện của người dùng
+images/avatar/accountID/: ảnh đại diện của người dùng
 games/game_id/version/game/game.zip: file game
-games/game_id/version/game/images: thông tin game
+games/game_id/version/game/images: hình ảnh game

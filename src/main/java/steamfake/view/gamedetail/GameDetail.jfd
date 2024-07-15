@@ -79,8 +79,8 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {par t:l {par l:::p {comp lblCost:::p::p, seq l {space :2:2:p, comp btnBuy:::p:229:p}, seq l {comp label55:::p::p, space :::x, comp lblPublisher:::p:153:p}, comp separator4:::::x, seq l {comp lbl999:::p::p, space :119:119:p, comp lblRelease:::p::p}, comp separator6:::::x, seq l {comp label59:::p:93:p, space :::x, comp lblLatestUpdate:::p::p}, comp separator7::t:::x, seq l {space :12:12:p, comp btnComment:::p:100:p, space :6:6:p, comp btnVote:::p:100:p}, comp label52::l:p::p}, seq {space :p:139:p, comp lblAge:::p::p, space :p:94:p}}, seq l {space :p:45:p, comp panel4:::p::p}}, space ::44:x}}"
-				"$verticalGroup": "par l {seq t {space :::p, comp lblAge:::p::p, space :::x, comp panel4:::p::p, space :p:44:p, comp lblCost:::p::p, space :p:12:p, comp label52:::p::p, space :p:12:p, comp btnBuy:::p:37:p, space :p:59:p, par b {comp label55::b:p::p, comp lblPublisher::b:p::p}, space :6:6:p, comp separator4:::p::p, space :3:3:p, par l {comp lbl999:::p::p, comp lblRelease:::p::p}, space :6:6:p, comp separator6:::p::p, space :6:6:p, par b {comp label59::b:p::p, comp lblLatestUpdate::b:p::p}, space :::p, comp separator7:::p::p, space :35:35:p, par l {comp btnComment:::p::p, comp btnVote:::p::p}, space :p:31:p}}"
+				"$horizontalGroup": "par l {seq l {par l {par t:l {par l:::p {comp lblCost:::p::p, seq l {space :2:2:p, comp btnBuy:::p:229:p}, seq l {comp label55:::p::p, space :::x, comp lblPublisher:::p:153:p}, comp separator4:::::x, seq l {comp lbl999:::p::p, space :119:119:p, comp lblRelease:::p::p}, comp separator6:::::x, seq l {comp label59:::p:93:p, space :::x, comp lblLatestUpdate:::p::p}, comp separator7::t:::x, comp label52::l:p::p}, seq {space :p:139:p, comp lblAge:::p::p, space :p:94:p}}, seq l {space :p:45:p, comp panel4:::p::p}, seq t {space :::p, comp btnComment:::p:206:p, space :p:10:p}}, space ::44:x}}"
+				"$verticalGroup": "par l {seq t {space :::p, comp lblAge:::p::p, space :::x, comp panel4:::p::p, space :p:44:p, comp lblCost:::p::p, space :p:12:p, comp label52:::p::p, space :p:12:p, comp btnBuy:::p:37:p, space :p:59:p, par b {comp label55::b:p::p, comp lblPublisher::b:p::p}, space :6:6:p, comp separator4:::p::p, space :3:3:p, par l {comp lbl999:::p::p, comp lblRelease:::p::p}, space :6:6:p, comp separator6:::p::p, space :6:6:p, par b {comp label59::b:p::p, comp lblLatestUpdate::b:p::p}, space :::p, comp separator7:::p::p, space :p:35:p, comp btnComment:::p:35:p, space :p:22:p}}"
 			} ) {
 				name: "panel2"
 				"opaque": false
@@ -134,13 +134,9 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator7"
 				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
+				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnComment"
-					"text": "COMMENT"
-				} )
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "btnVote"
-					"text": "VOTE"
+					"text": "ĐÁNH GIÁ"
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lblAge"
@@ -155,8 +151,8 @@ new FormModel {
 					"horizontalAlignment": 4
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq t {space :::p, comp lblAvatar::::219:x, space :::p}}"
-					"$verticalGroup": "par l {seq l {space :::p, comp lblAvatar::::198:x, space :::p}}"
+					"$horizontalGroup": "par l {seq t {space :::p, comp lblAvatar:::::x, space :::p}}"
+					"$verticalGroup": "par l {seq l {space :::p, comp lblAvatar:::::x, space :::p}}"
 				} ) {
 					name: "panel4"
 					"opaque": false
@@ -177,9 +173,18 @@ new FormModel {
 			} ) {
 				name: "panel3"
 				"opaque": false
+				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+					name: "hSpacer2"
+					"background": new java.awt.Color( 255, 255, 255, 255 )
+				} )
 				add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
 					name: "txtContent"
 					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				} )
+				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+					name: "hSpacer1"
+					"background": sfield java.awt.Color white
+					"foreground": new java.awt.Color( 255, 255, 255, 255 )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

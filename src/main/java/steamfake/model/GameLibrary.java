@@ -9,7 +9,7 @@ public class GameLibrary {
     private UUID gameId;
     private float giaMua;
     private Date ngayMua;
-    private int rate;
+    private Integer rate;
     private String comment;
 
     public GameLibrary() {
@@ -22,11 +22,11 @@ public class GameLibrary {
         this.ngayMua = ngayMua;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 

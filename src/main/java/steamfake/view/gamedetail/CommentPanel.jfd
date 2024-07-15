@@ -1,0 +1,42 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:31:p, par l {comp txtComment:::p:870:p, seq {comp lblAvatar:::p:81:p, space :18:18:p, par l {comp lblName:::p:490:p, seq {comp label5:::p::p, space s:::p, comp lblRate:::p::p}}}, comp hSpacer1::l:p:934:p}, space ::40:x}}"
+			"$verticalGroup": "par l {seq l {space :p:28:p, par l {comp lblAvatar:::p:81:p, seq l {comp lblName:::p::p, space :25:25:p, par b {comp label5::b:p::p, comp lblRate::b:p::p}}}, space s:::p, comp txtComment:::p:0:p, space s:::p, comp hSpacer1:::p::p, space ::25:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAvatar"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "NNNNNNNNNNNNNNNNNNNNNNNNNNNNNN"
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label5"
+				"text": "Chấm điểm:"
+				"font": &Font0 new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblRate"
+				"text": "100/100"
+				"font": #Font0
+			} )
+			add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
+				name: "txtComment"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			} )
+			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
+				name: "hSpacer1"
+				"background": new java.awt.Color( 255, 255, 255, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 5, 0 )
+			"size": new java.awt.Dimension( 1005, 180 )
+		} )
+	}
+}
