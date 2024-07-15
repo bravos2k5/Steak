@@ -36,9 +36,6 @@ public class HeaderPanel extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        lblAvata = new JLabel();
-        lblName = new JLabel();
-        lblRole = new JLabel();
         lblSearch = new JLabel();
         lblMoney = new JLabel();
         iconAddMoney = new JLabel();
@@ -46,40 +43,31 @@ public class HeaderPanel extends JPanel {
         iconSettingAccount = new JLabel();
         iconLogOut = new JLabel();
         radiusTextField1 = new RadiusTextField();
+        lblAvata = new JLabel();
+        lblAdmin = new JLabel();
+        lblName = new JLabel();
+        lblRole = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x252730));
 
-        //---- lblAvata ----
-        lblAvata.setText("Icon");
-        lblAvata.setHorizontalTextPosition(SwingConstants.CENTER);
-        lblAvata.setHorizontalAlignment(SwingConstants.CENTER);
-
-        //---- lblName ----
-        lblName.setText("Tr\u1ecbnh V\u0103n Thu\u1eadt");
-        lblName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-
-        //---- lblRole ----
-        lblRole.setText("Th\u00e0nh vi\u00ean");
-        lblRole.setIcon(new ImageIcon(getClass().getResource("/icon/User.png")));
-        lblRole.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-        lblRole.setForeground(new Color(0x70ff00));
-
         //---- lblSearch ----
         lblSearch.setIcon(new ImageIcon(getClass().getResource("/icon/Search.png")));
-        lblSearch.setBackground(new Color(0x30333d));
+        lblSearch.setBackground(new Color(0x252730));
         lblSearch.setOpaque(true);
 
         //---- lblMoney ----
         lblMoney.setText("100M");
         lblMoney.setHorizontalAlignment(SwingConstants.CENTER);
         lblMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Dollar Coin.png")));
-        lblMoney.setFont(new Font("Inter", Font.BOLD, 20));
+        lblMoney.setFont(new Font("Inter", Font.BOLD, 18));
         lblMoney.setBackground(new Color(0x252730));
         lblMoney.setOpaque(true);
 
         //---- iconAddMoney ----
         iconAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Add Dollar.png")));
+        iconAddMoney.setBackground(new Color(0x252730));
+        iconAddMoney.setOpaque(true);
 
         //---- separator3 ----
         separator3.setOrientation(SwingConstants.VERTICAL);
@@ -89,36 +77,62 @@ public class HeaderPanel extends JPanel {
 
         //---- iconSettingAccount ----
         iconSettingAccount.setIcon(new ImageIcon(getClass().getResource("/icon/Accessibility Tools.png")));
+        iconSettingAccount.setBackground(new Color(0x252730));
+        iconSettingAccount.setOpaque(true);
 
         //---- iconLogOut ----
         iconLogOut.setIcon(new ImageIcon(getClass().getResource("/icon/Shutdown.png")));
+        iconLogOut.setBackground(new Color(0x252730));
+        iconLogOut.setOpaque(true);
 
         //---- radiusTextField1 ----
         radiusTextField1.setForeground(Color.white);
         radiusTextField1.setPlaceholder("Search");
         radiusTextField1.setEndGradientColor(new Color(0x30333d));
-        radiusTextField1.setBackground(new Color(0x30333d));
+        radiusTextField1.setBackground(new Color(0x252730));
         radiusTextField1.setStartGradientColor(new Color(0x30333d));
         radiusTextField1.setForcusColor(new Color(0x0c8ce9));
+
+        //---- lblAvata ----
+        lblAvata.setText("Icon");
+        lblAvata.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblAvata.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //---- lblAdmin ----
+        lblAdmin.setIcon(new ImageIcon(getClass().getResource("/icon/protection.png")));
+        lblAdmin.setBackground(new Color(0x252730));
+        lblAdmin.setOpaque(true);
+
+        //---- lblName ----
+        lblName.setText("Tr\u1ecbnh V\u0103n Thu\u1eadt");
+        lblName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 13));
+
+        //---- lblRole ----
+        lblRole.setText("Quan tri vien");
+        lblRole.setIcon(new ImageIcon(getClass().getResource("/icon/User.png")));
+        lblRole.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        lblRole.setForeground(new Color(0x70ff00));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addGap(14, 14, 14)
+                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 202, Short.MAX_VALUE)
-                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 617, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblName)
+                        .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 58, GroupLayout.PREFERRED_SIZE)
-                    .addGap(31, 31, 31)
-                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 245, GroupLayout.PREFERRED_SIZE)
-                    .addGap(36, 36, 36)
+                    .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblAdmin)
+                    .addGap(18, 18, 18)
                     .addComponent(iconAddMoney)
                     .addGap(18, 18, 18)
                     .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
@@ -130,44 +144,42 @@ public class HeaderPanel extends JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addGap(18, 18, 18)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                    .addGap(17, 17, 17))
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(7, 7, 7)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addGap(11, 11, 11)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(17, 17, 17))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(lblName)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblRole))
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))))
+                                    .addGap(14, 14, 14)
+                                    .addGroup(layout.createParallelGroup()
+                                        .addComponent(iconAddMoney)
+                                        .addComponent(lblAdmin)
+                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                            .addComponent(iconLogOut)
+                                            .addComponent(iconSettingAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                            .addContainerGap(8, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addComponent(iconAddMoney))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(iconLogOut)
-                                .addComponent(iconSettingAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(8, Short.MAX_VALUE))
+                            .addComponent(lblName)
+                            .addGap(7, 7, 7)
+                            .addComponent(lblRole)
+                            .addGap(0, 8, Short.MAX_VALUE))))
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel lblAvata;
-    private JLabel lblName;
-    private JLabel lblRole;
     private JLabel lblSearch;
     private JLabel lblMoney;
     private JLabel iconAddMoney;
@@ -175,21 +187,49 @@ public class HeaderPanel extends JPanel {
     private JLabel iconSettingAccount;
     private JLabel iconLogOut;
     private RadiusTextField radiusTextField1;
+    private JLabel lblAvata;
+    private JLabel lblAdmin;
+    private JLabel lblName;
+    private JLabel lblRole;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private void initialize() {
         lblName.setText("Chưa đăng nhập");
+        lblAdmin.setVisible(false);
         lblRole.setText("Khách");
         lblMoney.setText("Cái nịt");
         lblAvata.setText("");
         lblAvata.setSize(new Dimension(50,50));
         lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+        initEffectHover();
+    }
+
+    private void initEffectHover() {
+        JLabel[] labels = {iconAddMoney, iconSettingAccount, iconLogOut,lblAdmin,lblSearch};
+        for(JLabel label : labels) {
+            label.addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseEntered(java.awt.event.MouseEvent evt) {
+                    label.setBackground(new Color(0x30333d));
+                    label.setCursor(new Cursor(Cursor.HAND_CURSOR));
+                }
+
+                public void mouseExited(java.awt.event.MouseEvent evt) {
+                    label.setBackground(new Color(0x252730));
+                    label.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+                }
+            });
+        }
     }
 
     public void updateAccount() {
         Account account = SessionManager.user;
         if(account != null) {
+            if(account.isAdmin()) {
+                lblAdmin.setVisible(true);
+            } else {
+                lblAdmin.setVisible(false);
+            }
             lblName.setText(account.getHoTen());
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");

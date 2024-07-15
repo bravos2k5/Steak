@@ -186,6 +186,14 @@ public class AccountDAO implements DataAccessObject<Account> {
         }
     }
 
+    public String[] selectNameAndAvatarByID(UUID id) {
+        String sql = "SELECT ho_ten,avatar FROM Account WHERE id = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,id)) {
+            return rs.next() ? new String[]{rs.getString("ho_ten"),rs.getString("avatar")} : null;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * Quên mật khẩu

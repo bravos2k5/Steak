@@ -47,7 +47,7 @@ public class LoginDialog extends JDialog {
 
     private void lbQuenMKMouseExited(MouseEvent e) {
         lbQuenMK.setForeground(Color.decode("#6f6f6f"));
-        lbQuenMK.setText("<html>Quên mật Khẩu?<html>");
+        lbQuenMK.setText("<html>Quên mật khẩu?<html>");
     }
 
     private void lbDangKyMouseClicked(MouseEvent e) {

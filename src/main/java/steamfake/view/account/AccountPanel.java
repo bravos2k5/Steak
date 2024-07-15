@@ -4,18 +4,21 @@
 
 package steamfake.view.account;
 
+import steamfake.graphics.DateTimeTextField;
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusLabel;
+import steamfake.graphics.RadiusTextField;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import steamfake.graphics.*;
 
 /**
  * @author ACER
  */
-public class Account extends JPanel {
-    public Account() {
+public class AccountPanel extends JPanel {
+    public AccountPanel() {
         initComponents();
         radiusButton2.addMouseListener(new MouseAdapter() {
             @Override
