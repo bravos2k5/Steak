@@ -81,6 +81,7 @@ public class UploadGameDialog extends JDialog {
     private void startUpload() {
         try {
             lblStatus.setText("Đang nén dữ liệu...");
+            new File("data/temp/game.zip").delete();
             XFile.zipFolder(gamePath,"data/temp/game.zip");
             progressBar1.setValue(25);
             Thread.sleep(1000);
