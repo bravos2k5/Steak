@@ -31,7 +31,9 @@ public class DownloadQueue extends JDialog {
     private DownloadQueue(Window owner) {
         super(owner);
         initComponents();
-        downloadThread();
+        scrollPane1.setBorder(null);
+        panel1.add(new DownloadPanel("name","name"));  panel1.add(new DownloadPanel("name","name"));
+//        downloadThread();
         this.setVisible(true);
     }
 
@@ -40,9 +42,9 @@ public class DownloadQueue extends JDialog {
         scrollPane1 = new JScrollPane();
         panel1 = new JPanel();
         label1 = new JLabel();
-        label2 = new JLabel();
         scrollPane2 = new JScrollPane();
         panel2 = new JPanel();
+        separator1 = new JSeparator();
 
         //======== this ========
         setResizable(false);
@@ -51,6 +53,7 @@ public class DownloadQueue extends JDialog {
 
         //======== scrollPane1 ========
         {
+            scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== panel1 ========
             {
@@ -60,12 +63,8 @@ public class DownloadQueue extends JDialog {
         }
 
         //---- label1 ----
-        label1.setText("H\u00e0ng \u0111\u1ee3i t\u1ea3i xu\u1ed1ng");
-        label1.setFont(new Font("Inter", Font.PLAIN, 16));
-
-        //---- label2 ----
-        label2.setText("T\u1ea3i xu\u1ed1ng ho\u00e0n t\u1ea5t");
-        label2.setFont(new Font("Inter", Font.PLAIN, 16));
+        label1.setText("Download");
+        label1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
 
         //======== scrollPane2 ========
         {
@@ -77,29 +76,23 @@ public class DownloadQueue extends JDialog {
             scrollPane2.setViewportView(panel2);
         }
 
+        //---- separator1 ----
+        separator1.setBackground(Color.white);
+        separator1.setForeground(Color.white);
+        separator1.setOpaque(true);
+
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(13, 13, 13)
-                                    .addComponent(label1)
-                                    .addGap(0, 690, Short.MAX_VALUE))))
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(contentPaneLayout.createParallelGroup()
-                                .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE)
-                                .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addGap(13, 13, 13)
-                                    .addComponent(label2)
-                                    .addGap(0, 687, Short.MAX_VALUE)))))
-                    .addContainerGap())
+                    .addGap(49, 49, 49)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                        .addComponent(separator1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                        .addComponent(label1)
+                        .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+                    .addContainerGap(49, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -107,12 +100,12 @@ public class DownloadQueue extends JDialog {
                     .addGap(14, 14, 14)
                     .addComponent(label1)
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
-                    .addComponent(label2)
-                    .addGap(18, 18, 18)
-                    .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
-                    .addContainerGap())
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -123,9 +116,9 @@ public class DownloadQueue extends JDialog {
     private JScrollPane scrollPane1;
     private JPanel panel1;
     private JLabel label1;
-    private JLabel label2;
     private JScrollPane scrollPane2;
     private JPanel panel2;
+    private JSeparator separator1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,0 +1,69 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp scrollPane1::l::998:x, seq t {space ::777:x, comp btnCancel:::p:100:p, space :15:15:p, comp btnUpload:::p:100:p, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp scrollPane1:::p:62:p, space u:::p, par l {comp btnCancel:::p:30:p, comp btnUpload:::p:30:p}, space :0:15:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"font": new java.awt.Font( "SansSerif", 0, 16 )
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( "1" )
+							add( "2" )
+							add( "3" )
+						} )
+					}, new java.util.Vector {
+						add( "ID" )
+						add( "ID Account" )
+						add( "Hình thức" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( false )
+						add( false )
+						add( false )
+					}, new java.util.Vector {
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+					} )
+					"rowHeight": 30
+					"font": new java.awt.Font( "SansSerif", 0, 16 )
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+				} )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Từ chối"
+				"horizontalAlignment": 0
+				"font": &Font0 new java.awt.Font( "SansSerif", 1, 14 )
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"radius": 5
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnUpload"
+				"text": "Duyệt"
+				"horizontalAlignment": 0
+				"font": #Font0
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"size": new java.awt.Dimension( 1000, 150 )
+			"location": new java.awt.Point( 0, 0 )
+		} )
+	}
+}

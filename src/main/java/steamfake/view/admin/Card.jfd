@@ -1,0 +1,84 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {comp scrollPane1::t::1398:x, seq t {space ::1177:x, comp btnCancel:::p:100:p, space :15:15:p, comp btnUpload:::p:100:p, space :::p}}"
+			"$verticalGroup": "par l {seq l {comp scrollPane1:::p:62:p, space s:::p, par l {comp btnCancel:::p:30:p, comp btnUpload:::p:30:p}, space :0:9:x}}"
+		} ) {
+			name: "this"
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				"font": new java.awt.Font( "SansSerif", 0, 16 )
+				add( new FormComponent( "javax.swing.JTable" ) {
+					name: "table1"
+					"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+						add( new java.util.Vector {
+							add( "1" )
+							add( "2" )
+							add( "3" )
+							add( "4" )
+							add( "5" )
+							add( "6" )
+						} )
+					}, new java.util.Vector {
+						add( "ID" )
+						add( "ID Account" )
+						add( "Mã thẻ" )
+						add( "Số Seri" )
+						add( "Nhà mạng" )
+						add( "Số tiền" )
+					}, new java.util.Vector {
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+						add( null )
+					}, new java.util.Vector {
+						add( false )
+						add( false )
+						add( false )
+						add( false )
+						add( false )
+						add( false )
+					}, new java.util.Vector {
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 200, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+						add( new com.jformdesigner.model.SwingTableColumn( null, 150, 0, 0, false ) )
+					} )
+					"rowHeight": 30
+					"font": new java.awt.Font( "SansSerif", 0, 16 )
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+				} )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnUpload"
+				"text": "Duyệt"
+				"horizontalAlignment": 0
+				"font": &Font0 new java.awt.Font( "SansSerif", 1, 14 )
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Từ chối"
+				"horizontalAlignment": 0
+				"font": #Font0
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"radius": 5
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1400, 150 )
+		} )
+	}
+}

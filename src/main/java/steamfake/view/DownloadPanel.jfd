@@ -1,28 +1,40 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:25:p, par l {comp lblGameName::l:p:120:p, seq l {comp prbProgress:::p:530:p, space :p:29:p, comp lblProgress:::p::p}}, space ::187:x}}"
-			"$verticalGroup": "par l {seq {space :::p, par t {comp lblProgress:::p::p, seq {comp lblGameName:::p::p, space s:::p, comp prbProgress:::p:13:p}}, space ::256:x}}"
+			"$horizontalGroup": "par l {seq {space :p:30:p, comp radiusLabel1:::p:100:p, space s:::p, comp lblGameName:::p:300:p, space s:::p, comp prbProgress:::p:360:p, space :0:0:p, comp lblProgress:::p:96:p, space s:::p, comp label1:::p:30:p, space ::30:x}}"
+			"$verticalGroup": "par l {seq {par l {seq {space :p:20:p, par l:::p {comp lblGameName::::61:x, comp radiusLabel1::::61:x, par b:l {comp label1::b:p:40:p, comp lblProgress::b:p:60:p}}}, seq l {space :p:41:p, comp prbProgress:::p:20:p}}, space ::19:x}}"
 		} ) {
 			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "prbProgress"
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+				name: "radiusLabel1"
+				"text": "text"
+			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblGameName"
 				"text": "Title"
-				"font": new java.awt.Font( "Inter", 0, 13 )
-			} )
-			add( new FormComponent( "javax.swing.JProgressBar" ) {
-				name: "prbProgress"
+				"font": new java.awt.Font( "SansSerif", 1, 24 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblProgress"
 				"text": "100%"
+				"horizontalAlignment": 0
+				"font": new java.awt.Font( "Inter", 1, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "text"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/X.png" )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 10 )
-			"size": new java.awt.Dimension( 800, 310 )
+			"size": new java.awt.Dimension( 1000, 100 )
 		} )
 	}
 }

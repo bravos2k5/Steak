@@ -7,6 +7,8 @@ package steamfake.view;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.specialized.BlobInputStream;
+import components.*;
+import steamfake.graphics.*;
 import steamfake.utils.azure.AzureBlobService;
 
 import javax.swing.*;
@@ -29,52 +31,74 @@ public class DownloadPanel extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        lblGameName = new JLabel();
         prbProgress = new JProgressBar();
+        radiusLabel1 = new RadiusLabel();
+        lblGameName = new JLabel();
         lblProgress = new JLabel();
+        label1 = new JLabel();
 
         //======== this ========
+        setBackground(new Color(0x191b20));
+
+        //---- radiusLabel1 ----
+        radiusLabel1.setText("text");
 
         //---- lblGameName ----
         lblGameName.setText("Title");
-        lblGameName.setFont(new Font("Inter", Font.PLAIN, 13));
+        lblGameName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
 
         //---- lblProgress ----
         lblProgress.setText("100%");
+        lblProgress.setHorizontalAlignment(SwingConstants.CENTER);
+        lblProgress.setFont(new Font("Inter", Font.BOLD, 16));
+
+        //---- label1 ----
+        label1.setText("text");
+        label1.setIcon(new ImageIcon(getClass().getResource("/icon/X.png")));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(25, 25, 25)
-                    .addGroup(layout.createParallelGroup()
-                        .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 530, GroupLayout.PREFERRED_SIZE)
-                            .addGap(29, 29, 29)
-                            .addComponent(lblProgress)))
-                    .addContainerGap(187, Short.MAX_VALUE))
+                    .addGap(30, 30, 30)
+                    .addComponent(radiusLabel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblProgress)
+                    .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblGameName)
-                            .addGap(18, 18, 18)
-                            .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 13, GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(256, Short.MAX_VALUE))
+                            .addGap(20, 20, 20)
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lblGameName, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                .addComponent(radiusLabel1, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(41, 41, 41)
+                            .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(19, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JLabel lblGameName;
     private JProgressBar prbProgress;
+    private RadiusLabel radiusLabel1;
+    private JLabel lblGameName;
     private JLabel lblProgress;
+    private JLabel label1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private static final BlobContainerClient containerClient = AzureBlobService.getContainerClient("games");
