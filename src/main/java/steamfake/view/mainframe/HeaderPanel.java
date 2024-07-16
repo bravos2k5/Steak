@@ -4,7 +4,6 @@
 
 package steamfake.view.mainframe;
 
-import steamfake.constant.FilePath;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.utils.SessionManager;
@@ -225,24 +224,26 @@ public class HeaderPanel extends JPanel {
     public void updateAccount() {
         Account account = SessionManager.user;
         if(account != null) {
-            if(account.isAdmin()) {
-                lblAdmin.setVisible(true);
-            } else {
-                lblAdmin.setVisible(false);
-            }
+            lblAdmin.setVisible(account.isAdmin());
             lblName.setText(account.getHoTen());
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");
-            if(account.getAvatar() != null && !account.getAvatar().isBlank() && !new File(FilePath.getLocalAvatarPath(account)).exists()) {
-                AzureBlobService.download(FilePath.getLocalAvatarPath(account), FilePath.getRemoteAvatarPath(account),"images");
+            String avtPath = "data/avatar/" + account.getId() + "/" + account.getAvatar();
+            if(account.getAvatar() != null && !account.getAvatar().isBlank() &&
+                    !new File(avtPath).exists()) {
+                AzureBlobService.download(avtPath, "avatar/" + account.getId() + "/" + account.getAvatar(),"images");
+                lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(avtPath), lblAvata));
             }
             if(account.getAvatar() == null || account.getAvatar().isBlank()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
                 return;
             }
-            lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(account.getAvatar()), lblAvata));
             repaint();
         }
+    }
+
+    public void updateMoney(){
+        SwingUtilities.invokeLater(() -> lblMoney.setText(SessionManager.user.getSoDuGame() + " VND"));
     }
 
 }

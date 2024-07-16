@@ -63,7 +63,7 @@ public class XFile {
             // Message here
             e.printStackTrace();
         } finally {
-            new File(zipFilePath).deleteOnExit();
+            new File(zipFilePath).delete();
         }
     }
 
@@ -126,14 +126,9 @@ public class XFile {
         fis.close();
     }
 
-    public static void runExeFile(String path) {
-        try {
-            ProcessBuilder builder = new ProcessBuilder(path);
-            builder.start();
-        } catch (IOException e) {
-            //Message here
-            throw new RuntimeException(e);
-        }
+    public static void runExeFile(String path) throws IOException {
+        ProcessBuilder builder = new ProcessBuilder(path);
+        builder.start();
     }
 
     public static void main(String[] args) {

@@ -4,10 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:31:p, par l {comp txtComment:::p:870:p, seq {comp lblAvatar:::p:81:p, space :18:18:p, par l {comp lblName:::p:490:p, seq {comp label5:::p::p, space s:::p, comp lblRate:::p::p}}}, comp hSpacer1::l:p:934:p}, space ::40:x}}"
-			"$verticalGroup": "par l {seq l {space :p:28:p, par l {comp lblAvatar:::p:81:p, seq l {comp lblName:::p::p, space :25:25:p, par b {comp label5::b:p::p, comp lblRate::b:p::p}}}, space s:::p, comp txtComment:::p:0:p, space s:::p, comp hSpacer1:::p::p, space ::25:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:31:p, par l {comp panel1:::p:950:p, seq {comp lblAvatar:::p:81:p, space :18:18:p, par l {seq {comp label5:::p::p, space s:::p, comp lblRate:::p::p}, comp lblName:::p:801:p}}}, space ::69:x}}"
+			"$verticalGroup": "par l {seq l {space :p:28:p, par l {comp lblAvatar:::p:81:p, seq {comp lblName:::p::p, space :p:25:p, par b {comp label5::b:p::p, comp lblRate::b:p::p}}}, space u:::p, comp panel1:::p::p, space ::54:x}}"
 		} ) {
 			name: "this"
+			"opaque": false
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblAvatar"
 			} )
@@ -26,17 +27,17 @@ new FormModel {
 				"text": "100/100"
 				"font": #Font0
 			} )
-			add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
-				name: "txtComment"
-				"font": new java.awt.Font( "Segoe UI", 0, 14 )
-			} )
-			add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
-				name: "hSpacer1"
-				"background": new java.awt.Color( 255, 255, 255, 255 )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "panel1"
+				add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
+					name: "txtComment"
+				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
-			"location": new java.awt.Point( 5, 0 )
-			"size": new java.awt.Dimension( 1005, 180 )
+			"location": new java.awt.Point( 10, 0 )
+			"size": new java.awt.Dimension( 1050, 175 )
 		} )
 	}
 }

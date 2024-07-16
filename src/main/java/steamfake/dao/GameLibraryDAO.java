@@ -94,7 +94,7 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
                 "rate = ?," +
                 "comment = ? " +
                 "WHERE account_id = ? and game_id = ?";
-        return XJdbc.update(sql,object.getRate(),object.getComment(),object.getAccountId(),object.getGameId());
+        return XJdbc.update(sql,object.getRate(),object.getComment().trim(),object.getAccountId(),object.getGameId());
     }
 
     public GameLibrary selectByGameIdAndAccountId(UUID gameId, UUID accountId) {
@@ -105,6 +105,11 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
 
     public List<GameLibrary> selectByGameID(UUID id) {
         String sql = "SELECT * FROM THU_VIEN_GAME WHERE game_id = ?";
+        return selectBySQL(sql,id);
+    }
+
+    public List<GameLibrary> selectCommentByGameID(UUID id) {
+        String sql = "SELECT * FROM THU_VIEN_GAME WHERE game_id = ? and comment != ''";
         return selectBySQL(sql,id);
     }
 

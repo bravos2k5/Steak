@@ -1,22 +1,23 @@
 package steamfake.view.gamedetail;
 
 import steamfake.dao.AccountDAO;
+import steamfake.dao.GameDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Game;
-import steamfake.model.GameLibrary;
-import steamfake.utils.SessionManager;
-import steamfake.utils.XImage;
-import steamfake.utils.XJson;
+import steamfake.utils.*;
 import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.mainframe.HeaderPanel;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,22 +26,14 @@ import java.util.List;
  */
 public class GameDetail extends JPanel {
 
-    private Game game;
-    private GameLibrary gameLibrary;
+    private final Game game;
+    private final GameDetailPanel parentPanel;
 
-    public GameDetail(Game game) {
+    public GameDetail(Game game, GameDetailPanel parentPanel) {
+        this.game = game;
+        this.parentPanel = parentPanel;
         initComponents();
-        this.game = game;
-        gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
         initialize();
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
     }
 
     private void initComponents() {
@@ -77,9 +70,7 @@ public class GameDetail extends JPanel {
         lblAvatar = new JLabel();
         lblGenres = new JLabel();
         subPanel = new JPanel();
-        hSpacer2 = new JPanel(null);
         txtContent = new CustomTextBox();
-        hSpacer1 = new JPanel(null);
 
         //======== this ========
         setBackground(new Color(0x191919));
@@ -337,21 +328,12 @@ public class GameDetail extends JPanel {
         //======== subPanel ========
         {
             subPanel.setOpaque(false);
+            subPanel.setMaximumSize(new Dimension(1102, 12000));
             subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.Y_AXIS));
-
-            //---- hSpacer2 ----
-            hSpacer2.setBackground(Color.white);
-            subPanel.add(hSpacer2);
-
-            //---- txtContent ----
-            txtContent.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            subPanel.add(txtContent);
-
-            //---- hSpacer1 ----
-            hSpacer1.setBackground(Color.white);
-            hSpacer1.setForeground(Color.white);
-            subPanel.add(hSpacer1);
         }
+
+        //---- txtContent ----
+        txtContent.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -363,12 +345,14 @@ public class GameDetail extends JPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
+                            .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 720, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup()
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(slideImages, GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
+                                            .addComponent(slideImages, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGap(12, 12, 12)
                                             .addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                                         .addGroup(layout.createSequentialGroup()
@@ -380,18 +364,22 @@ public class GameDetail extends JPanel {
                                                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(lblGenres, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE)))
                                                 .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 180, Short.MAX_VALUE)))
+                                            .addGap(0, 0, Short.MAX_VALUE)))
                                     .addGap(18, 18, 18)
-                                    .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(39, 39, 39))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 720, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(421, Short.MAX_VALUE))))
+                                    .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(txtContent, GroupLayout.PREFERRED_SIZE, 1102, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(subPanel, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGroup(layout.createParallelGroup()
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(246, 246, 246)
+                            .addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(22, 22, 22)
                             .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
@@ -401,9 +389,7 @@ public class GameDetail extends JPanel {
                                     .addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                     .addGap(318, 318, 318))
                                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createParallelGroup()
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED))
+                                    .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addComponent(slideImages, GroupLayout.PREFERRED_SIZE, 405, GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -414,13 +400,12 @@ public class GameDetail extends JPanel {
                                                 .addComponent(lblGenres))
                                             .addComponent(separator1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
                                         .addGap(18, 18, 18)
-                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(246, 246, 246)
-                            .addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
-                            .addGap(54, 54, 54)))
-                    .addComponent(subPanel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1211, Short.MAX_VALUE))
+                                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))))
+                    .addGap(42, 42, 42)
+                    .addComponent(txtContent, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(subPanel, GroupLayout.PREFERRED_SIZE, 85, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(52, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
 
@@ -459,18 +444,50 @@ public class GameDetail extends JPanel {
     private JLabel lblAvatar;
     private JLabel lblGenres;
     private JPanel subPanel;
-    private JPanel hSpacer2;
     private CustomTextBox txtContent;
-    private JPanel hSpacer1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
         downloadResource();
         loadInfo();
+        btnBuy.addActionListener(e -> {
+            if(parentPanel.getGameLibrary() == null) {
+                buyEvent();
+            }
+            else {
+                playEvent();
+            }
+        });
     }
-
+    String text = "<html>Welcome to New Eridu — Where Humanity Rises Anew!<br><br>"
+            + "Don't go into Hollows.<br>"
+            + "I know, I know, there are Ether resources in the Hollows, bizarre creations, even ruins of the old civilization — all invaluable treasures.<br>"
+            + "But don't forget about the spatial disorder, the monsters, and mutants running rampant. Ultimately, this is a disaster that could swallow the world. Hollows are not where ordinary people should go.<br>"
+            + "So don't go into Hollows.<br>"
+            + "Or at least, don't go in alone.<br>"
+            + "If you insist on getting into danger, go to New Eridu first.<br>"
+            + "This city full of people from all walks of life has many who need the Hollows: powerful and wealthy tycoons, gangs who rule the streets, schemers hiding in the shadows, and ruthless officials.<br>"
+            + "Make your preparations there, find strong allies, and most importantly...<br>"
+            + "Find a 'Proxy.'<br>"
+            + "Only they can guide people out of labyrinthian Hollows.<br>"
+            + "Good luck.<br>"
+            + "<br>"
+            + "Zenless Zone Zero is an all-new 3D action game from HoYoverse that takes place in a near future, with the world plagued by a mysterious disaster known as 'Hollows.'<br>"
+            + "<br>"
+            + "Dual Identities, a Singular Experience<br>"
+            + "In the near future, a mysterious natural disaster known as 'Hollows' has occurred. A new kind of city has emerged in this disaster-ridden world — New Eridu. This last oasis has mastered the technology to co-exist with Hollows and is home to a whole host of chaotic, boisterous, dangerous, and very active factions. As a professional Proxy, you play a crucial role in linking the city and the Hollows. Your story awaits.<br>"
+            + "<br>"
+            + "Build Your Squad and Fight Fast-Paced Battles<br>"
+            + "Zenless Zone Zero is an all-new 3D action game from HoYoverse, here to provide a thrilling combat experience. Build a squad of up to three and begin your assault with Basic and Special Attacks. Dodge and Parry to neutralize your opponents' counterattacks, and when they're Stunned, unleash a powerful combo of Chain Attacks to finish them off! Remember, different opponents have different traits, and it would be prudent to use their weaknesses to your advantage.<br>"
+            + "<br>"
+            + "Immerse Yourself in the Unique Style and Music<br>"
+            + "Zenless Zone Zero has a unique visual style and design. With its carefully crafted character expressions and fluid movements, you'll easily feel immersed in the fascinating world as you embark on your own journey~ And of course, every VIP deserves their very own soundtrack, so you'll also have emotional beats full of drip to accompany you in each unforgettable moment~<br>"
+            + "<br>"
+            + "Various Factions and Stories Entwined<br>"
+            + "Random Play can't operate without videotapes, and Proxies can't operate without Agents. In New Eridu, customers from all walks will come knocking. So don't be fooled by their innocent and cute appearances, don't be afraid of those who tower over you and look dangerous, and don't turn away the fluffy ones who might shed fur all over your spotless floor. Go and talk with them, learn about their unique experiences, and allow them to become your friends and allies. After all, this is a long path, and only with companions will you be able to walk far~</html>";
 
     private void loadInfo() {
+        btnBuy.setVisible(SessionManager.isLogin());
         lblGameName.setText(game.getName());
         lblRam.setText(game.getRam() + " MB");
         lblRom.setText(game.getRom() + " MB");
@@ -483,9 +500,8 @@ public class GameDetail extends JPanel {
         lblAvatar.setText("");
         txtContent.setText("<br></br>" + game.getMoTa());
         lblAge.setText(game.getAge() + "+");
+        btnBuy.setText(parentPanel.getGameLibrary() == null ? "Mua" : "Chơi");
         addImage();
-        buyEvent();
-        loadComment();
     }
 
     private void addImage() {
@@ -525,32 +541,35 @@ public class GameDetail extends JPanel {
     }
 
     private void buyEvent() {
-        if(gameLibrary != null) {
-            String path = "data/games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath();
-            if(new File("data/games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists()) {
-                btnBuy.setText("Chơi");
-                btnBuy.addActionListener(e -> {
-
-                });
+        if(parentPanel.getGameLibrary() == null) {
+            if(SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
+                int result = GameDAO.gI().muaGame(game,SessionManager.user);
+                if(result > 0) {
+                    parentPanel.setGameLibrary(GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(),SessionManager.user.getId()));
+                    SessionManager.updateMoneyAccount();
+                    HeaderPanel.getInstance().updateMoney();
+                    XMessage.notificate(MFrame.getInstance(), "Mua game thành công");
+                    parentPanel.loadMyComment();
+                }
+                else {
+                    XMessage.alert(MFrame.getInstance(), "Mua game thất bại");
+                }
+            }
+            else {
+                XMessage.alert(MFrame.getInstance(), "Số dư không đủ");
             }
         }
     }
 
-    private void loadComment() {
-        if(gameLibrary != null) {
-            subPanel.add(new MyCommentPanel(gameLibrary));
+    private void playEvent() {
+        String path = "games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath();
+        if (parentPanel.getGameLibrary() != null && new File(path).exists()) {
+            try {
+                XFile.runExeFile(path);
+            } catch (IOException e) {
+                XMessage.alert(MFrame.getInstance(), "Lỗi: " + e.getMessage());
+            }
         }
-        List<GameLibrary> gameLibraries = GameLibraryDAO.gI().selectByGameID(game.getId());
-        for(GameLibrary gl : gameLibraries) {
-            subPanel.add(new CommentPanel(gl));
-        }
-        if(gameLibraries.isEmpty()) {
-            JLabel label = new JLabel("Chưa có đánh giá nào");
-            label.setForeground(Color.white);
-            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        }
-        subPanel.repaint();
-        subPanel.validate();
     }
 
     private void btnBack(ActionEvent e) {
@@ -561,6 +580,17 @@ public class GameDetail extends JPanel {
         slideImages.next();
     }
 
+    private static void adjustPanelSize(JPanel panel) {
+        Dimension preferredSize = new Dimension();
+        for (Component component : panel.getComponents()) {
+            Dimension componentSize = component.getPreferredSize();
+            preferredSize.width = Math.max(preferredSize.width, componentSize.width);
+            preferredSize.height += componentSize.height;
+        }
+        panel.setPreferredSize(preferredSize);
+        panel.revalidate();
+        panel.getParent().revalidate();
+    }
 
 
 }

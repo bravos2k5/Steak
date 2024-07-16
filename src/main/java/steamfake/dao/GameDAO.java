@@ -163,7 +163,7 @@ public class GameDAO implements DataAccessObject<Game> {
 
     public int muaGame(Game game, Account account) {
         String sql = "{CALL SP_MUA_GAME(?,?)}";
-        return XJdbc.update(sql,game.getId(),account.getId());
+        return XJdbc.update(sql,account.getId(),game.getId());
     }
 
     public String selectUsernamePublisher(Game game) {

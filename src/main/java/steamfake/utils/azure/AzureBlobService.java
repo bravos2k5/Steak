@@ -26,9 +26,6 @@ public class AzureBlobService {
         client.uploadFromFile(localPath,true);
     }
 
-    public static long getBlobSize(BlobClient client) {
-        return client.exists() ? client.getProperties().getBlobSize() : -1;
-    }
 
     /**
      * Tải xuống file từ trên trời xuống và lưu vào máy (dùng cho cơ bản thôi, tải game không dùng)
