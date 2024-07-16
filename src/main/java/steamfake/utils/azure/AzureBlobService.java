@@ -40,7 +40,7 @@ public class AzureBlobService {
     public static void download(String destination, String name, String container) {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         if(client.exists()) {
-            System.out.println(destination);
+            new File(destination).getParentFile().mkdirs();
             client.downloadToFile(destination,true);
         }
     }
@@ -78,6 +78,19 @@ public class AzureBlobService {
         blobContainerClient.listBlobs().forEach(blobItem -> {
             if(blobItem.getName().startsWith(startWith) && !except.contains(blobItem.getName())) {
                 download(destinationFolder + blobItem.getName().replaceAll(startWith,"/"),blobItem.getName(),container);
+            }
+        });
+    }
+
+    public synchronized static void downloadManyFileIfNotExist(String destinationFolder, String startWith, String container) {
+        new File(destinationFolder).mkdirs();
+        BlobContainerClient blobContainerClient = getContainerClient(container);
+        blobContainerClient.listBlobs().forEach(blobItem -> {
+            if(blobItem.getName().startsWith(startWith)) {
+                File file = new File(destinationFolder + blobItem.getName().replaceAll(startWith,"/"));
+                if(!file.exists()) {
+                    download(destinationFolder + blobItem.getName().replaceAll(startWith,"/"),blobItem.getName(),container);
+                }
             }
         });
     }

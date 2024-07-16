@@ -18,6 +18,7 @@ import steamfake.view.waiting.UploadGameDialog;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -589,7 +590,9 @@ public class SettingGame extends JDialog {
         String name = txtName.getText();
         String description = txtDescriptsion.getText();
         String folderPath = txtFolderPath.getText();
-        String execFilePath = txtExecFilePath.getText().replace(folderPath + "\\", "");
+        String parent = new File(txtExecFilePath.getText()).getParentFile().getAbsolutePath();
+        String parentExec = parent.substring(parent.lastIndexOf("\\") + 1);
+        String execFilePath = parentExec + "\\" + new File(txtExecFilePath.getText()).getName();
         String version = txtVersion.getText();
         String avatarPath = lblAvatar.getToolTipText().substring(lblAvatar.getToolTipText().lastIndexOf("\\") + 1);
         String ram = txtRam.getText();
