@@ -13,7 +13,7 @@ import steamfake.view.HotGamePanel2;
 import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
-import steamfake.view.gamedetail.GameDetail;
+import steamfake.view.gamedetail.GameDetailPanel;
 import steamfake.view.managegame.ManageGame;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
@@ -397,7 +397,7 @@ public class MFrame extends JFrame {
 
     public void showGameDetail(Game game) {
         SwingUtilities.invokeLater(() -> {
-            GameDetail gameDetail = new GameDetail(game);
+            GameDetailPanel gameDetail = new GameDetailPanel(game);
             mainPanel.removeAll();
             mainPanel.add(gameDetail);
             mainPanel.repaint();

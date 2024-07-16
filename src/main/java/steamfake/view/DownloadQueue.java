@@ -4,7 +4,8 @@
 
 package steamfake.view;
 
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import steamfake.model.Game;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,7 @@ public class DownloadQueue extends JDialog {
 
     public static DownloadQueue gI() {
         if(instance == null) {
-            instance = new DownloadQueue(null);
+            instance = new DownloadQueue(MFrame.getInstance());
         }
         return instance;
     }
@@ -32,18 +33,17 @@ public class DownloadQueue extends JDialog {
         super(owner);
         initComponents();
         scrollPane1.setBorder(null);
-        panel1.add(new DownloadPanel("name","name"));  panel1.add(new DownloadPanel("name","name"));
-//        downloadThread();
+        downloadThread();
         this.setVisible(true);
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         scrollPane1 = new JScrollPane();
-        panel1 = new JPanel();
+        pnlQueue = new JPanel();
         label1 = new JLabel();
         scrollPane2 = new JScrollPane();
-        panel2 = new JPanel();
+        pnlDownloaded = new JPanel();
         separator1 = new JSeparator();
 
         //======== this ========
@@ -55,11 +55,11 @@ public class DownloadQueue extends JDialog {
         {
             scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-            //======== panel1 ========
+            //======== pnlQueue ========
             {
-                panel1.setLayout(new BoxLayout(panel1, BoxLayout.Y_AXIS));
+                pnlQueue.setLayout(new BoxLayout(pnlQueue, BoxLayout.Y_AXIS));
             }
-            scrollPane1.setViewportView(panel1);
+            scrollPane1.setViewportView(pnlQueue);
         }
 
         //---- label1 ----
@@ -69,11 +69,11 @@ public class DownloadQueue extends JDialog {
         //======== scrollPane2 ========
         {
 
-            //======== panel2 ========
+            //======== pnlDownloaded ========
             {
-                panel2.setLayout(new BoxLayout(panel2, BoxLayout.Y_AXIS));
+                pnlDownloaded.setLayout(new BoxLayout(pnlDownloaded, BoxLayout.Y_AXIS));
             }
-            scrollPane2.setViewportView(panel2);
+            scrollPane2.setViewportView(pnlDownloaded);
         }
 
         //---- separator1 ----
@@ -114,10 +114,10 @@ public class DownloadQueue extends JDialog {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JScrollPane scrollPane1;
-    private JPanel panel1;
+    private JPanel pnlQueue;
     private JLabel label1;
     private JScrollPane scrollPane2;
-    private JPanel panel2;
+    private JPanel pnlDownloaded;
     private JSeparator separator1;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
@@ -126,9 +126,9 @@ public class DownloadQueue extends JDialog {
     private final List<DownloadPanel> downloadedStack = new ArrayList<>();
     private final Queue<DownloadPanel> downloadQueue = new ArrayDeque<>();
 
-    public void addNewDownload(String gameName, String blobName) {
-        DownloadPanel panel = new DownloadPanel(gameName,blobName);
-        panel1.add(panel);
+    public void addNewDownload(Game game) {
+        DownloadPanel panel = new DownloadPanel(game);
+        pnlQueue.add(panel);
         downloadQueue.offer(panel);
     }
 
@@ -140,18 +140,16 @@ public class DownloadQueue extends JDialog {
                     DownloadPanel.Status status = downloadQueue.peek().getStatus();
                     if(status == DownloadPanel.Status.COMPLETE || status == DownloadPanel.Status.CANCELED) {
                         DownloadPanel dp = downloadQueue.poll();
-                        panel1.remove(dp);
-                        panel1.revalidate();
-                        panel1.repaint();
-                        if (status == DownloadPanel.Status.COMPLETE) {
-                            downloadedStack.addFirst(dp);
-                            panel2.removeAll();
-                            for(DownloadPanel dpp : downloadedStack) {
-                                panel2.add(dpp);
-                            }
-                            panel2.revalidate();
-                            panel2.repaint();
+                        pnlQueue.remove(dp);
+                        pnlQueue.revalidate();
+                        pnlQueue.repaint();
+                        downloadedStack.addFirst(dp);
+                        pnlDownloaded.removeAll();
+                        for(DownloadPanel dpp : downloadedStack) {
+                            pnlDownloaded.add(dpp);
                         }
+                        pnlDownloaded.revalidate();
+                        pnlDownloaded.repaint();
                     }
                     else if(downloadQueue.peek() != null)
                         downloadQueue.peek().start();
@@ -161,8 +159,12 @@ public class DownloadQueue extends JDialog {
         timer.start();
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new DownloadQueue(null);
+    public void cancelAllDownload() {
+        for(DownloadPanel dp : downloadQueue) {
+            if(dp.getStatus() == DownloadPanel.Status.DOWNLOADING || dp.getStatus() == DownloadPanel.Status.WAITING) {
+                dp.cancelAction();
+            }
+        }
     }
+
 }

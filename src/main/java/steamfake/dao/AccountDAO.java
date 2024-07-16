@@ -225,4 +225,13 @@ public class AccountDAO implements DataAccessObject<Account> {
         }
     }
 
+    public float selectSoDuGameByID(UUID id) {
+        String sql = "SELECT so_du_game FROM Account WHERE id = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql,id)) {
+            return rs.next() ? rs.getFloat("so_du_game") : 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

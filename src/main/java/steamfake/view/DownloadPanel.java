@@ -7,12 +7,16 @@ package steamfake.view;
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;
 import com.azure.storage.blob.specialized.BlobInputStream;
-import components.*;
-import steamfake.graphics.*;
+import steamfake.graphics.RadiusLabel;
+import steamfake.model.Game;
+import steamfake.utils.XFile;
+import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,26 +26,29 @@ import java.io.IOException;
  */
 public class DownloadPanel extends JPanel {
 
-    public DownloadPanel(String gameName, String blobName) {
+    private final Game game;
+
+    public DownloadPanel(Game game) {
+        this.game = game;
         initComponents();
-        lblGameName.setText(gameName);
+        lblGameName.setText(game.getName());
         lblProgress.setText("Pending...");
-        this.blobName = blobName;
+        initEvent();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         prbProgress = new JProgressBar();
-        radiusLabel1 = new RadiusLabel();
+        lblIcon = new RadiusLabel();
         lblGameName = new JLabel();
         lblProgress = new JLabel();
-        label1 = new JLabel();
+        lblAction = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
 
-        //---- radiusLabel1 ----
-        radiusLabel1.setText("text");
+        //---- lblIcon ----
+        lblIcon.setText("text");
 
         //---- lblGameName ----
         lblGameName.setText("Title");
@@ -52,60 +59,61 @@ public class DownloadPanel extends JPanel {
         lblProgress.setHorizontalAlignment(SwingConstants.CENTER);
         lblProgress.setFont(new Font("Inter", Font.BOLD, 16));
 
-        //---- label1 ----
-        label1.setText("text");
-        label1.setIcon(new ImageIcon(getClass().getResource("/icon/X.png")));
+        //---- lblAction ----
+        lblAction.setText("text");
+        lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/X.png")));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(30, 30, 30)
-                    .addComponent(radiusLabel1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addGap(19, 19, 19)
+                    .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
+                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE))
+                    .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
                     .addGroup(layout.createParallelGroup()
+                        .addComponent(lblIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblGameName, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                .addComponent(radiusLabel1, GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(41, 41, 41)
-                            .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE)))
                     .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(45, Short.MAX_VALUE)
+                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 12, GroupLayout.PREFERRED_SIZE)
+                    .addGap(43, 43, 43))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JProgressBar prbProgress;
-    private RadiusLabel radiusLabel1;
+    private RadiusLabel lblIcon;
     private JLabel lblGameName;
     private JLabel lblProgress;
-    private JLabel label1;
+    private JLabel lblAction;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private static final BlobContainerClient containerClient = AzureBlobService.getContainerClient("games");
 
-    private final String blobName;
 
-    public static enum Status {
+    public enum Status {
         WAITING,
         DOWNLOADING,
         COMPLETE,
@@ -127,28 +135,52 @@ public class DownloadPanel extends JPanel {
     }
 
     private void initEvent() {
-        
+        lblAction.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(status == Status.COMPLETE) {
+                    playAction();
+                }
+                else if(status == Status.DOWNLOADING || status == Status.WAITING) {
+                    cancelAction();
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+            }
+        });
     }
 
-    private void cancelAction() {
-
+    public void cancelAction() {
+        status = Status.CANCELED;
+        lblProgress.setText("Đã hủy");
+        lblAction.setVisible(false);
+        prbProgress.setVisible(false);
     }
 
     private void playAction() {
-
+        try {
+            XFile.runExeFile("games/" + game.getId() + "/" + game.getVersion() + "/game/" + game.getExecPath());
+        } catch (IOException e) {
+            XMessage.alert(DownloadQueue.gI(), "Lỗi: " + e.getMessage());
+        }
     }
 
     private void download() {
+        String blobName = game.getId() + "/" + game.getVersion() + "/" + "game.zip";
         BlobClient blobClient = containerClient.getBlobClient(blobName);
-        final long totalSize = AzureBlobService.getBlobSize(blobClient);
-        String path = "./Games/" + lblGameName.getText();
-        new File(path).mkdirs();
-        path += "/" + lblGameName.getText() + ".zip";
-        File file = new File(path);
-        if(totalSize == -1) {
-            status = Status.FAILED;
-            return;
-        }
+        final long totalSize = blobClient.getProperties().getBlobSize();
+        final String path = "games/" + game.getId() + "/" + game.getVersion();
+        File pathFile = new File(path);
+        pathFile.mkdirs();
+        File file = new File(path + "/game.zip");
         try(BlobInputStream bis= blobClient.openInputStream()) {
             try(FileOutputStream fos = new FileOutputStream(file)) {
                 byte[] buffer = new byte[8192];
@@ -163,32 +195,34 @@ public class DownloadPanel extends JPanel {
                     final int progress = (int) ((downloadedSize * 100) / totalSize);
                     if (progressTmp < progress) {
                         progressTmp = progress;
-                        SwingUtilities.invokeLater(() -> {
-                            prbProgress.setValue(progress);
-                            lblProgress.setText(progress + "%");
-                        });
+                        prbProgress.setValue(progress);
+                        lblProgress.setText(progress + "%");
                     }
                 }
                 fos.flush();
                 if(status == Status.CANCELED) {
+                    file.delete();
                     return;
                 }
                 if(totalSize == downloadedSize) {
                     SwingUtilities.invokeLater(() -> {
                         lblProgress.setText("Đang giải nén");
-                        // Cho btn mở đi
-                        status = Status.COMPLETE;
+                        lblAction.setIcon(null);
                     });
-
+                    XFile.unzip(path, file.getParent());
+                    SwingUtilities.invokeLater(() -> {
+                        lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/play-button.png")));
+                        prbProgress.setVisible(false);
+                        lblProgress.setText("Xong");
+                    });
+                    status = Status.COMPLETE;
                 }
                 else status = Status.FAILED;
             } catch (IOException e) {
                 status = Status.FAILED;
                 System.err.println(e.getMessage());
             } finally {
-                if(status == Status.FAILED || status == Status.CANCELED) {
-                    file.delete();
-                }
+                file.delete();
             }
         }
     }

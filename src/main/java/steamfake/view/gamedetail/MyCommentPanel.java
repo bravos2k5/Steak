@@ -22,7 +22,7 @@ public class MyCommentPanel extends JPanel {
 
     private final GameLibrary gameLibrary;
 
-    public MyCommentPanel(GameLibrary game) {
+    public MyCommentPanel(GameLibrary game, GameDetailPanel parentPanel) {
         this.gameLibrary = game;
         initComponents();
         initialize();
@@ -158,6 +158,8 @@ public class MyCommentPanel extends JPanel {
     private void initialize() {
         rateSlideEvent();
         btnSend.addActionListener(e -> sendAction());
+        slideRate.setValue(50);
+        lblLevel.setText("Trung bình");
     }
 
     private void rateSlideEvent() {
@@ -197,7 +199,8 @@ public class MyCommentPanel extends JPanel {
                     SessionManager.user.getId() + "/" + SessionManager.user.getAvatar()),lblAvatar));
         }
         else {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("icon/default_avatar.png")),lblAvatar));
+            lblAvatar.setSize(new Dimension(81, 81));
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
         }
     }
 

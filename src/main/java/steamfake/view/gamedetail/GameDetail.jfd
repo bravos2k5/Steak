@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:15:p, comp btnBack:::p:32:p, space u:::p, par l {seq {par t {comp subPanel::::1102:x, seq {par l {seq {comp slideImages::::720:x, space :p:12:p, comp btnNext:::p:32:p}, seq {par l {seq l {comp separator1:::p:1:p, space u:::p, par l {comp label1:::p:63:p, comp lblGenres:::p:278:p}}, comp panel1::l:p::p}, space :0:180:x}}, space s:::p, comp panel2:::p::p}}, space :p:39:p}, seq {comp lblGameName:::p:720:p, space ::421:x}}}}"
-			"$verticalGroup": "par l {seq {par l {seq l {space :p:22:p, comp lblGameName:::p:33:p, space u:::p, par l {seq t {comp btnNext:::p:32:p, space :p:318:p}, par l:t {seq l {comp panel2:::p::p, space :::p}, seq t {comp slideImages:::p:405:p, space s:::p, par l:::p {seq l {comp label1:::p::p, space :p:18:p, comp lblGenres:::p::p}, comp separator1::t:p:54:p}, space s:::p, comp panel1:::p::p}}}}, seq l {space :p:246:p, comp btnBack:::p:32:p, space :p:54:p}}, comp subPanel:::p:100:p, space ::1211:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:15:p, comp btnBack:::p:32:p, space u:::p, par l {seq {comp lblGameName:::p:720:p, space :::x}, seq t {par t {seq {par l {seq {comp slideImages:::::x, space :p:12:p, comp btnNext:::p:32:p}, seq {par l {seq l {comp separator1:::p:1:p, space u:::p, par l {comp label1:::p:63:p, comp lblGenres:::p:278:p}}, comp panel1::l:p::p}, space :0:0:x}}, space s:::p, comp panel2:::p::p}, seq l {comp txtContent:::p:1102:p, space :0:0:x}, comp subPanel::l:::x}, space :p:39:p}}}}"
+			"$verticalGroup": "par l {seq {par l {seq l {space :p:246:p, comp btnBack:::p:32:p}, seq l {space :p:22:p, comp lblGameName:::p:33:p, space u:::p, par l {seq t {comp btnNext:::p:32:p, space :p:318:p}, par l:t {comp panel2::l:p::p, seq t {comp slideImages:::p:405:p, space s:::p, par l:::p {seq l {comp label1:::p::p, space :p:18:p, comp lblGenres:::p::p}, comp separator1::t:p:54:p}, space s:::p, comp panel1:::p::p}}}}}, space :p:42:p, comp txtContent:::p::p, space s:::p, comp subPanel:::p:85:p, space ::52:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 25, 25, 255 )
@@ -173,23 +173,15 @@ new FormModel {
 			} ) {
 				name: "subPanel"
 				"opaque": false
-				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
-					name: "hSpacer2"
-					"background": new java.awt.Color( 255, 255, 255, 255 )
-				} )
-				add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
-					name: "txtContent"
-					"font": new java.awt.Font( "Segoe UI", 0, 14 )
-				} )
-				add( new FormComponent( "com.jformdesigner.designer.wrapper.HSpacer" ) {
-					name: "hSpacer1"
-					"background": sfield java.awt.Color white
-					"foreground": new java.awt.Color( 255, 255, 255, 255 )
-				} )
+				"maximumSize": new java.awt.Dimension( 1102, 12000 )
+			} )
+			add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
+				name: "txtContent"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 75, 0 )
-			"size": new java.awt.Dimension( 1200, 2020 )
+			"size": new java.awt.Dimension( 1200, 900 )
 		} )
 	}
 }

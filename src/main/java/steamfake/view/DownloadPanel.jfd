@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:30:p, comp radiusLabel1:::p:100:p, space s:::p, comp lblGameName:::p:300:p, space s:::p, comp prbProgress:::p:360:p, space :0:0:p, comp lblProgress:::p:96:p, space s:::p, comp label1:::p:30:p, space ::30:x}}"
-			"$verticalGroup": "par l {seq {par l {seq {space :p:20:p, par l:::p {comp lblGameName::::61:x, comp radiusLabel1::::61:x, par b:l {comp label1::b:p:40:p, comp lblProgress::b:p:60:p}}}, seq l {space :p:41:p, comp prbProgress:::p:20:p}}, space ::19:x}}"
+			"$horizontalGroup": "par l {seq {space :p:19:p, comp lblIcon:::p:100:p, space s:::p, comp lblGameName:::p:421:p, space s:::p, comp prbProgress:::p:250:p, space :::p, comp lblProgress:::p:96:p, space s:::p, comp lblAction:::p:30:p, space ::24:x}}"
+			"$verticalGroup": "par l {seq {space :p:20:p, par l {comp lblIcon::l:::x, seq {par l {par b {comp lblAction::b:p:40:p, comp lblProgress::b:p:60:p}, comp lblGameName::l:p:61:p}, space :0:0:x}}, space ::19:x}, seq t {space ::45:x, comp prbProgress:::p:12:p, space :p:43:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -13,7 +13,7 @@ new FormModel {
 				name: "prbProgress"
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
-				name: "radiusLabel1"
+				name: "lblIcon"
 				"text": "text"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -28,7 +28,7 @@ new FormModel {
 				"font": new java.awt.Font( "Inter", 1, 16 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
-				name: "label1"
+				name: "lblAction"
 				"text": "text"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/X.png" )
 			} )

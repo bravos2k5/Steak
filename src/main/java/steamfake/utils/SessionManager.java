@@ -1,5 +1,6 @@
 package steamfake.utils;
 
+import steamfake.dao.AccountDAO;
 import steamfake.dao.BankAccountDAO;
 import steamfake.model.Account;
 import steamfake.model.BankAccount;
@@ -23,6 +24,12 @@ public class SessionManager {
     public static void loadBankAccountList() {
         if(user != null && bankAccountList == null) {
             bankAccountList = BankAccountDAO.gI().selectByAccount(user);
+        }
+    }
+
+    public static void updateMoneyAccount() {
+        if(user != null) {
+            user.setSoDuGame(AccountDAO.gI().selectSoDuGameByID(user.getId()));
         }
     }
 
