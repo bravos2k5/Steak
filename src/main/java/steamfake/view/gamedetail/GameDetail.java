@@ -26,10 +26,12 @@ import java.util.List;
 public class GameDetail extends JPanel {
 
     private Game game;
+    private GameLibrary gameLibrary;
 
     public GameDetail(Game game) {
         initComponents();
         this.game = game;
+        gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
         initialize();
     }
 
@@ -74,7 +76,7 @@ public class GameDetail extends JPanel {
         panel4 = new JPanel();
         lblAvatar = new JLabel();
         lblGenres = new JLabel();
-        panel3 = new JPanel();
+        subPanel = new JPanel();
         hSpacer2 = new JPanel(null);
         txtContent = new CustomTextBox();
         hSpacer1 = new JPanel(null);
@@ -332,23 +334,23 @@ public class GameDetail extends JPanel {
         //---- lblGenres ----
         lblGenres.setText("text");
 
-        //======== panel3 ========
+        //======== subPanel ========
         {
-            panel3.setOpaque(false);
-            panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
+            subPanel.setOpaque(false);
+            subPanel.setLayout(new BoxLayout(subPanel, BoxLayout.Y_AXIS));
 
             //---- hSpacer2 ----
             hSpacer2.setBackground(Color.white);
-            panel3.add(hSpacer2);
+            subPanel.add(hSpacer2);
 
             //---- txtContent ----
             txtContent.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            panel3.add(txtContent);
+            subPanel.add(txtContent);
 
             //---- hSpacer1 ----
             hSpacer1.setBackground(Color.white);
             hSpacer1.setForeground(Color.white);
-            panel3.add(hSpacer1);
+            subPanel.add(hSpacer1);
         }
 
         GroupLayout layout = new GroupLayout(this);
@@ -362,7 +364,7 @@ public class GameDetail extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                .addComponent(panel3, GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
+                                .addComponent(subPanel, GroupLayout.DEFAULT_SIZE, 1102, Short.MAX_VALUE)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup()
                                         .addGroup(layout.createSequentialGroup()
@@ -417,7 +419,7 @@ public class GameDetail extends JPanel {
                             .addGap(246, 246, 246)
                             .addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                             .addGap(54, 54, 54)))
-                    .addComponent(panel3, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(subPanel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(1211, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -456,7 +458,7 @@ public class GameDetail extends JPanel {
     private JPanel panel4;
     private JLabel lblAvatar;
     private JLabel lblGenres;
-    private JPanel panel3;
+    private JPanel subPanel;
     private JPanel hSpacer2;
     private CustomTextBox txtContent;
     private JPanel hSpacer1;
@@ -523,18 +525,32 @@ public class GameDetail extends JPanel {
     }
 
     private void buyEvent() {
+        if(gameLibrary != null) {
+            String path = "data/games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath();
+            if(new File("data/games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists()) {
+                btnBuy.setText("Chơi");
+                btnBuy.addActionListener(e -> {
 
+                });
+            }
+        }
     }
 
     private void loadComment() {
-
-    }
-
-    private void generalRole() {
-        GameLibrary gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
         if(gameLibrary != null) {
-            btnBuy.setText("Play"); /// Tu tu xu ly
+            subPanel.add(new MyCommentPanel(gameLibrary));
         }
+        List<GameLibrary> gameLibraries = GameLibraryDAO.gI().selectByGameID(game.getId());
+        for(GameLibrary gl : gameLibraries) {
+            subPanel.add(new CommentPanel(gl));
+        }
+        if(gameLibraries.isEmpty()) {
+            JLabel label = new JLabel("Chưa có đánh giá nào");
+            label.setForeground(Color.white);
+            label.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
+        }
+        subPanel.repaint();
+        subPanel.validate();
     }
 
     private void btnBack(ActionEvent e) {

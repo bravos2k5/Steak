@@ -4,8 +4,11 @@
 
 package steamfake.view.mainframe;
 
+import steamfake.dao.GameDAO;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
+import steamfake.model.Game;
+import steamfake.utils.XImage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,8 +18,13 @@ import java.awt.*;
  * @author ACER
  */
 public class ListGamePanel extends JPanel {
-    public ListGamePanel() {
+
+    private final Game game;
+
+    public ListGamePanel(Game game) {
+        this.game = game;
         initComponents();
+        loadInfo();
     }
 
     private void initComponents() {
@@ -26,10 +34,9 @@ public class ListGamePanel extends JPanel {
         lblNameGame = new JLabel();
         lblReviews = new JLabel();
         label4 = new JLabel();
-        label6 = new JLabel();
         lblDownload = new RadiusLabel();
         lblPrice = new RadiusLabel();
-        lblNameCreator = new RadiusLabel();
+        lblPublisher = new RadiusLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -49,17 +56,13 @@ public class ListGamePanel extends JPanel {
             lblNameGame.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 22));
 
             //---- lblReviews ----
-            lblReviews.setText("95/100");
+            lblReviews.setText("100/100");
             lblReviews.setFont(new Font("Inter", Font.BOLD, 24));
             lblReviews.setHorizontalAlignment(SwingConstants.CENTER);
 
             //---- label4 ----
             label4.setIcon(new ImageIcon(getClass().getResource("/icon/Star.png")));
             label4.setHorizontalAlignment(SwingConstants.CENTER);
-
-            //---- label6 ----
-            label6.setIcon(new ImageIcon(getClass().getResource("/icon/Windows 12.png")));
-            label6.setHorizontalAlignment(SwingConstants.CENTER);
 
             //---- lblDownload ----
             lblDownload.setText("110k");
@@ -74,10 +77,12 @@ public class ListGamePanel extends JPanel {
             lblPrice.setBackground(new Color(0x191b20));
             lblPrice.setFont(new Font("Inter", Font.BOLD, 24));
 
-            //---- lblNameCreator ----
-            lblNameCreator.setBackground(new Color(0x191b20));
-            lblNameCreator.setRadius(11);
-            lblNameCreator.setFont(new Font("Inter", Font.BOLD, 24));
+            //---- lblPublisher ----
+            lblPublisher.setText("Publisher by Admin");
+            lblPublisher.setBackground(new Color(0x252730));
+            lblPublisher.setFont(new Font("Inter", Font.BOLD, 22));
+            lblPublisher.setBorderColor(new Color(0x252730));
+            lblPublisher.setHorizontalAlignment(SwingConstants.RIGHT);
 
             GroupLayout radiusPanel1Layout = new GroupLayout(radiusPanel1);
             radiusPanel1.setLayout(radiusPanel1Layout);
@@ -88,41 +93,37 @@ public class ListGamePanel extends JPanel {
                         .addComponent(lblImageGame, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(radiusPanel1Layout.createParallelGroup()
-                            .addComponent(lblNameGame, GroupLayout.PREFERRED_SIZE, 360, GroupLayout.PREFERRED_SIZE)
                             .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                .addComponent(lblReviews, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblReviews, GroupLayout.PREFERRED_SIZE, 112, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
                                 .addComponent(label4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+                                .addGap(43, 43, 43)
+                                .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                                .addComponent(lblPublisher, GroupLayout.PREFERRED_SIZE, 487, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(radiusPanel1Layout.createSequentialGroup()
+                                .addComponent(lblNameGame, GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblNameCreator, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(27, Short.MAX_VALUE))
+                                .addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 270, GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36))
             );
             radiusPanel1Layout.setVerticalGroup(
                 radiusPanel1Layout.createParallelGroup()
                     .addGroup(radiusPanel1Layout.createSequentialGroup()
-                        .addGroup(radiusPanel1Layout.createParallelGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(radiusPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblImageGame, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                             .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                .addGap(23, 23, 23)
+                                .addGroup(radiusPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNameGame, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
                                 .addGroup(radiusPanel1Layout.createParallelGroup()
-                                    .addComponent(lblImageGame, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                        .addComponent(lblNameGame, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(radiusPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(lblReviews, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lblDownload, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(lblNameCreator, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(GroupLayout.Alignment.TRAILING, radiusPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblPublisher, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label4, GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblReviews, GroupLayout.Alignment.TRAILING))))
                         .addContainerGap(27, Short.MAX_VALUE))
             );
         }
@@ -132,9 +133,9 @@ public class ListGamePanel extends JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(78, Short.MAX_VALUE)
+                    .addContainerGap(28, Short.MAX_VALUE)
                     .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(67, 67, 67))
+                    .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
@@ -152,11 +153,20 @@ public class ListGamePanel extends JPanel {
     private JLabel lblNameGame;
     private JLabel lblReviews;
     private JLabel label4;
-    private JLabel label6;
     private RadiusLabel lblDownload;
     private RadiusLabel lblPrice;
-    private RadiusLabel lblNameCreator;
+    private RadiusLabel lblPublisher;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private void loadInfo() {
+        lblDownload.setText(GameDAO.gI().selectLuotTai(game) + "");
+        lblNameGame.setText(game.getName());
+        lblPrice.setText(game.getGiaTien() + " VND");
+        lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "");
+        lblPublisher.setText("Publisher by " + GameDAO.gI().selectUsernamePublisher(game));
+        lblImageGame.setSize(new Dimension(200, 100));
+        lblImageGame.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() +  "/images/" + game.getAvatar()), lblImageGame));
+    }
 
 
     public JLabel getLblImageGame() {
@@ -183,14 +193,6 @@ public class ListGamePanel extends JPanel {
         this.label4 = label4;
     }
 
-    public JLabel getLabel6() {
-        return label6;
-    }
-
-    public void setLabel6(JLabel label6) {
-        this.label6 = label6;
-    }
-
     public RadiusLabel getLblDownload() {
         return lblDownload;
     }
@@ -205,14 +207,6 @@ public class ListGamePanel extends JPanel {
 
     public void setLblPrice(RadiusLabel lblPrice) {
         this.lblPrice = lblPrice;
-    }
-
-    public RadiusLabel getLblNameCreator() {
-        return lblNameCreator;
-    }
-
-    public void setLblNameCreator(RadiusLabel lblNameCreator) {
-        this.lblNameCreator = lblNameCreator;
     }
 
     public JLabel getLblReviews() {

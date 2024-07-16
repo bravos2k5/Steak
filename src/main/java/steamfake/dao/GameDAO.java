@@ -1,5 +1,6 @@
 package steamfake.dao;
 
+import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.utils.database.XJdbc;
 
@@ -153,6 +154,28 @@ public class GameDAO implements DataAccessObject<Game> {
         String sql = "{CALL SP_LAY_GAME_TOP1()}";
         List<Game> gameList = selectBySQL(sql);
         return gameList.isEmpty() ? null : gameList.getFirst();
+    }
+
+    public List<Game> selectOldGame() {
+        String sql = "{CALL SP_LAY_TOP_GAME_CU()}";
+        return selectBySQL(sql);
+    }
+
+    public int muaGame(Game game, Account account) {
+        String sql = "{CALL SP_MUA_GAME(?,?)}";
+        return XJdbc.update(sql,game.getId(),account.getId());
+    }
+
+    public String selectUsernamePublisher(Game game) {
+        String sql = "{CALL SP_LAY_TEN_NHA_PHAT_HANH(?)}";
+        try(ResultSet rs = XJdbc.getResultSet(sql,game.getId())) {
+            if(rs.next()) {
+                return rs.getNString("ho_ten");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
 }

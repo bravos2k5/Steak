@@ -8,17 +8,18 @@ import steamfake.dao.GameDAO;
 import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
+import steamfake.utils.azure.AzureBlobService;
 import steamfake.view.HotGamePanel2;
 import steamfake.view.LibraryPanel;
 import steamfake.view.LoadingScreen;
 import steamfake.view.LoginDialog;
-import steamfake.view.factory.GamePanelFactory;
 import steamfake.view.gamedetail.GameDetail;
 import steamfake.view.managegame.ManageGame;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 
 /**
@@ -61,6 +62,7 @@ public class MFrame extends JFrame {
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(new ImageIcon(getClass().getResource("/icon/Steambig.png")).getImage());
         var contentPane = getContentPane();
 
         //======== panelSelectFunction ========
@@ -348,16 +350,25 @@ public class MFrame extends JFrame {
         panelSelectFunction.repaint();
     }
 
+    private void downloadResource() {
+        for(Game game : gameList) {
+            String destination = "data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar();
+            if(!new File(destination).exists())
+                AzureBlobService.download(destination,destination.replace("data/games/",""), "games");
+        }
+    }
+
     public void initHomePage() {
         if (gameList == null) {
-            gameList = GameDAO.gI().selectTop10Game();
+            gameList = GameDAO.gI().selectOldGame();
+            downloadResource();
             theMostDownloadedGame = gameList.getFirst();
         }
         HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
         for (Game game : gameList) {
-            if (!game.equals(theMostDownloadedGame)) {
-                ListGamePanel listGamePanel = GamePanelFactory.createListGamePanel(game);
+            if (game != null && !game.equals(theMostDownloadedGame)) {
+                ListGamePanel listGamePanel = new ListGamePanel(game);
                 mainPanel.add(listGamePanel);
             }
         }

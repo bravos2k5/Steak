@@ -1,6 +1,7 @@
 package steamfake.model;
 
 import java.sql.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public class GameLibrary {
@@ -70,4 +71,16 @@ public class GameLibrary {
         this.ngayMua = ngayMua;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GameLibrary that = (GameLibrary) o;
+        return Objects.equals(accountId, that.accountId) && Objects.equals(gameId, that.gameId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(accountId, gameId);
+    }
 }
