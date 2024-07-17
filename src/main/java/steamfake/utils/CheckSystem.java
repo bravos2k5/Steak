@@ -57,4 +57,14 @@ public class CheckSystem {
         return disk.getUsableSpace() / (1024 * 1024);
     }
 
+    public static void main(String[] args) {
+        for(File disk : getDisksName()) {
+            System.out.println(disk);
+            System.out.println(new File("data").getUsableSpace() / (1024 * 1024));
+            System.out.println(new File("data").getFreeSpace() / (1024 * 1024));
+            System.out.println("Total space: " + getTotalSpace(disk) + " MB");
+            System.out.println("Available space: " + getAvailableSpace(disk) + " MB");
+        }
+    }
+
 }

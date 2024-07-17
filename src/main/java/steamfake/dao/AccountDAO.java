@@ -108,8 +108,8 @@ public class AccountDAO implements DataAccessObject<Account> {
                 account.setAdmin(rs.getBoolean("isAdmin"));
                 account.setAvatar(rs.getString("avatar"));
                 account.setDob(rs.getDate("dob"));
-                account.setSoDuGame(rs.getFloat("so_du_game"));
-                account.setSoDuThuNhap(rs.getFloat("so_du_kdoanh"));
+                account.setSoDuGame(rs.getDouble("so_du_game"));
+                account.setSoDuThuNhap(rs.getDouble("so_du_kdoanh"));
                 account.setNgayTao(rs.getDate("create_time"));
                 accountList.add(account);
             }
@@ -146,8 +146,8 @@ public class AccountDAO implements DataAccessObject<Account> {
         return tempAccount;
     }
 
-    public void updateViGame(Account account, float money) {
-        float currentMoney = account.getSoDuGame();
+    public void updateViGame(Account account, double money) {
+        double currentMoney = account.getSoDuGame();
         if(money == 0 || (money < 0 && currentMoney < Math.abs(money))) {
             return;
         }
@@ -158,8 +158,8 @@ public class AccountDAO implements DataAccessObject<Account> {
         XJdbc.update(sql,account.getSoDuGame(),account.getId());
     }
 
-    public void updateViThuNhap(Account account, float money) {
-        float currentMoney = account.getSoDuThuNhap();
+    public void updateViThuNhap(Account account, double money) {
+        double currentMoney = account.getSoDuThuNhap();
         if(money == 0 || (money < 0 && currentMoney < Math.abs(money))) {
             return;
         }

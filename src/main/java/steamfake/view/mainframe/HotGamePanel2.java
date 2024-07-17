@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Fri Jul 05 21:47:12 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.mainframe;
 
 import steamfake.dao.GameDAO;
 import steamfake.graphics.slider.SlideShow;
@@ -10,7 +10,6 @@ import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Game;
 import steamfake.utils.XJson;
 import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.mainframe.MFrame;
 import steamfake.view.waiting.WaitingDialog;
 
 import javax.swing.*;
@@ -192,7 +191,7 @@ public class HotGamePanel2 extends JPanel {
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 1004, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(lblRight)
-                    .addGap(28, 28, 28))
+                    .addContainerGap(28, Short.MAX_VALUE))
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -201,17 +200,17 @@ public class HotGamePanel2 extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
+                    .addContainerGap(43, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(503, 503, 503)
-                            .addGroup(layout.createParallelGroup()
-                                .addComponent(lblRight)
-                                .addComponent(lblLeft))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addContainerGap(43, Short.MAX_VALUE)
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
-                            .addGap(62, 62, 62)))
+                            .addGap(62, 62, 62))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lblLeft)
+                            .addGap(253, 253, 253))
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lblRight)
+                            .addGap(258, 258, 258)))
                     .addComponent(pnlInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(55, 55, 55))
         );
@@ -248,7 +247,7 @@ public class HotGamePanel2 extends JPanel {
     private void loadInfo() {
         lblNameGame.setText(game.getName());
         lblPrice.setText(game.getGiaTien() + " VND");
-        lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "");
+        lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "/100");
         lblDownloads.setText(GameDAO.gI().selectLuotTai(game) + "");
         List<String> images = XJson.fromJson(game.getImages(), List.class);
         List<PictureBox> pictureBoxes = new ArrayList<>();

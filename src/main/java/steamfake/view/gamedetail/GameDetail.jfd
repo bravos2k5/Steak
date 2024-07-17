@@ -4,12 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:15:p, comp btnBack:::p:32:p, space u:::p, par l {seq {comp lblGameName:::p:720:p, space :::x}, seq t {par t {seq {par l {seq {comp slideImages:::::x, space :p:12:p, comp btnNext:::p:32:p}, seq {par l {seq l {comp separator1:::p:1:p, space u:::p, par l {comp label1:::p:63:p, comp lblGenres:::p:278:p}}, comp panel1::l:p::p}, space :0:0:x}}, space s:::p, comp panel2:::p::p}, seq l {comp txtContent:::p:1102:p, space :0:0:x}, comp subPanel::l:::x}, space :p:39:p}}}}"
-			"$verticalGroup": "par l {seq {par l {seq l {space :p:246:p, comp btnBack:::p:32:p}, seq l {space :p:22:p, comp lblGameName:::p:33:p, space u:::p, par l {seq t {comp btnNext:::p:32:p, space :p:318:p}, par l:t {comp panel2::l:p::p, seq t {comp slideImages:::p:405:p, space s:::p, par l:::p {seq l {comp label1:::p::p, space :p:18:p, comp lblGenres:::p::p}, comp separator1::t:p:54:p}, space s:::p, comp panel1:::p::p}}}}}, space :p:42:p, comp txtContent:::p::p, space s:::p, comp subPanel:::p:85:p, space ::52:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:15:p, comp btnBack:::p:32:p, space u:::p, par l {seq {comp lblGameName:::p:720:p, space :::x}, seq t {par t {seq {par l {seq {comp slideImages:::::x, space :p:12:p, comp btnNext:::p:32:p}, seq {comp separator1:::p:1:p, space u:::p, par l {comp label1:::p:63:p, comp lblGenres:::p:278:p}, space :0:0:x}, comp panel1::l:::x}, space s:::p, comp panel2:::p::p}, seq l {comp txtContent:::p:1102:p, space :0:0:x}, comp subPanel::l:::x}, space :p:39:p}}}}"
+			"$verticalGroup": "par l {seq {par l {seq l {space :p:22:p, comp lblGameName:::p:33:p, space u:::p, par l:::p {seq {par l {comp slideImages:::p:405:p, seq l {space :p:174:p, comp btnNext:::p:32:p}}, space s:::p, par l:::p {seq l {comp label1:::p::p, space :p:18:p, comp lblGenres:::p::p}, comp separator1::t:p:54:p}, space :p:18:p, comp panel1:::p::p}, comp panel2:::::x}}, seq l {space :p:246:p, comp btnBack:::p:32:p}}, space :p:42:p, comp txtContent:::p::p, space s:::p, comp subPanel:::p:44:p, space ::18:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 25, 25, 255 )
 			"font": new java.awt.Font( "SansSerif", 0, 12 )
+			"opaque": false
 			add( new FormContainer( "steamfake.graphics.slider.SlideShow", new FormLayoutManager( class javax.swing.JLayeredPane ) ) {
 				name: "slideImages"
 				"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
@@ -45,7 +46,7 @@ new FormModel {
 				"font": new java.awt.Font( "SansSerif", 0, 14 )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:32:p, par l {comp lbWindows::l:p::p, seq l {comp label5:::p::p, space :p:24:p, comp label41:::p::p, space :::p, comp lblRam:::p:80:p, space u:::p, comp label42:::p::p, space u:::p, comp lblRom:::p::p}}, space ::50:x}}"
+				"$horizontalGroup": "par l {seq l {space :p:32:p, par l {comp lbWindows::l:p::p, seq l {comp label5:::p::p, space :p:24:p, comp label41:::p::p, space :::p, comp lblRam:::p:80:p, space u:::p, comp label42:::p::p, space u:::p, comp lblRom:::p::p}}, space :::x}}"
 				"$verticalGroup": "par l {seq l {space :p:49:p, comp lbWindows:::p::p, space u:::p, par b {comp label5::b:p::p, comp label42::b:p::p, comp lblRom::b:p::p, comp label41::b:p::p, comp lblRam::b:p::p}, space ::44:x}}"
 			} ) {
 				name: "panel1"
@@ -79,8 +80,8 @@ new FormModel {
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {par l {par t:l {par l:::p {comp lblCost:::p::p, seq l {space :2:2:p, comp btnBuy:::p:229:p}, seq l {comp label55:::p::p, space :::x, comp lblPublisher:::p:153:p}, comp separator4:::::x, seq l {comp lbl999:::p::p, space :119:119:p, comp lblRelease:::p::p}, comp separator6:::::x, seq l {comp label59:::p:93:p, space :::x, comp lblLatestUpdate:::p::p}, comp separator7::t:::x, comp label52::l:p::p}, seq {space :p:139:p, comp lblAge:::p::p, space :p:94:p}}, seq l {space :p:45:p, comp panel4:::p::p}, seq t {space :::p, comp btnComment:::p:206:p, space :p:10:p}}, space ::44:x}}"
-				"$verticalGroup": "par l {seq t {space :::p, comp lblAge:::p::p, space :::x, comp panel4:::p::p, space :p:44:p, comp lblCost:::p::p, space :p:12:p, comp label52:::p::p, space :p:12:p, comp btnBuy:::p:37:p, space :p:59:p, par b {comp label55::b:p::p, comp lblPublisher::b:p::p}, space :6:6:p, comp separator4:::p::p, space :3:3:p, par l {comp lbl999:::p::p, comp lblRelease:::p::p}, space :6:6:p, comp separator6:::p::p, space :6:6:p, par b {comp label59::b:p::p, comp lblLatestUpdate::b:p::p}, space :::p, comp separator7:::p::p, space :p:35:p, comp btnComment:::p:35:p, space :p:22:p}}"
+				"$horizontalGroup": "par l {seq l {par l {par t:l {seq {space :p:139:p, comp lblAge:::p::p, space :p:94:p}, par l:t {comp label2:::p::p, par l:::p {comp lblCost:::p::p, seq l {space :2:2:p, comp btnBuy:::p:229:p}, seq l {comp label55:::p::p, space :::x, comp lblPublisher:::p:153:p}, comp separator4:::::x, seq l {comp lbl999:::p::p, space :119:119:p, comp lblRelease:::p::p}, comp separator6:::::x, seq l {comp label59:::p:93:p, space :::x, comp lblLatestUpdate:::p::p}, comp separator7::t:::x, comp label52::l:p::p}}}, seq l {space :p:45:p, comp panel4:::p::p}}, space ::44:x}}"
+				"$verticalGroup": "par l {seq t {space :::p, comp lblAge:::p::p, space :::x, comp panel4:::p::p, space :p:44:p, comp lblCost:::p::p, space :p:12:p, comp label52:::p::p, space :p:12:p, comp btnBuy:::p:37:p, space :p:59:p, par b {comp label55::b:p::p, comp lblPublisher::b:p::p}, space :6:6:p, comp separator4:::p::p, space :3:3:p, par l {comp lbl999:::p::p, comp lblRelease:::p::p}, space :6:6:p, comp separator6:::p::p, space :6:6:p, par b {comp label59::b:p::p, comp lblLatestUpdate::b:p::p}, space :::p, comp separator7:::p::p, space s:::p, comp label2:::p::p, space :p:19:p}}"
 			} ) {
 				name: "panel2"
 				"opaque": false
@@ -134,10 +135,6 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JSeparator" ) {
 					name: "separator7"
 				} )
-				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-					name: "btnComment"
-					"text": "ĐÁNH GIÁ"
-				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lblAge"
 					"text": "12+"
@@ -163,6 +160,12 @@ new FormModel {
 						"minimumSize": new java.awt.Dimension( 219, 198 )
 					} )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label2"
+					"text": "Đã được kiểm duyệt"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/shield.png" )
+					"font": new java.awt.Font( "Segoe UI", 0, 14 )
+				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblGenres"
@@ -174,6 +177,12 @@ new FormModel {
 				name: "subPanel"
 				"opaque": false
 				"maximumSize": new java.awt.Dimension( 1102, 12000 )
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label3"
+					"text": "Bình luận"
+					"font": new java.awt.Font( "Segoe UI", 0, 26 )
+				} )
 			} )
 			add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
 				name: "txtContent"
@@ -181,7 +190,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 75, 0 )
-			"size": new java.awt.Dimension( 1200, 900 )
+			"size": new java.awt.Dimension( 1200, 825 )
 		} )
 	}
 }

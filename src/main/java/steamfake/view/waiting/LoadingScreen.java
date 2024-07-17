@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Mon Jul 08 17:25:00 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.waiting;
 
 import steamfake.graphics.CurvesPanel;
 import steamfake.graphics.ProgressBarCustom;

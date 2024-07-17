@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:27:p, comp lblLeft:::p::p, space s:::p, comp panel1:::p:1004:p, space s:::p, comp lblRight:::p::p, space :p:28:p}, seq t {space :::x, comp pnlInfo:::p::p, space :p:70:p}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:503:p, par l {comp lblRight:::p::p, comp lblLeft:::p::p}, space ::122:x}, seq t {space ::43:x, comp panel1:::p:570:p, space :p:62:p}}, comp pnlInfo:::p::p, space :p:55:p}}"
+			"$horizontalGroup": "par l {seq l {space :p:27:p, comp lblLeft:::p::p, space s:::p, comp panel1:::p:1004:p, space s:::p, comp lblRight:::p::p, space ::28:x}, seq t {space :::x, comp pnlInfo:::p::p, space :p:70:p}}"
+			"$verticalGroup": "par l {seq l {space ::43:x, par l {seq t {comp panel1:::p:570:p, space :p:62:p}, seq t {comp lblLeft:::p::p, space :p:253:p}, seq t {comp lblRight:::p::p, space :p:258:p}}, comp pnlInfo:::p::p, space :p:55:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -100,4 +100,3 @@ new FormModel {
 		} )
 	}
 }
-

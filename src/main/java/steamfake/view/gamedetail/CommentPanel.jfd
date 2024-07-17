@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:31:p, par l {comp panel1:::p:950:p, seq {comp lblAvatar:::p:81:p, space :18:18:p, par l {seq {comp label5:::p::p, space s:::p, comp lblRate:::p::p}, comp lblName:::p:801:p}}}, space ::69:x}}"
-			"$verticalGroup": "par l {seq l {space :p:28:p, par l {comp lblAvatar:::p:81:p, seq {comp lblName:::p::p, space :p:25:p, par b {comp label5::b:p::p, comp lblRate::b:p::p}}}, space u:::p, comp panel1:::p::p, space ::54:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:31:p, par l {comp panel1:::p:950:p, seq {comp lblAvatar:::p:81:p, space :18:18:p, par l {seq {comp label5:::p::p, space s:::p, comp lblRate:::p::p}, seq {comp lblName:::p:801:p, space s:::p, comp lblDeleteComment:::p::p}}}}, space ::69:x}}"
+			"$verticalGroup": "par l {seq l {space :p:28:p, par l {comp lblAvatar:::p:81:p, seq {par l {comp lblName:::p::p, comp lblDeleteComment:::p::p}, space :p:25:p, par b {comp label5::b:p::p, comp lblRate::b:p::p}}}, space u:::p, comp panel1:::p::p, space ::54:x}}"
 		} ) {
 			name: "this"
 			"opaque": false
@@ -34,6 +34,10 @@ new FormModel {
 				add( new FormComponent( "steamfake.graphics.CustomTextBox" ) {
 					name: "txtComment"
 				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblDeleteComment"
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/delete-mini.png" )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 10, 0 )

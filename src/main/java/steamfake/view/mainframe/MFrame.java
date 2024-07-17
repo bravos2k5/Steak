@@ -9,12 +9,11 @@ import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.HotGamePanel2;
-import steamfake.view.LibraryPanel;
-import steamfake.view.LoadingScreen;
-import steamfake.view.LoginDialog;
 import steamfake.view.gamedetail.GameDetailPanel;
+import steamfake.view.gamelib.LibraryPanel;
+import steamfake.view.login.LoginDialog;
 import steamfake.view.managegame.ManageGame;
+import steamfake.view.waiting.LoadingScreen;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -169,6 +168,7 @@ public class MFrame extends JFrame {
         //======== scrollPane1 ========
         {
             scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+            scrollPane1.setBorder(null);
 
             //======== mainPanel ========
             {
@@ -404,6 +404,5 @@ public class MFrame extends JFrame {
             mainPanel.revalidate();
         });
     }
-
 
 }

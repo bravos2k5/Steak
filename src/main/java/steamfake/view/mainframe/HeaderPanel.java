@@ -38,7 +38,6 @@ public class HeaderPanel extends JPanel {
         lblSearch = new JLabel();
         lblMoney = new JLabel();
         iconAddMoney = new JLabel();
-        separator3 = new JSeparator();
         iconSettingAccount = new JLabel();
         iconLogOut = new JLabel();
         radiusTextField1 = new RadiusTextField();
@@ -67,12 +66,6 @@ public class HeaderPanel extends JPanel {
         iconAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Add Dollar.png")));
         iconAddMoney.setBackground(new Color(0x252730));
         iconAddMoney.setOpaque(true);
-
-        //---- separator3 ----
-        separator3.setOrientation(SwingConstants.VERTICAL);
-        separator3.setOpaque(true);
-        separator3.setBackground(Color.white);
-        separator3.setForeground(Color.white);
 
         //---- iconSettingAccount ----
         iconSettingAccount.setIcon(new ImageIcon(getClass().getResource("/icon/Accessibility Tools.png")));
@@ -133,9 +126,7 @@ public class HeaderPanel extends JPanel {
                     .addComponent(lblAdmin)
                     .addGap(18, 18, 18)
                     .addComponent(iconAddMoney)
-                    .addGap(18, 18, 18)
-                    .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(33, 33, 33)
                     .addComponent(iconSettingAccount)
                     .addGap(18, 18, 18)
                     .addComponent(iconLogOut)
@@ -143,6 +134,10 @@ public class HeaderPanel extends JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 8, Short.MAX_VALUE))
                 .addGroup(layout.createSequentialGroup()
                     .addGap(7, 7, 7)
                     .addGroup(layout.createParallelGroup()
@@ -154,26 +149,20 @@ public class HeaderPanel extends JPanel {
                             .addGap(17, 17, 17))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
-                                .addComponent(separator3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
+                                    .addGap(12, 12, 12)
                                     .addGroup(layout.createParallelGroup()
                                         .addComponent(iconAddMoney)
                                         .addComponent(lblAdmin)
-                                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(iconLogOut)
-                                            .addComponent(iconSettingAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(lblMoney, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(iconSettingAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(iconLogOut))))
                             .addContainerGap(8, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblName)
                             .addGap(7, 7, 7)
                             .addComponent(lblRole)
                             .addGap(0, 8, Short.MAX_VALUE))))
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(lblAvata, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 8, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -182,7 +171,6 @@ public class HeaderPanel extends JPanel {
     private JLabel lblSearch;
     private JLabel lblMoney;
     private JLabel iconAddMoney;
-    private JSeparator separator3;
     private JLabel iconSettingAccount;
     private JLabel iconLogOut;
     private RadiusTextField radiusTextField1;

@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Thu Jul 11 23:44:31 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.gamelib;
 
 import steamfake.dao.GameLibraryDAO;
 import steamfake.model.Game;
