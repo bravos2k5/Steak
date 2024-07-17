@@ -7,10 +7,9 @@ import java.io.File;
 import java.util.List;
 
 public class AzureBlobService {
-    // Created by QuocBao
 
     public static BlobContainerClient getContainerClient(String containerName) {
-        return AzureBlobConnector.getClient().getBlobContainerClient(containerName);
+        return AzureBlobConnector.gI().getClient().getBlobContainerClient(containerName);
     }
 
     /**
@@ -34,7 +33,7 @@ public class AzureBlobService {
      * @param name        tên file trên cloud
      * @param container   tên container chứa file
      */
-    public static void download(String destination, String name, String container) {
+    public synchronized static void download(String destination, String name, String container) {
         BlobClient client = getContainerClient(container).getBlobClient(name);
         if(client.exists()) {
             new File(destination).getParentFile().mkdirs();

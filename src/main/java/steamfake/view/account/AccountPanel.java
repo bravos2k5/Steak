@@ -56,10 +56,11 @@ public class AccountPanel extends JPanel {
         radiusButton3 = new RadiusButton();
         radiusButton4 = new RadiusButton();
         radiusLabel1 = new RadiusLabel();
-        label12 = new JLabel();
         label13 = new JLabel();
         label14 = new JLabel();
-        label15 = new JLabel();
+        lblSoDuGame = new JLabel();
+        lblSoDuDoanhThu = new JLabel();
+        label17 = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -281,12 +282,7 @@ public class AccountPanel extends JPanel {
             radiusLabel1.setText("text");
             radiusLabel1.setRadius(0);
             radiusLabel1.setBackground(Color.white);
-
-            //---- label12 ----
-            label12.setText("01/01/24");
-            label12.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-            label12.setHorizontalAlignment(SwingConstants.CENTER);
-            label12.setForeground(new Color(0x545457));
+            radiusLabel1.setIcon(new ImageIcon(getClass().getResource("/icon/default_avatar.png")));
 
             //---- label13 ----
             label13.setText("Tr\u1ecbnh V\u0103n Thu\u1eadt");
@@ -296,11 +292,20 @@ public class AccountPanel extends JPanel {
             //---- label14 ----
             label14.setIcon(new ImageIcon(getClass().getResource("/icon/Dollar Coin.png")));
 
-            //---- label15 ----
-            label15.setText("1.000.000.000.000");
-            label15.setHorizontalAlignment(SwingConstants.RIGHT);
-            label15.setFont(new Font("Inter", Font.BOLD, 16));
-            label15.setForeground(Color.yellow);
+            //---- lblSoDuGame ----
+            lblSoDuGame.setText("1.000.000.000.000");
+            lblSoDuGame.setHorizontalAlignment(SwingConstants.RIGHT);
+            lblSoDuGame.setFont(new Font("Inter", Font.BOLD, 16));
+            lblSoDuGame.setForeground(Color.yellow);
+
+            //---- lblSoDuDoanhThu ----
+            lblSoDuDoanhThu.setText("1.000.000.000.000");
+            lblSoDuDoanhThu.setHorizontalAlignment(SwingConstants.RIGHT);
+            lblSoDuDoanhThu.setFont(new Font("Inter", Font.BOLD, 16));
+            lblSoDuDoanhThu.setForeground(Color.blue);
+
+            //---- label17 ----
+            label17.setIcon(new ImageIcon(getClass().getResource("/icon/coin.png")));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -319,12 +324,15 @@ public class AccountPanel extends JPanel {
                                             .addComponent(label3, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(panel1Layout.createParallelGroup()
-                                            .addComponent(label12, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                                                .addComponent(lblSoDuGame, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                                             .addComponent(label13, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                                .addComponent(label15, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(label14, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(lblSoDuDoanhThu, GroupLayout.PREFERRED_SIZE, 220, GroupLayout.PREFERRED_SIZE)
+                                                .addGap(6, 6, 6)
+                                                .addComponent(label17)))
                                         .addGap(18, 18, 18)
                                         .addComponent(radiusLabel1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panel1Layout.createSequentialGroup()
@@ -360,13 +368,15 @@ public class AccountPanel extends JPanel {
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                             .addComponent(radiusLabel1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(panel1Layout.createParallelGroup()
+                                    .addComponent(lblSoDuDoanhThu, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label17, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(label14, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label15, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(lblSoDuGame, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGroup(panel1Layout.createParallelGroup()
@@ -436,9 +446,10 @@ public class AccountPanel extends JPanel {
     private RadiusButton radiusButton3;
     private RadiusButton radiusButton4;
     private RadiusLabel radiusLabel1;
-    private JLabel label12;
     private JLabel label13;
     private JLabel label14;
-    private JLabel label15;
+    private JLabel lblSoDuGame;
+    private JLabel lblSoDuDoanhThu;
+    private JLabel label17;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

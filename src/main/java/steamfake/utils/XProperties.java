@@ -1,15 +1,24 @@
 package steamfake.utils;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.Properties;
 
 public class XProperties {
 
-    public static Properties loadProperties(String path) {
+    private static XProperties instance;
+
+    private XProperties() {
+    }
+
+    public static XProperties getInstance() {
+        if(instance == null) {
+            instance = new XProperties();
+        }
+        return instance;
+    }
+
+    public Properties loadProperties(String path) {
         try(FileInputStream fis = new FileInputStream(path)) {
             Properties properties = new Properties();
             properties.load(fis);
@@ -21,7 +30,7 @@ public class XProperties {
     }
 
 
-    public static void saveProperties(Properties properties, String path) {
+    public void saveProperties(Properties properties, String path) {
         try(FileOutputStream fos = new FileOutputStream(path)) {
             File file = new File(path);
             if(file.createNewFile()) {
@@ -30,6 +39,16 @@ public class XProperties {
             properties.store(fos,"Saved at " + new Date());
         } catch (IOException e) {
             //Message here
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Properties loadResourceProperties(String path) {
+        try(InputStream isr = getClass().getClassLoader().getResourceAsStream(path)) {
+            Properties properties = new Properties();
+            properties.load(isr);
+            return properties;
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,7 +1,7 @@
 package steamfake.utils.database;
 
-import java.io.IOException;
-import java.io.InputStream;
+import steamfake.utils.XProperties;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ public class DatabaseConnector {
     private Connection connection;
 
     private DatabaseConnector() {
-        Properties properties = loadProperties();
+        Properties properties = XProperties.getInstance().loadResourceProperties("database.properties");
         String host = properties.getProperty("database.host");
         String port = properties.getProperty("database.port");
         username = properties.getProperty("database.username");
@@ -59,22 +59,6 @@ public class DatabaseConnector {
                 throw new RuntimeException(e);
             }
         }
-    }
-
-    private Properties loadProperties() {
-        try(InputStream isr = getClass().getClassLoader().getResourceAsStream("database.properties")) {
-            Properties properties = new Properties();
-            properties.load(isr);
-            return properties;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static void main(String[] args) {
-        DatabaseConnector connector = DatabaseConnector.getInstance();
-        System.out.println(connector.getConnection());
-        DatabaseConnector.getInstance().closeConnection();
     }
 
 }
