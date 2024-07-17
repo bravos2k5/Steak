@@ -11,7 +11,7 @@ import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.utils.XFile;
 import steamfake.utils.XMessage;
-import steamfake.utils.azure.AzureBlobService;
+import steamfake.utils.azure.AzureBlobConnector;
 
 import javax.swing.*;
 import java.awt.*;
@@ -110,8 +110,6 @@ public class DownloadPanel extends JPanel {
     private JLabel lblAction;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    private static final BlobContainerClient containerClient = AzureBlobService.getContainerClient("games");
-
 
     public enum Status {
         WAITING,
@@ -175,6 +173,7 @@ public class DownloadPanel extends JPanel {
 
     private void download() {
         String blobName = game.getId() + "/" + game.getVersion() + "/" + "game.zip";
+        BlobContainerClient containerClient = AzureBlobConnector.gI().getClient().getBlobContainerClient("games");
         BlobClient blobClient = containerClient.getBlobClient(blobName);
         final long totalSize = blobClient.getProperties().getBlobSize();
         final String path = "games/" + game.getId() + "/" + game.getVersion();
