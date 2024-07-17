@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jul 03 10:00:17 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.download;
 
 import steamfake.model.Game;
 import steamfake.view.mainframe.MFrame;

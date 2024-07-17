@@ -5,13 +5,19 @@
 package steamfake.view.gamedetail;
 
 import steamfake.dao.AccountDAO;
+import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
 import steamfake.model.GameLibrary;
+import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
+import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 /**
@@ -28,7 +34,6 @@ public class CommentPanel extends JPanel {
     }
 
 
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         lblAvatar = new JLabel();
@@ -37,6 +42,7 @@ public class CommentPanel extends JPanel {
         lblRate = new JLabel();
         panel1 = new JPanel();
         txtComment = new CustomTextBox();
+        lblDeleteComment = new JLabel();
 
         //======== this ========
         setOpaque(false);
@@ -59,6 +65,9 @@ public class CommentPanel extends JPanel {
             panel1.add(txtComment);
         }
 
+        //---- lblDeleteComment ----
+        lblDeleteComment.setIcon(new ImageIcon(getClass().getResource("/icon/delete-mini.png")));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,7 +84,10 @@ public class CommentPanel extends JPanel {
                                     .addComponent(label5)
                                     .addGap(18, 18, 18)
                                     .addComponent(lblRate))
-                                .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 801, GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblName, GroupLayout.PREFERRED_SIZE, 801, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lblDeleteComment)))))
                     .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,7 +97,9 @@ public class CommentPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblAvatar, GroupLayout.PREFERRED_SIZE, 81, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(lblName)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(lblName)
+                                .addComponent(lblDeleteComment))
                             .addGap(25, 25, 25)
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label5)
@@ -104,39 +118,20 @@ public class CommentPanel extends JPanel {
     private JLabel lblRate;
     private JPanel panel1;
     private CustomTextBox txtComment;
+    private JLabel lblDeleteComment;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private void initialize() {
         loadInfo();
+        lblDeleteComment.setVisible(SessionManager.user != null && SessionManager.user.isAdmin());
+        lblDeleteComment.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                deleteComment();
+            }
+        });
     }
-
-    String text = "<html>Welcome to New Eridu — Where Humanity Rises Anew!<br><br>"
-            + "Don't go into Hollows.<br>"
-            + "I know, I know, there are Ether resources in the Hollows, bizarre creations, even ruins of the old civilization — all invaluable treasures.<br>"
-            + "But don't forget about the spatial disorder, the monsters, and mutants running rampant. Ultimately, this is a disaster that could swallow the world. Hollows are not where ordinary people should go.<br>"
-            + "So don't go into Hollows.<br>"
-            + "Or at least, don't go in alone.<br>"
-            + "If you insist on getting into danger, go to New Eridu first.<br>"
-            + "This city full of people from all walks of life has many who need the Hollows: powerful and wealthy tycoons, gangs who rule the streets, schemers hiding in the shadows, and ruthless officials.<br>"
-            + "Make your preparations there, find strong allies, and most importantly...<br>"
-            + "Find a 'Proxy.'<br>"
-            + "Only they can guide people out of labyrinthian Hollows.<br>"
-            + "Good luck.<br>"
-            + "<br>"
-            + "Zenless Zone Zero is an all-new 3D action game from HoYoverse that takes place in a near future, with the world plagued by a mysterious disaster known as 'Hollows.'<br>"
-            + "<br>"
-            + "Dual Identities, a Singular Experience<br>"
-            + "In the near future, a mysterious natural disaster known as 'Hollows' has occurred. A new kind of city has emerged in this disaster-ridden world — New Eridu. This last oasis has mastered the technology to co-exist with Hollows and is home to a whole host of chaotic, boisterous, dangerous, and very active factions. As a professional Proxy, you play a crucial role in linking the city and the Hollows. Your story awaits.<br>"
-            + "<br>"
-            + "Build Your Squad and Fight Fast-Paced Battles<br>"
-            + "Zenless Zone Zero is an all-new 3D action game from HoYoverse, here to provide a thrilling combat experience. Build a squad of up to three and begin your assault with Basic and Special Attacks. Dodge and Parry to neutralize your opponents' counterattacks, and when they're Stunned, unleash a powerful combo of Chain Attacks to finish them off! Remember, different opponents have different traits, and it would be prudent to use their weaknesses to your advantage.<br>"
-            + "<br>"
-            + "Immerse Yourself in the Unique Style and Music<br>"
-            + "Zenless Zone Zero has a unique visual style and design. With its carefully crafted character expressions and fluid movements, you'll easily feel immersed in the fascinating world as you embark on your own journey~ And of course, every VIP deserves their very own soundtrack, so you'll also have emotional beats full of drip to accompany you in each unforgettable moment~<br>"
-            + "<br>"
-            + "Various Factions and Stories Entwined<br>"
-            + "Random Play can't operate without videotapes, and Proxies can't operate without Agents. In New Eridu, customers from all walks will come knocking. So don't be fooled by their innocent and cute appearances, don't be afraid of those who tower over you and look dangerous, and don't turn away the fluffy ones who might shed fur all over your spotless floor. Go and talk with them, learn about their unique experiences, and allow them to become your friends and allies. After all, this is a long path, and only with companions will you be able to walk far~</html>";
 
     private void loadInfo() {
         String[] nameAndAvatar = AccountDAO.gI().selectNameAndAvatarByID(gameLibrary.getAccountId());
@@ -155,20 +150,26 @@ public class CommentPanel extends JPanel {
 
         lblRate.setText(gameLibrary.getRate() + "");
         txtComment.setText(gameLibrary.getComment());
-        txtComment.setText(text);
         revalidate();
         repaint();
     }
 
-//    private void adjustPanelSize() {
-//        Dimension preferredSize = new Dimension();
-//        for (Component component : this.getComponents()) {
-//            Dimension componentSize = component.getPreferredSize();
-//            preferredSize.width = Math.max(preferredSize.width, componentSize.width);
-//            preferredSize.height += componentSize.height;
-//        }
-//        this.setPreferredSize(preferredSize);
-//        this.revalidate(); // Apply the changes
-//    }
+    private void deleteComment() {
+        int choice = XMessage.confirm(MFrame.getInstance(),"Bạn có chắc chắn muốn xóa bình luận này không?");
+        if(choice == JOptionPane.YES_OPTION) {
+            int result = GameLibraryDAO.gI().deleteComment(gameLibrary);
+            if(result > 0) {
+                Container parent = this.getParent();
+                parent.remove(this);
+                parent.revalidate();
+                parent.repaint();
+                XMessage.notificate(MFrame.getInstance(),"Xóa bình luận thành công!");
+            }
+            else {
+                XMessage.notificate(MFrame.getInstance(),"Xóa bình luận thất bại!");
+            }
+        }
+    }
+
 
 }

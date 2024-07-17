@@ -113,6 +113,11 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
         return selectBySQL(sql,id);
     }
 
+    public int deleteComment(GameLibrary gameLibrary) {
+            String sql = "UPDATE THU_VIEN_GAME SET comment = '' WHERE account_id = ? and game_id = ?";
+            return XJdbc.update(sql,gameLibrary.getAccountId(),gameLibrary.getGameId());
+    }
+
     public HashMap<GameLibrary, Game> selectLibraryMap(Account account) {
         String sql = "{CALL SP_GET_MAP_LIBRARY(?)}";
         HashMap<GameLibrary,Game> libraryGameHashMap = new HashMap<>();

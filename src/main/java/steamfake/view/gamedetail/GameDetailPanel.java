@@ -102,7 +102,7 @@ public class GameDetailPanel extends JPanel {
     public void loadMyComment() {
         if(gameLibrary != null) {
             myCommentPanel.removeAll();
-            myCommentPanel.add(new MyCommentPanel(gameLibrary, this));
+            myCommentPanel.add(new MyCommentPanel(gameLibrary));
             myCommentPanel.repaint();
             myCommentPanel.validate();
             this.repaint();

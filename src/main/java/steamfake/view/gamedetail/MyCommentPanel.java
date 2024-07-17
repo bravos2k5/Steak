@@ -22,7 +22,7 @@ public class MyCommentPanel extends JPanel {
 
     private final GameLibrary gameLibrary;
 
-    public MyCommentPanel(GameLibrary game, GameDetailPanel parentPanel) {
+    public MyCommentPanel(GameLibrary game) {
         this.gameLibrary = game;
         initComponents();
         initialize();

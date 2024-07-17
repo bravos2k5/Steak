@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sat Jul 06 15:09:44 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.login;
 
 import steamfake.dao.AccountDAO;
 import steamfake.graphics.ButtonGradient;

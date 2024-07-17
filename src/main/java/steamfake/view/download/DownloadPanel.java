@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Wed Jul 03 09:28:09 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.download;
 
 import com.azure.storage.blob.BlobClient;
 import com.azure.storage.blob.BlobContainerClient;

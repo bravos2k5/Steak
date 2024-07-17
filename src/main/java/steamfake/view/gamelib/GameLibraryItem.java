@@ -2,7 +2,7 @@
  * Created by JFormDesigner on Sun Jul 07 12:08:40 ICT 2024
  */
 
-package steamfake.view;
+package steamfake.view.gamelib;
 
 import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;

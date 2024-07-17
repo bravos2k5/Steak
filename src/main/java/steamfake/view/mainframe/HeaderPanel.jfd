@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :p:14:p, comp lblAvata:::p:62:p, space u:::p, par l {comp lblName:::p::p, comp lblRole:::p:138:p}, space ::285:x, comp radiusTextField1:::p:555:p, space :0:0:p, comp lblSearch:::p:60:p, space s:::p, comp lblMoney:::p:216:p, space s:::p, comp lblAdmin:::p::p, space :p:18:p, comp iconAddMoney:::p::p, space s:::p, comp separator3:::p:3:p, space u:::p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
-			"$verticalGroup": "par l {seq l {space :p:7:p, par l {seq l {space :p:11:p, par l {comp lblSearch:::::x, comp radiusTextField1:::::x}, space :p:17:p}, seq {par l {comp separator3:::p:50:p, seq l {space :p:14:p, par l {comp iconAddMoney::l:p::p, comp lblAdmin::l:p::p, par t:l {comp iconLogOut:::p::p, comp iconSettingAccount:::p:30:p}}}, comp lblMoney::l:p:50:p}, space ::8:x}, seq {comp lblName:::p::p, space :7:7:p, comp lblRole:::p::p, space :0:8:x}}}, seq l {space :::p, comp lblAvata:::p:51:p, space :0:8:x}}"
+			"$horizontalGroup": "par l {seq t {space :p:14:p, comp lblAvata:::p:62:p, space u:::p, par l {comp lblName:::p::p, comp lblRole:::p:138:p}, space ::285:x, comp radiusTextField1:::p:555:p, space :0:0:p, comp lblSearch:::p:60:p, space s:::p, comp lblMoney:::p:216:p, space :p:18:p, comp lblAdmin:::p::p, space s:::p, comp iconAddMoney:::p::p, space :p:33:p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp lblAvata:::p:51:p, space :0:8:x}, seq l {space :p:7:p, par l {seq l {space :p:11:p, par l {comp lblSearch:::::x, comp radiusTextField1:::::x}, space :p:17:p}, seq {par l {comp lblMoney::l:p:50:p, seq l {space :p:12:p, par l {comp iconAddMoney:::p::p, comp lblAdmin:::p::p, comp iconSettingAccount::l:p:30:p, comp iconLogOut::l:p::p}}}, space ::8:x}, seq {comp lblName:::p::p, space :7:7:p, comp lblRole:::p::p, space :0:8:x}}}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -29,13 +29,6 @@ new FormModel {
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Add Dollar.png" )
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				"opaque": true
-			} )
-			add( new FormComponent( "javax.swing.JSeparator" ) {
-				name: "separator3"
-				"orientation": 1
-				"opaque": true
-				"background": sfield java.awt.Color white
-				"foreground": sfield java.awt.Color white
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "iconSettingAccount"

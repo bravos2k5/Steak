@@ -21,8 +21,8 @@ public class Account {
     private boolean isAdmin;
     private String avatar;
     private Date dob;
-    private float soDuGame;
-    private float soDuThuNhap;
+    private double soDuGame;
+    private double soDuThuNhap;
     private Date ngayTao;
 
     public Account(String username) {
@@ -129,19 +129,19 @@ public class Account {
         this.dob = dob;
     }
 
-    public float getSoDuGame() {
+    public double getSoDuGame() {
         return soDuGame;
     }
 
-    public void setSoDuGame(float soDuGame) {
+    public void setSoDuGame(double soDuGame) {
         this.soDuGame = soDuGame;
     }
 
-    public float getSoDuThuNhap() {
+    public double getSoDuThuNhap() {
         return soDuThuNhap;
     }
 
-    public void setSoDuThuNhap(float soDuThuNhap) {
+    public void setSoDuThuNhap(double soDuThuNhap) {
         this.soDuThuNhap = soDuThuNhap;
     }
 
