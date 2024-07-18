@@ -9,6 +9,7 @@ import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.account.AccountPanel;
 import steamfake.view.gamedetail.GameDetailPanel;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
@@ -257,8 +258,7 @@ public class MFrame extends JFrame {
                     setEffectMenu(lblLibrary);
                 }
                 else {
-                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.this).setVisible(true);
+                    requestLogin();
                 }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -279,8 +279,7 @@ public class MFrame extends JFrame {
                     setEffectMenu(lblAddMoney);
                 }
                 else {
-                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.this).setVisible(true);
+                    requestLogin();
                 }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -301,8 +300,7 @@ public class MFrame extends JFrame {
                     setEffectMenu(lblManage);
                 }
                 else {
-                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.this).setVisible(true);
+                    requestLogin();
                 }
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -334,11 +332,16 @@ public class MFrame extends JFrame {
                     mainPanel.revalidate();
                 }
                 else {
-                    XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.this).setVisible(true);
+                    requestLogin();
                 }
             }
         });
+
+    }
+
+    private void requestLogin() {
+        XMessage.notificate(MFrame.this, "Bạn cần đăng nhập để sử dụng chức năng này");
+        new LoginDialog(MFrame.this).setVisible(true);
     }
 
     private void setEffectMenu(JLabel label) {
@@ -393,6 +396,14 @@ public class MFrame extends JFrame {
 
     private void initDownloadPage() {
 
+    }
+
+    public void initSettingAccountPage() {
+        mainPanel.removeAll();
+        AccountPanel accountPanel = new AccountPanel();
+        mainPanel.add(accountPanel);
+        mainPanel.repaint();
+        mainPanel.revalidate();
     }
 
     public void showGameDetail(Game game) {

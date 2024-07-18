@@ -234,4 +234,30 @@ public class AccountDAO implements DataAccessObject<Account> {
         }
     }
 
+    public int updatePersonalInfo(Account account) {
+        String sql = "UPDATE Account " +
+                "SET ho_ten = ?," +
+                "phone = ?," +
+                "dob = ?," +
+                "gioi_tinh = ?," +
+                "avatar = ? " +
+                "WHERE id = ?";
+        return XJdbc.update(sql,account.getHoTen(),account.getPhone(),
+                account.getDob(),account.getGioiTinh(),account.getAvatar(),account.getId());
+    }
+
+    public int changePassword(Account account) {
+        String sql = "UPDATE Account " +
+                "SET password = ? " +
+                "WHERE id = ?";
+        return XJdbc.update(sql,account.getPassword(),account.getId());
+    }
+
+    public int changeEmail(String username, String newEmail) {
+        String sql = "UPDATE Account " +
+                "SET email = ? " +
+                "WHERE username = ?";
+        return XJdbc.update(sql,newEmail,username);
+    }
+
 }

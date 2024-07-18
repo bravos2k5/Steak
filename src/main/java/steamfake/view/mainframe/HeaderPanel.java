@@ -8,10 +8,13 @@ import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
+import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobService;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 
 /**
@@ -190,6 +193,7 @@ public class HeaderPanel extends JPanel {
         lblAvata.setSize(new Dimension(50,50));
         lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
         initEffectHover();
+        initSettingAccountPage();
     }
 
     private void initEffectHover() {
@@ -232,6 +236,19 @@ public class HeaderPanel extends JPanel {
 
     public void updateMoney(){
         SwingUtilities.invokeLater(() -> lblMoney.setText(SessionManager.user.getSoDuGame() + " VND"));
+    }
+
+    private void initSettingAccountPage() {
+        iconSettingAccount.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(!SessionManager.isLogin()) {
+                    XMessage.notificate(MFrame.getInstance(),"Bạn cần đăng nhập để sử dụng chức năng này");
+                    return;
+                }
+                MFrame.getInstance().initSettingAccountPage();
+            }
+        });
     }
 
 }

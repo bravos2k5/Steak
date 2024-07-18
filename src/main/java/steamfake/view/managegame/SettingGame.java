@@ -497,7 +497,7 @@ public class SettingGame extends JDialog {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileChooser.setMultiSelectionEnabled(true);
-            ImageFileFilter(fileChooser);
+            XImage.imageFileFilter(fileChooser);
             int result = fileChooser.showOpenDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
                 for (java.io.File file : fileChooser.getSelectedFiles()) {
@@ -525,26 +525,12 @@ public class SettingGame extends JDialog {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                ImageFileFilter(fileChooser);
+                XImage.imageFileFilter(fileChooser);
                 int result = fileChooser.showOpenDialog(SettingGame.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
                     lblAvatar.setToolTipText(fileChooser.getSelectedFile().getAbsolutePath());
                 }
-            }
-        });
-    }
-
-    private void ImageFileFilter(JFileChooser fileChooser) {
-        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
-            @Override
-            public boolean accept(java.io.File f) {
-                return f.isDirectory() || f.getName().endsWith(".jpg") || f.getName().endsWith(".png");
-            }
-
-            @Override
-            public String getDescription() {
-                return "Image file (*.jpg, *.png)";
             }
         });
     }
