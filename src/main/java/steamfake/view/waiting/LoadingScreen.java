@@ -7,6 +7,7 @@ package steamfake.view.waiting;
 import steamfake.graphics.CurvesPanel;
 import steamfake.graphics.ProgressBarCustom;
 import steamfake.utils.database.DatabaseConnector;
+import steamfake.view.login.LoginDialog;
 import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
@@ -43,6 +44,9 @@ public class LoadingScreen extends JDialog {
                     if(i == 77) {
                         owner.initHomePage();
                     }
+                    if(i == 99) {
+                        new LoginDialog(owner).setVisible(true);
+                    }
                 }
                 curvesPanel1.stop();
                 dispose();
@@ -54,7 +58,7 @@ public class LoadingScreen extends JDialog {
     }
     private void doTask(String taskName, int progress) throws Exception {
         lbStatus.setText(taskName);
-        Thread.sleep(50);
+        Thread.sleep(20);
         if(progress == 100) Thread.sleep(500);
         pro.setValue(progress);
     }

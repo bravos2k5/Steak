@@ -24,4 +24,18 @@ public class XImage {
 
         return imageIcon;
     }
+
+    public static void imageFileFilter(JFileChooser fileChooser) {
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(java.io.File f) {
+                return f.isDirectory() || f.getName().endsWith(".jpg") || f.getName().endsWith(".png");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Image file (*.jpg, *.png)";
+            }
+        });
+    }
 }

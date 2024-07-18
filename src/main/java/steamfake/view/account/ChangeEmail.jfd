@@ -1,0 +1,55 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:17:p, par t {seq {comp btnCancel:::p:80:p, space :p:51:p, comp btnSubmit:::p:81:p}, par l {comp txtOTP:::p:200:p, seq {comp txtNewEmail:::p:411:p, space u:::p, comp btnSend:::p::p}}}, space ::27:x}}"
+			"$verticalGroup": "par l {seq l {space :p:47:p, par b {comp txtNewEmail::b:p::p, comp btnSend::b:p::p}, space :p:48:p, comp txtOTP:::p::p, space s:::p, par b {comp btnSubmit::b:p:40:p, comp btnCancel::b:p:40:p}, space :::x}}"
+		} ) {
+			name: "this"
+			"name": "Đổi email"
+			"modal": true
+			"defaultCloseOperation": 2
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtNewEmail"
+				"placeholder": "Nhập email mới"
+				"endGradientColor": &Color0 new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": &Color1 new java.awt.Color( 25, 27, 32, 255 )
+				"forcusColor": sfield java.awt.Color cyan
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnSend"
+				"text": "Gửi mã"
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtOTP"
+				"placeholder": "Nhập mã xác thực gửi đến email"
+				"endGradientColor": #Color0
+				"startGradientColor": #Color1
+				"forcusColor": sfield java.awt.Color cyan
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnSubmit"
+				"text": "Xác nhận"
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+				"font": new java.awt.Font( "SansSerif", 1, 12 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Hủy bỏ"
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+				"radius": 5
+				"font": new java.awt.Font( "SansSerif", 1, 12 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 75 )
+			"size": new java.awt.Dimension( 545, 270 )
+		} )
+	}
+}

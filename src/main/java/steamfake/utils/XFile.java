@@ -131,8 +131,4 @@ public class XFile {
         builder.start();
     }
 
-    public static void main(String[] args) {
-        unzip("./Games/Road 1/Road 1.zip","./Games/Road 1/");
-    }
-
 }
