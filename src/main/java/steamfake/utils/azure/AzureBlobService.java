@@ -52,6 +52,15 @@ public class AzureBlobService {
         return client.deleteIfExists();
     }
 
+    public synchronized static void deleteManyFile(String startWiths, String container) {
+        BlobContainerClient blobContainerClient = getContainerClient(container);
+        blobContainerClient.listBlobs().forEach(blobItem -> {
+            if(blobItem.getName().startsWith(startWiths)) {
+                delete(blobItem.getName(),container);
+            }
+        });
+    }
+
     /**
      * Xóa nhiều file trên cloud
      * @param destinationFolder thư mục chứa các file cần download
@@ -89,6 +98,19 @@ public class AzureBlobService {
                 }
             }
         });
+    }
+
+    public synchronized static void downloadManyFile(List<String> azurePaths, String destination, String container) {
+        new File(destination).mkdirs();
+        for (String path : azurePaths) {
+            BlobContainerClient blobContainerClient = getContainerClient(container);
+            blobContainerClient.listBlobs().forEach(blobItem -> {
+                BlobClient blobClient = blobContainerClient.getBlobClient(blobItem.getName());
+                if(blobClient.exists()) {
+                    blobClient.downloadToFile(destination + "/" + new File(path).getName(),true);
+                }
+            });
+        }
     }
 
     /**

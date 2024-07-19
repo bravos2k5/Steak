@@ -6,10 +6,11 @@ package steamfake.view.mainframe;
 
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
+import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
-import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.login.LoginDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -191,7 +192,6 @@ public class HeaderPanel extends JPanel {
         lblMoney.setText("Cái nịt");
         lblAvata.setText("");
         lblAvata.setSize(new Dimension(50,50));
-        lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
         initEffectHover();
         initSettingAccountPage();
     }
@@ -220,18 +220,22 @@ public class HeaderPanel extends JPanel {
             lblName.setText(account.getHoTen());
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");
-            String avtPath = "data/avatar/" + account.getId() + "/" + account.getAvatar();
+            String avtPath = "data/avatars/" + account.getId() + "/" + account.getAvatar();
             if(account.getAvatar() != null && !account.getAvatar().isBlank() &&
                     !new File(avtPath).exists()) {
-                AzureBlobService.download(avtPath, "avatar/" + account.getId() + "/" + account.getAvatar(),"images");
+                ResourceManager.downloadAvatar(account);
+            }
+            if(new File(avtPath).exists()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(avtPath), lblAvata));
             }
             if(account.getAvatar() == null || account.getAvatar().isBlank()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
-                return;
             }
-            repaint();
         }
+        else {
+            lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+        }
+        repaint();
     }
 
     public void updateMoney(){
@@ -244,6 +248,7 @@ public class HeaderPanel extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(!SessionManager.isLogin()) {
                     XMessage.notificate(MFrame.getInstance(),"Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.getInstance()).setVisible(true);
                     return;
                 }
                 MFrame.getInstance().initSettingAccountPage();

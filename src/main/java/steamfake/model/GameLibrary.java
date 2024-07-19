@@ -8,7 +8,7 @@ public class GameLibrary {
 
     private UUID accountId;
     private UUID gameId;
-    private float giaMua;
+    private double giaMua;
     private Date ngayMua;
     private Integer rate;
     private String comment;
@@ -55,11 +55,11 @@ public class GameLibrary {
         this.gameId = gameId;
     }
 
-    public float getGiaMua() {
+    public double getGiaMua() {
         return giaMua;
     }
 
-    public void setGiaMua(float giaMua) {
+    public void setGiaMua(double giaMua) {
         this.giaMua = giaMua;
     }
 

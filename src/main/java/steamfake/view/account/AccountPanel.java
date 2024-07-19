@@ -11,6 +11,7 @@ import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.utils.SessionManager;
+import steamfake.utils.XFile;
 import steamfake.utils.XImage;
 import steamfake.utils.XRegex;
 import steamfake.utils.azure.AzureBlobService;
@@ -296,7 +297,6 @@ public class AccountPanel extends JPanel {
             }
 
             //---- lblAvatar ----
-            lblAvatar.setText("text");
             lblAvatar.setRadius(0);
             lblAvatar.setBackground(new Color(0x191b20));
             lblAvatar.setIcon(new ImageIcon(getClass().getResource("/icon/default_avatar.png")));
@@ -490,7 +490,7 @@ public class AccountPanel extends JPanel {
         lblSoDuGame.setText(account.getSoDuGame() + "");
         lblAvatar.setSize(new Dimension(120, 120));
         if(account.getAvatar() != null && !account.getAvatar().isEmpty()) {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(account.getAvatar()),lblAvatar));
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()),lblAvatar));
         }
         else {
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
@@ -529,6 +529,7 @@ public class AccountPanel extends JPanel {
 
     private void updateAction() {
         String msg = "";
+        String oldAvatar = SessionManager.user.getAvatar();
         if(txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
                 txtPhoneNumber.getText().isBlank() || txtDob.getDatePicker().getSelectedDate() == null) {
             msg += "Vui lòng nhập đầy đủ thông tin\n";
@@ -552,7 +553,10 @@ public class AccountPanel extends JPanel {
         }
         if(AccountDAO.gI().updatePersonalInfo(account) > 0) {
             if (avatar != null && !avatar.isEmpty()) {
-                AzureBlobService.upload(avatar,account.getId() + "/avatar/" + new File(avatar).getName(),"images");
+                AzureBlobService.upload(avatar,"avatars/" + account.getId() + "/" + new File(avatar).getName(),"images");
+                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar,"images");
+                XFile.copyFile(avatar,"data/avatars/" + account.getId() + "/" + new File(avatar).getName());
+                new File("data/avatasr/" + account.getId() + "/" + oldAvatar).deleteOnExit();
             }
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             SessionManager.user = account;

@@ -4,17 +4,11 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:43:p, par l:::p {seq {comp lblIcon:::p:100:p, space s:::p, comp txtName:::p:300:p, space :::x, comp lblInfo:::p:50:p, space s:::p, comp lblPlay:::p:110:p}, comp separator2:::p:1093:p}, space ::54:x}}"
-			"$verticalGroup": "par l {seq t {space :p:11:p, par l {comp lblIcon:::p:60:p, comp lblPlay::l:p:60:p, seq l {space :p:17:p, comp txtName:::p::p}, comp lblInfo::l:p:60:p}, space u:::p, comp separator2:::p:2:p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:43:p, par l:::p {seq {comp lblIcon:::p:100:p, space s:::p, comp txtName:::p:681:p, space :::x, comp lblInfo:::p:50:p, space s:::p, comp lblPlay:::p:110:p}, comp separator2:::p:1093:p}, space ::54:x}}"
+			"$verticalGroup": "par l {seq t {space :p:11:p, par t {par l:::p {comp lblPlay::l::60:x, comp lblInfo::l::60:x}, comp lblIcon:::p:60:p, seq {comp txtName:::p::p, space :p:11:p}}, space u:::p, comp separator2:::p:2:p, space :::p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
-			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
-				name: "lblIcon"
-				"text": "text"
-				"borderColor": sfield java.awt.Color white
-				"radius": 10
-			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {
 				name: "separator2"
 				"opaque": true
@@ -25,8 +19,8 @@ new FormModel {
 				name: "txtName"
 				"text": "text"
 				"font": new java.awt.Font( "SansSerif", 1, 24 )
-				"horizontalAlignment": 0
-				"foreground": new java.awt.Color( 92, 92, 93, 255 )
+				"horizontalAlignment": 2
+				"foreground": new java.awt.Color( 255, 255, 255, 255 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 				name: "lblPlay"
@@ -40,6 +34,10 @@ new FormModel {
 				name: "lblInfo"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/info.png" )
 				"horizontalAlignment": 0
+				"cursor": new java.awt.Cursor( 12 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblIcon"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

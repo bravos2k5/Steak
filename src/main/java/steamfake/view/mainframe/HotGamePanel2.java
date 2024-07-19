@@ -9,14 +9,12 @@ import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Game;
 import steamfake.utils.XJson;
-import steamfake.utils.azure.AzureBlobService;
 import steamfake.view.waiting.WaitingDialog;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,10 +37,8 @@ public class HotGamePanel2 extends JPanel {
         lblNameGame = new JLabel();
         separator1 = new JSeparator();
         lblDownloads = new JLabel();
-        label3 = new JLabel();
         separator2 = new JSeparator();
         lblReviews = new JLabel();
-        label5 = new JLabel();
         separator3 = new JSeparator();
         lblPrice = new JLabel();
         label7 = new JLabel();
@@ -73,9 +69,7 @@ public class HotGamePanel2 extends JPanel {
             lblDownloads.setText("110k");
             lblDownloads.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
             lblDownloads.setHorizontalAlignment(SwingConstants.CENTER);
-
-            //---- label3 ----
-            label3.setIcon(new ImageIcon(getClass().getResource("/icon/DownloadHotgame.png")));
+            lblDownloads.setIcon(new ImageIcon(getClass().getResource("/icon/DownloadHotgame.png")));
 
             //---- separator2 ----
             separator2.setOrientation(SwingConstants.VERTICAL);
@@ -85,10 +79,9 @@ public class HotGamePanel2 extends JPanel {
 
             //---- lblReviews ----
             lblReviews.setText("95/100");
-            lblReviews.setFont(new Font("Inter", Font.BOLD, 22));
-
-            //---- label5 ----
-            label5.setIcon(new ImageIcon(getClass().getResource("/icon/Star.png")));
+            lblReviews.setFont(new Font("Inter", Font.BOLD, 20));
+            lblReviews.setIcon(new ImageIcon(getClass().getResource("/icon/Star.png")));
+            lblReviews.setHorizontalAlignment(SwingConstants.CENTER);
 
             //---- separator3 ----
             separator3.setOrientation(SwingConstants.VERTICAL);
@@ -109,34 +102,25 @@ public class HotGamePanel2 extends JPanel {
             pnlInfoLayout.setHorizontalGroup(
                 pnlInfoLayout.createParallelGroup()
                     .addGroup(pnlInfoLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
                         .addComponent(lblNameGame, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
-                        .addGap(44, 44, 44)
-                        .addComponent(lblDownloads, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
-                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(lblReviews, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(label5)
-                        .addGap(29, 29, 29)
+                        .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblDownloads, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(separator2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(lblReviews, GroupLayout.PREFERRED_SIZE, 147, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
                         .addComponent(separator3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lblPrice, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)
+                        .addComponent(lblPrice, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(label7, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addContainerGap())
             );
             pnlInfoLayout.setVerticalGroup(
                 pnlInfoLayout.createParallelGroup()
-                    .addComponent(lblDownloads, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(GroupLayout.Alignment.TRAILING, pnlInfoLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(pnlInfoLayout.createParallelGroup()
@@ -149,11 +133,11 @@ public class HotGamePanel2 extends JPanel {
                         .addContainerGap())
                     .addGroup(pnlInfoLayout.createSequentialGroup()
                         .addGroup(pnlInfoLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addComponent(label5, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
                             .addComponent(lblReviews, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(lblPrice, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
-                            .addComponent(label7, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                            .addComponent(label7, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(lblPrice, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblDownloads, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblNameGame, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             );
         }
@@ -188,31 +172,29 @@ public class HotGamePanel2 extends JPanel {
                     .addGap(27, 27, 27)
                     .addComponent(lblLeft)
                     .addGap(18, 18, 18)
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 1004, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup()
+                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 1004, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlInfo, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(18, 18, 18)
                     .addComponent(lblRight)
                     .addContainerGap(28, Short.MAX_VALUE))
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addContainerGap(43, Short.MAX_VALUE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createParallelGroup()
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(panel1, GroupLayout.PREFERRED_SIZE, 570, GroupLayout.PREFERRED_SIZE)
-                            .addGap(62, 62, 62))
+                            .addGap(18, 18, 18)
+                            .addComponent(pnlInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addGap(99, 99, 99))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(lblLeft)
-                            .addGap(253, 253, 253))
+                            .addGap(368, 368, 368))
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(lblRight)
-                            .addGap(258, 258, 258)))
-                    .addComponent(pnlInfo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(55, 55, 55))
+                            .addGap(373, 373, 373))))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -222,10 +204,8 @@ public class HotGamePanel2 extends JPanel {
     private JLabel lblNameGame;
     private JSeparator separator1;
     private JLabel lblDownloads;
-    private JLabel label3;
     private JSeparator separator2;
     private JLabel lblReviews;
-    private JLabel label5;
     private JSeparator separator3;
     private JLabel lblPrice;
     private JLabel label7;
@@ -240,7 +220,6 @@ public class HotGamePanel2 extends JPanel {
         lblLeft.setOpaque(true);
         lblRight.setOpaque(true);
         initEvent();
-        downloadResource();
         loadInfo();
     }
 
@@ -258,22 +237,6 @@ public class HotGamePanel2 extends JPanel {
                 pictureBoxes.add(pictureBox);
             }
             slsImages.initSlideShow(pictureBoxes);
-        }
-    }
-
-    private void downloadResource() {
-        String folderResource = "data/games/" + game.getId() + "/" + game.getVersion() + "/images/";
-        List<String> images = XJson.fromJson(game.getImages(), List.class);
-        List<String> existedImages = new ArrayList<>();
-        if (images != null && !images.isEmpty()) {
-            images.add(game.getAvatar());
-            for(String image: images ) {
-                String path = folderResource + "/" + image;
-                if(new File(path).exists()) {
-                    existedImages.add(game.getId() + "/" + game.getVersion() + "/images/" + image);
-                }
-            }
-            AzureBlobService.downloadManyFileExcept(folderResource, game.getId() + "/" + game.getVersion() + "/images", "games", existedImages);
         }
     }
 

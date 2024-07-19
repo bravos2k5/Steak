@@ -617,7 +617,7 @@ public class SettingGame extends JDialog {
             pendingGame.setAge(age);
             pendingGame.setMoTa(description);
             pendingGame.setImages(imageJson);
-            pendingGame.setExecPath(execFilePath);
+            pendingGame.setExecPath(execFilePath.replaceAll("\\\\", "/"));
             pendingGame.setAvatar(avatarPath);
             pendingGame.setVersion(version);
             pendingGame.setRam(Integer.parseInt(ram));

@@ -4,14 +4,12 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:19:p, comp lblIcon:::p:100:p, space s:::p, comp lblGameName:::p:421:p, space s:::p, comp prbProgress:::p:250:p, space :::p, comp lblProgress:::p:96:p, space s:::p, comp lblAction:::p:30:p, space ::24:x}}"
-			"$verticalGroup": "par l {seq {space :p:20:p, par l {comp lblIcon::l:::x, seq {par l {par b {comp lblAction::b:p:40:p, comp lblProgress::b:p:60:p}, comp lblGameName::l:p:61:p}, space :0:0:x}}, space ::19:x}, seq t {space ::45:x, comp prbProgress:::p:12:p, space :p:43:p}}"
+			"$horizontalGroup": "par l {seq {space :p:32:p, comp lblIcon:::p:55:p, space s:::p, comp lblGameName:::p:300:p, space s:::p, comp prbProgress:::p:250:p, space s:::p, comp lblProgress:::p:201:p, space :p:51:p, comp lblAction:::p:30:p, space ::22:x}}"
+			"$verticalGroup": "par l {seq {space :20:20:p, par l {comp lblAction::t:p:40:p, par b:l {comp lblIcon::b:p:30:p, comp lblGameName::b:p:30:p, seq l {space :p:17:p, comp prbProgress:::p::p}}, comp lblProgress::l:::x}, space ::10:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
-			add( new FormComponent( "javax.swing.JProgressBar" ) {
-				name: "prbProgress"
-			} )
+			"maximumSize": new java.awt.Dimension( 995, 70 )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 				name: "lblIcon"
 				"text": "text"
@@ -19,22 +17,24 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblGameName"
 				"text": "Title"
-				"font": new java.awt.Font( "SansSerif", 1, 24 )
+				"font": new java.awt.Font( "SansSerif", 1, 12 )
+			} )
+			add( new FormComponent( "javax.swing.JProgressBar" ) {
+				name: "prbProgress"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblProgress"
 				"text": "100%"
 				"horizontalAlignment": 0
-				"font": new java.awt.Font( "Inter", 1, 16 )
+				"font": new java.awt.Font( "Inter", 1, 14 )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblAction"
-				"text": "text"
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/X.png" )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/delete-mini.png" )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 10 )
-			"size": new java.awt.Dimension( 1000, 100 )
+			"size": new java.awt.Dimension( 995, 70 )
 		} )
 	}
 }

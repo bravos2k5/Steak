@@ -38,74 +38,70 @@ public class DownloadPanel extends JPanel {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        prbProgress = new JProgressBar();
         lblIcon = new RadiusLabel();
         lblGameName = new JLabel();
+        prbProgress = new JProgressBar();
         lblProgress = new JLabel();
         lblAction = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
+        setMaximumSize(new Dimension(995, 70));
 
         //---- lblIcon ----
         lblIcon.setText("text");
 
         //---- lblGameName ----
         lblGameName.setText("Title");
-        lblGameName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
+        lblGameName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
 
         //---- lblProgress ----
         lblProgress.setText("100%");
         lblProgress.setHorizontalAlignment(SwingConstants.CENTER);
-        lblProgress.setFont(new Font("Inter", Font.BOLD, 16));
+        lblProgress.setFont(new Font("Inter", Font.BOLD, 14));
 
         //---- lblAction ----
-        lblAction.setText("text");
-        lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/X.png")));
+        lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/delete-mini.png")));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(19, 19, 19)
-                    .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addGap(32, 32, 32)
+                    .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 421, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
+                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
+                    .addGap(51, 51, 51)
                     .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(24, Short.MAX_VALUE))
+                    .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(lblIcon, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup()
-                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
-                                .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
-                            .addGap(0, 0, Short.MAX_VALUE)))
-                    .addContainerGap(19, Short.MAX_VALUE))
-                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(45, Short.MAX_VALUE)
-                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 12, GroupLayout.PREFERRED_SIZE)
-                    .addGap(43, 43, 43))
+                        .addComponent(lblAction, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
+                                .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblProgress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(10, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JProgressBar prbProgress;
     private RadiusLabel lblIcon;
     private JLabel lblGameName;
+    private JProgressBar prbProgress;
     private JLabel lblProgress;
     private JLabel lblAction;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
@@ -130,6 +126,10 @@ public class DownloadPanel extends JPanel {
 
     public synchronized Status getStatus() {
         return status;
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     private void initEvent() {
@@ -205,10 +205,10 @@ public class DownloadPanel extends JPanel {
                 }
                 if(totalSize == downloadedSize) {
                     SwingUtilities.invokeLater(() -> {
-                        lblProgress.setText("Đang giải nén");
+                        lblProgress.setText("Đang giải nén...");
                         lblAction.setIcon(null);
                     });
-                    XFile.unzip(path, file.getParent());
+                    XFile.unzip(file.getAbsolutePath(), file.getParent());
                     SwingUtilities.invokeLater(() -> {
                         lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/play-button.png")));
                         prbProgress.setVisible(false);

@@ -8,7 +8,8 @@ import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
 import steamfake.model.Game;
 import steamfake.utils.*;
-import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.download.DownloadQueue;
+import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.mainframe.HeaderPanel;
 import steamfake.view.mainframe.MFrame;
 
@@ -35,14 +36,20 @@ public class GameDetail extends JPanel {
         initialize();
     }
 
+    private void btnBack(ActionEvent e) {
+        slideImages.back();
+    }
+
+    private void btnNext(ActionEvent e) {
+        slideImages.next();
+    }
+
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         slideImages = new SlideShow();
         btnBack = new JButton();
         btnNext = new JButton();
         lblGameName = new JLabel();
-        separator1 = new JSeparator();
-        label1 = new JLabel();
         panel1 = new JPanel();
         lbWindows = new JLabel();
         label41 = new JLabel();
@@ -67,7 +74,6 @@ public class GameDetail extends JPanel {
         panel4 = new JPanel();
         lblAvatar = new JLabel();
         label2 = new JLabel();
-        lblGenres = new JLabel();
         subPanel = new JPanel();
         label3 = new JLabel();
         txtContent = new CustomTextBox();
@@ -95,17 +101,6 @@ public class GameDetail extends JPanel {
         lblGameName.setText("Zenless Zone Zero");
         lblGameName.setForeground(Color.white);
         lblGameName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 26));
-
-        //---- separator1 ----
-        separator1.setBackground(new Color(0x939393));
-        separator1.setOrientation(SwingConstants.VERTICAL);
-        separator1.setOpaque(true);
-        separator1.setForeground(new Color(0x939393));
-
-        //---- label1 ----
-        label1.setText("Genres");
-        label1.setForeground(new Color(0x939393));
-        label1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
         //======== panel1 ========
         {
@@ -291,7 +286,7 @@ public class GameDetail extends JPanel {
                     .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblAge)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(panel4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(44, 44, 44)
                         .addComponent(lblCost)
@@ -322,9 +317,6 @@ public class GameDetail extends JPanel {
                         .addGap(19, 19, 19))
             );
         }
-
-        //---- lblGenres ----
-        lblGenres.setText("text");
 
         //======== subPanel ========
         {
@@ -357,19 +349,11 @@ public class GameDetail extends JPanel {
                         .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup()
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(slideImages, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(12, 12, 12)
-                                            .addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 1, GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addGroup(layout.createParallelGroup()
-                                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 63, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(lblGenres, GroupLayout.PREFERRED_SIZE, 278, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 0, Short.MAX_VALUE))
-                                        .addComponent(panel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(panel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(slideImages, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(12, 12, 12)
+                                    .addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -386,23 +370,16 @@ public class GameDetail extends JPanel {
                             .addGap(22, 22, 22)
                             .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup()
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup()
                                         .addComponent(slideImages, GroupLayout.PREFERRED_SIZE, 405, GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addGap(174, 174, 174)
                                             .addComponent(btnNext, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(label1)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(lblGenres))
-                                        .addComponent(separator1, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 54, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(18, 18, 18)
+                                    .addGap(90, 90, 90)
                                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                .addComponent(panel2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                         .addGroup(layout.createSequentialGroup()
                             .addGap(246, 246, 246)
                             .addComponent(btnBack, GroupLayout.PREFERRED_SIZE, 32, GroupLayout.PREFERRED_SIZE)))
@@ -421,8 +398,6 @@ public class GameDetail extends JPanel {
     private JButton btnBack;
     private JButton btnNext;
     private JLabel lblGameName;
-    private JSeparator separator1;
-    private JLabel label1;
     private JPanel panel1;
     private JLabel lbWindows;
     private JLabel label41;
@@ -447,7 +422,6 @@ public class GameDetail extends JPanel {
     private JPanel panel4;
     private JLabel lblAvatar;
     private JLabel label2;
-    private JLabel lblGenres;
     private JPanel subPanel;
     private JLabel label3;
     private CustomTextBox txtContent;
@@ -500,24 +474,7 @@ public class GameDetail extends JPanel {
     }
 
     private void downloadResource() {
-        String folderResource = "data/games/" + game.getId() + "/images/";
-        List<String> images = XJson.fromJson(game.getImages(), List.class);
-        List<String> existImages = new ArrayList<>();
-        if(images != null && !images.isEmpty()) {
-            images.add(game.getAvatar());
-            for(String image : images) {
-                if(new File(folderResource + image).exists()) {
-                    existImages.add(game.getId() + "/" + game.getVersion() + "/" + image);
-                }
-            }
-            if(!existImages.isEmpty()) {
-                AzureBlobService.downloadManyFileExcept(folderResource,
-                        game.getId() + "/" + game.getVersion() + "/" + "/images", "games", existImages);
-            }
-            else {
-                AzureBlobService.downloadManyFile(folderResource,game.getId() + "/images", "games");
-            }
-        }
+        ResourceManager.downloadGameResource(game);
     }
 
     private void buyEvent() {
@@ -530,6 +487,8 @@ public class GameDetail extends JPanel {
                     HeaderPanel.getInstance().updateMoney();
                     XMessage.notificate(MFrame.getInstance(), "Mua game thành công");
                     parentPanel.loadMyComment();
+                    btnBuy.setText("Chơi");
+                    LibraryPanel.gI().getLibraryMap().put(parentPanel.getGameLibrary(), game);
                 }
                 else {
                     XMessage.alert(MFrame.getInstance(), "Mua game thất bại");
@@ -543,21 +502,21 @@ public class GameDetail extends JPanel {
 
     private void playEvent() {
         String path = "games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath();
-        if (parentPanel.getGameLibrary() != null && new File(path).exists()) {
+        if (new File(path).exists() && !DownloadQueue.gI().getDownloadingGames().contains(game)) {
             try {
                 XFile.runExeFile(path);
             } catch (IOException e) {
                 XMessage.alert(MFrame.getInstance(), "Lỗi: " + e.getMessage());
             }
+            return;
         }
-    }
+        if(!DownloadQueue.gI().getDownloadingGames().contains(game)) {
+            DownloadQueue.gI().addNewDownload(game);
+        }
+        else {
+            XMessage.alert(MFrame.getInstance(), "Game đang được tải xuống");
+        }
 
-    private void btnBack(ActionEvent e) {
-        slideImages.back();
-    }
-
-    private void btnNext(ActionEvent e) {
-        slideImages.next();
     }
 
 

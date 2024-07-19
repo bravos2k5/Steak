@@ -11,13 +11,24 @@ import steamfake.utils.SessionManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.HashMap;
 
 /**
  * @author BRAVOS
  */
 public class LibraryPanel extends JPanel {
-    public LibraryPanel() {
+
+    private static LibraryPanel instance;
+
+    public static LibraryPanel gI() {
+        if(instance == null) {
+            instance = new LibraryPanel();
+        }
+        return instance;
+    }
+
+    private LibraryPanel() {
         initComponents();
         initialize();
     }
@@ -32,6 +43,8 @@ public class LibraryPanel extends JPanel {
         undownloadedPanel = new JPanel();
 
         //======== this ========
+        setBackground(new Color(0x191b20));
+        setOpaque(false);
 
         //---- label1 ----
         label1.setText("Game \u0111\u00e3 t\u1ea3i xu\u1ed1ng:");
@@ -46,6 +59,7 @@ public class LibraryPanel extends JPanel {
 
             //======== downloadedPanel ========
             {
+                downloadedPanel.setBackground(new Color(0x191b20));
                 downloadedPanel.setLayout(new BoxLayout(downloadedPanel, BoxLayout.Y_AXIS));
             }
             scrollbar1.setViewportView(downloadedPanel);
@@ -56,6 +70,7 @@ public class LibraryPanel extends JPanel {
 
             //======== undownloadedPanel ========
             {
+                undownloadedPanel.setBackground(new Color(0x191b20));
                 undownloadedPanel.setLayout(new BoxLayout(undownloadedPanel, BoxLayout.Y_AXIS));
             }
             scrollbar2.setViewportView(undownloadedPanel);
@@ -106,20 +121,34 @@ public class LibraryPanel extends JPanel {
     private JPanel undownloadedPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-
     private final HashMap<GameLibrary, Game> libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
 
+
     private void initialize() {
-        for (GameLibrary gameLibrary : libraryMap.keySet()) {
+        for(GameLibrary gameLibrary : libraryMap.keySet()) {
             Game game = libraryMap.get(gameLibrary);
             GameLibraryItem gameLibraryItem = new GameLibraryItem(gameLibrary, game);
-            if (gameLibraryItem.isDownloaded()) {
+            if(new File("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists()) {
                 downloadedPanel.add(gameLibraryItem);
             } else {
                 undownloadedPanel.add(gameLibraryItem);
             }
         }
+        downloadedPanel.revalidate();
+        downloadedPanel.repaint();
+        undownloadedPanel.revalidate();
+        undownloadedPanel.repaint();
+        this.revalidate();
+        this.repaint();
     }
 
+    public void reload() {
+        downloadedPanel.removeAll();
+        undownloadedPanel.removeAll();
+        initialize();
+    }
 
+    public HashMap<GameLibrary, Game> getLibraryMap() {
+        return libraryMap;
+    }
 }

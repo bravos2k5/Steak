@@ -7,11 +7,12 @@ package steamfake.view.gamedetail;
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
+import steamfake.model.Account;
 import steamfake.model.GameLibrary;
+import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
-import steamfake.utils.azure.AzureBlobService;
 import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
@@ -135,16 +136,19 @@ public class CommentPanel extends JPanel {
 
     private void loadInfo() {
         String[] nameAndAvatar = AccountDAO.gI().selectNameAndAvatarByID(gameLibrary.getAccountId());
+        Account account = new Account(gameLibrary.getAccountId());
+        account.setHoTen(nameAndAvatar[0]);
+        account.setAvatar(nameAndAvatar[1]);
         lblName.setText(nameAndAvatar[0]);
-        if(nameAndAvatar[1] != null && !nameAndAvatar[1].isBlank()) {
-            String path = "data/avatars/" + gameLibrary.getAccountId() + "/" + nameAndAvatar[1];
+        lblAvatar.setSize(new Dimension(81,81));
+        if(account.getAvatar() != null && !account.getAvatar().isBlank()) {
+            String path = "data/avatars/" + gameLibrary.getAccountId() + "/" + account.getAvatar();
             if(!new File(path).exists()) {
-                AzureBlobService.download(path,"avatars/" + gameLibrary.getAccountId() + "/" + nameAndAvatar[1],"images");
+                ResourceManager.downloadAvatar(account);
             }
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(path),lblAvatar));
         }
         else {
-            lblAvatar.setSize(new Dimension(81,81));
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
         }
 
