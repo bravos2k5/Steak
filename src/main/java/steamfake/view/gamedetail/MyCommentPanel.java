@@ -159,7 +159,8 @@ public class MyCommentPanel extends JPanel {
         rateSlideEvent();
         btnSend.addActionListener(e -> sendAction());
         slideRate.setValue(50);
-        lblLevel.setText("Trung bình");
+        setLevel();
+        lblRate.setText("50");
     }
 
     private void rateSlideEvent() {
@@ -192,6 +193,7 @@ public class MyCommentPanel extends JPanel {
             slideRate.setValue(gameLibrary.getRate());
         }
         setLevel();
+        lblRate.setText(String.valueOf(slideRate.getValue()));
         txtComment.setText(gameLibrary.getComment());
         lblAvatar.setSize(new Dimension(81, 81));
         if(SessionManager.user.getAvatar() != null && SessionManager.user.getAvatar().isBlank()) {

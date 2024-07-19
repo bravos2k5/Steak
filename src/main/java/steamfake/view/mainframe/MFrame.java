@@ -6,10 +6,11 @@ package steamfake.view.mainframe;
 
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
+import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
-import steamfake.utils.azure.AzureBlobService;
 import steamfake.view.account.AccountPanel;
+import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamedetail.GameDetailPanel;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
@@ -19,7 +20,6 @@ import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.util.List;
 
 /**
@@ -173,6 +173,7 @@ public class MFrame extends JFrame {
 
             //======== mainPanel ========
             {
+                mainPanel.setBackground(new Color(0x191b20));
                 mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
             }
             scrollPane1.setViewportView(mainPanel);
@@ -336,7 +337,6 @@ public class MFrame extends JFrame {
                 }
             }
         });
-
     }
 
     private void requestLogin() {
@@ -354,18 +354,19 @@ public class MFrame extends JFrame {
     }
 
     private void downloadResource() {
+        ResourceManager.downloadGameResource(theMostDownloadedGame);
         for(Game game : gameList) {
-            String destination = "data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar();
-            if(!new File(destination).exists())
-                AzureBlobService.download(destination,destination.replace("data/games/",""), "games");
+            if(!game.equals(theMostDownloadedGame)) {
+                ResourceManager.downloadAvatarGameOnly(game);
+            }
         }
     }
 
     public void initHomePage() {
         if (gameList == null) {
             gameList = GameDAO.gI().selectOldGame();
-            downloadResource();
             theMostDownloadedGame = gameList.getFirst();
+            downloadResource();
         }
         HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
@@ -380,7 +381,7 @@ public class MFrame extends JFrame {
     }
 
     private void initLibraryPage() {
-        LibraryPanel libraryPanel = new LibraryPanel();
+        LibraryPanel libraryPanel = LibraryPanel.gI();
         mainPanel.add(libraryPanel);
     }
 
@@ -395,7 +396,7 @@ public class MFrame extends JFrame {
     }
 
     private void initDownloadPage() {
-
+        DownloadQueue.gI().setVisible(true);
     }
 
     public void initSettingAccountPage() {

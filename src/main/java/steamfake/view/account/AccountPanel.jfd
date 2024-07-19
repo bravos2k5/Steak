@@ -164,7 +164,6 @@ new FormModel {
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 					name: "lblAvatar"
-					"text": "text"
 					"radius": 0
 					"background": new java.awt.Color( 25, 27, 32, 255 )
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/default_avatar.png" )

@@ -120,31 +120,19 @@ public class GameLibraryDAO implements DataAccessObject<GameLibrary> {
 
     public HashMap<GameLibrary, Game> selectLibraryMap(Account account) {
         String sql = "{CALL SP_GET_MAP_LIBRARY(?)}";
-        HashMap<GameLibrary,Game> libraryGameHashMap = new HashMap<>();
+        HashMap<GameLibrary, Game> libraryGameHashMap = new HashMap<>();
         try(ResultSet rs = XJdbc.getResultSet(sql,account.getId())) {
             while (rs.next()) {
                 GameLibrary gameLibrary = new GameLibrary();
-                gameLibrary.setAccountId(UUID.fromString(rs.getString("account_id")));
-                gameLibrary.setGameId(UUID.fromString(rs.getString("game_id")));
-                gameLibrary.setGiaMua(rs.getFloat("gia_mua"));
-                gameLibrary.setNgayMua(rs.getDate("ngay_mua"));
-                //
-                Game game = new Game();
-                game.setId(UUID.fromString(rs.getString("id")));
-                game.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
+                Game game = new Game(UUID.fromString(rs.getString("game_id")));
                 game.setName(rs.getNString("name"));
                 game.setAvatar(rs.getString("avatar"));
-                game.setGiaTien(rs.getFloat("gia_tien"));
-                game.setAge(rs.getInt("age"));
-                game.setImages(rs.getString("images"));
-                game.setMoTa(rs.getString("mo_ta"));
-                game.setRam(rs.getInt("ram"));
-                game.setRom(rs.getInt("rom"));
-                game.setReleaseDate(rs.getDate("release_date"));
-                game.setUpdateDate(rs.getDate("update_date"));
                 game.setVersion(rs.getNString("version"));
-                game.setOpened(rs.getBoolean("isOpened"));
                 game.setExecPath(rs.getString("exec_file"));
+                gameLibrary.setAccountId(account.getId());
+                gameLibrary.setGameId(game.getId());
+                gameLibrary.setGiaMua(rs.getDouble("gia_mua"));
+                gameLibrary.setNgayMua(rs.getDate("ngay_mua"));
                 libraryGameHashMap.put(gameLibrary,game);
             }
         } catch (SQLException e) {

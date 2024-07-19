@@ -7,6 +7,8 @@ package steamfake.view.gamelib;
 import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.model.GameLibrary;
+import steamfake.utils.GameChecker;
+import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
 import steamfake.view.mainframe.MFrame;
 
@@ -21,46 +23,26 @@ import java.io.File;
  */
 public class GameLibraryItem extends JPanel {
 
-    private GameLibrary gameLibrary;
-    private Game game;
+    private final GameLibrary gameLibrary;
+    private final Game game;
 
     public GameLibraryItem(GameLibrary gameLibrary, Game game) {
         initComponents();
         this.game = game;
-        initialize();
-    }
-
-    public GameLibrary getGameLibrary() {
-        return gameLibrary;
-    }
-
-    public void setGameLibrary(GameLibrary gameLibrary) {
         this.gameLibrary = gameLibrary;
-    }
-
-    public Game getGame() {
-        return game;
-    }
-
-    public void setGame(Game game) {
-        this.game = game;
+        initialize();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        lblIcon = new RadiusLabel();
         separator2 = new JSeparator();
         txtName = new JLabel();
         lblPlay = new RadiusLabel();
         lblInfo = new JLabel();
+        lblIcon = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
-
-        //---- lblIcon ----
-        lblIcon.setText("text");
-        lblIcon.setBorderColor(Color.white);
-        lblIcon.setRadius(10);
 
         //---- separator2 ----
         separator2.setOpaque(true);
@@ -70,8 +52,8 @@ public class GameLibraryItem extends JPanel {
         //---- txtName ----
         txtName.setText("text");
         txtName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 24));
-        txtName.setHorizontalAlignment(SwingConstants.CENTER);
-        txtName.setForeground(new Color(0x5c5c5d));
+        txtName.setHorizontalAlignment(SwingConstants.LEFT);
+        txtName.setForeground(Color.white);
 
         //---- lblPlay ----
         lblPlay.setText("Play");
@@ -83,6 +65,7 @@ public class GameLibraryItem extends JPanel {
         //---- lblInfo ----
         lblInfo.setIcon(new ImageIcon(getClass().getResource("/icon/info.png")));
         lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
+        lblInfo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -94,7 +77,7 @@ public class GameLibraryItem extends JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
-                            .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -106,13 +89,14 @@ public class GameLibraryItem extends JPanel {
             layout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                     .addGap(11, 11, 11)
-                    .addGroup(layout.createParallelGroup()
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblPlay, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                            .addComponent(lblInfo, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                         .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPlay, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(17, 17, 17)
-                            .addComponent(txtName))
-                        .addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtName)
+                            .addGap(11, 11, 11)))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(separator2, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap())
@@ -121,19 +105,22 @@ public class GameLibraryItem extends JPanel {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private RadiusLabel lblIcon;
     private JSeparator separator2;
     private JLabel txtName;
     private RadiusLabel lblPlay;
     private JLabel lblInfo;
+    private JLabel lblIcon;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private void initialize() {
         txtName.setText(game.getName());
         lblIcon.setText("");
-        lblIcon.setIcon(new ImageIcon("data/games/" + game.getId() + "/" + game.getAvatar()));
+        lblIcon.setSize(new Dimension(100,60));
+        lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar()),lblIcon));
         initEvent();
+        lblPlay.setText(isDownloaded() ? "Chơi" : "Tải");
+        lblPlay.repaint();
     }
 
     private void initEvent() {
@@ -153,6 +140,12 @@ public class GameLibraryItem extends JPanel {
                 lblPlay.setBackground(new Color(0x3d8a00));
             }
         });
+        lblInfo.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showInfoAction();
+            }
+        });
     }
 
     private void showInfoAction() {
@@ -162,11 +155,11 @@ public class GameLibraryItem extends JPanel {
     }
 
     private void playAction() {
-
+        GameChecker.decide(game);
     }
 
     public boolean isDownloaded() {
-        return new File("data/games/" + game.getId() + "/" + game.getExecPath()).exists();
+        return new File("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists();
     }
 
 }

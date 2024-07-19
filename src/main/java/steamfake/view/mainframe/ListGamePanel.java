@@ -12,6 +12,8 @@ import steamfake.utils.XImage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 
 /**
@@ -25,6 +27,7 @@ public class ListGamePanel extends JPanel {
         this.game = game;
         initComponents();
         loadInfo();
+        initialize();
     }
 
     private void initComponents() {
@@ -158,6 +161,16 @@ public class ListGamePanel extends JPanel {
     private RadiusLabel lblPublisher;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
+    private void initialize() {
+        loadInfo();
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MFrame.getInstance().showGameDetail(game);
+            }
+        });
+    }
+
     private void loadInfo() {
         lblDownload.setText(GameDAO.gI().selectLuotTai(game) + "");
         lblNameGame.setText(game.getName());
@@ -169,51 +182,5 @@ public class ListGamePanel extends JPanel {
     }
 
 
-    public JLabel getLblImageGame() {
-        return lblImageGame;
-    }
 
-    public void setLblImageGame(JLabel lblImageGame) {
-        this.lblImageGame = lblImageGame;
-    }
-
-    public JLabel getLblNameGame() {
-        return lblNameGame;
-    }
-
-    public void setLblNameGame(JLabel lblNameGame) {
-        this.lblNameGame = lblNameGame;
-    }
-
-    public JLabel getLabel4() {
-        return label4;
-    }
-
-    public void setLabel4(JLabel label4) {
-        this.label4 = label4;
-    }
-
-    public RadiusLabel getLblDownload() {
-        return lblDownload;
-    }
-
-    public void setLblDownload(RadiusLabel lblDownload) {
-        this.lblDownload = lblDownload;
-    }
-
-    public RadiusLabel getLblPrice() {
-        return lblPrice;
-    }
-
-    public void setLblPrice(RadiusLabel lblPrice) {
-        this.lblPrice = lblPrice;
-    }
-
-    public JLabel getLblReviews() {
-        return lblReviews;
-    }
-
-    public void setLblReviews(JLabel lblReviews) {
-        this.lblReviews = lblReviews;
-    }
 }

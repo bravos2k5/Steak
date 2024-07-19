@@ -281,6 +281,13 @@ public class LoginDialog extends JDialog {
 
     private void initialize() {
         btnLogin.addActionListener(e -> loginAction());
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    loginAction();
+                }
+            }
+        });
     }
 
     private void loginAction() {

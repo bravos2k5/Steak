@@ -62,8 +62,6 @@ public class XFile {
         } catch (IOException e) {
             // Message here
             e.printStackTrace();
-        } finally {
-            new File(zipFilePath).delete();
         }
     }
 

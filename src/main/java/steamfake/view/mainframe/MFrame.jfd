@@ -85,6 +85,7 @@ new FormModel {
 					"axis": 1
 				} ) {
 					name: "mainPanel"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

@@ -8,6 +8,8 @@ new FormModel {
 			"$verticalGroup": "par l {seq l {space :p:25:p, comp label1:::p::p, space :::p, comp scrollbar1::::375:x, space :::p, comp label2:::p::p, space u:::p, comp scrollbar2:::p:298:p, space :::p}}"
 		} ) {
 			name: "this"
+			"background": new java.awt.Color( 25, 27, 32, 255 )
+			"opaque": false
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "Game đã tải xuống:"
@@ -24,6 +26,7 @@ new FormModel {
 					"axis": 1
 				} ) {
 					name: "downloadedPanel"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
@@ -32,6 +35,7 @@ new FormModel {
 					"axis": 1
 				} ) {
 					name: "undownloadedPanel"
+					"background": new java.awt.Color( 25, 27, 32, 255 )
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

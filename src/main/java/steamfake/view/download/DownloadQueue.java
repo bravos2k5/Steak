@@ -5,6 +5,7 @@
 package steamfake.view.download;
 
 import steamfake.model.Game;
+import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
@@ -34,7 +35,6 @@ public class DownloadQueue extends JDialog {
         initComponents();
         scrollPane1.setBorder(null);
         downloadThread();
-        this.setVisible(true);
     }
 
     private void initComponents() {
@@ -88,10 +88,10 @@ public class DownloadQueue extends JDialog {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(49, 49, 49)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                        .addComponent(separator1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                         .addComponent(label1)
-                        .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+                        .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                        .addComponent(separator1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                        .addComponent(scrollPane1))
                     .addContainerGap(49, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
@@ -99,13 +99,13 @@ public class DownloadQueue extends JDialog {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(14, 14, 14)
                     .addComponent(label1)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(18, 18, 18)
+                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
                     .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addGap(5, 5, 5)
                     .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGap(29, 29, 29))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -125,11 +125,20 @@ public class DownloadQueue extends JDialog {
 
     private final List<DownloadPanel> downloadedStack = new ArrayList<>();
     private final Queue<DownloadPanel> downloadQueue = new ArrayDeque<>();
+    private final List<Game> downloadingGames = new ArrayList<>();
+
+    public List<Game> getDownloadingGames() {
+        return downloadingGames;
+    }
 
     public void addNewDownload(Game game) {
-        DownloadPanel panel = new DownloadPanel(game);
-        pnlQueue.add(panel);
-        downloadQueue.offer(panel);
+        if (!downloadingGames.contains(game)) {
+            DownloadPanel panel = new DownloadPanel(game);
+            pnlQueue.add(panel);
+            pnlQueue.revalidate();
+            downloadQueue.offer(panel);
+            downloadingGames.add(game);
+        }
     }
 
     private void downloadThread() {
@@ -150,6 +159,10 @@ public class DownloadQueue extends JDialog {
                         }
                         pnlDownloaded.revalidate();
                         pnlDownloaded.repaint();
+                        downloadingGames.remove(dp.getGame());
+                        if (status == DownloadPanel.Status.COMPLETE) {
+                            LibraryPanel.gI().reload();
+                        }
                     }
                     else if(downloadQueue.peek() != null)
                         downloadQueue.peek().start();

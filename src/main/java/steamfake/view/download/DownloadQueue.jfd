@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :49:49:p, par l:::p {comp separator1::::1000:x, comp label1:::p::p, comp scrollPane2::l::1000:x, comp scrollPane1::l::1000:x}, space ::49:x}}"
-			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space u:::p, comp scrollPane1:::p:200:p, space :::p, comp separator1:::p:2:p, space :::p, comp scrollPane2:::p:400:p, space :::x}}"
+			"$horizontalGroup": "par l {seq l {space :49:49:p, par l:::p {comp label1:::p::p, comp scrollPane2::t::1000:x, comp separator1::t::1000:x, comp scrollPane1::l:::x}, space ::49:x}}"
+			"$verticalGroup": "par l {seq l {space :p:14:p, comp label1:::p::p, space s:::p, comp scrollPane1:::p:240:p, space s:::p, comp separator1:::p:2:p, space :p:5:p, comp scrollPane2:::p:400:p, space :p:29:p}}"
 		} ) {
 			name: "this"
 			"resizable": false
@@ -40,7 +40,7 @@ new FormModel {
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 1100, 720 )
+			"size": new java.awt.Dimension( 1100, 800 )
 		} )
 	}
 }
