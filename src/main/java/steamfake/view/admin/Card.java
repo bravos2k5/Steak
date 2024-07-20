@@ -17,108 +17,172 @@ public class Card extends JDialog {
     public Card(Window owner) {
         super(owner);
         initComponents();
-        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0 ; i <6;i++){
-            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
-        }
-        this.getContentPane().setBackground(Color.decode("#191B20") );
-        table1.getTableHeader().setPreferredSize(new Dimension(1400,30));
-        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
-        table1.getTableHeader().setBackground(new Color(32,136,203));
-        table1.getTableHeader().setEnabled(false);
+        
+
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        scrollPane1 = new JScrollPane();
-        table1 = new JTable();
-        btnUpload = new RadiusButton();
-        btnCancel = new RadiusButton();
+        label2 = new JLabel();
+        textField1 = new JTextField();
+        label3 = new JLabel();
+        textField2 = new JTextField();
+        label4 = new JLabel();
+        textField3 = new JTextField();
+        label5 = new JLabel();
+        textField4 = new JTextField();
+        textField5 = new JTextField();
+        label6 = new JLabel();
+        textField6 = new JTextField();
+        label7 = new JLabel();
+        btnCancel2 = new RadiusButton();
+        btnUpload2 = new RadiusButton();
 
         //======== this ========
         var contentPane = getContentPane();
 
-        //======== scrollPane1 ========
-        {
-            scrollPane1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        //---- label2 ----
+        label2.setText("ID :");
+        label2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label2.setHorizontalAlignment(SwingConstants.CENTER);
 
-            //---- table1 ----
-            table1.setModel(new DefaultTableModel(
-                new Object[][] {
-                    {"1", "2", "3", "4", "5", "6"},
-                },
-                new String[] {
-                    "ID", "ID Account", "M\u00e3 th\u1ebb", "S\u1ed1 Seri", "Nh\u00e0 m\u1ea1ng", "S\u1ed1 ti\u1ec1n"
-                }
-            ) {
-                boolean[] columnEditable = new boolean[] {
-                    false, false, false, false, false, false
-                };
-                @Override
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return columnEditable[columnIndex];
-                }
-            });
-            {
-                TableColumnModel cm = table1.getColumnModel();
-                cm.getColumn(0).setResizable(false);
-                cm.getColumn(0).setPreferredWidth(200);
-                cm.getColumn(1).setResizable(false);
-                cm.getColumn(1).setPreferredWidth(200);
-                cm.getColumn(2).setResizable(false);
-                cm.getColumn(2).setPreferredWidth(200);
-                cm.getColumn(3).setResizable(false);
-                cm.getColumn(3).setPreferredWidth(200);
-                cm.getColumn(4).setResizable(false);
-                cm.getColumn(5).setResizable(false);
-                cm.getColumn(5).setPreferredWidth(150);
-            }
-            table1.setRowHeight(30);
-            table1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-            table1.setBackground(new Color(0x252730));
-            scrollPane1.setViewportView(table1);
-        }
+        //---- textField1 ----
+        textField1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-        //---- btnUpload ----
-        btnUpload.setText("Duy\u1ec7t");
-        btnUpload.setHorizontalAlignment(SwingConstants.CENTER);
-        btnUpload.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-        btnUpload.setBackground(new Color(0x35452a));
-        btnUpload.setHoverColor(new Color(0x429509));
-        btnUpload.setOriginColor(new Color(0x35452a));
-        btnUpload.setRadius(5);
+        //---- label3 ----
+        label3.setText("ID Account :");
+        label3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label3.setHorizontalAlignment(SwingConstants.CENTER);
 
-        //---- btnCancel ----
-        btnCancel.setText("T\u1eeb ch\u1ed1i");
-        btnCancel.setHorizontalAlignment(SwingConstants.CENTER);
-        btnCancel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-        btnCancel.setBackground(new Color(0x3e3737));
-        btnCancel.setOriginColor(new Color(0x3e3737));
-        btnCancel.setRadius(5);
-        btnCancel.setHoverColor(new Color(0x9d2424));
+        //---- textField2 ----
+        textField2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+        //---- label4 ----
+        label4.setText("M\u00e3 th\u1ebb :");
+        label4.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label4.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //---- textField3 ----
+        textField3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+        //---- label5 ----
+        label5.setText("S\u1ed1 Seri");
+        label5.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label5.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //---- textField4 ----
+        textField4.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+        //---- textField5 ----
+        textField5.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+        //---- label6 ----
+        label6.setText("Nh\u00e0 m\u1ea1ng");
+        label6.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label6.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //---- textField6 ----
+        textField6.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+        //---- label7 ----
+        label7.setText("S\u1ed1 ti\u1ec1n");
+        label7.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        label7.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //---- btnCancel2 ----
+        btnCancel2.setText("T\u1eeb ch\u1ed1i");
+        btnCancel2.setHorizontalAlignment(SwingConstants.CENTER);
+        btnCancel2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        btnCancel2.setBackground(new Color(0x3e3737));
+        btnCancel2.setOriginColor(new Color(0x3e3737));
+        btnCancel2.setRadius(5);
+        btnCancel2.setHoverColor(new Color(0x9d2424));
+
+        //---- btnUpload2 ----
+        btnUpload2.setText("Duy\u1ec7t");
+        btnUpload2.setHorizontalAlignment(SwingConstants.CENTER);
+        btnUpload2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        btnUpload2.setBackground(new Color(0x35452a));
+        btnUpload2.setHoverColor(new Color(0x429509));
+        btnUpload2.setOriginColor(new Color(0x35452a));
+        btnUpload2.setRadius(5);
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 1398, Short.MAX_VALUE)
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(textField5, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(contentPaneLayout.createParallelGroup()
+                            .addGroup(contentPaneLayout.createSequentialGroup()
+                                .addGap(117, 117, 117)
+                                .addComponent(label2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(contentPaneLayout.createSequentialGroup()
+                                .addGap(71, 71, 71)
+                                .addGroup(contentPaneLayout.createParallelGroup()
+                                    .addGroup(contentPaneLayout.createSequentialGroup()
+                                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(textField3, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(contentPaneLayout.createSequentialGroup()
+                                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(textField2, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addComponent(textField4, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 86, GroupLayout.PREFERRED_SIZE)
+                            .addGap(12, 12, 12)
+                            .addComponent(textField6, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)))
+                    .addContainerGap(129, Short.MAX_VALUE))
                 .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                    .addContainerGap(1177, Short.MAX_VALUE)
-                    .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 559, Short.MAX_VALUE)
+                    .addComponent(btnCancel2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                     .addGap(15, 15, 15)
-                    .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap())
+                    .addComponent(btnUpload2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                    .addGap(24, 24, 24))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addGap(44, 44, 44)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(41, 41, 41)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 9, Short.MAX_VALUE))
+                        .addComponent(textField2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(50, 50, 50)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(47, 47, 47)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(50, 50, 50)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(textField5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(52, 52, 52)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(textField6, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(btnCancel2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpload2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                    .addGap(27, 27, 27))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -126,9 +190,19 @@ public class Card extends JDialog {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JScrollPane scrollPane1;
-    private JTable table1;
-    private RadiusButton btnUpload;
-    private RadiusButton btnCancel;
+    private JLabel label2;
+    private JTextField textField1;
+    private JLabel label3;
+    private JTextField textField2;
+    private JLabel label4;
+    private JTextField textField3;
+    private JLabel label5;
+    private JTextField textField4;
+    private JTextField textField5;
+    private JLabel label6;
+    private JTextField textField6;
+    private JLabel label7;
+    private RadiusButton btnCancel2;
+    private RadiusButton btnUpload2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

@@ -1,14 +1,12 @@
 /*
- * Created by JFormDesigner on Mon Jul 15 20:10:09 ICT 2024
+ * Created by JFormDesigner on Fri Jul 19 20:55:13 ICT 2024
  */
 
-package steamfake.view.admin;
+package steamfake.view.admin.withdrawmoney;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import javax.swing.table.*;
@@ -16,26 +14,21 @@ import javax.swing.table.*;
 /**
  * @author ACER
  */
-public class ManageAddMOney extends JDialog {
-    public ManageAddMOney(Window owner) {
+public class ManageWithdrawmoney extends JDialog {
+    public ManageWithdrawmoney(Window owner) {
         super(owner);
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.decode("#191B20"));
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
         table1.getTableHeader().setBackground(new Color(32, 136, 203));
         table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
         table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
-        table1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new Card(null).setVisible(true);
-            }
-        });
+
     }
 
     private void initComponents() {
@@ -97,15 +90,15 @@ public class ManageAddMOney extends JDialog {
                     //---- table1 ----
                     table1.setModel(new DefaultTableModel(
                         new Object[][] {
-                            {"1", "2", "3", "4", "5", "6"},
-                            {null, null, null, null, null, null},
+                            {"1", "2", "4", "3", "5"},
+                            {null, null, null, null, null},
                         },
                         new String[] {
-                            "ID", "ID Account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"
+                            "ID", "ID Account", "S\u1ed1 ti\u1ec1n", "H\u00ecnh th\u1ee9c", "Ng\u00e0y R\u00fat"
                         }
                     ) {
                         boolean[] columnEditable = new boolean[] {
-                            false, false, false, false, false, false
+                            false, false, false, false, false
                         };
                         @Override
                         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,7 +112,6 @@ public class ManageAddMOney extends JDialog {
                         cm.getColumn(2).setResizable(false);
                         cm.getColumn(3).setResizable(false);
                         cm.getColumn(4).setResizable(false);
-                        cm.getColumn(5).setResizable(false);
                     }
                     table1.setBackground(new Color(0x191b20));
                     table1.setSelectionBackground(new Color(0x4e4e4e));
@@ -216,5 +208,8 @@ public class ManageAddMOney extends JDialog {
     private JTable table1;
     private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatDarkLaf());
+        new ManageWithdrawmoney(null).setVisible(true);
+    }
 }

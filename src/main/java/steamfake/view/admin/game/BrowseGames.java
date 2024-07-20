@@ -1,8 +1,8 @@
 /*
- * Created by JFormDesigner on Mon Jul 15 20:10:09 ICT 2024
+ * Created by JFormDesigner on Fri Jul 19 21:03:08 ICT 2024
  */
 
-package steamfake.view.admin;
+package steamfake.view.admin.game;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 
@@ -16,15 +16,15 @@ import javax.swing.table.*;
 /**
  * @author ACER
  */
-public class ManageAddMOney extends JDialog {
-    public ManageAddMOney(Window owner) {
+public class BrowseGames extends JDialog {
+    public BrowseGames(Window owner) {
         super(owner);
         initComponents();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.decode("#191B20"));
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 4; i++) {
             table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
         table1.getTableHeader().setBackground(new Color(32, 136, 203));
@@ -33,9 +33,10 @@ public class ManageAddMOney extends JDialog {
         table1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new Card(null).setVisible(true);
+                new Games(null).setVisible(true);
             }
         });
+
     }
 
     private void initComponents() {
@@ -97,15 +98,15 @@ public class ManageAddMOney extends JDialog {
                     //---- table1 ----
                     table1.setModel(new DefaultTableModel(
                         new Object[][] {
-                            {"1", "2", "3", "4", "5", "6"},
-                            {null, null, null, null, null, null},
+                            {"1", "2", "3", "4"},
+                            {null, null, null, null},
                         },
                         new String[] {
-                            "ID", "ID Account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"
+                            "ID", "Publisher_id", "Ng\u00e0y t\u1ea1o", "Tr\u1ea1ng th\u00e1i"
                         }
                     ) {
                         boolean[] columnEditable = new boolean[] {
-                            false, false, false, false, false, false
+                            false, false, false, false
                         };
                         @Override
                         public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -118,8 +119,6 @@ public class ManageAddMOney extends JDialog {
                         cm.getColumn(1).setResizable(false);
                         cm.getColumn(2).setResizable(false);
                         cm.getColumn(3).setResizable(false);
-                        cm.getColumn(4).setResizable(false);
-                        cm.getColumn(5).setResizable(false);
                     }
                     table1.setBackground(new Color(0x191b20));
                     table1.setSelectionBackground(new Color(0x4e4e4e));
