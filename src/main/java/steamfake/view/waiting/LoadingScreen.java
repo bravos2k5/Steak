@@ -16,6 +16,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
 
 /**
  * @author ADMIN
@@ -39,12 +40,17 @@ public class LoadingScreen extends JDialog {
                 for(int i = 0; i < 100; i++) {
                     doTask("Loading " + i + "%...", i);
                     if(i == 10) {
-                        DatabaseConnector.getInstance().getConnection();
+                        Connection connection = DatabaseConnector.getInstance().getConnection();
+                        if(connection == null) {
+                            doTask("Database connection failed", 100);
+                            System.exit(-1);
+                            break;
+                        }
                     }
-                    if(i == 77) {
+                    else if(i == 77) {
                         owner.initHomePage();
                     }
-                    if(i == 99) {
+                    else if(i == 99) {
                         new LoginDialog(owner).setVisible(true);
                     }
                 }

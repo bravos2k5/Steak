@@ -1,5 +1,7 @@
 package steamfake.utils;
 
+import steamfake.model.Game;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -30,12 +32,6 @@ public class XEmail {
         return props;
     }
 
-    /**
-     * Gửi email đến người nào đó
-     * @param to địa chỉ mail người nhận
-     * @param subject tiêu đề
-     * @param text nội dung chính
-     */
     public static void sendEmail(String to, String subject, String text) {
         Session session = Session.getInstance(props,authenticator);
         MimeMessage msg = new MimeMessage(session);
@@ -57,4 +53,16 @@ public class XEmail {
             }
         }
     }
+
+    public static void sendInvoice(String to,double moneyBeforePurchase,Game game) {
+        String subject = "Hóa đơn thanh toán mua game";
+        String text = "<h1>Hóa đơn</h1>" +
+                "<p>Xin chào quý khách,</p>" +
+                "<p>Bạn vừa mua game: <b>" + game.getName() + "</b> với số tiền là <b>$" + game.getGiaTien() + "</b>.</p>" +
+                "<p>Số tiền trước khi thanh toán: <b>$" + moneyBeforePurchase + "</b></p>" +
+                "<p>Số tiền còn lại sau thanh toán: <b>$" + (moneyBeforePurchase - game.getGiaTien()) + "</b></p>" +
+                "<p>Cảm ơn đã sử dụng dịch vụ của chúng tôi.</p>";
+        sendEmail(to,subject,text);
+    }
+
 }

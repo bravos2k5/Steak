@@ -8,6 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class KiemDuyetDAO {
 
@@ -54,9 +55,9 @@ public class KiemDuyetDAO {
         return phieuKiemDuyetList.isEmpty() ? null : phieuKiemDuyetList.get(0);
     }
 
-    public List<PhieuKiemDuyet> selectByPublisherID(PhieuKiemDuyet phieuKiemDuyet) {
+    public List<PhieuKiemDuyet> selectByPublisherID(UUID publisherID) {
         String sql = "SELECT * FROM PHIEU_KIEM_DUYET WHERE publisher_id = ?";
-        return selectBySQL(sql, phieuKiemDuyet.getPublisherID());
+        return selectBySQL(sql, publisherID);
     }
 
     public List<PhieuKiemDuyet> selectBySQL(String sql, Object... args) {
@@ -67,7 +68,7 @@ public class KiemDuyetDAO {
                 phieuKiemDuyet.setId(rs.getObject("id", java.util.UUID.class));
                 phieuKiemDuyet.setPublisherID(rs.getObject("publisher_id", java.util.UUID.class));
                 phieuKiemDuyet.setMoTa(rs.getString("mo_ta"));
-                phieuKiemDuyet.setStatus(rs.getInt("status"));
+                phieuKiemDuyet.setStatus(rs.getInt("trang_thai"));
                 phieuKiemDuyet.setThongBao(rs.getString("thong_bao"));
                 phieuKiemDuyet.setNgayTao(rs.getDate("ngay_tao"));
                 phieuKiemDuyetList.add(phieuKiemDuyet);
