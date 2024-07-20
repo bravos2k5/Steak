@@ -1,46 +1,54 @@
 /*
- * Created by JFormDesigner on Fri Jul 05 21:20:42 ICT 2024
+ * Created by JFormDesigner on Fri Jul 19 07:11:49 ICT 2024
  */
 
-package raven;
-
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import raven.datetime.component.date.DatePicker;
+package steamfake.view;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * @author BRAVOS
  */
-public class MainFrame extends JFrame {
-    public MainFrame() {
+public class CardDetail extends JDialog {
+    public CardDetail(Window owner) {
+        super(owner);
         initComponents();
-        new DatePicker().setEditor(txtDate);
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        // Generated using JFormDesigner Evaluation license - baonqps41272
-        txtDate = new JFormattedTextField();
+        label1 = new JLabel();
+        label2 = new JLabel();
 
         //======== this ========
         var contentPane = getContentPane();
+
+        //---- label1 ----
+        label1.setText("text");
+
+        //---- label2 ----
+        label2.setText("text");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(167, 167, 167)
-                    .addComponent(txtDate, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(214, Short.MAX_VALUE))
+                    .addGap(61, 61, 61)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                        .addComponent(label2)
+                        .addComponent(label1))
+                    .addContainerGap(427, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
-                    .addGap(113, 113, 113)
-                    .addComponent(txtDate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(160, Short.MAX_VALUE))
+                    .addGap(51, 51, 51)
+                    .addComponent(label1)
+                    .addGap(110, 110, 110)
+                    .addComponent(label2)
+                    .addContainerGap(171, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -48,13 +56,7 @@ public class MainFrame extends JFrame {
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    // Generated using JFormDesigner Evaluation license - baonqps41272
-    private JFormattedTextField txtDate;
+    private JLabel label1;
+    private JLabel label2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new MainFrame().setVisible(true);
-    }
-
 }

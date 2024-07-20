@@ -2,6 +2,8 @@ package steamfake.utils.database;
 
 import steamfake.utils.XProperties;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -38,13 +40,15 @@ public class DatabaseConnector {
     public Connection getConnection() {
         try {
             if(connection == null || connection.isClosed()) {
-                DriverManager.setLoginTimeout(120); // Quá 120 giây = kết nối thất bại
+                DriverManager.setLoginTimeout(30);
+                DriverManager.setLogWriter(new PrintWriter("database.log"));
                 connection = DriverManager.getConnection(connectionUrl,username,password);
             }
             return connection;
         } catch (SQLException e) {
-            e.printStackTrace();
             return null;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -55,7 +59,6 @@ public class DatabaseConnector {
                 connection = null;
                 instance = null;
             } catch (SQLException e) {
-                // Message here
                 throw new RuntimeException(e);
             }
         }

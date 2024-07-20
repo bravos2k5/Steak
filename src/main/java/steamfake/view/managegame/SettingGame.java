@@ -48,8 +48,6 @@ public class SettingGame extends JDialog {
         label4 = new JLabel();
         lblAvatar = new JLabel();
         label6 = new JLabel();
-        checkBox1 = new JCheckBox();
-        label15 = new JLabel();
         btnUpload = new RadiusButton();
         btnCancel = new RadiusButton();
         txtFolderPath = new JTextField();
@@ -132,14 +130,6 @@ public class SettingGame extends JDialog {
         //---- label6 ----
         label6.setText("Upload folder game");
         label6.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-
-        //---- checkBox1 ----
-        checkBox1.setFont(new Font("Segoe UI", Font.PLAIN, 20));
-
-        //---- label15 ----
-        label15.setText("B\u1ea1n c\u00f3 \u0111\u1ed3ng \u00fd \u0111i\u1ec1u kho\u1ea3n vv...");
-        label15.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 10));
-        label15.setBackground(new Color(0x505051));
 
         //---- btnUpload ----
         btnUpload.setText("\u0110\u0103ng l\u00ean");
@@ -263,10 +253,7 @@ public class SettingGame extends JDialog {
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addGroup(contentPaneLayout.createParallelGroup()
                                 .addGroup(contentPaneLayout.createSequentialGroup()
-                                    .addComponent(checkBox1)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 187, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                                    .addGap(0, 0, Short.MAX_VALUE)
                                     .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
@@ -368,13 +355,9 @@ public class SettingGame extends JDialog {
                         .addComponent(lblVersion)
                         .addComponent(txtVersion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                    .addGroup(contentPaneLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createParallelGroup()
-                            .addComponent(checkBox1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(label15, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                     .addGap(47, 47, 47))
         );
         pack();
@@ -394,8 +377,6 @@ public class SettingGame extends JDialog {
     private JLabel label4;
     private JLabel lblAvatar;
     private JLabel label6;
-    private JCheckBox checkBox1;
-    private JLabel label15;
     private RadiusButton btnUpload;
     private RadiusButton btnCancel;
     private JTextField txtFolderPath;

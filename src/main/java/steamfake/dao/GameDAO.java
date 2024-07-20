@@ -161,6 +161,11 @@ public class GameDAO implements DataAccessObject<Game> {
         return selectBySQL(sql);
     }
 
+    public List<Game> selectGameByPublisher(Account account) {
+        String sql = "SELECT * FROM Game WHERE publisher_id = ?";
+        return selectBySQL(sql,account.getId());
+    }
+
     public int muaGame(Game game, Account account) {
         String sql = "{CALL SP_MUA_GAME(?,?)}";
         return XJdbc.update(sql,account.getId(),game.getId());
