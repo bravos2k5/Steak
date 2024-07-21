@@ -4,15 +4,14 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {space :p:32:p, comp lblIcon:::p:55:p, space s:::p, comp lblGameName:::p:300:p, space s:::p, comp prbProgress:::p:250:p, space s:::p, comp lblProgress:::p:201:p, space :p:51:p, comp lblAction:::p:30:p, space ::22:x}}"
-			"$verticalGroup": "par l {seq {space :20:20:p, par l {comp lblAction::t:p:40:p, par b:l {comp lblIcon::b:p:30:p, comp lblGameName::b:p:30:p, seq l {space :p:17:p, comp prbProgress:::p::p}}, comp lblProgress::l:::x}, space ::10:x}}"
+			"$horizontalGroup": "par l {seq {space :p:32:p, comp lblIcon:::p:61:p, space u:::p, comp lblGameName:::p:300:p, space s:::p, comp prbProgress:::p:250:p, space s:::p, comp lblProgress:::p:201:p, space :p:42:p, comp lblAction:::p:39:p, space ::22:x}}"
+			"$verticalGroup": "par l {seq {space :20:20:p, par l {seq l {par b {comp lblGameName::b:p:30:p, seq l {space :p:17:p, comp prbProgress:::p::p}, comp lblIcon::b:p:30:p}, space :0:0:x}, comp lblProgress::l:::x, seq t {space :0:0:x, comp lblAction:::p:40:p}}, space ::10:x}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
 			"maximumSize": new java.awt.Dimension( 995, 70 )
 			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 				name: "lblIcon"
-				"text": "text"
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblGameName"
@@ -31,6 +30,8 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblAction"
 				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/delete-mini.png" )
+				"horizontalTextPosition": 0
+				"horizontalAlignment": 0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 10 )

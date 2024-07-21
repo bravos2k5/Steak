@@ -1,17 +1,17 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {seq l {space :p:50:p, comp panel1:::p::p, space ::50:x}}"
-			"$verticalGroup": "par l {seq t {space ::40:x, comp panel1:::p::p, space :p:40:p}}"
+			"$verticalGroup": "par l {seq t {space ::38:x, comp panel1:::p::p, space :p:18:p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {space :p:50:p, comp tabbedPane1:::p:1000:p, space ::50:x}}"
-				"$verticalGroup": "par l {comp tabbedPane1::l:::x}"
+				"$verticalGroup": "par l {seq t {space :0:0:x, comp tabbedPane1:::p:744:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -20,8 +20,8 @@ new FormModel {
 					"background": new java.awt.Color( 37, 39, 48, 255 )
 					"font": new java.awt.Font( "Inter", 1, 16 )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp radiusPanel1:::::x, comp scrollPane1::::1000:x, comp panel3::l::1000:x, seq l {comp label1:::p:210:p, space :0:790:x}}"
-						"$verticalGroup": "par l {seq l {space :0:0:p, comp radiusPanel1:::p::p, space ::15:x, comp label1:::p:50:p, space :::p, comp panel3:::p::p, space :0:0:p, comp scrollPane1:::p:150:p, space :p:16:p}}"
+						"$horizontalGroup": "par l {comp radiusPanel1:::::x, seq l {comp label1:::p:210:p, space :0:790:x}, comp panel3::l::1000:x, comp scrollPane1::l::1000:x}"
+						"$verticalGroup": "par l {seq l {space :0:0:p, comp radiusPanel1:::p::p, space s:::p, comp label1:::p:50:p, space :::p, comp panel3:::p::p, space :0:0:p, comp scrollPane1::::171:x, space :p:16:p}}"
 					} ) {
 						name: "panel2"
 						"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -86,7 +86,7 @@ new FormModel {
 								} )
 								add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 									name: "radiusLabel1"
-									"text": "10.000 VNĐ =8.000 coin"
+									"text": "10.000 VNĐ = 8.000 VNĐ"
 									"background": &Color6 new java.awt.Color( 35, 48, 77, 255 )
 									"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "SansSerif", 1, 4, false )
 									"borderColor": &Color7 new java.awt.Color( 65, 109, 209, 255 )
@@ -150,8 +150,8 @@ new FormModel {
 						name: "panel5"
 						"background": new java.awt.Color( 37, 39, 48, 255 )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {comp panel8::t:p:1000:p, comp scrollPane2::t:::x, comp label10:::p:210:p, comp radiusPanel3::t:::x}}}"
-							"$verticalGroup": "par l {seq l {comp radiusPanel3:::p::p, space u:::p, comp label10:::p:50:p, space ::9:x, comp panel8:::p::p, space :0:0:p, comp scrollPane2:::p:150:p, space :p:16:p}}"
+							"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {comp label10:::p:210:p, comp radiusPanel3::t:::x, comp panel8::l:p:1000:p, comp scrollPane2::t:::x}}}"
+							"$verticalGroup": "par l {seq l {comp radiusPanel3:::p::p, space u:::p, comp label10:::p:50:p, space :::p, comp panel8:::p::p, space :0:0:p, comp scrollPane2::::177:x, space :p:16:p}}"
 						} ) {
 							name: "panel6"
 							"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -195,7 +195,7 @@ new FormModel {
 									} )
 									add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 										name: "radiusLabel3"
-										"text": "10.000 VNĐ =10.000 coin"
+										"text": "10.000 VNĐ = 10.000 coin"
 										"background": #Color6
 										"font": #SwingDerivedFont0
 										"borderColor": #Color7

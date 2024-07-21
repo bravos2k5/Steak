@@ -4,21 +4,18 @@
 
 package steamfake.view.gamedetail;
 
-import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import com.formdev.flatlaf.ui.FlatDropShadowBorder;
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
-import steamfake.graphics.*;
-import steamfake.model.Account;
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
 
 /**
  * @author ACER
@@ -281,7 +278,7 @@ public class BillGame extends JDialog {
 
     private void initialize() {
         this.getContentPane().setBackground(Color.lightGray);
-        lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar()), lblAvatar));
+        lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblAvatar));
         lblName.setText(game.getName());
         lblPublisher.setText(GameDAO.gI().selectUsernamePublisher(game));
         lblPrice.setText(game.getGiaTien() + " VND");
@@ -290,10 +287,9 @@ public class BillGame extends JDialog {
         lblPurchasePrice.setText(game.getGiaTien() + " VND");
         lblMoneyLeft.setText((SessionManager.user.getSoDuGame() - game.getGiaTien()) + " VND");
         initEvent();
-
     }
 
-    public void initEvent() {
+    private void initEvent() {
         btnPay.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -310,7 +306,7 @@ public class BillGame extends JDialog {
         });
     }
 
-    public boolean payGame() {
+    private boolean payGame() {
         try {
             AccountDAO.gI().updateViGame(SessionManager.user, game.getGiaTien());
             return true;
