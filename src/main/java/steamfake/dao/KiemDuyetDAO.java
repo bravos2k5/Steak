@@ -104,8 +104,33 @@ public class KiemDuyetDAO {
     }
 
     public List<PhieuKiemDuyet> selectByMonthAndYear(MonthYear monthYear) {
+        int month = monthYear.getMonth();
+        int year = monthYear.getYear();
+        if(month == 0 && year == 0) {
+            return selectAll();
+        }
+        if(month == 0) {
+            return selectByYear(year);
+        }
+        if(year == 0) {
+            return selectByMonth(month);
+        }
         String sql = "SELECT * FROM PHIEU_KIEM_DUYET WHERE MONTH(ngay_tao) = ? AND YEAR(ngay_tao) = ?";
         return selectBySQL(sql, monthYear.getMonth(), monthYear.getYear());
+    }
+
+    public List<PhieuKiemDuyet> selectByYear(int year) {
+        String sql = "SELECT * FROM PHIEU_KIEM_DUYET WHERE YEAR(ngay_tao) = ?";
+        return selectBySQL(sql, year);
+    }
+
+    public List<PhieuKiemDuyet> selectByMonth(int month) {
+        String sql = "SELECT * FROM PHIEU_KIEM_DUYET WHERE MONTH(ngay_tao) = ?";
+        return selectBySQL(sql, month);
+    }
+
+    public PendingGame selectPendingGameById(PhieuKiemDuyet phieuKiemDuyet) {
+        return null;
     }
 
 }

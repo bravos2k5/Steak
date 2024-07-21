@@ -174,7 +174,7 @@ public class InputUtils extends MaskFormatter {
 
         private final boolean between;
         private final String separator;
-        private DateFormat dateFormat;
+        private final DateFormat dateFormat;
 
         public DateInputFormat(String mark, boolean between, String separator, String pattern) throws ParseException {
             super(mark);

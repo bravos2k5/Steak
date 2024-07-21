@@ -4,6 +4,7 @@
 
 package steamfake.view.admin.game;
 
+import com.formdev.flatlaf.themes.FlatMacDarkLaf;
 import steamfake.dao.KiemDuyetDAO;
 import steamfake.model.PhieuKiemDuyet;
 import steamfake.utils.MonthYear;
@@ -13,8 +14,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.List;
 
@@ -24,6 +23,7 @@ import java.util.List;
 public class BrowseGames extends JDialog {
 
     private final HashMap<MonthYear,List<PhieuKiemDuyet>> pkdMap = new HashMap<>();
+    private int[] years;
 
     public BrowseGames(Window owner) {
         super(owner);
@@ -40,9 +40,9 @@ public class BrowseGames extends JDialog {
         label2 = new JLabel();
         cboYears = new JComboBox<>();
         label3 = new JLabel();
-        comboBox3 = new JComboBox<>();
+        cboStatus = new JComboBox<>();
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        tblPhieuKD = new JTable();
         panel4 = new JPanel();
 
         //======== this ========
@@ -75,26 +75,27 @@ public class BrowseGames extends JDialog {
                 label3.setText("Tr\u1ea1ng Th\u00e1i :");
                 label3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-                //---- comboBox3 ----
-                comboBox3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-                comboBox3.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "Ch\u01b0a duy\u1ec7t"
+                //---- cboStatus ----
+                cboStatus.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+                cboStatus.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "Ch\u01b0a duy\u1ec7t",
+                    "\u0110\u00e3 duy\u1ec7t",
+                    "T\u1eeb ch\u1ed1i"
                 }));
 
                 //======== scrollPane1 ========
                 {
 
-                    //---- table1 ----
-                    table1.setModel(new DefaultTableModel(
+                    //---- tblPhieuKD ----
+                    tblPhieuKD.setModel(new DefaultTableModel(
                         new Object[][] {
-                            {"1", "2", "3", "4"},
                             {null, null, null, null},
                         },
                         new String[] {
                             "ID", "Publisher_id", "Ng\u00e0y t\u1ea1o", "Tr\u1ea1ng th\u00e1i"
                         }
                     ) {
-                        boolean[] columnEditable = new boolean[] {
+                        final boolean[] columnEditable = new boolean[] {
                             false, false, false, false
                         };
                         @Override
@@ -103,17 +104,19 @@ public class BrowseGames extends JDialog {
                         }
                     });
                     {
-                        TableColumnModel cm = table1.getColumnModel();
+                        TableColumnModel cm = tblPhieuKD.getColumnModel();
                         cm.getColumn(0).setResizable(false);
+                        cm.getColumn(0).setPreferredWidth(150);
                         cm.getColumn(1).setResizable(false);
+                        cm.getColumn(1).setPreferredWidth(150);
                         cm.getColumn(2).setResizable(false);
                         cm.getColumn(3).setResizable(false);
                     }
-                    table1.setBackground(new Color(0x191b20));
-                    table1.setSelectionBackground(new Color(0x4e4e4e));
-                    table1.setRowHeight(30);
-                    table1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-                    scrollPane1.setViewportView(table1);
+                    tblPhieuKD.setBackground(new Color(0x191b20));
+                    tblPhieuKD.setSelectionBackground(new Color(0x4e4e4e));
+                    tblPhieuKD.setRowHeight(30);
+                    tblPhieuKD.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+                    scrollPane1.setViewportView(tblPhieuKD);
                 }
 
                 GroupLayout panel3Layout = new GroupLayout(panel3);
@@ -126,16 +129,16 @@ public class BrowseGames extends JDialog {
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addComponent(label3, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(comboBox3))
+                                    .addComponent(cboStatus))
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addComponent(label1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(cboMonths, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(cboYears, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(852, Short.MAX_VALUE))
+                            .addContainerGap(848, Short.MAX_VALUE))
                         .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1203, Short.MAX_VALUE)
                 );
                 panel3Layout.setVerticalGroup(
@@ -151,7 +154,7 @@ public class BrowseGames extends JDialog {
                                     .addComponent(label1)))
                             .addGap(18, 18, 18)
                             .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboStatus, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
@@ -199,9 +202,9 @@ public class BrowseGames extends JDialog {
     private JLabel label2;
     private JComboBox<String> cboYears;
     private JLabel label3;
-    private JComboBox<String> comboBox3;
+    private JComboBox<String> cboStatus;
     private JScrollPane scrollPane1;
-    private JTable table1;
+    private JTable tblPhieuKD;
     private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
@@ -211,37 +214,45 @@ public class BrowseGames extends JDialog {
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         for (int i = 0; i < 4; i++) {
-            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+            tblPhieuKD.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
-        table1.getTableHeader().setBackground(new Color(32, 136, 203));
-        table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
-        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
-        table1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new Games(null).setVisible(true);
-            }
-        });
+        tblPhieuKD.getTableHeader().setBackground(new Color(32, 136, 203));
+        tblPhieuKD.getTableHeader().setPreferredSize(new Dimension(1200, 30));
+        tblPhieuKD.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
         fillMonthComboBox();
         fillYearComboBox();
-        loadData();
+        cboYears.setSelectedIndex(cboYears.getItemCount() - 1);
         fillTable();
+        initEvent();
     }
 
-    private void loadData() {
-        int month = cboMonths.getSelectedIndex();
-        int year = cboYears.getSelectedIndex();
-        MonthYear monthYear = new MonthYear(month, year);
-        List<PhieuKiemDuyet> phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByMonthAndYear(monthYear);
+    private void initEvent() {
+        cboYears.addItemListener(e -> fillTable());
+        cboMonths.addItemListener(e -> fillTable());
+        cboStatus.addItemListener(e -> fillTable());
+    }
 
+    private List<PhieuKiemDuyet> getPkdList() {
+        int month = cboMonths.getSelectedIndex();
+        int year = years[cboYears.getSelectedIndex()];
+        MonthYear monthYear = new MonthYear(month, year);
+        if (!pkdMap.containsKey(monthYear)) {
+            List<PhieuKiemDuyet> phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByMonthAndYear(monthYear);
+            pkdMap.put(monthYear, phieuKiemDuyetList);
+            return phieuKiemDuyetList;
+        }
+        return pkdMap.get(monthYear);
     }
 
     private void fillTable() {
-        DefaultTableModel model = (DefaultTableModel) table1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblPhieuKD.getModel();
         model.setRowCount(0);
-        List<PhieuKiemDuyet> list = pkdMap.get(new MonthYear(cboMonths.getSelectedIndex(),
-                Integer.parseInt((String) cboYears.getSelectedItem())));
+        int trangThai = cboStatus.getSelectedIndex();
+        List<PhieuKiemDuyet> list = getPkdList();
         for (PhieuKiemDuyet phieuKiemDuyet : list) {
+            if(phieuKiemDuyet.getStatus() != trangThai) {
+                continue;
+            }
             String status = switch (phieuKiemDuyet.getStatus()) {
                 case PhieuKiemDuyet.PENDING -> "Chờ duyệt";
                 case PhieuKiemDuyet.ACCEPTED -> "Đã duyệt";
@@ -251,13 +262,14 @@ public class BrowseGames extends JDialog {
             model.addRow(new Object[]{
                     phieuKiemDuyet.getId(),
                     phieuKiemDuyet.getPublisherID(),
-                    phieuKiemDuyet.getNgayTao(),
+                    phieuKiemDuyet.getNgayTao().toLocalDate().format(java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                     status
             });
         }
     }
 
     private void fillMonthComboBox() {
+        cboMonths.removeAllItems();
         cboMonths.addItem("Tất cả");
         for(int i = 1; i <= 12; i++) {
             cboMonths.addItem(i + "");
@@ -265,11 +277,20 @@ public class BrowseGames extends JDialog {
     }
 
     private void fillYearComboBox() {
+        cboYears.removeAllItems();
         List<Integer> listYear = KiemDuyetDAO.getInstance().selectListYear();
         cboYears.addItem("Tất cả");
+        years = new int[listYear.size() + 1];
+        years[0] = 0;
         for (Integer year : listYear) {
             cboYears.addItem(year + "");
+            years[listYear.indexOf(year) + 1] = year;
         }
+    }
+
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatMacDarkLaf());
+        new BrowseGames(null).setVisible(true);
     }
 
 }

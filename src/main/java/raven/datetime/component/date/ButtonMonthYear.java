@@ -57,8 +57,7 @@ public class ButtonMonthYear extends JButton {
                 hover = false;
             }
         });
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "margin:6,6,6,6;" +
+        putClientProperty(FlatClientProperties.STYLE, "margin:6,6,6,6;" +
                 "selectedForeground:contrast($Component.accentColor,$Button.background,#fff);");
     }
 

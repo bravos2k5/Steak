@@ -4,17 +4,23 @@
 
 package steamfake.view.admin.game;
 
-import java.awt.*;
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusTextField;
+import steamfake.model.PhieuKiemDuyet;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import steamfake.graphics.*;
+import java.awt.*;
 
 /**
  * @author ACER
  */
 public class Games extends JDialog {
-    public Games(Window owner) {
+
+    private final PhieuKiemDuyet phieuKiemDuyet;
+
+    public Games(Window owner, PhieuKiemDuyet phieuKiemDuyet) {
         super(owner);
+        this.phieuKiemDuyet = phieuKiemDuyet;
         initComponents();
         this.getContentPane().setBackground(Color.decode("#191b20"));
     }
@@ -344,4 +350,13 @@ public class Games extends JDialog {
     private RadiusTextField txtCost2;
     private RadiusButton btnCancel2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private void initialize() {
+        loadGameData();
+    }
+
+    private void loadGameData() {
+
+    }
+
 }

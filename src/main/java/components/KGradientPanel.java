@@ -66,11 +66,7 @@ public class KGradientPanel extends JPanel {
     }
 
     public KGradientPanel() {
-        if (kTransparentControls) {
-            setBg(true);
-        } else {
-            setBg(false);
-        }
+        setBg(kTransparentControls);
     }
     public KGradientPanel(int pix) {
 
@@ -85,11 +81,7 @@ public class KGradientPanel extends JPanel {
          */
 
         /////////////////////////////////////
-        if (kTransparentControls) {
-            setBg(true);
-        } else {
-            setBg(false);
-        }
+        setBg(kTransparentControls);
 
     }
 
@@ -109,7 +101,7 @@ public class KGradientPanel extends JPanel {
         int h = getHeight();
         Dimension arcs = new Dimension(kBorderRadius, kBorderRadius);
 
-        GradientPaint gp = new GradientPaint(0, 0, kStartColor, kGradientFocus, h, kEndColor);;
+        GradientPaint gp = new GradientPaint(0, 0, kStartColor, kGradientFocus, h, kEndColor);
 
         // g2d.fillRect(0, 0, w, h);
         g2d.setPaint(gp);

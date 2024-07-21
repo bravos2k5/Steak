@@ -91,7 +91,7 @@ public class ManageGame extends JPanel {
                                 "ID game", "T\u00ean game", "Tr\u1ea1ng th\u00e1i"
                             }
                         ) {
-                            boolean[] columnEditable = new boolean[] {
+                            final boolean[] columnEditable = new boolean[] {
                                 false, false, false
                             };
                             @Override
@@ -176,7 +176,7 @@ public class ManageGame extends JPanel {
                                 "M\u00e3 phi\u1ebfu duy\u1ec7t", "M\u00f4 t\u1ea3", "Ng\u00e0y \u0111\u0103ng", "Tr\u1ea1ng Th\u00e1i", "L\u00fd do"
                             }
                         ) {
-                            boolean[] columnEditable = new boolean[] {
+                            final boolean[] columnEditable = new boolean[] {
                                 true, true, false, true, true
                             };
                             @Override
