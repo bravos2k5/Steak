@@ -12,7 +12,7 @@ target/
 *.iml
 *.ipr
 target
-src/main/resources/database.properties
+src/main/resources/azure.properties
 src/main/resources/azure.properties
 
 data

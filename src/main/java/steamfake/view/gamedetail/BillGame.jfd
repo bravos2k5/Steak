@@ -1,0 +1,132 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp separator1:::::x, seq l {par t:::p {comp label6::l::100:x, comp lblAvatar::l::100:x}, space :::p, par l {comp lblName:::::x, seq l {par t:::p {comp lblAccountMoney::l::268:x, comp lblPublisher::l::268:x, comp lblPrice::l::268:x}, space :0:0:x}}}, seq t {space :0:0:x, par l {comp separator2::t:p:386:p, comp separator3::t:p:386:p}}, seq {par t {seq {comp checkBox1:::p::p, space :0:0:p, comp scrollPane1:::p:349:p}, par l {seq {comp label4:::p:173:p, space s:::p, comp lblNameAccount:::p:180:p}, seq l {comp label8:::p:100:p, space :6:6:p, comp lblPurchasePrice:::p:268:p}, seq l {comp label10:::p:100:p, space :6:6:p, comp lblMoneyLeft:::p:268:p}}}, space :0:0:x}, comp btnPay::t:::x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :::p, par b {comp label4::b:p:30:p, comp lblNameAccount::b:p:30:p}, space :::p, comp separator1:::p:1:p, space :::p, par l:::p {comp lblAvatar:::p:100:p, seq {comp lblName:::p:30:p, space :::x, comp lblPublisher:::p:20:p, space :p:14:p, comp lblPrice:::p:30:p}}, space s:::p, par b {comp label6::b:p:30:p, comp lblAccountMoney::b:p:30:p}, space :::p, par l {comp label8:::p:30:p, comp lblPurchasePrice:::p:30:p}, space u:::p, comp separator2:::p:1:p, space u:::p, par l {comp label10:::p:30:p, comp lblMoneyLeft:::p:30:p}, space s:::p, par l {comp scrollPane1:::p:150:p, seq l {space :p:8:p, comp checkBox1:::p::p}}, space ::211:x, comp separator3:::p:1:p, space u:::p, comp btnPay:::p:79:p, space :::p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
+				name: "lblAvatar"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblName"
+				"text": "Dead By Daylight - Gold Edition"
+				"font": new java.awt.Font( "SansSerif", 1, 12 )
+				"foreground": &Color0 new java.awt.Color( 0, 0, 0, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPublisher"
+				"text": "publisher_id"
+				"font": new java.awt.Font( "SansSerif", 0, 10 )
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPrice"
+				"text": "400,000 đ"
+				"font": new java.awt.Font( "Inter", 0, 12 )
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "ORDER SUMMARY"
+				"font": new java.awt.Font( "SansSerif", 0, 18 )
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblNameAccount"
+				"text": "ACCOUNT"
+				"horizontalAlignment": 4
+				"font": new java.awt.Font( "SansSerif", 1, 10 )
+				"foreground": new java.awt.Color( 82, 189, 249, 255 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/User_Bill.png" )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator1"
+				"opaque": true
+				"background": sfield java.awt.Color gray
+				"foreground": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Tiền tài khoản"
+				"font": &Font0 new java.awt.Font( "SansSerif", 0, 12 )
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAccountMoney"
+				"text": "1.000.000.000.000"
+				"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "Inter", 0, 0, false )
+				"horizontalAlignment": 4
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Số tiền mua"
+				"font": #Font0
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblPurchasePrice"
+				"text": "-400.000"
+				"font": #SwingDerivedFont0
+				"horizontalAlignment": 4
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator2"
+				"opaque": true
+				"background": sfield java.awt.Color gray
+				"foreground": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "Tiền còn lại"
+				"font": #Font0
+				"foreground": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblMoneyLeft"
+				"text": "100000"
+				"font": #SwingDerivedFont0
+				"horizontalAlignment": 4
+				"foreground": sfield java.awt.Color black
+			} )
+			add( new FormComponent( "javax.swing.JCheckBox" ) {
+				name: "checkBox1"
+				"font": new java.awt.Font( "Segoe UI", 0, 20 )
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "textArea1"
+					"lineWrap": true
+					"text": "Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it.Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it."
+					"font": new java.awt.Font( "Segoe UI", 0, 12 )
+					"background": sfield java.awt.Color lightGray
+					"foreground": sfield java.awt.Color black
+					"editable": false
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JSeparator" ) {
+				name: "separator3"
+				"opaque": true
+				"background": sfield java.awt.Color gray
+				"foreground": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnPay"
+				"text": "Thanh Toán"
+				"font": new java.awt.Font( "Microsoft YaHei", 1, 30 )
+				"background": new java.awt.Color( 121, 181, 242, 255 )
+				"originColor": new java.awt.Color( 121, 181, 242, 255 )
+				"hoverColor": new java.awt.Color( 0, 120, 242, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 400, 800 )
+		} )
+	}
+}

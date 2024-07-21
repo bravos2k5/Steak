@@ -16,7 +16,7 @@ public class DatabaseConnector {
     private Connection connection;
 
     private DatabaseConnector() {
-        Properties properties = XProperties.getInstance().loadResourceProperties("database.properties");
+        Properties properties = XProperties.getInstance().loadResourceProperties("azure.properties");
         String host = properties.getProperty("database.host");
         String port = properties.getProperty("database.port");
         username = properties.getProperty("database.username");
