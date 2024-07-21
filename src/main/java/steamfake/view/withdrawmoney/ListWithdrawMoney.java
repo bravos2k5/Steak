@@ -25,55 +25,52 @@ public class ListWithdrawMoney extends JPanel {
 
         //======== this ========
         setBackground(new Color(0x252730));
-        setPreferredSize(new Dimension(550, 50));
-        setMinimumSize(new Dimension(550, 20));
 
         //---- colNgayRut ----
-        colNgayRut.setText("text");
-        colNgayRut.setFont(new Font("Inter", Font.BOLD, 16));
+        colNgayRut.setText("Ng\u00e0y r\u00fat");
         colNgayRut.setHorizontalAlignment(SwingConstants.CENTER);
-        colNgayRut.setPreferredSize(new Dimension(73, 20));
+        colNgayRut.setFont(new Font("Inter", Font.BOLD, 16));
 
         //---- colSoTien ----
-        colSoTien.setText("text");
+        colSoTien.setText("S\u1ed1 ti\u1ec1n r\u00fat");
         colSoTien.setHorizontalAlignment(SwingConstants.CENTER);
         colSoTien.setFont(new Font("Inter", Font.BOLD, 16));
-        colSoTien.setForeground(Color.white);
         colSoTien.setPreferredSize(new Dimension(73, 20));
 
         //---- colType ----
-        colType.setText("Bank");
+        colType.setText("H\u00ecnh th\u1ee9c");
         colType.setHorizontalAlignment(SwingConstants.CENTER);
         colType.setFont(new Font("Inter", Font.BOLD, 16));
         colType.setPreferredSize(new Dimension(73, 20));
 
         //---- colStatus ----
-        colStatus.setText("\u0110ang ch\u1edd");
+        colStatus.setText("Ng\u00e0y r\u00fat");
         colStatus.setHorizontalAlignment(SwingConstants.CENTER);
         colStatus.setFont(new Font("Inter", Font.BOLD, 16));
-        colStatus.setPreferredSize(new Dimension(73, 20));
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(colNgayRut, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colNgayRut, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(colSoTien, GroupLayout.PREFERRED_SIZE, 142, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colSoTien, GroupLayout.PREFERRED_SIZE, 139, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(colType, GroupLayout.PREFERRED_SIZE, 140, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colType, GroupLayout.PREFERRED_SIZE, 141, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 124, GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0))
+                    .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 134, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup()
-                .addComponent(colNgayRut, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(colSoTien, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(colType, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(colNgayRut, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(colSoTien, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(colType, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(colStatus, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
