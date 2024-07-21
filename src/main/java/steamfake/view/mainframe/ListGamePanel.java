@@ -4,10 +4,9 @@
 
 package steamfake.view.mainframe;
 
-import steamfake.dao.GameDAO;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
-import steamfake.model.Game;
+import steamfake.model.join.GameDisplay;
 import steamfake.utils.XImage;
 
 import javax.swing.*;
@@ -21,9 +20,9 @@ import java.awt.event.MouseEvent;
  */
 public class ListGamePanel extends JPanel {
 
-    private final Game game;
+    private final GameDisplay game;
 
-    public ListGamePanel(Game game) {
+    public ListGamePanel(GameDisplay game) {
         this.game = game;
         initComponents();
         loadInfo();
@@ -172,11 +171,11 @@ public class ListGamePanel extends JPanel {
     }
 
     private void loadInfo() {
-        lblDownload.setText(GameDAO.gI().selectLuotTai(game) + "");
+        lblDownload.setText(game.getDownloadCount() + "");
         lblNameGame.setText(game.getName());
         lblPrice.setText(game.getGiaTien() + " VND");
-        lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "");
-        lblPublisher.setText("Publisher by " + GameDAO.gI().selectUsernamePublisher(game));
+        lblReviews.setText(game.getAvgRating() + "");
+        lblPublisher.setText("Published by " + game.getPublisherName());
         lblImageGame.setSize(new Dimension(200, 100));
         lblImageGame.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblImageGame));
     }

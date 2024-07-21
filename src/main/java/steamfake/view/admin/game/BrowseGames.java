@@ -4,39 +4,31 @@
 
 package steamfake.view.admin.game;
 
-import com.formdev.flatlaf.FlatDarkLaf;
+import steamfake.dao.KiemDuyetDAO;
+import steamfake.model.PhieuKiemDuyet;
+import steamfake.utils.MonthYear;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.table.*;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author ACER
  */
 public class BrowseGames extends JDialog {
+
+    private final HashMap<MonthYear,List<PhieuKiemDuyet>> pkdMap = new HashMap<>();
+
     public BrowseGames(Window owner) {
         super(owner);
         initComponents();
-        this.setResizable(false);
-        this.getContentPane().setBackground(Color.decode("#191B20"));
-        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 4; i++) {
-            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
-        }
-        table1.getTableHeader().setBackground(new Color(32, 136, 203));
-        table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
-        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
-        table1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new Games(null).setVisible(true);
-            }
-        });
-
+        initialize();
     }
 
     private void initComponents() {
@@ -44,9 +36,9 @@ public class BrowseGames extends JDialog {
         tabbedPane1 = new JTabbedPane();
         panel3 = new JPanel();
         label1 = new JLabel();
-        comboBox1 = new JComboBox();
+        cboMonths = new JComboBox<>();
         label2 = new JLabel();
-        comboBox2 = new JComboBox<>();
+        cboYears = new JComboBox<>();
         label3 = new JLabel();
         comboBox3 = new JComboBox<>();
         scrollPane1 = new JScrollPane();
@@ -69,18 +61,15 @@ public class BrowseGames extends JDialog {
                 label1.setText("Th\u00e1ng  :");
                 label1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-                //---- comboBox1 ----
-                comboBox1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+                //---- cboMonths ----
+                cboMonths.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
                 //---- label2 ----
                 label2.setText("N\u0103m  :");
                 label2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-                //---- comboBox2 ----
-                comboBox2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-                comboBox2.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "2024"
-                }));
+                //---- cboYears ----
+                cboYears.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
                 //---- label3 ----
                 label3.setText("Tr\u1ea1ng Th\u00e1i :");
@@ -133,7 +122,7 @@ public class BrowseGames extends JDialog {
                     panel3Layout.createParallelGroup()
                         .addGroup(panel3Layout.createSequentialGroup()
                             .addGap(20, 20, 20)
-                            .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panel3Layout.createParallelGroup()
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addComponent(label3, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
@@ -141,34 +130,34 @@ public class BrowseGames extends JDialog {
                                 .addGroup(panel3Layout.createSequentialGroup()
                                     .addComponent(label1, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(37, 37, 37)
+                                    .addComponent(cboMonths, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(858, Short.MAX_VALUE))
-                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
+                            .addComponent(cboYears, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(852, Short.MAX_VALUE))
+                        .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1203, Short.MAX_VALUE)
                 );
                 panel3Layout.setVerticalGroup(
                     panel3Layout.createParallelGroup()
                         .addGroup(panel3Layout.createSequentialGroup()
                             .addGap(10, 10, 10)
-                            .addGroup(panel3Layout.createParallelGroup()
+                            .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                 .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cboYears, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(cboMonths, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label1)))
                             .addGap(18, 18, 18)
                             .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE))
+                                .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 26, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label3, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 693, Short.MAX_VALUE))
                 );
             }
-            tabbedPane1.addTab("Duy\u1ec7t", panel3);
+            tabbedPane1.addTab("Phi\u1ebfu ki\u1ec3m duy\u1ec7t", panel3);
 
             //======== panel4 ========
             {
@@ -177,14 +166,14 @@ public class BrowseGames extends JDialog {
                 panel4.setLayout(panel4Layout);
                 panel4Layout.setHorizontalGroup(
                     panel4Layout.createParallelGroup()
-                        .addGap(0, 1198, Short.MAX_VALUE)
+                        .addGap(0, 1203, Short.MAX_VALUE)
                 );
                 panel4Layout.setVerticalGroup(
                     panel4Layout.createParallelGroup()
-                        .addGap(0, 736, Short.MAX_VALUE)
+                        .addGap(0, 791, Short.MAX_VALUE)
                 );
             }
-            tabbedPane1.addTab("text", panel4);
+            tabbedPane1.addTab("Th\u1ed1ng k\u00ea", panel4);
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
@@ -206,14 +195,81 @@ public class BrowseGames extends JDialog {
     private JTabbedPane tabbedPane1;
     private JPanel panel3;
     private JLabel label1;
-    private JComboBox comboBox1;
+    private JComboBox<String> cboMonths;
     private JLabel label2;
-    private JComboBox<String> comboBox2;
+    private JComboBox<String> cboYears;
     private JLabel label3;
     private JComboBox<String> comboBox3;
     private JScrollPane scrollPane1;
     private JTable table1;
     private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private void initialize() {
+        this.setResizable(false);
+        this.getContentPane().setBackground(Color.decode("#191B20"));
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 4; i++) {
+            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
+        table1.getTableHeader().setBackground(new Color(32, 136, 203));
+        table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
+        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Games(null).setVisible(true);
+            }
+        });
+        fillMonthComboBox();
+        fillYearComboBox();
+        loadData();
+        fillTable();
+    }
+
+    private void loadData() {
+        int month = cboMonths.getSelectedIndex();
+        int year = cboYears.getSelectedIndex();
+        MonthYear monthYear = new MonthYear(month, year);
+        List<PhieuKiemDuyet> phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByMonthAndYear(monthYear);
+
+    }
+
+    private void fillTable() {
+        DefaultTableModel model = (DefaultTableModel) table1.getModel();
+        model.setRowCount(0);
+        List<PhieuKiemDuyet> list = pkdMap.get(new MonthYear(cboMonths.getSelectedIndex(),
+                Integer.parseInt((String) cboYears.getSelectedItem())));
+        for (PhieuKiemDuyet phieuKiemDuyet : list) {
+            String status = switch (phieuKiemDuyet.getStatus()) {
+                case PhieuKiemDuyet.PENDING -> "Chờ duyệt";
+                case PhieuKiemDuyet.ACCEPTED -> "Đã duyệt";
+                case PhieuKiemDuyet.REJECTED -> "Từ chối";
+                default -> "";
+            };
+            model.addRow(new Object[]{
+                    phieuKiemDuyet.getId(),
+                    phieuKiemDuyet.getPublisherID(),
+                    phieuKiemDuyet.getNgayTao(),
+                    status
+            });
+        }
+    }
+
+    private void fillMonthComboBox() {
+        cboMonths.addItem("Tất cả");
+        for(int i = 1; i <= 12; i++) {
+            cboMonths.addItem(i + "");
+        }
+    }
+
+    private void fillYearComboBox() {
+        List<Integer> listYear = KiemDuyetDAO.getInstance().selectListYear();
+        cboYears.addItem("Tất cả");
+        for (Integer year : listYear) {
+            cboYears.addItem(year + "");
+        }
+    }
 
 }
