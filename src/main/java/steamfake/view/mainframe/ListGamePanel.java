@@ -178,7 +178,7 @@ public class ListGamePanel extends JPanel {
         lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "");
         lblPublisher.setText("Publisher by " + GameDAO.gI().selectUsernamePublisher(game));
         lblImageGame.setSize(new Dimension(200, 100));
-        lblImageGame.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() +  "/images/" + game.getAvatar()), lblImageGame));
+        lblImageGame.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblImageGame));
     }
 
 

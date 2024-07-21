@@ -149,6 +149,10 @@ public class Game {
         this.execPath = execPath;
     }
 
+    public String getAvatarPath() {
+        return "data/games/" + id + "/" + version + "/images/" + avatar;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

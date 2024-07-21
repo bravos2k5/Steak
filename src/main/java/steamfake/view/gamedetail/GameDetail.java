@@ -10,6 +10,7 @@ import steamfake.model.Game;
 import steamfake.utils.*;
 import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamelib.LibraryPanel;
+import steamfake.view.login.LoginDialog;
 import steamfake.view.mainframe.HeaderPanel;
 import steamfake.view.mainframe.MFrame;
 
@@ -441,7 +442,6 @@ public class GameDetail extends JPanel {
     }
 
     private void loadInfo() {
-        btnBuy.setVisible(SessionManager.isLogin());
         lblGameName.setText(game.getName());
         lblRam.setText(game.getRam() + " MB");
         lblRom.setText(game.getRom() + " MB");
@@ -450,7 +450,7 @@ public class GameDetail extends JPanel {
         lblRelease.setText(game.getReleaseDate().toString());
         lblLatestUpdate.setText(game.getUpdateDate().toString());
         lblAvatar.setSize(new Dimension(219, 198));
-        lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar()), lblAvatar));
+        lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblAvatar));
         lblAvatar.setText("");
         txtContent.setText("<br></br>" + game.getMoTa());
         lblAge.setText(game.getAge() + "+");
@@ -478,6 +478,17 @@ public class GameDetail extends JPanel {
     }
 
     private void buyEvent() {
+        if(SessionManager.user == null) {
+            XMessage.alert(MFrame.getInstance(), "Vui lòng đăng nhập để mua game");
+            new LoginDialog(MFrame.getInstance()).setVisible(true);
+            if(SessionManager.isLogin()) {
+                parentPanel.setGameLibrary(GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(),SessionManager.user.getId()));
+                loadInfo();
+                parentPanel.loadComment();
+                parentPanel.loadMyComment();
+            }
+            return;
+        }
         if(parentPanel.getGameLibrary() == null) {
             if(SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
                 int result = GameDAO.gI().muaGame(game,SessionManager.user);
@@ -512,6 +523,7 @@ public class GameDetail extends JPanel {
         }
         if(!DownloadQueue.gI().getDownloadingGames().contains(game)) {
             DownloadQueue.gI().addNewDownload(game);
+            DownloadQueue.gI().setVisible(true);
         }
         else {
             XMessage.alert(MFrame.getInstance(), "Game đang được tải xuống");
