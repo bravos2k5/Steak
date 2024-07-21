@@ -211,7 +211,6 @@ public class DownloadPanel extends JPanel {
                     XFile.unzip(file.getAbsolutePath(), file.getParent());
                     SwingUtilities.invokeLater(() -> {
                         lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/play-button.png")));
-                        prbProgress.setVisible(false);
                         lblProgress.setText("Xong");
                     });
                     status = Status.COMPLETE;

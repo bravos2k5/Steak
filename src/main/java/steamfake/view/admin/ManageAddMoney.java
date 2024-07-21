@@ -16,8 +16,8 @@ import javax.swing.table.*;
 /**
  * @author ACER
  */
-public class ManageAddMOney extends JDialog {
-    public ManageAddMOney(Window owner) {
+public class ManageAddMoney extends JDialog {
+    public ManageAddMoney(Window owner) {
         super(owner);
         initComponents();
         this.setResizable(false);
@@ -216,5 +216,8 @@ public class ManageAddMOney extends JDialog {
     private JTable table1;
     private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatDarkLaf());
+        new ManageAddMoney(null).setVisible(true);
+    }
 }
