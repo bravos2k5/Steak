@@ -117,7 +117,7 @@ public class GameLibraryItem extends JPanel {
         txtName.setText(game.getName());
         lblIcon.setText("");
         lblIcon.setSize(new Dimension(100,60));
-        lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + game.getAvatar()),lblIcon));
+        lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()),lblIcon));
         initEvent();
         lblPlay.setText(isDownloaded() ? "Chơi" : "Tải");
         lblPlay.repaint();

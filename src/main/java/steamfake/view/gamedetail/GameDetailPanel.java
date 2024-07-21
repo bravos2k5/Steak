@@ -27,7 +27,6 @@ public class GameDetailPanel extends JPanel {
         if (SessionManager.user != null) {
             gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
         }
-        commentList = GameLibraryDAO.gI().selectCommentByGameID(game.getId());
         initComponents();
         initialize();
     }
@@ -83,7 +82,8 @@ public class GameDetailPanel extends JPanel {
         loadComment();
     }
 
-    private void loadComment() {
+    public void loadComment() {
+        commentList = GameLibraryDAO.gI().selectCommentByGameID(game.getId());
         commentPanel.removeAll();
         for(GameLibrary gl : commentList) {
             if(!gl.equals(gameLibrary))

@@ -4,21 +4,21 @@
 
 package steamfake.view.addmoney;
 
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusLabel;
+import steamfake.graphics.RadiusPanel;
+import steamfake.graphics.RadiusTextField;
+
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Objects;
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicComboBoxEditor;
-
-import steamfake.graphics.*;
 
 /**
  * @author ACER
  */
 public class AddMoney extends JPanel {
+
     public AddMoney() {
         initComponents();
         scrollPane1.setBorder(null);
@@ -139,7 +139,7 @@ public class AddMoney extends JPanel {
                             radiusButton1.setFont(new Font("Inter", Font.BOLD, 16));
 
                             //---- radiusLabel1 ----
-                            radiusLabel1.setText("10.000 VN\u0110 =8.000 coin");
+                            radiusLabel1.setText("10.000 VN\u0110 = 8.000 VN\u0110");
                             radiusLabel1.setBackground(new Color(0x23304d));
                             radiusLabel1.setFont(new Font(Font.SANS_SERIF, radiusLabel1.getFont().getStyle() | Font.BOLD, radiusLabel1.getFont().getSize() + 4));
                             radiusLabel1.setBorderColor(new Color(0x416dd1));
@@ -269,23 +269,23 @@ public class AddMoney extends JPanel {
                     panel2Layout.setHorizontalGroup(
                         panel2Layout.createParallelGroup()
                             .addComponent(radiusPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-                            .addComponent(panel3, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addComponent(label1, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 790, Short.MAX_VALUE))
+                            .addComponent(panel3, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
                     );
                     panel2Layout.setVerticalGroup(
                         panel2Layout.createParallelGroup()
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGap(0, 0, 0)
                                 .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
                                 .addComponent(label1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                                 .addGap(16, 16, 16))
                     );
                 }
@@ -341,7 +341,7 @@ public class AddMoney extends JPanel {
                                 }
 
                                 //---- radiusLabel3 ----
-                                radiusLabel3.setText("10.000 VN\u0110 =10.000 coin");
+                                radiusLabel3.setText("10.000 VN\u0110 = 10.000 coin");
                                 radiusLabel3.setBackground(new Color(0x23304d));
                                 radiusLabel3.setFont(new Font(Font.SANS_SERIF, radiusLabel3.getFont().getStyle() | Font.BOLD, radiusLabel3.getFont().getSize() + 4));
                                 radiusLabel3.setBorderColor(new Color(0x416dd1));
@@ -472,10 +472,10 @@ public class AddMoney extends JPanel {
                                 .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(panel8, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING)
                                         .addComponent(label10, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(radiusPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addComponent(radiusPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(panel8, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING)))
                         );
                         panel6Layout.setVerticalGroup(
                             panel6Layout.createParallelGroup()
@@ -483,10 +483,10 @@ public class AddMoney extends JPanel {
                                     .addComponent(radiusPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(label10, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(panel8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, 0)
-                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                     .addGap(16, 16, 16))
                         );
                     }
@@ -516,7 +516,9 @@ public class AddMoney extends JPanel {
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
-                    .addComponent(tabbedPane1)
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(tabbedPane1, GroupLayout.PREFERRED_SIZE, 744, GroupLayout.PREFERRED_SIZE))
             );
         }
 
@@ -532,9 +534,9 @@ public class AddMoney extends JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup()
                 .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(40, Short.MAX_VALUE)
+                    .addContainerGap(38, Short.MAX_VALUE)
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addGap(40, 40, 40))
+                    .addGap(18, 18, 18))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }

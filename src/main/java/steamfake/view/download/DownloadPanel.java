@@ -10,6 +10,7 @@ import com.azure.storage.blob.specialized.BlobInputStream;
 import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.utils.XFile;
+import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobConnector;
 
@@ -32,6 +33,8 @@ public class DownloadPanel extends JPanel {
         this.game = game;
         initComponents();
         lblGameName.setText(game.getName());
+        lblIcon.setSize(new Dimension(61,30));
+        lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()),lblIcon));
         lblProgress.setText("Pending...");
         initEvent();
     }
@@ -48,9 +51,6 @@ public class DownloadPanel extends JPanel {
         setBackground(new Color(0x191b20));
         setMaximumSize(new Dimension(995, 70));
 
-        //---- lblIcon ----
-        lblIcon.setText("text");
-
         //---- lblGameName ----
         lblGameName.setText("Title");
         lblGameName.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 12));
@@ -62,6 +62,8 @@ public class DownloadPanel extends JPanel {
 
         //---- lblAction ----
         lblAction.setIcon(new ImageIcon(getClass().getResource("/icon/delete-mini.png")));
+        lblAction.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblAction.setHorizontalAlignment(SwingConstants.CENTER);
 
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
@@ -69,15 +71,15 @@ public class DownloadPanel extends JPanel {
             layout.createParallelGroup()
                 .addGroup(layout.createSequentialGroup()
                     .addGap(32, 32, 32)
-                    .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(lblProgress, GroupLayout.PREFERRED_SIZE, 201, GroupLayout.PREFERRED_SIZE)
-                    .addGap(51, 51, 51)
-                    .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addGap(42, 42, 42)
+                    .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -85,14 +87,18 @@ public class DownloadPanel extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(20, 20, 20)
                     .addGroup(layout.createParallelGroup()
-                        .addComponent(lblAction, GroupLayout.Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(lblProgress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblGameName, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(17, 17, 17)
+                                    .addComponent(prbProgress, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(lblProgress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(lblAction, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)))
                     .addContainerGap(10, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
@@ -165,7 +171,7 @@ public class DownloadPanel extends JPanel {
 
     private void playAction() {
         try {
-            XFile.runExeFile("games/" + game.getId() + "/" + game.getVersion() + "/game/" + game.getExecPath());
+            XFile.runExeFile("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath());
         } catch (IOException e) {
             XMessage.alert(DownloadQueue.gI(), "Lỗi: " + e.getMessage());
         }
