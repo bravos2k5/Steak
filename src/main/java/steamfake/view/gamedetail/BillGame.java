@@ -6,11 +6,16 @@ package steamfake.view.gamedetail;
 
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
+import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
+import steamfake.utils.XMessage;
+import steamfake.view.gamelib.LibraryPanel;
+import steamfake.view.mainframe.HeaderPanel;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,16 +26,25 @@ import java.awt.event.MouseEvent;
  * @author ACER
  */
 public class BillGame extends JDialog {
-
+    private static boolean isOpen = false;
     private final Game game;
+    private static BillGame instance;
 
     public BillGame(Window owner, Game game) {
         super(owner);
         initComponents();
         this.game = game;
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initialize();
-
     }
+
+    public static BillGame getInstance(Window owner, Game game) {
+        if (instance == null) {
+            instance = new BillGame(owner, game);
+        }
+        return instance;
+    }
+
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -293,23 +307,29 @@ public class BillGame extends JDialog {
         btnPay.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (checkBox1.isSelected() && SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
+                if (checkBox1.isSelected()) {
                     if (!payGame()) {
-                        JOptionPane.showMessageDialog(null, "Thanh toan that bai, vui long kiem tra lai");
+                        XMessage.alert(MFrame.getInstance(), "Thanh toan khong thanh cong");
+                        return;
                     }
-                    JOptionPane.showMessageDialog(null, "Thanh toan thanh cong");
+                    XMessage.notificate(MFrame.getInstance(), "Thanh toan thanh cong");
+                    isOpen = true;
                     dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Bạn chưa đồng ý điều khoản hoặc thiếu tiền thanh toán");
+                    XMessage.alert(MFrame.getInstance(), "Vui lòng xác nhận diều khoản mua");
                 }
             }
         });
     }
 
-    private boolean payGame() {
+    public static boolean getIsOpen() {
+        return isOpen;
+    }
+    public boolean payGame() {
         try {
-            AccountDAO.gI().updateViGame(SessionManager.user, game.getGiaTien());
-            return true;
+            int result = GameDAO.gI().muaGame(game, SessionManager.user);
+            AccountDAO.gI().updateViGame(SessionManager.user, SessionManager.user.getSoDuGame() - game.getGiaTien());
+            return result > 0;
         } catch (NumberFormatException e) {
             return false;
         }
