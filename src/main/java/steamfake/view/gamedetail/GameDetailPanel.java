@@ -88,7 +88,7 @@ public class GameDetailPanel extends JPanel {
         commentList = EvaluationDAO.gI().selectByGameID(game.getId());
         commentPanel.removeAll();
         for(Evaluation gl : commentList) {
-            if(!gl.getAccountID().equals(gameLibrary.getAccountId()))
+            if(SessionManager.user == null && !gl.getAccountID().equals(gameLibrary.getAccountId()))
                 commentPanel.add(new CommentPanel(gl));
         }
         if(commentList.isEmpty()) {
