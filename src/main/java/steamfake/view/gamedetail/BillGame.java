@@ -26,24 +26,18 @@ import java.awt.event.MouseEvent;
  * @author ACER
  */
 public class BillGame extends JDialog {
-    private static boolean isOpen = false;
     private final Game game;
-    private static BillGame instance;
+    private final GameDetail gameDetail;
 
-    public BillGame(Window owner, Game game) {
+    public BillGame(Window owner, GameDetail gameDetail, Game game) {
         super(owner);
+        this.gameDetail = gameDetail;
         initComponents();
         this.game = game;
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         initialize();
     }
 
-    public static BillGame getInstance(Window owner, Game game) {
-        if (instance == null) {
-            instance = new BillGame(owner, game);
-        }
-        return instance;
-    }
 
 
     private void initComponents() {
@@ -313,7 +307,7 @@ public class BillGame extends JDialog {
                         return;
                     }
                     XMessage.notificate(MFrame.getInstance(), "Thanh toan thanh cong");
-                    isOpen = true;
+                    gameDetail.loadBuy();
                     dispose();
                 } else {
                     XMessage.alert(MFrame.getInstance(), "Vui lòng xác nhận diều khoản mua");
@@ -322,17 +316,9 @@ public class BillGame extends JDialog {
         });
     }
 
-    public static boolean getIsOpen() {
-        return isOpen;
-    }
     public boolean payGame() {
-        try {
             int result = GameDAO.gI().muaGame(game, SessionManager.user);
-            AccountDAO.gI().updateViGame(SessionManager.user, SessionManager.user.getSoDuGame() - game.getGiaTien());
             return result > 0;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
 }

@@ -31,7 +31,6 @@ import java.util.List;
 public class GameDetail extends JPanel {
     private final Game game;
     private final GameDetailPanel parentPanel;
-    private static GameDetail instance;
 
     public GameDetail(Game game, GameDetailPanel parentPanel) {
         this.game = game;
@@ -40,12 +39,7 @@ public class GameDetail extends JPanel {
         initialize();
     }
 
-    public static GameDetail getInstance(Game game, GameDetailPanel parentPanel) {
-        if (instance == null) {
-            instance = new GameDetail(game, parentPanel);
-        }
-        return instance;
-    }
+
 
 
     private void btnBack(ActionEvent e) {
@@ -501,17 +495,8 @@ public class GameDetail extends JPanel {
         }
         if (parentPanel.getGameLibrary() == null) {
             if (SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
-                BillGame billGame = new BillGame(MFrame.getInstance(), game);
+                BillGame billGame = new BillGame(MFrame.getInstance(),this, game);
                 billGame.setVisible(true);
-                billGame.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        if (BillGame.getIsOpen()) {
-                            loadBuy();
-                        }
-                    }
-                });
-
             } else {
                 XMessage.alert(MFrame.getInstance(), "Số dư không đủ");
                 if (XMessage.confirm(MFrame.getInstance(), "Bạn có muốn nạp tiền không") == JOptionPane.YES_OPTION) {
@@ -525,15 +510,12 @@ public class GameDetail extends JPanel {
     }
 
     public void loadBuy() {
-        if (BillGame.getInstance(MFrame.getInstance(), game).payGame()) {
             parentPanel.setGameLibrary(GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId()));
             SessionManager.updateMoneyAccount();
             HeaderPanel.getInstance().updateMoney();
             btnBuy.setText("Chơi");
             parentPanel.loadMyComment();
             LibraryPanel.gI().getLibraryMap().put(parentPanel.getGameLibrary(), game);
-        }
-
     }
 
 
@@ -554,13 +536,5 @@ public class GameDetail extends JPanel {
             XMessage.alert(MFrame.getInstance(), "Game đang được tải xuống");
         }
 
-    }
-
-    public JButton getBtnBuy() {
-        return btnBuy;
-    }
-
-    public GameDetailPanel getParentPanel() {
-        return parentPanel;
     }
 }
