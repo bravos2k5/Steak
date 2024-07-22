@@ -75,8 +75,7 @@ public class TimePicker extends JPanel {
     public void showPopup() {
         if (popupMenu == null) {
             popupMenu = new JPopupMenu();
-            popupMenu.putClientProperty(FlatClientProperties.STYLE, "" +
-                    "borderInsets:1,1,1,1");
+            popupMenu.putClientProperty(FlatClientProperties.STYLE, "borderInsets:1,1,1,1");
             popupMenu.add(this);
         }
         if (UIManager.getLookAndFeel() != oldThemes) {
@@ -121,8 +120,7 @@ public class TimePicker extends JPanel {
     }
 
     private void init() {
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "[light]background:darken($Panel.background,2%);" +
+        putClientProperty(FlatClientProperties.STYLE, "[light]background:darken($Panel.background,2%);" +
                 "[dark]background:lighten($Panel.background,2%);");
         layout = new MigLayout("wrap,fill,insets 3", "fill", "fill");
         setLayout(layout);
@@ -260,7 +258,7 @@ public class TimePicker extends JPanel {
                         } else {
                             value = format12h.format(getSelectedTime());
                         }
-                        if (!editor.getText().toLowerCase().equals(value.toLowerCase())) {
+                        if (!editor.getText().equalsIgnoreCase(value)) {
                             editor.setValue(value);
                         }
                     } else {
@@ -280,7 +278,7 @@ public class TimePicker extends JPanel {
         if ((time == null && oldSelectedTime == null)) {
             return;
         } else if (time != null && oldSelectedTime != null) {
-            if (time.compareTo(oldSelectedTime) == 0) {
+            if (time.equals(oldSelectedTime)) {
                 return;
             }
         }

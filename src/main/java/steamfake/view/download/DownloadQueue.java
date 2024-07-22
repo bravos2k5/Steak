@@ -34,7 +34,7 @@ public class DownloadQueue extends JDialog {
         super(owner);
         initComponents();
         scrollPane1.setBorder(null);
-        downloadThread();
+        handleDownloading();
     }
 
     private void initComponents() {
@@ -141,7 +141,7 @@ public class DownloadQueue extends JDialog {
         }
     }
 
-    private void downloadThread() {
+    private void handleDownloading() {
         Timer timer = new Timer(1000, new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -22,8 +22,7 @@ public class Header extends JPanel {
     }
 
     private void init() {
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "background:null");
+        putClientProperty(FlatClientProperties.STYLE, "background:null");
         setLayout(new MigLayout("fill,insets 3", "[]push[][]push[]", "fill"));
 
         JButton cmdBack = createButton();
@@ -47,8 +46,7 @@ public class Header extends JPanel {
 
     private JButton createButton() {
         JButton button = new JButton();
-        button.putClientProperty(FlatClientProperties.STYLE, "" +
-                "background:null;" +
+        button.putClientProperty(FlatClientProperties.STYLE, "background:null;" +
                 "arc:10;" +
                 "borderWidth:0;" +
                 "focusWidth:0;" +

@@ -23,8 +23,7 @@ public class PanelMonth extends JPanel {
     }
 
     private void init() {
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "background:null");
+        putClientProperty(FlatClientProperties.STYLE, "background:null");
         setLayout(new MigLayout("wrap 3,insets 3,fillx,gap 3,al center center", "fill,sg main", "fill"));
         int count = 12;
         for (int i = 0; i < count; i++) {
@@ -53,8 +52,7 @@ public class PanelMonth extends JPanel {
     protected void checkSelection() {
         for (int i = 0; i < getComponentCount(); i++) {
             Component com = getComponent(i);
-            if (com instanceof ButtonMonthYear) {
-                ButtonMonthYear button = (ButtonMonthYear) com;
+            if (com instanceof ButtonMonthYear button) {
                 button.setSelected(checkSelected(button.getValue() + 1));
             }
         }

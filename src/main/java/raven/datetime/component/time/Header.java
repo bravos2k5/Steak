@@ -86,8 +86,7 @@ public class Header extends JComponent {
 
     protected JToolBar createToolBar() {
         JToolBar toolBar = new JToolBar();
-        toolBar.putClientProperty(FlatClientProperties.STYLE, "" +
-                "background:null;" +
+        toolBar.putClientProperty(FlatClientProperties.STYLE, "background:null;" +
                 "hoverButtonGroupBackground:null");
         buttonHour = createButton();
         buttonMinute = createButton();
@@ -105,8 +104,7 @@ public class Header extends JComponent {
 
     protected JToggleButton createButton() {
         JToggleButton button = new JToggleButton("--");
-        button.putClientProperty(FlatClientProperties.STYLE, "" +
-                "font:+15;" +
+        button.putClientProperty(FlatClientProperties.STYLE, "font:+15;" +
                 "toolbar.margin:3,5,3,5;" +
                 "foreground:contrast($Component.accentColor,$ToggleButton.background,#fff);" +
                 "background:null;" +
@@ -123,8 +121,7 @@ public class Header extends JComponent {
                 headerChanged.amPmChanged(am);
             }
         });
-        button.putClientProperty(FlatClientProperties.STYLE, "" +
-                "font:+1;" +
+        button.putClientProperty(FlatClientProperties.STYLE, "font:+1;" +
                 "foreground:contrast($Component.accentColor,$ToggleButton.background,#fff);" +
                 "background:null;" +
                 "toolbar.hoverBackground:null");
@@ -133,8 +130,7 @@ public class Header extends JComponent {
 
     protected JLabel createSplit() {
         JLabel label = new JLabel(":");
-        label.putClientProperty(FlatClientProperties.STYLE, "" +
-                "font:+10;" +
+        label.putClientProperty(FlatClientProperties.STYLE, "font:+10;" +
                 "foreground:contrast($Component.accentColor,$Label.background,#fff)");
         return label;
     }
@@ -142,8 +138,7 @@ public class Header extends JComponent {
     protected JToolBar createAmPm() {
         amPmToolBar = new JToolBar();
         amPmToolBar.setOrientation(SwingConstants.VERTICAL);
-        amPmToolBar.putClientProperty(FlatClientProperties.STYLE, "" +
-                "background:null;" +
+        amPmToolBar.putClientProperty(FlatClientProperties.STYLE, "background:null;" +
                 "hoverButtonGroupBackground:null");
         group = new ButtonGroup();
         buttonAm = createAmPmButton("AM");

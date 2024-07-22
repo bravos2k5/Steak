@@ -6,12 +6,13 @@ package steamfake.view.admin;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 
+import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.table.*;
 
 /**
  * @author ACER
@@ -104,7 +105,7 @@ public class ManageAddMoney extends JDialog {
                             "ID", "ID Account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"
                         }
                     ) {
-                        boolean[] columnEditable = new boolean[] {
+                        final boolean[] columnEditable = new boolean[] {
                             false, false, false, false, false, false
                         };
                         @Override

@@ -1,25 +1,18 @@
 package steamfake.graphics;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Paint;
-import java.awt.Rectangle;
-import java.awt.RenderingHints;
-import java.awt.Shape;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
 import java.awt.geom.CubicCurve2D;
 import java.awt.geom.GeneralPath;
-import javax.swing.Timer;
 
 public class CurvesPanel extends GradientPanel{
-    private RenderingHints hints;
+    private final RenderingHints hints;
     private int counter = 0;
-    private Timer timer = new Timer(20, new ActionListener() {
+    private final Timer timer = new Timer(20, new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent ae) {
             repaint();

@@ -20,7 +20,7 @@ public class ButtonDate extends JButton {
     private final SingleDate date;
     private boolean press;
     private boolean hover;
-    private int rowIndex;
+    private final int rowIndex;
 
     public ButtonDate(DateSelection dateSelection, SingleDate date, boolean enable, int rowIndex) {
         this.dateSelection = dateSelection;
@@ -69,13 +69,11 @@ public class ButtonDate extends JButton {
             }
         });
         if (enable) {
-            putClientProperty(FlatClientProperties.STYLE, "" +
-                    "margin:7,7,7,7;" +
+            putClientProperty(FlatClientProperties.STYLE, "margin:7,7,7,7;" +
                     "focusWidth:2;" +
                     "selectedForeground:contrast($Component.accentColor,$Button.background,#fff)");
         } else {
-            putClientProperty(FlatClientProperties.STYLE, "" +
-                    "margin:7,7,7,7;" +
+            putClientProperty(FlatClientProperties.STYLE, "margin:7,7,7,7;" +
                     "focusWidth:2;" +
                     "selectedForeground:contrast($Component.accentColor,$Button.background,#fff);" +
                     "foreground:$Button.disabledText");

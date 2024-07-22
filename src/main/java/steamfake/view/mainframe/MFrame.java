@@ -6,6 +6,7 @@ package steamfake.view.mainframe;
 
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
+import steamfake.model.join.GameDisplay;
 import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
@@ -220,8 +221,8 @@ public class MFrame extends JFrame {
     private JPanel mainPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    private Game theMostDownloadedGame;
-    private List<Game> gameList;
+    private GameDisplay theMostDownloadedGame;
+    private List<GameDisplay> gameList;
 
     private void initialize() {
         this.setVisible(true);
@@ -327,10 +328,7 @@ public class MFrame extends JFrame {
         lblDownload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
                     initDownloadPage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
                 }
                 else {
                     requestLogin();
@@ -364,13 +362,13 @@ public class MFrame extends JFrame {
 
     public void initHomePage() {
         if (gameList == null) {
-            gameList = GameDAO.gI().selectOldGame();
+            gameList = GameDAO.gI().selectListGameDisplay();
             theMostDownloadedGame = gameList.getFirst();
             downloadResource();
         }
         HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
-        for (Game game : gameList) {
+        for (GameDisplay game : gameList) {
             if (game != null && !game.equals(theMostDownloadedGame)) {
                 ListGamePanel listGamePanel = new ListGamePanel(game);
                 mainPanel.add(listGamePanel);

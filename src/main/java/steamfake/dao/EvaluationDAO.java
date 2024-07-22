@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class EvaluationDAO implements DataAccessObject<Evaluation> {
+public class EvaluationDAO {
 
     private static EvaluationDAO instance;
 
@@ -23,46 +23,28 @@ public class EvaluationDAO implements DataAccessObject<Evaluation> {
     private EvaluationDAO() {
     }
 
-    @Override
     public int insert(Evaluation object) {
-        String sql = "{CALL SP_EVALUATE(?,?,?,?}";
+        String sql = "{CALL SP_EVALUATE(?,?,?,?)}";
         return XJdbc.update(sql, object.getGameID(), object.getAccountID(), object.getRate(), object.getComment());
     }
 
-    @Override
     public int update(Evaluation object) {
         return insert(object);
     }
 
-    @Override
     public int delete(Evaluation object) {
         String sql = "{CALL SP_DELETE_EVALUATION(?,?)}";
         return XJdbc.update(sql, object.getGameID(), object.getAccountID());
     }
 
-    @Override
-    public Evaluation selectByID(Evaluation object) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<Evaluation> selectAll() {
-        throw new UnsupportedOperationException();
-    }
-
-    public List<Evaluation> selectByGameID(String gameID) {
+    public List<Evaluation> selectByGameID(UUID gameID) {
         String sql = "{CALL SP_GET_EVALUATION(?)}";
-        return selectBySQL(sql, gameID);
-    }
-
-    @Override
-    public List<Evaluation> selectBySQL(String sql, Object... args) {
         List<Evaluation> evaluationList = new ArrayList<>();
-        try(ResultSet rs = XJdbc.getResultSet(sql, args)) {
+        try(ResultSet rs = XJdbc.getResultSet(sql,gameID)) {
             while (rs.next()) {
                 Evaluation evaluation = new Evaluation();
                 evaluation.setAccountID(UUID.fromString(rs.getString("account_id")));
-                evaluation.setGameID(UUID.fromString(rs.getString("game_id")));
+                evaluation.setGameID(gameID);
                 evaluation.setName(rs.getString("ho_ten"));
                 evaluation.setAvatar(rs.getString("avatar"));
                 evaluation.setRate(rs.getInt("rate"));

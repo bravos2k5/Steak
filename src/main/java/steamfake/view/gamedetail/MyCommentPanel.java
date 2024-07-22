@@ -4,9 +4,9 @@
 
 package steamfake.view.gamedetail;
 
-import steamfake.dao.GameLibraryDAO;
+import steamfake.dao.EvaluationDAO;
 import steamfake.graphics.RadiusButton;
-import steamfake.model.GameLibrary;
+import steamfake.model.join.Evaluation;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
@@ -20,10 +20,10 @@ import java.awt.*;
  */
 public class MyCommentPanel extends JPanel {
 
-    private final GameLibrary gameLibrary;
+    private final Evaluation evaluation;
 
-    public MyCommentPanel(GameLibrary game) {
-        this.gameLibrary = game;
+    public MyCommentPanel(Evaluation game) {
+        this.evaluation = game;
         initComponents();
         initialize();
     }
@@ -158,20 +158,17 @@ public class MyCommentPanel extends JPanel {
     private void initialize() {
         rateSlideEvent();
         btnSend.addActionListener(e -> sendAction());
-        slideRate.setValue(50);
-        setLevel();
-        lblRate.setText("50");
     }
 
     private void rateSlideEvent() {
-        loadData();
         slideRate.addChangeListener(e -> {
             lblRate.setText(String.valueOf(slideRate.getValue()));
-            setLevel();
+            solveLevel();
         });
+        loadData();
     }
 
-    private void setLevel() {
+    private void solveLevel() {
         if (slideRate.getValue() < 20) {
             lblLevel.setText("Rất dở");
         } else if (slideRate.getValue() < 40) {
@@ -187,34 +184,33 @@ public class MyCommentPanel extends JPanel {
 
     private void loadData() {
         lblName.setText(SessionManager.user.getHoTen());
-        if(gameLibrary.getRate() == null) {
+        if(evaluation.getRate() == null) {
             slideRate.setValue(50);
         } else {
-            slideRate.setValue(gameLibrary.getRate());
+            slideRate.setValue(evaluation.getRate());
         }
-        setLevel();
+        solveLevel();
         lblRate.setText(String.valueOf(slideRate.getValue()));
-        txtComment.setText(gameLibrary.getComment());
+        txtComment.setText(evaluation.getComment());
         lblAvatar.setSize(new Dimension(81, 81));
         if(SessionManager.user.getAvatar() != null && SessionManager.user.getAvatar().isBlank()) {
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" +
                     SessionManager.user.getId() + "/" + SessionManager.user.getAvatar()),lblAvatar));
         }
         else {
-            lblAvatar.setSize(new Dimension(81, 81));
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
         }
     }
 
     private void sendAction() {
-        gameLibrary.setComment(txtComment.getText());
-        gameLibrary.setRate(slideRate.getValue());
-        int result = GameLibraryDAO.gI().updateRateAndComment(gameLibrary);
+        evaluation.setComment(txtComment.getText());
+        evaluation.setRate(slideRate.getValue());
+        int result = EvaluationDAO.gI().update(evaluation);
         if(result > 0) {
-            XMessage.notificate(MFrame.getInstance(),"Gửi thành công");
+            XMessage.notificate(MFrame.getInstance(),"Đánh giá thành công");
         }
         else {
-            XMessage.alert(MFrame.getInstance(),"Gửi thất bại");
+            XMessage.alert(MFrame.getInstance(),"Đánh giá thất bại");
         }
     }
 
