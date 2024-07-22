@@ -4,9 +4,11 @@
 
 package steamfake.view.gamedetail;
 
+import steamfake.dao.EvaluationDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.model.Game;
 import steamfake.model.GameLibrary;
+import steamfake.model.join.Evaluation;
 import steamfake.utils.SessionManager;
 
 import javax.swing.*;
@@ -20,7 +22,7 @@ public class GameDetailPanel extends JPanel {
 
     private final Game game;
     private GameLibrary gameLibrary;
-    private List<GameLibrary> commentList;
+    private List<Evaluation> commentList;
 
     public GameDetailPanel(Game game) {
         this.game = game;
@@ -83,10 +85,10 @@ public class GameDetailPanel extends JPanel {
     }
 
     public void loadComment() {
-        commentList = GameLibraryDAO.gI().selectCommentByGameID(game.getId());
+        commentList = EvaluationDAO.gI().selectByGameID(game.getId());
         commentPanel.removeAll();
-        for(GameLibrary gl : commentList) {
-            if(!gl.equals(gameLibrary))
+        for(Evaluation gl : commentList) {
+            if(!gl.getAccountID().equals(gameLibrary.getAccountId()))
                 commentPanel.add(new CommentPanel(gl));
         }
         if(commentList.isEmpty()) {
@@ -101,8 +103,11 @@ public class GameDetailPanel extends JPanel {
 
     public void loadMyComment() {
         if(gameLibrary != null) {
+            Evaluation evaluation = new Evaluation(gameLibrary);
+            evaluation.setName(SessionManager.user.getHoTen());
+            evaluation.setAvatar(SessionManager.user.getAvatar());
             myCommentPanel.removeAll();
-            myCommentPanel.add(new MyCommentPanel(gameLibrary));
+            myCommentPanel.add(new MyCommentPanel(evaluation));
             myCommentPanel.repaint();
             myCommentPanel.validate();
             this.repaint();

@@ -556,7 +556,7 @@ public class AccountPanel extends JPanel {
                 AzureBlobService.upload(avatar,"avatars/" + account.getId() + "/" + new File(avatar).getName(),"images");
                 AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar,"images");
                 XFile.copyFile(avatar,"data/avatars/" + account.getId() + "/" + new File(avatar).getName());
-                new File("data/avatasr/" + account.getId() + "/" + oldAvatar).deleteOnExit();
+                new File("data/avatars/" + account.getId() + "/" + oldAvatar).deleteOnExit();
             }
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             SessionManager.user = account;

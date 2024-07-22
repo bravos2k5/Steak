@@ -120,8 +120,7 @@ public class PanelClock extends JPanel {
 
     private void init() {
         animationChange = new AnimationChange(this);
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "border:5,15,5,15;" +
+        putClientProperty(FlatClientProperties.STYLE, "border:5,15,5,15;" +
                 "background:null;" +
                 "foreground:contrast($Component.accentColor,$Panel.background,#fff)");
         MouseAdapter mouseAdapter = new MouseAdapter() {

@@ -2,6 +2,7 @@ package steamfake.dao;
 
 import steamfake.model.Account;
 import steamfake.model.Game;
+import steamfake.model.join.GameDisplay;
 import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;
@@ -181,6 +182,37 @@ public class GameDAO implements DataAccessObject<Game> {
             throw new RuntimeException(e);
         }
         return null;
+    }
+
+    public List<GameDisplay> selectListGameDisplay() {
+        String sql = "{CALL SP_GET_DISPLAY_GAMES()}";
+        List<GameDisplay> gameDisplayList = new ArrayList<>();
+        try(ResultSet rs = XJdbc.getResultSet(sql)) {
+            while (rs.next()) {
+                GameDisplay gameDisplay = new GameDisplay(UUID.fromString(rs.getString("id")));
+                gameDisplay.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
+                gameDisplay.setName(rs.getNString("name"));
+                gameDisplay.setAvatar(rs.getString("avatar"));
+                gameDisplay.setGiaTien(rs.getFloat("gia_tien"));
+                gameDisplay.setAge(rs.getInt("age"));
+                gameDisplay.setImages(rs.getString("images"));
+                gameDisplay.setMoTa(rs.getString("mo_ta"));
+                gameDisplay.setRam(rs.getInt("ram"));
+                gameDisplay.setRom(rs.getInt("rom"));
+                gameDisplay.setReleaseDate(rs.getDate("release_date"));
+                gameDisplay.setUpdateDate(rs.getDate("update_date"));
+                gameDisplay.setVersion(rs.getNString("version"));
+                gameDisplay.setOpened(rs.getBoolean("isOpened"));
+                gameDisplay.setExecPath(rs.getString("exec_file"));
+                gameDisplay.setDownloadCount(rs.getInt("download_count"));
+                gameDisplay.setAvgRating(rs.getInt("rate"));
+                gameDisplay.setPublisherName(rs.getNString("ho_ten"));
+                gameDisplayList.add(gameDisplay);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return gameDisplayList;
     }
 
 }

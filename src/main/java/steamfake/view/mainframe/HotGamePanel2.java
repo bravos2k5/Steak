@@ -4,10 +4,9 @@
 
 package steamfake.view.mainframe;
 
-import steamfake.dao.GameDAO;
 import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
-import steamfake.model.Game;
+import steamfake.model.join.GameDisplay;
 import steamfake.utils.XJson;
 import steamfake.view.waiting.WaitingDialog;
 
@@ -23,9 +22,9 @@ import java.util.List;
  */
 public class HotGamePanel2 extends JPanel {
 
-    private final Game game;
+    private final GameDisplay game;
 
-    public HotGamePanel2(Game game) {
+    public HotGamePanel2(GameDisplay game) {
         this.game = game;
         initComponents();
         initialize();
@@ -226,8 +225,8 @@ public class HotGamePanel2 extends JPanel {
     private void loadInfo() {
         lblNameGame.setText(game.getName());
         lblPrice.setText(game.getGiaTien() + " VND");
-        lblReviews.setText(GameDAO.gI().selectAvgRate(game) + "/100");
-        lblDownloads.setText(GameDAO.gI().selectLuotTai(game) + "");
+        lblReviews.setText(game.getAvgRating() + "");
+        lblDownloads.setText(game.getDownloadCount() + "");
         List<String> images = XJson.fromJson(game.getImages(), List.class);
         List<PictureBox> pictureBoxes = new ArrayList<>();
         if (images != null && !images.isEmpty()) {

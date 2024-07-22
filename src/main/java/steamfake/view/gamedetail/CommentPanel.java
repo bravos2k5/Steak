@@ -4,11 +4,10 @@
 
 package steamfake.view.gamedetail;
 
-import steamfake.dao.AccountDAO;
-import steamfake.dao.GameLibraryDAO;
+import steamfake.dao.EvaluationDAO;
 import steamfake.graphics.CustomTextBox;
 import steamfake.model.Account;
-import steamfake.model.GameLibrary;
+import steamfake.model.join.Evaluation;
 import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
@@ -26,10 +25,10 @@ import java.io.File;
  */
 public class CommentPanel extends JPanel {
 
-    private final GameLibrary gameLibrary;
+    private final Evaluation evaluation;
 
-    public CommentPanel(GameLibrary gameLibrary) {
-        this.gameLibrary = gameLibrary;
+    public CommentPanel(Evaluation evaluation) {
+        this.evaluation = evaluation;
         initComponents();
         initialize();
     }
@@ -135,15 +134,13 @@ public class CommentPanel extends JPanel {
     }
 
     private void loadInfo() {
-        String[] nameAndAvatar = AccountDAO.gI().selectNameAndAvatarByID(gameLibrary.getAccountId());
-        Account account = new Account(gameLibrary.getAccountId());
-        account.setHoTen(nameAndAvatar[0]);
-        account.setAvatar(nameAndAvatar[1]);
-        lblName.setText(nameAndAvatar[0]);
+        lblName.setText(evaluation.getName());
         lblAvatar.setSize(new Dimension(81,81));
-        if(account.getAvatar() != null && !account.getAvatar().isBlank()) {
-            String path = "data/avatars/" + gameLibrary.getAccountId() + "/" + account.getAvatar();
+        if(evaluation.getAvatar() != null && !evaluation.getAvatar().isBlank()) {
+            String path = "data/avatars/" + evaluation.getAccountID() + "/" + evaluation.getAvatar();
             if(!new File(path).exists()) {
+                Account account = new Account(evaluation.getAccountID());
+                account.setAvatar(evaluation.getAvatar());
                 ResourceManager.downloadAvatar(account);
             }
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(path),lblAvatar));
@@ -152,8 +149,8 @@ public class CommentPanel extends JPanel {
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
         }
 
-        lblRate.setText(gameLibrary.getRate() + "");
-        txtComment.setText(gameLibrary.getComment());
+        lblRate.setText(evaluation.getRate() + "");
+        txtComment.setText(evaluation.getComment());
         revalidate();
         repaint();
     }
@@ -161,7 +158,7 @@ public class CommentPanel extends JPanel {
     private void deleteComment() {
         int choice = XMessage.confirm(MFrame.getInstance(),"Bạn có chắc chắn muốn xóa bình luận này không?");
         if(choice == JOptionPane.YES_OPTION) {
-            int result = GameLibraryDAO.gI().deleteComment(gameLibrary);
+            int result = EvaluationDAO.gI().delete(evaluation);
             if(result > 0) {
                 Container parent = this.getParent();
                 parent.remove(this);

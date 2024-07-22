@@ -6,10 +6,11 @@ package steamfake.view.admin.withdrawmoney;
 
 import com.formdev.flatlaf.FlatDarkLaf;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.table.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import java.awt.*;
 
 /**
  * @author ACER
@@ -97,7 +98,7 @@ public class ManageWithdrawmoney extends JDialog {
                             "ID", "ID Account", "S\u1ed1 ti\u1ec1n", "H\u00ecnh th\u1ee9c", "Ng\u00e0y R\u00fat"
                         }
                     ) {
-                        boolean[] columnEditable = new boolean[] {
+                        final boolean[] columnEditable = new boolean[] {
                             false, false, false, false, false
                         };
                         @Override

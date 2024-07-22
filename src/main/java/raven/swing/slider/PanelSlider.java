@@ -63,7 +63,7 @@ public class PanelSlider extends JLayeredPane {
 
     private class PanelSnapshot extends JComponent {
 
-        private Animator animator;
+        private final Animator animator;
         private Component component;
         private float animate;
 

@@ -52,8 +52,7 @@ public class DatePicker extends JPanel {
     }
 
     private void init() {
-        putClientProperty(FlatClientProperties.STYLE, "" +
-                "[light]background:darken($Panel.background,2%);" +
+        putClientProperty(FlatClientProperties.STYLE, "[light]background:darken($Panel.background,2%);" +
                 "[dark]background:lighten($Panel.background,2%);");
         setLayout(new MigLayout("wrap,insets 10,fill", "[fill]"));
         dateFormatPattern = "dd/MM/yyyy";
@@ -201,7 +200,7 @@ public class DatePicker extends JPanel {
                 oldSelectedToDate = null;
                 return;
             }
-            LocalDate dates[] = getSelectedDateRange();
+            LocalDate[] dates = getSelectedDateRange();
             date = dates[0];
             toDate = dates[1];
         }
@@ -228,9 +227,7 @@ public class DatePicker extends JPanel {
         if ((date == null && date1 == null)) {
             return false;
         } else if (date != null && date1 != null) {
-            if (date.compareTo(date1) == 0) {
-                return false;
-            }
+            return !date.isEqual(date1);
         }
         return true;
     }
@@ -337,8 +334,7 @@ public class DatePicker extends JPanel {
     public void showPopup() {
         if (popupMenu == null) {
             popupMenu = new JPopupMenu();
-            popupMenu.putClientProperty(FlatClientProperties.STYLE, "" +
-                    "borderInsets:1,1,1,1");
+            popupMenu.putClientProperty(FlatClientProperties.STYLE, "borderInsets:1,1,1,1");
             popupMenu.add(this);
         }
         if (UIManager.getLookAndFeel() != oldThemes) {
@@ -583,10 +579,10 @@ public class DatePicker extends JPanel {
                         if (dateSelection.dateSelectionMode == DateSelectionMode.SINGLE_DATE_SELECTED) {
                             value = format.format(getSelectedDate());
                         } else {
-                            LocalDate dates[] = getSelectedDateRange();
+                            LocalDate[] dates = getSelectedDateRange();
                             value = format.format(dates[0]) + separator + format.format(dates[1]);
                         }
-                        if (!editor.getText().toLowerCase().equals(value.toLowerCase())) {
+                        if (!editor.getText().equalsIgnoreCase(value)) {
                             editor.setValue(value);
                         }
                     } else {

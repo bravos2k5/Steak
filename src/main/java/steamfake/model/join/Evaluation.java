@@ -1,5 +1,7 @@
 package steamfake.model.join;
 
+import steamfake.model.GameLibrary;
+
 import java.util.UUID;
 
 public class Evaluation {
@@ -8,10 +10,17 @@ public class Evaluation {
     private UUID gameID;
     private String name;
     private String avatar;
-    private int rate;
+    private Integer rate;
     private String comment;
 
     public Evaluation() {
+    }
+
+    public Evaluation(GameLibrary gameLibrary) {
+        this.accountID = gameLibrary.getAccountId();
+        this.gameID = gameLibrary.getGameId();
+        this.comment = gameLibrary.getComment();
+        this.rate = gameLibrary.getRate();
     }
 
     public UUID getAccountID() {
@@ -46,11 +55,11 @@ public class Evaluation {
         this.avatar = avatar;
     }
 
-    public int getRate() {
+    public Integer getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(Integer rate) {
         this.rate = rate;
     }
 
