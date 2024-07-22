@@ -4,8 +4,10 @@
 
 package steamfake.view.admin.game;
 
+import steamfake.dao.KiemDuyetDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
+import steamfake.model.PendingGame;
 import steamfake.model.PhieuKiemDuyet;
 
 import javax.swing.*;
@@ -17,10 +19,12 @@ import java.awt.*;
 public class Games extends JDialog {
 
     private final PhieuKiemDuyet phieuKiemDuyet;
+    private final PendingGame pendingGame;
 
     public Games(Window owner, PhieuKiemDuyet phieuKiemDuyet) {
         super(owner);
         this.phieuKiemDuyet = phieuKiemDuyet;
+        pendingGame = KiemDuyetDAO.getInstance().selectPendingGameById(phieuKiemDuyet);
         initComponents();
         this.getContentPane().setBackground(Color.decode("#191b20"));
     }
@@ -51,8 +55,10 @@ public class Games extends JDialog {
         txtRom = new RadiusTextField();
         lblVersion = new JLabel();
         txtVersion = new RadiusTextField();
-        txtCost2 = new RadiusTextField();
         btnCancel2 = new RadiusButton();
+        cboAge = new JComboBox<>();
+        button1 = new JButton();
+        button2 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -142,7 +148,7 @@ public class Games extends JDialog {
         txtExecFilePath.setBackground(new Color(0x252730));
 
         //---- label8 ----
-        label8.setText("Upload \u1ea3nh gi\u1edbi thi\u1ec7u (t\u1ed1i \u0111a 10 \u1ea3nh)");
+        label8.setText("H\u00ecnh \u1ea3nh");
         label8.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
 
         //---- cboImages ----
@@ -179,17 +185,6 @@ public class Games extends JDialog {
         txtVersion.setEndGradientColor(new Color(0x252730));
         txtVersion.setStartGradientColor(new Color(0x252730));
 
-        //---- txtCost2 ----
-        txtCost2.setRadius(0);
-        txtCost2.setForcusColor(new Color(0x0c8ce9));
-        txtCost2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-        txtCost2.setEndGradientColor(new Color(0x252730));
-        txtCost2.setNoForcusColor(new Color(0x191b20));
-        txtCost2.setBackground(new Color(0x252730));
-        txtCost2.setStartGradientColor(new Color(0x252730));
-        txtCost2.setText("18");
-        txtCost2.setHorizontalAlignment(SwingConstants.CENTER);
-
         //---- btnCancel2 ----
         btnCancel2.setText("Cancel");
         btnCancel2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -198,6 +193,15 @@ public class Games extends JDialog {
         btnCancel2.setOriginColor(new Color(0x3e3737));
         btnCancel2.setRadius(5);
         btnCancel2.setHoverColor(Color.gray);
+
+        //---- cboAge ----
+        cboAge.setBackground(new Color(0x252730));
+
+        //---- button1 ----
+        button1.setText("Preview");
+
+        //---- button2 ----
+        button2.setText("Preview");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -212,7 +216,9 @@ public class Games extends JDialog {
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(cboImages, GroupLayout.PREFERRED_SIZE, 316, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(button1)
+                            .addContainerGap(444, Short.MAX_VALUE))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(btnCancel2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,14 +257,17 @@ public class Games extends JDialog {
                                                     .addComponent(label2)
                                                     .addComponent(txtCost, GroupLayout.PREFERRED_SIZE, 216, GroupLayout.PREFERRED_SIZE))
                                                 .addGap(50, 50, 50)
-                                                .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                .addGroup(contentPaneLayout.createParallelGroup()
                                                     .addComponent(label3)
-                                                    .addComponent(txtCost2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+                                                    .addComponent(cboAge, GroupLayout.PREFERRED_SIZE, 184, GroupLayout.PREFERRED_SIZE)))
                                             .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 540, GroupLayout.PREFERRED_SIZE))
                                         .addGap(108, 108, 108)
                                         .addComponent(lblAvatar, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addComponent(label4)
+                                        .addGroup(contentPaneLayout.createSequentialGroup()
+                                            .addComponent(label4)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(button2))
                                         .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 798, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtFolderPath, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(label8, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE))))
@@ -281,13 +290,15 @@ public class Games extends JDialog {
                                 .addComponent(label2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label3, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtCost, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtCost2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cboAge, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(label10)
                     .addGap(18, 18, 18)
-                    .addComponent(label4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(label4, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button2))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -301,7 +312,9 @@ public class Games extends JDialog {
                     .addGap(41, 41, 41)
                     .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(cboImages, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboImages, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(button1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGap(38, 38, 38)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label11)
@@ -310,7 +323,7 @@ public class Games extends JDialog {
                         .addComponent(txtRom, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblVersion)
                         .addComponent(txtVersion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(btnUpload, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -347,8 +360,10 @@ public class Games extends JDialog {
     private RadiusTextField txtRom;
     private JLabel lblVersion;
     private RadiusTextField txtVersion;
-    private RadiusTextField txtCost2;
     private RadiusButton btnCancel2;
+    private JComboBox<Integer> cboAge;
+    private JButton button1;
+    private JButton button2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {

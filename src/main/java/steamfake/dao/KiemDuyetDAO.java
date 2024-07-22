@@ -130,6 +130,26 @@ public class KiemDuyetDAO {
     }
 
     public PendingGame selectPendingGameById(PhieuKiemDuyet phieuKiemDuyet) {
+        String sql = "SELECT * FROM PENDING_GAMES WHERE review_id = ?";
+        try(ResultSet rs = XJdbc.getResultSet(sql, phieuKiemDuyet.getId())) {
+            if(rs.next()) {
+                PendingGame pendingGame = new PendingGame();
+                pendingGame.setGameID(rs.getObject("game_id", java.util.UUID.class));
+                pendingGame.setName(rs.getString("name"));
+                pendingGame.setAvatar(rs.getString("avatar"));
+                pendingGame.setGiaTien(rs.getDouble("gia_tien"));
+                pendingGame.setAge(rs.getInt("age"));
+                pendingGame.setImages(rs.getString("images"));
+                pendingGame.setMoTa(rs.getString("mo_ta"));
+                pendingGame.setRam(rs.getInt("ram"));
+                pendingGame.setRom(rs.getInt("rom"));
+                pendingGame.setVersion(rs.getString("version"));
+                pendingGame.setExecPath(rs.getString("exec_file"));
+                return pendingGame;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 
