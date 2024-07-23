@@ -311,9 +311,8 @@ public class WithdrawMoneyPanel extends JPanel {
 
             //======== scrollPane1 ========
             {
-                scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-                scrollPane1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
                 scrollPane1.setBorder(null);
+                scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
                 //======== historyPanel ========
                 {
@@ -397,7 +396,7 @@ public class WithdrawMoneyPanel extends JPanel {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private final List<PhieuRutTien> phieuRutTienList = RutTienDAO.gI().selectByAccountID(SessionManager.user);
-    private int selectedMethod = -1;
+    private int selectedMethod = PhieuRutTien.METHOD_GAME;
 
     private void initialize() {
         lblBalance.setText(SessionManager.user.getSoDuThuNhap() + "");

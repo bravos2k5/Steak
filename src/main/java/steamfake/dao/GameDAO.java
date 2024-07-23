@@ -3,8 +3,10 @@ package steamfake.dao;
 import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.model.join.GameDisplay;
+import steamfake.utils.SessionManager;
 import steamfake.utils.database.XJdbc;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -185,9 +187,13 @@ public class GameDAO implements DataAccessObject<Game> {
     }
 
     public List<GameDisplay> selectListGameDisplay() {
-        String sql = "{CALL SP_GET_DISPLAY_GAMES()}";
+        String sql = "{CALL SP_GET_DISPLAY_GAMES(?)}";
         List<GameDisplay> gameDisplayList = new ArrayList<>();
-        try(ResultSet rs = XJdbc.getResultSet(sql)) {
+        int age = 12;
+        if(SessionManager.isLogin()) {
+            age = new Date(System.currentTimeMillis()).toLocalDate().getYear() - SessionManager.user.getDob().toLocalDate().getYear();
+        }
+        try(ResultSet rs = XJdbc.getResultSet(sql,age)) {
             while (rs.next()) {
                 GameDisplay gameDisplay = new GameDisplay(UUID.fromString(rs.getString("id")));
                 gameDisplay.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
