@@ -98,7 +98,7 @@ public class ManageWithdrawmoney extends JDialog {
                             "ID", "ID Account", "S\u1ed1 ti\u1ec1n", "H\u00ecnh th\u1ee9c", "Ng\u00e0y R\u00fat"
                         }
                     ) {
-                        final boolean[] columnEditable = new boolean[] {
+                        boolean[] columnEditable = new boolean[] {
                             false, false, false, false, false
                         };
                         @Override
