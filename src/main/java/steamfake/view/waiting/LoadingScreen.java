@@ -48,10 +48,10 @@ public class LoadingScreen extends JDialog {
                         }
                     }
                     else if(i == 77) {
-                        owner.initHomePage();
-                    }
-                    else if(i == 99) {
                         new LoginDialog(owner).setVisible(true);
+                    }
+                    else if(i == 80) {
+                        owner.initHomePage();
                     }
                 }
                 curvesPanel1.stop();

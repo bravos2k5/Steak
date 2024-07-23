@@ -4,17 +4,14 @@
 
 package steamfake.view.gamedetail;
 
-import steamfake.dao.AccountDAO;
 import steamfake.dao.GameDAO;
-import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.utils.SessionManager;
+import steamfake.utils.XEmail;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
-import steamfake.view.gamelib.LibraryPanel;
-import steamfake.view.mainframe.HeaderPanel;
 import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
@@ -26,6 +23,7 @@ import java.awt.event.MouseEvent;
  * @author ACER
  */
 public class BillGame extends JDialog {
+
     private final Game game;
     private final GameDetail gameDetail;
 
@@ -89,7 +87,7 @@ public class BillGame extends JDialog {
         lblNameAccount.setText("ACCOUNT");
         lblNameAccount.setHorizontalAlignment(SwingConstants.RIGHT);
         lblNameAccount.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 10));
-        lblNameAccount.setForeground(new Color(0x52bdf9));
+        lblNameAccount.setForeground(Color.black);
         lblNameAccount.setIcon(new ImageIcon(getClass().getResource("/icon/User_Bill.png")));
 
         //---- separator1 ----
@@ -308,6 +306,7 @@ public class BillGame extends JDialog {
                     }
                     XMessage.notificate(MFrame.getInstance(), "Thanh toan thanh cong");
                     gameDetail.loadBuy();
+                    XEmail.sendInvoice2(SessionManager.user, SessionManager.user.getSoDuGame() + game.getGiaTien(),game);
                     dispose();
                 } else {
                     XMessage.alert(MFrame.getInstance(), "Vui lòng xác nhận diều khoản mua");

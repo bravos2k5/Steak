@@ -77,7 +77,7 @@ public class LoginDialog extends JDialog {
         lbQuenMK = new JLabel();
         btnLogin = new ButtonGradient();
         label6 = new JLabel();
-        lbDangKy2 = new JLabel();
+        lblGuest = new JLabel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -189,25 +189,11 @@ public class LoginDialog extends JDialog {
             //---- label6 ----
             label6.setText("\u00a9 B\u1ea3n quy\u1ec1n thu\u1ed9c v\u1ec1 SteaK 1884 - 2024");
 
-            //---- lbDangKy2 ----
-            lbDangKy2.setText("T\u00f4i ch\u01b0a mu\u1ed1n \u0111\u0103ng nh\u1eadp. Ti\u1ebfp t\u1ee5c v\u1edbi vai tr\u00f2 kh\u00e1ch ?");
-            lbDangKy2.setForeground(new Color(0x6f6f6f));
-            lbDangKy2.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-            lbDangKy2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-            lbDangKy2.addMouseListener(new MouseAdapter() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    lbDangKyMouseClicked(e);
-                }
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    lbDangKyMouseEntered(e);
-                }
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    lbDangKyMouseExited(e);
-                }
-            });
+            //---- lblGuest ----
+            lblGuest.setText("T\u00f4i ch\u01b0a mu\u1ed1n \u0111\u0103ng nh\u1eadp. Ti\u1ebfp t\u1ee5c v\u1edbi vai tr\u00f2 kh\u00e1ch ?");
+            lblGuest.setForeground(new Color(0x6f6f6f));
+            lblGuest.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+            lblGuest.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
             GroupLayout panelBorder1Layout = new GroupLayout(panelBorder1);
             panelBorder1.setLayout(panelBorder1Layout);
@@ -242,7 +228,7 @@ public class LoginDialog extends JDialog {
                                 .addComponent(label3)
                                 .addGap(240, 240, 240))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
-                                .addComponent(lbDangKy2)
+                                .addComponent(lblGuest)
                                 .addGap(113, 113, 113))))
             );
             panelBorder1Layout.setVerticalGroup(
@@ -265,7 +251,7 @@ public class LoginDialog extends JDialog {
                         .addGap(52, 52, 52)
                         .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(lbDangKy2)
+                        .addComponent(lblGuest)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                         .addComponent(label6)
                         .addGap(39, 39, 39))
@@ -302,7 +288,7 @@ public class LoginDialog extends JDialog {
     private JLabel lbQuenMK;
     private ButtonGradient btnLogin;
     private JLabel label6;
-    private JLabel lbDangKy2;
+    private JLabel lblGuest;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -313,6 +299,24 @@ public class LoginDialog extends JDialog {
                 if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
                     loginAction();
                 }
+            }
+        });
+        lblGuest.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                LoginDialog.this.dispose();
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                lblGuest.setForeground(Color.WHITE);
+                lblGuest.setText("<html><u>Tôi chưa muốn đăng nhập. Tiếp tục với vai trò khách ?</u></html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                lblGuest.setForeground(Color.decode("#6f6f6f"));
+                lblGuest.setText("<html>Tôi chưa muốn đăng nhập. Tiếp tục với vai trò khách ?</html>");
             }
         });
     }

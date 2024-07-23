@@ -30,6 +30,9 @@ public class LibraryPanel extends JPanel {
 
     private LibraryPanel() {
         initComponents();
+        if (SessionManager.isLogin()) {
+            libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
+        }
         initialize();
     }
 
@@ -121,17 +124,19 @@ public class LibraryPanel extends JPanel {
     private JPanel undownloadedPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    private final HashMap<GameLibrary, Game> libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
+    private HashMap<GameLibrary, Game> libraryMap;
 
 
     private void initialize() {
-        for(GameLibrary gameLibrary : libraryMap.keySet()) {
-            Game game = libraryMap.get(gameLibrary);
-            GameLibraryItem gameLibraryItem = new GameLibraryItem(gameLibrary, game);
-            if(new File("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists()) {
-                downloadedPanel.add(gameLibraryItem);
-            } else {
-                undownloadedPanel.add(gameLibraryItem);
+        if (libraryMap != null) {
+            for(GameLibrary gameLibrary : libraryMap.keySet()) {
+                Game game = libraryMap.get(gameLibrary);
+                GameLibraryItem gameLibraryItem = new GameLibraryItem(gameLibrary, game);
+                if(new File("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).exists()) {
+                    downloadedPanel.add(gameLibraryItem);
+                } else {
+                    undownloadedPanel.add(gameLibraryItem);
+                }
             }
         }
         downloadedPanel.revalidate();
@@ -151,4 +156,13 @@ public class LibraryPanel extends JPanel {
     public HashMap<GameLibrary, Game> getLibraryMap() {
         return libraryMap;
     }
+
+    public void refreshLogout() {
+        libraryMap.clear();
+        instance = null;
+        downloadedPanel.removeAll();
+        undownloadedPanel.removeAll();
+    }
+
+
 }

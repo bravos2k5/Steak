@@ -8,7 +8,7 @@ import java.util.List;
 
 public class StaticData {
 
-    public static final List<Bank> bankList = BankDAO.selectAll();
+    public static final List<Bank> bankList = BankDAO.gI().selectAll();
     public static List<GameLibrary> gameLibraryList = null;
 
     private static List<GameLibrary> getGameLibraryList() {

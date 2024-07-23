@@ -4,12 +4,14 @@
 
 package steamfake.view.mainframe;
 
+import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
+import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
 
 import javax.swing.*;
@@ -49,6 +51,7 @@ public class HeaderPanel extends JPanel {
         lblAdmin = new JLabel();
         lblName = new JLabel();
         lblRole = new JLabel();
+        btnLogin = new RadiusButton();
 
         //======== this ========
         setBackground(new Color(0x252730));
@@ -109,6 +112,13 @@ public class HeaderPanel extends JPanel {
         lblRole.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
         lblRole.setForeground(new Color(0x70ff00));
 
+        //---- btnLogin ----
+        btnLogin.setText("\u0110\u0103ng nh\u1eadp");
+        btnLogin.setBackground(new Color(0x33ccff));
+        btnLogin.setForeground(Color.black);
+        btnLogin.setHoverColor(Color.cyan);
+        btnLogin.setOriginColor(new Color(0x33ccff));
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,7 +130,9 @@ public class HeaderPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblName)
                         .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 285, Short.MAX_VALUE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+                    .addGap(110, 110, 110)
                     .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
@@ -149,7 +161,9 @@ public class HeaderPanel extends JPanel {
                             .addGap(11, 11, 11)
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(radiusTextField1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                             .addGap(17, 17, 17))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
@@ -182,6 +196,7 @@ public class HeaderPanel extends JPanel {
     private JLabel lblAdmin;
     private JLabel lblName;
     private JLabel lblRole;
+    private RadiusButton btnLogin;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -194,6 +209,13 @@ public class HeaderPanel extends JPanel {
         lblAvata.setSize(new Dimension(50,50));
         initEffectHover();
         initSettingAccountPage();
+        btnLogin.addActionListener(e -> login());
+        iconLogOut.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                logout();
+            }
+        });
     }
 
     private void initEffectHover() {
@@ -221,20 +243,24 @@ public class HeaderPanel extends JPanel {
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");
             String avtPath = "data/avatars/" + account.getId() + "/" + account.getAvatar();
-            if(account.getAvatar() != null && !account.getAvatar().isBlank() &&
-                    !new File(avtPath).exists()) {
+            if(account.getAvatar() == null || account.getAvatar().isBlank()) {
+                lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+            }
+            else if(!new File(avtPath).exists()) {
                 ResourceManager.downloadAvatar(account);
             }
             if(new File(avtPath).exists()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(avtPath), lblAvata));
             }
-            if(account.getAvatar() == null || account.getAvatar().isBlank()) {
-                lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
-            }
         }
         else {
             lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
+            lblName.setText("Chưa đăng nhập");
+            lblRole.setText("Khách");
+            lblMoney.setText("Cái nịt");
+            lblAdmin.setVisible(false);
         }
+        btnLogin.setVisible(!SessionManager.isLogin());
         repaint();
     }
 
@@ -254,6 +280,20 @@ public class HeaderPanel extends JPanel {
                 MFrame.getInstance().initSettingAccountPage();
             }
         });
+    }
+
+    private void login() {
+        new LoginDialog(MFrame.getInstance()).setVisible(true);
+        MFrame.getInstance().getMainPanel().removeAll();
+        MFrame.getInstance().initHomePage();
+    }
+
+    private void logout() {
+        SessionManager.logOut();
+        updateAccount();
+        MFrame.getInstance().getMainPanel().removeAll();
+        MFrame.getInstance().initHomePage();
+        LibraryPanel.gI().refreshLogout();
     }
 
 }

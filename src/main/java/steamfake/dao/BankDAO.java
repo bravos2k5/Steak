@@ -21,17 +21,17 @@ public class BankDAO {
 
     private BankDAO() {}
 
-    public static Bank selectByID(String id) {
+    public Bank selectByID(String id) {
         String sql = "SELECT * FROM Bank WHERE id = ?";
         List<Bank> bankList = selectBySQL(sql,id);
         return bankList.isEmpty() ? null : bankList.getFirst();
     }
 
-    public static List<Bank> selectAll() {
+    public List<Bank> selectAll() {
         return selectBySQL("SELECT * FROM Bank");
     }
 
-    public static List<Bank> selectBySQL(String sql, Object...args) {
+    public List<Bank> selectBySQL(String sql, Object...args) {
         List<Bank> bankList = new ArrayList<>();
         try(ResultSet rs = XJdbc.getResultSet(sql,args)) {
             while (rs.next()) {
