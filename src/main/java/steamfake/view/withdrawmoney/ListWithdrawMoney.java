@@ -6,6 +6,8 @@ package steamfake.view.withdrawmoney;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author ACER
@@ -13,6 +15,19 @@ import java.awt.*;
 public class ListWithdrawMoney extends JPanel {
     public ListWithdrawMoney() {
         initComponents();
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setBackground(new Color(0x252730));
+                setBorder(null);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setBackground(new Color(0x3a3d42));
+                setBorder(BorderFactory.createLineBorder(new Color(0x252730), 1));
+            }
+        });
 
     }
 
@@ -25,6 +40,8 @@ public class ListWithdrawMoney extends JPanel {
 
         //======== this ========
         setBackground(new Color(0x252730));
+        setAlignmentX(0.0F);
+        setAlignmentY(0.0F);
 
         //---- colNgayRut ----
         colNgayRut.setText("Ng\u00e0y r\u00fat");

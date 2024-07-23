@@ -361,7 +361,10 @@ public class MFrame extends JFrame {
     }
 
     public void initHomePage() {
-        if (gameList == null) {
+        if(SessionManager.isLogin()) {
+            LibraryPanel.gI();
+        }
+        if (gameList == null || !SessionManager.isLogin()) {
             gameList = GameDAO.gI().selectListGameDisplay();
             theMostDownloadedGame = gameList.getFirst();
             downloadResource();
@@ -413,6 +416,12 @@ public class MFrame extends JFrame {
             mainPanel.repaint();
             mainPanel.revalidate();
         });
+    }
+
+    @Override
+    public void dispose() {
+        DownloadQueue.gI().cancelAllDownload();
+        super.dispose();
     }
 
 }

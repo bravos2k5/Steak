@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -183,9 +183,8 @@ new FormModel {
 				} )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
-					"horizontalScrollBarPolicy": 31
-					"verticalScrollBarPolicy": 21
 					"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+					"horizontalScrollBarPolicy": 31
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 						"axis": 1
 					} ) {

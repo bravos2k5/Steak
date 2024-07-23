@@ -87,9 +87,17 @@ public class GameDetailPanel extends JPanel {
     public void loadComment() {
         commentList = EvaluationDAO.gI().selectByGameID(game.getId());
         commentPanel.removeAll();
-        for(Evaluation gl : commentList) {
-            if(SessionManager.user == null && !gl.getAccountID().equals(gameLibrary.getAccountId()))
+        if (!SessionManager.isLogin() || gameLibrary == null) {
+            for(Evaluation gl : commentList) {
                 commentPanel.add(new CommentPanel(gl));
+            }
+        }
+        else {
+            for(Evaluation gl : commentList) {
+                if (gl.getAccountID() != SessionManager.user.getId()) {
+                    commentPanel.add(new CommentPanel(gl));
+                }
+            }
         }
         if(commentList.isEmpty()) {
             JLabel label = new JLabel("Chưa có đánh giá nào");

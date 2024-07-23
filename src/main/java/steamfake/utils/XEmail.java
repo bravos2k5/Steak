@@ -1,5 +1,6 @@
 package steamfake.utils;
 
+import steamfake.model.Account;
 import steamfake.model.Game;
 
 import javax.mail.*;
@@ -63,6 +64,46 @@ public class XEmail {
                 "<p>Số tiền còn lại sau thanh toán: <b>$" + (moneyBeforePurchase - game.getGiaTien()) + "</b></p>" +
                 "<p>Cảm ơn đã sử dụng dịch vụ của chúng tôi.</p>";
         sendEmail(to,subject,text);
+    }
+
+    public static void sendInvoice2(Account account, double moneyBeforePurchase, Game game) {
+        String subject = "Hóa đơn thanh toán mua game";
+        String text = "    <h1>Hóa đơn</h1>\n" +
+                "    \n" +
+                "    <h2>Thông tin công ty</h2>\n" +
+                "    <p>\n" +
+                "        <strong>Tên công ty:</strong> Bravos, Inc<br>\n" +
+                "        <strong>Địa chỉ:</strong> 2 Hacker Way<br>\n" +
+                "        <strong>Email:</strong> zenith@quocbao2k5.id.vn<br>\n" +
+                "        <strong>Phone:</strong> (84) 704-795-312\n" +
+                "    </p>\n" +
+                "    \n" +
+                "    <h2>Thông tin khách hàng</h2>\n" +
+                "    <p>\n" +
+                "        <strong>Tên khách hàng:</strong>" + account.getHoTen() + "<br>\n" +
+                "        <strong>Email:</strong>" + account.getEmail() + "<br>\n" +
+                "        <strong>Phone:</strong>" + account.getPhone() + "\n" +
+                "    </p>\n" +
+                "    \n" +
+                "    \n" +
+                "    <h2>Chi tiết hóa đơn</h2>\n" +
+                "    <table border=\"1\" cellpadding=\"5\" cellspacing=\"0\">\n" +
+                "        <thead>\n" +
+                "            <tr>\n" +
+                "                <th>Mặt hàng</th>\n" +
+                "                <th>Số tiền</th>\n" +
+                "            </tr>\n" +
+                "        </thead>\n" +
+                "        <tbody>\n" +
+                "            <tr>\n" +
+                "                <td>" + game.getName() + "</td>\n" +
+                "                <td>" + game.getGiaTien() + "</td>\n" +
+                "            </tr>\n" +
+                "        </tbody>\n" +
+                "    </table>\n" +
+                "    <p>Cảm ơn đã mua hàng</p>\n" +
+                "\n";
+        sendEmail(account.getEmail(), subject, text);
     }
 
 }
