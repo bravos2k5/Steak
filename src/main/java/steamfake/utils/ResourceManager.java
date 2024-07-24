@@ -3,6 +3,7 @@ package steamfake.utils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import steamfake.model.Account;
 import steamfake.model.Game;
+import steamfake.model.PendingGame;
 import steamfake.utils.azure.AzureBlobService;
 
 import java.io.File;
@@ -23,6 +24,21 @@ public class ResourceManager {
 
     public static void downloadGameResource(Game game) {
         String azurePath = game.getId() + "/" + game.getVersion() + "/images/";
+        String localPath = GAME_RESOURCE_PATH + azurePath;
+        List<String> images = XJson.fromJson(game.getImages(), new TypeReference<>() {});
+        if (images != null) {
+            for (String image : images) {
+                String azureImage = azurePath + image;
+                String localImage = localPath + image;
+                if (!new File(localImage).exists()) {
+                    AzureBlobService.download(localImage, azureImage, "games");
+                }
+            }
+        }
+    }
+
+    public static void downloadGameResource(PendingGame game) {
+        String azurePath = game.getGameID() + "/" + game.getVersion() + "/images/";
         String localPath = GAME_RESOURCE_PATH + azurePath;
         List<String> images = XJson.fromJson(game.getImages(), new TypeReference<>() {});
         if (images != null) {

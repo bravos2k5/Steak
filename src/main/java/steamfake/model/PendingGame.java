@@ -120,4 +120,8 @@ public class PendingGame {
         this.execPath = execPath;
     }
 
+    public String getAvatarPath() {
+        return "data/games/" + gameID + "/" + version + "/images/" + avatar;
+    }
+
 }

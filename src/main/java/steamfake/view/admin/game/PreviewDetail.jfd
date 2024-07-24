@@ -4,10 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::759:x, comp label10:::p::p, space :p:105:p}, seq l {space :p:50:p, par l {seq {comp cboImages:::p:316:p, space u:::p, comp button1:::p::p, space ::444:x}, seq l {comp btnCancel2:::p:100:p, space :::x, comp btnCancel:::p:100:p, space s:::p, comp btnUpload:::p:100:p, space :p:42:p}, seq l {comp label6:::p:206:p, space ::228:x, par l {comp txtExecFilePath::l:p:240:p, seq t {comp label7:::p:206:p, space :p:208:p}}}, seq {par l {seq {comp label11:::p::p, space s:::p, comp txtRam:::p:100:p, space :p:33:p, comp label12:::p::p, space s:::p, comp txtRom:::p:100:p, space :p:45:p, comp lblVersion:::p::p, space s:::p, comp txtVersion:::p:100:p}, par t:l {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp txtCost:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp cboAge:::p:184:p}}, comp txtName:::p:540:p}, space :p:108:p, comp lblAvatar:::p:150:p}, par l {seq {comp label4:::p::p, space u:::p, comp button2:::p::p}, comp scrollPane1:::p:798:p, comp txtFolderPath::l:p:252:p, comp label8::l:p:336:p}}}, space :0:0:x}}}}"
-			"$verticalGroup": "par l {seq l {par l {seq l {space :p:35:p, comp lblAvatar:::p:150:p}, seq l {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par t {comp txtCost:::p:30:p, comp cboAge:::p:30:p}}}, space :::p, comp label10:::p::p, space :p:18:p, par l {comp label4:::p:30:p, comp button2:::p::p}, space :::p, comp scrollPane1:::p:300:p, space s:::p, par b {comp label6::b:p:30:p, comp label7::b:p:30:p}, space s:::p, par b {comp txtFolderPath::b:p::p, comp txtExecFilePath::b:p::p}, space :p:41:p, comp label8:::p:30:p, space s:::p, par b {comp cboImages::b:p:40:p, comp button1::b:::x}, space :p:38:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space ::46:x, par b {comp btnUpload::b:p:30:p, comp btnCancel::b:p:30:p, comp btnCancel2::b:p:30:p}, space :p:47:p}}"
+			"$horizontalGroup": "par l {seq t {space ::759:x, comp label10:::p::p, space :p:105:p}, seq l {space :p:50:p, par l {seq {comp cboImages:::p:316:p, space u:::p, comp btnImgPreview:::p::p, space ::444:x}, seq l {comp btnCancel:::p:100:p, space :::x, comp btnReject:::p:100:p, space s:::p, comp btnAccept:::p:100:p, space :p:42:p}, seq {par t {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp txtCost:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp txtAge:::p:216:p}}, comp txtName:::p:540:p}, space :p:108:p, comp lblAvatar:::p:150:p}, par l {comp label4:::p::p, comp scrollPane1:::p:798:p, comp label8::l:p:336:p}}, space :0:0:x}, seq l {par l {seq l {comp label11:::p::p, space s:::p, comp txtRam:::p:100:p, space :p:33:p, comp label12:::p::p, space s:::p, comp txtRom:::p:100:p}, comp label6::l:p:206:p, seq l {comp txtLink:::p:370:p, space s:::p, comp btnCopy:::p::p}}, par l {seq {space :p:39:p, comp lblVersion:::p::p, space s:::p, comp txtVersion::::164:x}, seq t {space ::45:x, par l {comp label7:::p:206:p, comp txtExecFilePath:::p:240:p}}}, space :p:99:p}}}}"
+			"$verticalGroup": "par l {seq l {par l {seq l {space :p:35:p, comp lblAvatar:::p:150:p}, seq l {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par b {comp txtCost::b:p:30:p, comp txtAge::b:p::p}}}, space :::p, comp label10:::p::p, space :p:18:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, par l {seq {comp label6:::p:30:p, space s:::p, par b {comp txtLink::b:p::p, comp btnCopy::b:p::p}}, seq {comp label7:::p:30:p, space s:::p, comp txtExecFilePath:::p::p}}, space :p:41:p, comp label8:::p:30:p, space s:::p, par b {comp cboImages::b:p:40:p, comp btnImgPreview::b:::x}, space :p:38:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space ::46:x, par b {comp btnAccept::b:p:30:p, comp btnReject::b:p:30:p, comp btnCancel::b:p:30:p}, space :p:47:p}}"
 		} ) {
 			name: "this"
+			"modal": true
+			"resizable": false
+			"defaultCloseOperation": 2
 			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
 				name: "txtName"
 				"radius": 0
@@ -17,6 +20,7 @@ new FormModel {
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				"noForcusColor": &Color2 new java.awt.Color( 25, 27, 32, 255 )
 				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
@@ -35,9 +39,10 @@ new FormModel {
 				"font": #Font0
 				"endGradientColor": #Color1
 				"noForcusColor": #Color2
-				"background": new java.awt.Color( 37, 39, 48, 255 )
-				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"background": &Color3 new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": &Color4 new java.awt.Color( 37, 39, 48, 255 )
 				"placeholder": "VND"
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label3"
@@ -52,6 +57,7 @@ new FormModel {
 					"font": new java.awt.Font( "SansSerif", 0, 14 )
 					"lineWrap": true
 					"wrapStyleWord": true
+					"editable": false
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
@@ -68,11 +74,11 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label6"
-				"text": "Upload folder game"
+				"text": "Link source:"
 				"font": &Font2 new java.awt.Font( "SansSerif", 1, 18 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnUpload"
+				name: "btnAccept"
 				"text": "Duyệt"
 				"horizontalAlignment": 0
 				"font": &Font3 new java.awt.Font( "SansSerif", 1, 14 )
@@ -82,18 +88,19 @@ new FormModel {
 				"radius": 5
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnCancel"
+				name: "btnReject"
 				"text": "Từ chối"
 				"horizontalAlignment": 0
 				"font": #Font3
-				"background": &Color3 new java.awt.Color( 62, 55, 55, 255 )
-				"originColor": &Color4 new java.awt.Color( 62, 55, 55, 255 )
+				"background": &Color5 new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": &Color6 new java.awt.Color( 62, 55, 55, 255 )
 				"radius": 5
 				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JTextField" ) {
-				name: "txtFolderPath"
+				name: "txtLink"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label7"
@@ -103,6 +110,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "txtExecFilePath"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label8"
@@ -131,6 +139,7 @@ new FormModel {
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
 				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label12"
@@ -142,6 +151,7 @@ new FormModel {
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
 				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblVersion"
@@ -153,35 +163,40 @@ new FormModel {
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
 				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnCancel2"
+				name: "btnCancel"
 				"text": "Cancel"
 				"horizontalAlignment": 0
 				"font": #Font3
-				"background": #Color3
-				"originColor": #Color4
+				"background": #Color5
+				"originColor": #Color6
 				"radius": 5
 				"hoverColor": sfield java.awt.Color gray
 			} )
-			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "cboAge"
-				"background": new java.awt.Color( 37, 39, 48, 255 )
-				auxiliary() {
-					"JavaCodeGenerator.typeParameters": "Integer"
-				}
-			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button1"
+				name: "btnImgPreview"
 				"text": "Preview"
 			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtAge"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": #Color3
+				"startGradientColor": #Color4
+				"editable": false
+			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "button2"
-				"text": "Preview"
+				name: "btnCopy"
+				"text": "Copy"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"size": new java.awt.Dimension( 900, 1000 )
-			"location": new java.awt.Point( 0, 0 )
+			"location": new java.awt.Point( 0, 5 )
 		} )
 	}
 }
