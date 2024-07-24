@@ -42,7 +42,6 @@ public class RutTienDAO implements DataAccessObject<PhieuRutTien> {
 
     @Override
     public int update(PhieuRutTien object) {
-
         return -1;
     }
 

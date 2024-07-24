@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class KiemDuyetDAO {
+public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
 
     private static KiemDuyetDAO instance;
 
@@ -45,6 +45,22 @@ public class KiemDuyetDAO {
         return XJdbc.update(sql, phieuKiemDuyet.getId(),phieuKiemDuyet.getThongBao());
     }
 
+    @Override
+    public int insert(PhieuKiemDuyet object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int update(PhieuKiemDuyet object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public int delete(PhieuKiemDuyet object) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
     public List<PhieuKiemDuyet> selectAll() {
         String sql = "SELECT * FROM PHIEU_KIEM_DUYET";
         return selectBySQL(sql);

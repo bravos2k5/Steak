@@ -51,7 +51,7 @@ public class LoadingScreen extends JDialog {
                         new LoginDialog(owner).setVisible(true);
                     }
                     else if(i == 80) {
-                        owner.initHomePage();
+                        owner.showHomePage();
                     }
                 }
                 curvesPanel1.stop();

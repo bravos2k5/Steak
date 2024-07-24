@@ -31,13 +31,6 @@ public class MFrame extends JFrame {
 
     private static MFrame instance;
 
-    public static final int HOME_PAGE = 0;
-    public static final int LIBRARY_PAGE = 1;
-    public static final int ADD_MONEY_PAGE = 2;
-    public static final int MANAGE_PAGE = 3;
-    public static final int GAME_DETAIL_PAGE = 4;
-    public static final int SETTING_ACCOUNT_PAGE = 5;
-
     public static MFrame gI() {
         if (instance == null) {
             instance = new MFrame();
@@ -247,9 +240,8 @@ public class MFrame extends JFrame {
 
     private GameDisplay theMostDownloadedGame;
     private List<GameDisplay> gameList;
-    private final Stack<Component[]> componentStack = new Stack<>();
-    private int currentPageIndex = HOME_PAGE;
-    private int nextPageIndex = HOME_PAGE;
+    private final Stack<Component[]> stack = new Stack<>();
+
 
     private void initialize() {
         new LoadingScreen(this).setVisible(true);
@@ -273,9 +265,7 @@ public class MFrame extends JFrame {
         });
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initHomePage();
-                setEffectMenu(lblHome);
+                showHomePage();
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblHome.setBackground(Color.GRAY);
@@ -288,9 +278,7 @@ public class MFrame extends JFrame {
         lblLibrary.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initLibraryPage();
-                    setEffectMenu(lblLibrary);
+                    showLibrary();
                 }
                 else {
                     requestLogin();
@@ -307,9 +295,7 @@ public class MFrame extends JFrame {
         lblAddMoney.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initAddMoneyPage();
-                    setEffectMenu(lblAddMoney);
+                    showWithdrawMoney();
                 }
                 else {
                     requestLogin();
@@ -326,9 +312,7 @@ public class MFrame extends JFrame {
         lblManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initManagePage();
-                    setEffectMenu(lblManage);
+                    showGameManagement();
                 }
                 else {
                     requestLogin();
@@ -357,7 +341,7 @@ public class MFrame extends JFrame {
         lblDownload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    initDownloadPage();
+                    showDownloadPage();
                 }
                 else {
                     requestLogin();
@@ -371,14 +355,6 @@ public class MFrame extends JFrame {
         new LoginDialog(MFrame.this).setVisible(true);
     }
 
-    private void setEffectMenu(JLabel label) {
-        lblHome.setBorder(null);
-        lblLibrary.setBorder(null);
-        lblManage.setBorder(null);
-        lblAddMoney.setBorder(null);
-        label.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.WHITE));
-        panelSelectFunction.repaint();
-    }
 
     private void downloadResource() {
         ResourceManager.downloadGameResource(theMostDownloadedGame);
@@ -389,102 +365,101 @@ public class MFrame extends JFrame {
         }
     }
 
-    public void initHomePage() {
-        mainPanel.removeAll();
-        int oldPageIndex = currentPageIndex;
+    public void showHomePage() {
+        handleBeforeChange();
         gameList = GameDAO.gI().selectListGameDisplay();
-        if (gameList != null && !gameList.isEmpty()) {
-            theMostDownloadedGame = gameList.getFirst();
-            downloadResource();
-            HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
-            mainPanel.add(hotGamePanel);
-            for (GameDisplay game : gameList) {
-                if (game != null && !game.equals(theMostDownloadedGame)) {
-                    ListGamePanel listGamePanel = new ListGamePanel(game);
-                    mainPanel.add(listGamePanel);
-                }
+        if(gameList == null || gameList.isEmpty()) {
+            return;
+        }
+        theMostDownloadedGame = gameList.getFirst();
+        downloadResource();
+        HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
+        mainPanel.add(hotGamePanel);
+        for (GameDisplay game : gameList) {
+            if (game != null && !game.equals(theMostDownloadedGame)) {
+                ListGamePanel listGamePanel = new ListGamePanel(game);
+                mainPanel.add(listGamePanel);
             }
         }
         mainPanel.repaint();
         mainPanel.validate();
-        if (oldPageIndex != HOME_PAGE) {
-            componentStack.push(mainPanel.getComponents());
-        }
     }
 
-    private void initLibraryPage() {
-        int oldPageIndex = currentPageIndex;
+    private void showLibrary() {
+        handleBeforeChange();
         LibraryPanel libraryPanel = LibraryPanel.gI();
         mainPanel.add(libraryPanel);
         mainPanel.repaint();
         mainPanel.validate();
-        if (oldPageIndex != LIBRARY_PAGE) {
-            componentStack.push(mainPanel.getComponents());
-        }
     }
 
-    private void initAddMoneyPage() {
-        int oldPageIndex = currentPageIndex;
+    private void showWithdrawMoney() {
+        handleBeforeChange();
         WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
         mainPanel.add(panel);
         mainPanel.repaint();
         mainPanel.validate();
-        if (oldPageIndex != ADD_MONEY_PAGE) {
-            componentStack.push(mainPanel.getComponents());
-        }
     }
 
-    private void initManagePage() {
-        int oldPageIndex = currentPageIndex;
+    private void showGameManagement() {
+        handleBeforeChange();
         ManageGame manageGame = new ManageGame();
         mainPanel.add(manageGame);
         mainPanel.repaint();
         mainPanel.validate();
-        if (oldPageIndex != MANAGE_PAGE) {
-            componentStack.push(mainPanel.getComponents());
-        }
     }
 
-    private void initDownloadPage() {
+    private void showDownloadPage() {
         DownloadQueue.gI().setVisible(true);
     }
 
-    public void initSettingAccountPage() {
-        int oldPageIndex = currentPageIndex;
-        mainPanel.removeAll();
+    public void showAccountSetting() {
+        handleBeforeChange();
         AccountPanel accountPanel = new AccountPanel();
         mainPanel.add(accountPanel);
         mainPanel.repaint();
         mainPanel.revalidate();
-        if (oldPageIndex != SETTING_ACCOUNT_PAGE) {
-            componentStack.push(mainPanel.getComponents());
-        }
     }
 
     public void showGameDetail(Game game) {
-        int oldPageIndex = currentPageIndex;
+        handleBeforeChange();
         GameDetailPanel gameDetail = new GameDetailPanel(game);
-        mainPanel.removeAll();
         mainPanel.add(gameDetail);
         mainPanel.repaint();
         mainPanel.revalidate();
-        currentPageIndex = GAME_DETAIL_PAGE;
-        if (oldPageIndex != GAME_DETAIL_PAGE) {
-            componentStack.push(mainPanel.getComponents());
+    }
+
+    public void search(String key) {
+        handleBeforeChange();
+    }
+
+    private void saveCurrentState() {
+        Component[] components = mainPanel.getComponents();
+        if(components != null && components.length > 0) {
+            stack.push(components);
         }
     }
 
+    private void handleBeforeChange() {
+        saveCurrentState();
+        scrollPane1.getVerticalScrollBar().setValue(0);
+        mainPanel.removeAll();
+    }
+
     private void back() {
-        if (!componentStack.isEmpty()) {
-            Component[] components = componentStack.pop();
-            mainPanel.removeAll();
-            for (Component component : components) {
-                mainPanel.add(component);
-            }
-            mainPanel.repaint();
-            mainPanel.revalidate();
+        if (!stack.isEmpty()) {
+            SwingUtilities.invokeLater(() -> {
+                mainPanel.removeAll();
+                Component[] components = stack.pop();
+                for (Component component : components) {
+                    mainPanel.add(component);
+                }
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            });
         }
     }
+
 
     @Override
     public void dispose() {
@@ -496,7 +471,9 @@ public class MFrame extends JFrame {
         gameList = null;
         theMostDownloadedGame = null;
         instance = null;
+        stack.clear();
         mainPanel.removeAll();
     }
+
 
 }

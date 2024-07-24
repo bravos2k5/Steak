@@ -47,7 +47,7 @@ public class HeaderPanel extends JPanel {
         iconAddMoney = new JLabel();
         iconSettingAccount = new JLabel();
         iconLogOut = new JLabel();
-        radiusTextField1 = new RadiusTextField();
+        txtSearch = new RadiusTextField();
         lblAvata = new JLabel();
         lblAdmin = new JLabel();
         lblName = new JLabel();
@@ -85,13 +85,13 @@ public class HeaderPanel extends JPanel {
         iconLogOut.setBackground(new Color(0x252730));
         iconLogOut.setOpaque(true);
 
-        //---- radiusTextField1 ----
-        radiusTextField1.setForeground(Color.white);
-        radiusTextField1.setPlaceholder("Search");
-        radiusTextField1.setEndGradientColor(new Color(0x30333d));
-        radiusTextField1.setBackground(new Color(0x252730));
-        radiusTextField1.setStartGradientColor(new Color(0x30333d));
-        radiusTextField1.setForcusColor(new Color(0x0c8ce9));
+        //---- txtSearch ----
+        txtSearch.setForeground(Color.white);
+        txtSearch.setPlaceholder("Search");
+        txtSearch.setEndGradientColor(new Color(0x30333d));
+        txtSearch.setBackground(new Color(0x252730));
+        txtSearch.setStartGradientColor(new Color(0x30333d));
+        txtSearch.setForcusColor(new Color(0x0c8ce9));
 
         //---- lblAvata ----
         lblAvata.setText("Icon");
@@ -134,7 +134,7 @@ public class HeaderPanel extends JPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                     .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
                     .addGap(110, 110, 110)
-                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -163,7 +163,7 @@ public class HeaderPanel extends JPanel {
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                             .addGap(17, 17, 17))
                         .addGroup(layout.createSequentialGroup()
@@ -192,7 +192,7 @@ public class HeaderPanel extends JPanel {
     private JLabel iconAddMoney;
     private JLabel iconSettingAccount;
     private JLabel iconLogOut;
-    private RadiusTextField radiusTextField1;
+    private RadiusTextField txtSearch;
     private JLabel lblAvata;
     private JLabel lblAdmin;
     private JLabel lblName;
@@ -280,7 +280,7 @@ public class HeaderPanel extends JPanel {
                     new LoginDialog(MFrame.gI()).setVisible(true);
                     return;
                 }
-                MFrame.gI().initSettingAccountPage();
+                MFrame.gI().showAccountSetting();
             }
         });
     }
@@ -288,7 +288,14 @@ public class HeaderPanel extends JPanel {
     private void login() {
         new LoginDialog(MFrame.gI()).setVisible(true);
         MFrame.gI().getMainPanel().removeAll();
-        MFrame.gI().initHomePage();
+        MFrame.gI().showHomePage();
+    }
+
+    private void search() {
+        String key = txtSearch.getText();
+        if(!key.isBlank()) {
+            MFrame.gI().search(key);
+        }
     }
 
     private void logout() {
@@ -297,7 +304,7 @@ public class HeaderPanel extends JPanel {
         DownloadQueue.gI().cancelAllDownload();
         SessionManager.logOut();
         updateAccount();
-        MFrame.gI().initHomePage();
+        MFrame.gI().showHomePage();
     }
 
 }

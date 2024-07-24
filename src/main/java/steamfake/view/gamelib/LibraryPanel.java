@@ -57,6 +57,7 @@ public class LibraryPanel extends JPanel {
 
         //======== scrollbar1 ========
         {
+            scrollbar1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== downloadedPanel ========
             {
@@ -68,6 +69,7 @@ public class LibraryPanel extends JPanel {
 
         //======== scrollbar2 ========
         {
+            scrollbar2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== undownloadedPanel ========
             {
