@@ -301,15 +301,15 @@ public class BillGame extends JDialog {
             public void mouseClicked(MouseEvent e) {
                 if (checkBox1.isSelected()) {
                     if (!payGame()) {
-                        XMessage.alert(MFrame.getInstance(), "Thanh toan khong thanh cong");
+                        XMessage.alert(MFrame.gI(), "Thanh toan khong thanh cong");
                         return;
                     }
-                    XMessage.notificate(MFrame.getInstance(), "Thanh toan thanh cong");
+                    XMessage.notificate(MFrame.gI(), "Thanh toan thanh cong");
                     gameDetail.loadBuy();
                     XEmail.sendInvoice2(SessionManager.user, SessionManager.user.getSoDuGame() + game.getGiaTien(),game);
                     dispose();
                 } else {
-                    XMessage.alert(MFrame.getInstance(), "Vui lòng xác nhận diều khoản mua");
+                    XMessage.alert(MFrame.gI(), "Vui lòng xác nhận diều khoản mua");
                 }
             }
         });

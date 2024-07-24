@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class EvaluationDAO {
+public class EvaluationDAO implements DataAccessObject<Evaluation> {
 
     private static EvaluationDAO instance;
 
@@ -35,6 +35,21 @@ public class EvaluationDAO {
     public int delete(Evaluation object) {
         String sql = "{CALL SP_DELETE_EVALUATION(?,?)}";
         return XJdbc.update(sql, object.getGameID(), object.getAccountID());
+    }
+
+    @Override
+    public Evaluation selectByID(Evaluation object) {
+        return null;
+    }
+
+    @Override
+    public List<Evaluation> selectAll() {
+        return List.of();
+    }
+
+    @Override
+    public List<Evaluation> selectBySQL(String sql, Object... args) {
+        return List.of();
     }
 
     public List<Evaluation> selectByGameID(UUID gameID) {

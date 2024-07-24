@@ -1,7 +1,6 @@
 package steamfake.view.gamedetail;
 
 import steamfake.dao.AccountDAO;
-import steamfake.dao.GameDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
 import steamfake.graphics.slider.SlideShow;
@@ -18,8 +17,6 @@ import steamfake.view.mainframe.MFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,10 +35,7 @@ public class GameDetail extends JPanel {
         initComponents();
         initialize();
     }
-
-
-
-
+    
     private void btnBack(ActionEvent e) {
         slideImages.back();
     }
@@ -483,8 +477,8 @@ public class GameDetail extends JPanel {
 
     private void buyEvent() {
         if (SessionManager.user == null) {
-            XMessage.alert(MFrame.getInstance(), "Vui lòng đăng nhập để mua game");
-            new LoginDialog(MFrame.getInstance()).setVisible(true);
+            XMessage.alert(MFrame.gI(), "Vui lòng đăng nhập để mua game");
+            new LoginDialog(MFrame.gI()).setVisible(true);
             if (SessionManager.isLogin()) {
                 parentPanel.setGameLibrary(GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId()));
                 loadInfo();
@@ -495,15 +489,15 @@ public class GameDetail extends JPanel {
         }
         if (parentPanel.getGameLibrary() == null) {
             if (SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
-                BillGame billGame = new BillGame(MFrame.getInstance(),this, game);
+                BillGame billGame = new BillGame(MFrame.gI(),this, game);
                 billGame.setVisible(true);
             } else {
-                XMessage.alert(MFrame.getInstance(), "Số dư không đủ");
-                if (XMessage.confirm(MFrame.getInstance(), "Bạn có muốn nạp tiền không") == JOptionPane.YES_OPTION) {
-                    MFrame.getInstance().getMainPanel().removeAll();
-                    MFrame.getInstance().getMainPanel().add(new AddMoney());
-                    MFrame.getInstance().getMainPanel().revalidate();
-                    MFrame.getInstance().getMainPanel().repaint();
+                XMessage.alert(MFrame.gI(), "Số dư không đủ");
+                if (XMessage.confirm(MFrame.gI(), "Bạn có muốn nạp tiền không") == JOptionPane.YES_OPTION) {
+                    MFrame.gI().getMainPanel().removeAll();
+                    MFrame.gI().getMainPanel().add(new AddMoney());
+                    MFrame.gI().getMainPanel().revalidate();
+                    MFrame.gI().getMainPanel().repaint();
                 }
             }
         }
@@ -512,7 +506,7 @@ public class GameDetail extends JPanel {
     public void loadBuy() {
             parentPanel.setGameLibrary(GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId()));
             SessionManager.updateMoneyAccount();
-            HeaderPanel.getInstance().updateMoney();
+            HeaderPanel.gI().updateMoney();
             btnBuy.setText("Chơi");
             parentPanel.loadMyComment();
             LibraryPanel.gI().getLibraryMap().put(parentPanel.getGameLibrary(), game);
@@ -525,7 +519,7 @@ public class GameDetail extends JPanel {
             try {
                 XFile.runExeFile(path);
             } catch (IOException e) {
-                XMessage.alert(MFrame.getInstance(), "Lỗi: " + e.getMessage());
+                XMessage.alert(MFrame.gI(), "Lỗi: " + e.getMessage());
             }
             return;
         }
@@ -533,7 +527,7 @@ public class GameDetail extends JPanel {
             DownloadQueue.gI().addNewDownload(game);
             DownloadQueue.gI().setVisible(true);
         } else {
-            XMessage.alert(MFrame.getInstance(), "Game đang được tải xuống");
+            XMessage.alert(MFrame.gI(), "Game đang được tải xuống");
         }
 
     }

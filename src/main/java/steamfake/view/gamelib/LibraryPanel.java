@@ -30,9 +30,7 @@ public class LibraryPanel extends JPanel {
 
     private LibraryPanel() {
         initComponents();
-        if (SessionManager.isLogin()) {
-            libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
-        }
+        libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
         initialize();
     }
 
@@ -59,6 +57,7 @@ public class LibraryPanel extends JPanel {
 
         //======== scrollbar1 ========
         {
+            scrollbar1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== downloadedPanel ========
             {
@@ -70,6 +69,7 @@ public class LibraryPanel extends JPanel {
 
         //======== scrollbar2 ========
         {
+            scrollbar2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
             //======== undownloadedPanel ========
             {
@@ -157,7 +157,7 @@ public class LibraryPanel extends JPanel {
         return libraryMap;
     }
 
-    public void refreshLogout() {
+    public void clearAllData() {
         libraryMap.clear();
         instance = null;
         downloadedPanel.removeAll();

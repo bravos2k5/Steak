@@ -18,7 +18,7 @@ public class ListWithdrawMoney extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseExited(MouseEvent e) {
-                setBackground(new Color(0x252730));
+                setBackground(new Color(0xFF1E1E1E, true));
                 setBorder(null);
             }
 
@@ -39,9 +39,9 @@ public class ListWithdrawMoney extends JPanel {
         colStatus = new JLabel();
 
         //======== this ========
-        setBackground(new Color(0x252730));
         setAlignmentX(0.0F);
         setAlignmentY(0.0F);
+        setMaximumSize(new Dimension(548, 50));
 
         //---- colNgayRut ----
         colNgayRut.setText("Ng\u00e0y r\u00fat");

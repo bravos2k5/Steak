@@ -11,8 +11,8 @@ new FormModel {
 			"defaultCloseOperation": 2
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {par l {seq l {space :p:61:p, par l {comp lblHome::l:p:280:p, comp lblLibrary::l:p:280:p, comp lblAddMoney::l:p:280:p, comp lblManage::l:p:280:p, comp lblOut::l:p:280:p}}, seq l {space :p:148:p, comp lblLogo:::p:100:p}}, space ::47:x}, seq t {space :0:96:x, comp lblDownload:::p:202:p, space :p:90:p}}"
-				"$verticalGroup": "par l {seq l {space :p:36:p, comp lblLogo:::p:100:p, space :p:36:p, comp lblHome:::p:80:p, space :p:29:p, comp lblLibrary:::p:80:p, space :p:38:p, comp lblAddMoney:::p:80:p, space :p:37:p, comp lblManage:::p:80:p, space :p:35:p, comp lblOut:::p:80:p, space ::33:x, comp lblDownload:::p:50:p, space :p:19:p}}"
+				"$horizontalGroup": "par l {seq t {space :0:96:x, comp lblDownload:::p:202:p, space :p:90:p}, seq {par l {seq l {space :p:148:p, comp lblLogo:::p:100:p, space ::73:x, comp lblBack:::p:61:p}, seq l {space :p:61:p, par l {comp lblHome::l:p:280:p, comp lblLibrary::l:p:280:p, comp lblAddMoney::l:p:280:p, comp lblManage::l:p:280:p, comp lblOut::l:p:280:p}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {par l {seq {space :p:36:p, comp lblLogo:::p:100:p}, seq l {space :p:18:p, comp lblBack:::p:57:p}}, space :p:36:p, comp lblHome:::p:80:p, space :p:29:p, comp lblLibrary:::p:80:p, space :p:38:p, comp lblAddMoney:::p:80:p, space :p:37:p, comp lblManage:::p:80:p, space :p:35:p, comp lblOut:::p:80:p, space ::33:x, comp lblDownload:::p:50:p, space :p:19:p}}"
 			} ) {
 				name: "panelSelectFunction"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -71,6 +71,13 @@ new FormModel {
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Download.png" )
 					"font": new java.awt.Font( "SansSerif", 0, 24 )
 				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblBack"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/left-chevron.png" )
+					"horizontalAlignment": 0
+					"opaque": true
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 				"axis": 1
@@ -94,4 +101,3 @@ new FormModel {
 		} )
 	}
 }
-

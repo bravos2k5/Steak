@@ -22,6 +22,7 @@ import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author BRAVOS
@@ -30,7 +31,7 @@ public class MFrame extends JFrame {
 
     private static MFrame instance;
 
-    public static MFrame getInstance() {
+    public static MFrame gI() {
         if (instance == null) {
             instance = new MFrame();
         }
@@ -57,6 +58,7 @@ public class MFrame extends JFrame {
         lblManage = new JLabel();
         lblOut = new JLabel();
         lblDownload = new JLabel();
+        lblBack = new JLabel();
         headerPanel = new JPanel();
         scrollPane1 = new JScrollPane();
         mainPanel = new JPanel();
@@ -118,12 +120,27 @@ public class MFrame extends JFrame {
             lblDownload.setIcon(new ImageIcon(getClass().getResource("/icon/Download.png")));
             lblDownload.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 
+            //---- lblBack ----
+            lblBack.setIcon(new ImageIcon(getClass().getResource("/icon/left-chevron.png")));
+            lblBack.setHorizontalAlignment(SwingConstants.CENTER);
+            lblBack.setOpaque(true);
+            lblBack.setBackground(new Color(0x252730));
+
             GroupLayout panelSelectFunctionLayout = new GroupLayout(panelSelectFunction);
             panelSelectFunction.setLayout(panelSelectFunctionLayout);
             panelSelectFunctionLayout.setHorizontalGroup(
                 panelSelectFunctionLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
+                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
                     .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                         .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addGroup(panelSelectFunctionLayout.createParallelGroup()
@@ -131,21 +148,20 @@ public class MFrame extends JFrame {
                                     .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(47, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
-                        .addGap(0, 96, Short.MAX_VALUE)
-                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
+                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
             panelSelectFunctionLayout.setVerticalGroup(
                 panelSelectFunctionLayout.createParallelGroup()
                     .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
                         .addGap(36, 36, 36)
                         .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -216,6 +232,7 @@ public class MFrame extends JFrame {
     private JLabel lblManage;
     private JLabel lblOut;
     private JLabel lblDownload;
+    private JLabel lblBack;
     private JPanel headerPanel;
     private JScrollPane scrollPane1;
     private JPanel mainPanel;
@@ -223,24 +240,32 @@ public class MFrame extends JFrame {
 
     private GameDisplay theMostDownloadedGame;
     private List<GameDisplay> gameList;
+    private final Stack<Component[]> stack = new Stack<>();
+
 
     private void initialize() {
-        this.setVisible(true);
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
-        headerPanel.add(HeaderPanel.getInstance());
+        headerPanel.add(HeaderPanel.gI());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         initEventMenu();
     }
 
     private void initEventMenu() {
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back();
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBack.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBack.setBackground(new Color(0x252730));
+            }
+        });
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                mainPanel.removeAll();
-                initHomePage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
-                setEffectMenu(lblHome);
+                showHomePage();
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lblHome.setBackground(Color.GRAY);
@@ -253,11 +278,7 @@ public class MFrame extends JFrame {
         lblLibrary.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initLibraryPage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
-                    setEffectMenu(lblLibrary);
+                    showLibrary();
                 }
                 else {
                     requestLogin();
@@ -274,11 +295,7 @@ public class MFrame extends JFrame {
         lblAddMoney.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initAddMoneyPage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
-                    setEffectMenu(lblAddMoney);
+                    showWithdrawMoney();
                 }
                 else {
                     requestLogin();
@@ -295,11 +312,7 @@ public class MFrame extends JFrame {
         lblManage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    mainPanel.removeAll();
-                    initManagePage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
-                    setEffectMenu(lblManage);
+                    showGameManagement();
                 }
                 else {
                     requestLogin();
@@ -328,7 +341,7 @@ public class MFrame extends JFrame {
         lblDownload.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 if (SessionManager.isLogin()) {
-                    initDownloadPage();
+                    showDownloadPage();
                 }
                 else {
                     requestLogin();
@@ -342,14 +355,6 @@ public class MFrame extends JFrame {
         new LoginDialog(MFrame.this).setVisible(true);
     }
 
-    private void setEffectMenu(JLabel label) {
-        lblHome.setBorder(null);
-        lblLibrary.setBorder(null);
-        lblManage.setBorder(null);
-        lblAddMoney.setBorder(null);
-        label.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.WHITE));
-        panelSelectFunction.repaint();
-    }
 
     private void downloadResource() {
         ResourceManager.downloadGameResource(theMostDownloadedGame);
@@ -360,15 +365,14 @@ public class MFrame extends JFrame {
         }
     }
 
-    public void initHomePage() {
-        if(SessionManager.isLogin()) {
-            LibraryPanel.gI();
+    public void showHomePage() {
+        handleBeforeChange();
+        gameList = GameDAO.gI().selectListGameDisplay();
+        if(gameList == null || gameList.isEmpty()) {
+            return;
         }
-        if (gameList == null || !SessionManager.isLogin()) {
-            gameList = GameDAO.gI().selectListGameDisplay();
-            theMostDownloadedGame = gameList.getFirst();
-            downloadResource();
-        }
+        theMostDownloadedGame = gameList.getFirst();
+        downloadResource();
         HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
         for (GameDisplay game : gameList) {
@@ -381,27 +385,36 @@ public class MFrame extends JFrame {
         mainPanel.validate();
     }
 
-    private void initLibraryPage() {
+    private void showLibrary() {
+        handleBeforeChange();
         LibraryPanel libraryPanel = LibraryPanel.gI();
         mainPanel.add(libraryPanel);
+        mainPanel.repaint();
+        mainPanel.validate();
     }
 
-    private void initAddMoneyPage() {
+    private void showWithdrawMoney() {
+        handleBeforeChange();
         WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
         mainPanel.add(panel);
+        mainPanel.repaint();
+        mainPanel.validate();
     }
 
-    private void initManagePage() {
+    private void showGameManagement() {
+        handleBeforeChange();
         ManageGame manageGame = new ManageGame();
         mainPanel.add(manageGame);
+        mainPanel.repaint();
+        mainPanel.validate();
     }
 
-    private void initDownloadPage() {
+    private void showDownloadPage() {
         DownloadQueue.gI().setVisible(true);
     }
 
-    public void initSettingAccountPage() {
-        mainPanel.removeAll();
+    public void showAccountSetting() {
+        handleBeforeChange();
         AccountPanel accountPanel = new AccountPanel();
         mainPanel.add(accountPanel);
         mainPanel.repaint();
@@ -409,19 +422,58 @@ public class MFrame extends JFrame {
     }
 
     public void showGameDetail(Game game) {
-        SwingUtilities.invokeLater(() -> {
-            GameDetailPanel gameDetail = new GameDetailPanel(game);
-            mainPanel.removeAll();
-            mainPanel.add(gameDetail);
-            mainPanel.repaint();
-            mainPanel.revalidate();
-        });
+        handleBeforeChange();
+        GameDetailPanel gameDetail = new GameDetailPanel(game);
+        mainPanel.add(gameDetail);
+        mainPanel.repaint();
+        mainPanel.revalidate();
     }
+
+    public void search(String key) {
+        handleBeforeChange();
+    }
+
+    private void saveCurrentState() {
+        Component[] components = mainPanel.getComponents();
+        if(components != null && components.length > 0) {
+            stack.push(components);
+        }
+    }
+
+    private void handleBeforeChange() {
+        saveCurrentState();
+        scrollPane1.getVerticalScrollBar().setValue(0);
+        mainPanel.removeAll();
+    }
+
+    private void back() {
+        if (!stack.isEmpty()) {
+            SwingUtilities.invokeLater(() -> {
+                mainPanel.removeAll();
+                Component[] components = stack.pop();
+                for (Component component : components) {
+                    mainPanel.add(component);
+                }
+                mainPanel.repaint();
+                mainPanel.revalidate();
+            });
+        }
+    }
+
 
     @Override
     public void dispose() {
         DownloadQueue.gI().cancelAllDownload();
         super.dispose();
     }
+
+    public void clearAllData() {
+        gameList = null;
+        theMostDownloadedGame = null;
+        instance = null;
+        stack.clear();
+        mainPanel.removeAll();
+    }
+
 
 }

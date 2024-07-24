@@ -8,9 +8,9 @@ new FormModel {
 			"$verticalGroup": "par l {seq t {space :0:0:x, par b {comp colNgayRut::b:p:50:p, comp colSoTien::b:p:50:p, comp colType::b:p:50:p, comp colStatus::b:p:50:p}}}"
 		} ) {
 			name: "this"
-			"background": new java.awt.Color( 37, 39, 48, 255 )
 			"alignmentX": 0.0f
 			"alignmentY": 0.0f
+			"maximumSize": new java.awt.Dimension( 548, 50 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "colNgayRut"
 				"text": "Ngày rút"

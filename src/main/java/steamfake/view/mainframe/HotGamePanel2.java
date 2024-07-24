@@ -281,10 +281,10 @@ public class HotGamePanel2 extends JPanel {
         pnlInfo.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                WaitingDialog waitingDialog = new WaitingDialog(MFrame.getInstance());
+                WaitingDialog waitingDialog = new WaitingDialog(MFrame.gI());
                 waitingDialog.start();
                 Thread thread = new Thread(() -> {
-                    MFrame.getInstance().showGameDetail(game);
+                    MFrame.gI().showGameDetail(game);
                     waitingDialog.stop();
                 });
                 thread.start();
