@@ -156,7 +156,7 @@ public class CommentPanel extends JPanel {
     }
 
     private void deleteComment() {
-        int choice = XMessage.confirm(MFrame.getInstance(),"Bạn có chắc chắn muốn xóa bình luận này không?");
+        int choice = XMessage.confirm(MFrame.gI(),"Bạn có chắc chắn muốn xóa bình luận này không?");
         if(choice == JOptionPane.YES_OPTION) {
             int result = EvaluationDAO.gI().delete(evaluation);
             if(result > 0) {
@@ -164,10 +164,10 @@ public class CommentPanel extends JPanel {
                 parent.remove(this);
                 parent.revalidate();
                 parent.repaint();
-                XMessage.notificate(MFrame.getInstance(),"Xóa bình luận thành công!");
+                XMessage.notificate(MFrame.gI(),"Xóa bình luận thành công!");
             }
             else {
-                XMessage.notificate(MFrame.getInstance(),"Xóa bình luận thất bại!");
+                XMessage.notificate(MFrame.gI(),"Xóa bình luận thất bại!");
             }
         }
     }

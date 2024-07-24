@@ -4,7 +4,6 @@
 
 package steamfake.view.mainframe;
 
-import steamfake.Main;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
@@ -12,7 +11,7 @@ import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
-import steamfake.view.admin.MainAdmin;
+import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
 
@@ -29,7 +28,7 @@ public class HeaderPanel extends JPanel {
 
     private static HeaderPanel instance;
 
-    public static HeaderPanel getInstance() {
+    public static HeaderPanel gI() {
         if (instance == null) {
             instance = new HeaderPanel();
         }
@@ -48,7 +47,7 @@ public class HeaderPanel extends JPanel {
         iconAddMoney = new JLabel();
         iconSettingAccount = new JLabel();
         iconLogOut = new JLabel();
-        radiusTextField1 = new RadiusTextField();
+        txtSearch = new RadiusTextField();
         lblAvata = new JLabel();
         lblAdmin = new JLabel();
         lblName = new JLabel();
@@ -86,13 +85,13 @@ public class HeaderPanel extends JPanel {
         iconLogOut.setBackground(new Color(0x252730));
         iconLogOut.setOpaque(true);
 
-        //---- radiusTextField1 ----
-        radiusTextField1.setForeground(Color.white);
-        radiusTextField1.setPlaceholder("Search");
-        radiusTextField1.setEndGradientColor(new Color(0x30333d));
-        radiusTextField1.setBackground(new Color(0x252730));
-        radiusTextField1.setStartGradientColor(new Color(0x30333d));
-        radiusTextField1.setForcusColor(new Color(0x0c8ce9));
+        //---- txtSearch ----
+        txtSearch.setForeground(Color.white);
+        txtSearch.setPlaceholder("Search");
+        txtSearch.setEndGradientColor(new Color(0x30333d));
+        txtSearch.setBackground(new Color(0x252730));
+        txtSearch.setStartGradientColor(new Color(0x30333d));
+        txtSearch.setForcusColor(new Color(0x0c8ce9));
 
         //---- lblAvata ----
         lblAvata.setText("Icon");
@@ -135,7 +134,7 @@ public class HeaderPanel extends JPanel {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                     .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
                     .addGap(110, 110, 110)
-                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
                     .addComponent(lblSearch, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
@@ -164,7 +163,7 @@ public class HeaderPanel extends JPanel {
                             .addGroup(layout.createParallelGroup()
                                 .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(radiusTextField1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                             .addGap(17, 17, 17))
                         .addGroup(layout.createSequentialGroup()
@@ -193,7 +192,7 @@ public class HeaderPanel extends JPanel {
     private JLabel iconAddMoney;
     private JLabel iconSettingAccount;
     private JLabel iconLogOut;
-    private RadiusTextField radiusTextField1;
+    private RadiusTextField txtSearch;
     private JLabel lblAvata;
     private JLabel lblAdmin;
     private JLabel lblName;
@@ -208,29 +207,22 @@ public class HeaderPanel extends JPanel {
         lblRole.setText("Khách");
         lblMoney.setText("Cái nịt");
         lblAvata.setText("");
-        lblAvata.setSize(new Dimension(50, 50));
+        lblAvata.setSize(new Dimension(50,50));
         initEffectHover();
         initSettingAccountPage();
-        initAddMoneyPage();
         btnLogin.addActionListener(e -> login());
+        iconLogOut.setVisible(SessionManager.isLogin());
         iconLogOut.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 logout();
             }
         });
-        lblAdmin.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new MainAdmin(MFrame.getInstance()).setVisible(true);
-            }
-        });
-
     }
 
     private void initEffectHover() {
-        JLabel[] labels = {iconAddMoney, iconSettingAccount, iconLogOut, lblAdmin, lblSearch};
-        for (JLabel label : labels) {
+        JLabel[] labels = {iconAddMoney, iconSettingAccount, iconLogOut,lblAdmin,lblSearch};
+        for(JLabel label : labels) {
             label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     label.setBackground(new Color(0x30333d));
@@ -247,21 +239,23 @@ public class HeaderPanel extends JPanel {
 
     public void updateAccount() {
         Account account = SessionManager.user;
-        if (account != null) {
+        if(account != null) {
             lblAdmin.setVisible(account.isAdmin());
             lblName.setText(account.getHoTen());
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");
             String avtPath = "data/avatars/" + account.getId() + "/" + account.getAvatar();
-            if (account.getAvatar() == null || account.getAvatar().isBlank()) {
+            if(account.getAvatar() == null || account.getAvatar().isBlank()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
-            } else if (!new File(avtPath).exists()) {
+            }
+            else if(!new File(avtPath).exists()) {
                 ResourceManager.downloadAvatar(account);
             }
-            if (new File(avtPath).exists()) {
+            if(new File(avtPath).exists()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(avtPath), lblAvata));
             }
-        } else {
+        }
+        else {
             lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
             lblName.setText("Chưa đăng nhập");
             lblRole.setText("Khách");
@@ -269,10 +263,11 @@ public class HeaderPanel extends JPanel {
             lblAdmin.setVisible(false);
         }
         btnLogin.setVisible(!SessionManager.isLogin());
+        iconLogOut.setVisible(SessionManager.isLogin());
         repaint();
     }
 
-    public void updateMoney() {
+    public void updateMoney(){
         SwingUtilities.invokeLater(() -> lblMoney.setText(SessionManager.user.getSoDuGame() + " VND"));
     }
 
@@ -280,37 +275,36 @@ public class HeaderPanel extends JPanel {
         iconSettingAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!SessionManager.isLogin()) {
-                    XMessage.notificate(MFrame.getInstance(), "Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.getInstance()).setVisible(true);
+                if(!SessionManager.isLogin()) {
+                    XMessage.notificate(MFrame.gI(),"Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.gI()).setVisible(true);
                     return;
                 }
-                MFrame.getInstance().initSettingAccountPage();
-            }
-        });
-    }
-
-    private void initAddMoneyPage() {
-        iconAddMoney.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                MFrame.getInstance().initAddPage();
+                MFrame.gI().showAccountSetting();
             }
         });
     }
 
     private void login() {
-        new LoginDialog(MFrame.getInstance()).setVisible(true);
-        MFrame.getInstance().getMainPanel().removeAll();
-        MFrame.getInstance().initHomePage();
+        new LoginDialog(MFrame.gI()).setVisible(true);
+        MFrame.gI().getMainPanel().removeAll();
+        MFrame.gI().showHomePage();
+    }
+
+    private void search() {
+        String key = txtSearch.getText();
+        if(!key.isBlank()) {
+            MFrame.gI().search(key);
+        }
     }
 
     private void logout() {
+        MFrame.gI().clearAllData();
+        LibraryPanel.gI().clearAllData();
+        DownloadQueue.gI().cancelAllDownload();
         SessionManager.logOut();
         updateAccount();
-        MFrame.getInstance().getMainPanel().removeAll();
-        MFrame.getInstance().initHomePage();
-        LibraryPanel.gI().refreshLogout();
+        MFrame.gI().showHomePage();
     }
 
 }

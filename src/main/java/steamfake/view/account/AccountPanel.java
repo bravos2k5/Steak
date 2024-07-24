@@ -483,7 +483,7 @@ public class AccountPanel extends JPanel {
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new ChangePassword(MFrame.getInstance()).setVisible(true);
+                new ChangePassword(MFrame.gI()).setVisible(true);
             }
         });
         lblAvatar.addMouseListener(new MouseAdapter() {
@@ -557,7 +557,7 @@ public class AccountPanel extends JPanel {
                 txtPhoneNumber.getText().isBlank() || txtDob.getDatePicker().getSelectedDate() == null) {
             msg += "Vui lòng nhập đầy đủ thông tin\n";
         }
-        if(!XRegex.isPhone(txtPhoneNumber.getText())) {
+        if(!txtPhoneNumber.getText().isBlank() && !XRegex.isPhone(txtPhoneNumber.getText())) {
             msg += "Số điện thoại không hợp lệ\n";
         }
         if(!msg.isBlank()) {
@@ -583,7 +583,7 @@ public class AccountPanel extends JPanel {
             }
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             SessionManager.user = account;
-            HeaderPanel.getInstance().updateAccount();
+            HeaderPanel.gI().updateAccount();
         }
         else {
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
@@ -591,7 +591,7 @@ public class AccountPanel extends JPanel {
     }
 
     private void updateEmail() {
-        new ChangeEmail(MFrame.getInstance(), this).setVisible(true);
+        new ChangeEmail(MFrame.gI(), this).setVisible(true);
     }
 
 }

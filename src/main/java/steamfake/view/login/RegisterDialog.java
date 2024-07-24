@@ -48,7 +48,7 @@ public class RegisterDialog extends JDialog {
     }
 
     private void lbQuayLaiMouseClicked(MouseEvent e) {
-        LoginDialog LoginDialog = new LoginDialog(MFrame.getInstance());
+        LoginDialog LoginDialog = new LoginDialog(MFrame.gI());
         RegisterDialog.this.dispose();
         LoginDialog.setVisible(true);
     }
@@ -433,7 +433,7 @@ public class RegisterDialog extends JDialog {
                 JOptionPane.showMessageDialog(this,"Đăng ký thành công");
                 RegisterDialog.this.dispose();
                 SessionManager.user = account;
-                HeaderPanel.getInstance().updateAccount();
+                HeaderPanel.gI().updateAccount();
             }
         }
         else {

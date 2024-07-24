@@ -437,7 +437,7 @@ public class WithdrawMoneyPanel extends JPanel {
             if(selectedMethod == PhieuRutTien.METHOD_ATM) {
                 BankAccount bankAccount = (BankAccount) cboBank.getSelectedItem();
                 if(bankAccount == null) {
-                    XMessage.notificate(MFrame.getInstance(), "Vui lòng chọn ngân hàng");
+                    XMessage.notificate(MFrame.gI(), "Vui lòng chọn ngân hàng");
                     return;
                 } else {
                     phieuRutTien.setBankID(bankAccount.getBankID());
@@ -448,7 +448,7 @@ public class WithdrawMoneyPanel extends JPanel {
                 addRow(phieuRutTien);
                 SessionManager.user.setSoDuThuNhap(SessionManager.user.getSoDuThuNhap() - soTienRut);
             } else {
-                XMessage.notificate(MFrame.getInstance(), "Rút tiền thất bại");
+                XMessage.notificate(MFrame.gI(), "Rút tiền thất bại");
             }
 
         } catch (NumberFormatException e) {

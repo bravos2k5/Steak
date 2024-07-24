@@ -25,7 +25,7 @@ public class DownloadQueue extends JDialog {
 
     public static DownloadQueue gI() {
         if(instance == null) {
-            instance = new DownloadQueue(MFrame.getInstance());
+            instance = new DownloadQueue(MFrame.gI());
         }
         return instance;
     }
@@ -152,13 +152,15 @@ public class DownloadQueue extends JDialog {
                         pnlQueue.remove(dp);
                         pnlQueue.revalidate();
                         pnlQueue.repaint();
-                        downloadedStack.addFirst(dp);
-                        pnlDownloaded.removeAll();
-                        for(DownloadPanel dpp : downloadedStack) {
-                            pnlDownloaded.add(dpp);
+                        if (status == DownloadPanel.Status.COMPLETE) {
+                            downloadedStack.addFirst(dp);
+                            pnlDownloaded.removeAll();
+                            for(DownloadPanel dpp : downloadedStack) {
+                                pnlDownloaded.add(dpp);
+                            }
+                            pnlDownloaded.revalidate();
+                            pnlDownloaded.repaint();
                         }
-                        pnlDownloaded.revalidate();
-                        pnlDownloaded.repaint();
                         downloadingGames.remove(dp.getGame());
                         if (status == DownloadPanel.Status.COMPLETE) {
                             LibraryPanel.gI().reload();
@@ -178,6 +180,18 @@ public class DownloadQueue extends JDialog {
                 dp.cancelAction();
             }
         }
+        pnlQueue.removeAll();
+        pnlQueue.revalidate();
+        pnlQueue.repaint();
+        downloadQueue.clear();
+    }
+
+    public void removeDownloadProcess(DownloadPanel downloadPanel) {
+        downloadQueue.remove(downloadPanel);
+        downloadingGames.remove(downloadPanel.getGame());
+        pnlQueue.remove(downloadPanel);
+        pnlQueue.revalidate();
+        pnlQueue.repaint();
     }
 
 }

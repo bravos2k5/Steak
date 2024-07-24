@@ -149,7 +149,7 @@ public class GameLibraryItem extends JPanel {
     }
 
     private void showInfoAction() {
-        XMessage.notificate(MFrame.getInstance(),"ID game: " + game.getId() + "\n" +
+        XMessage.notificate(MFrame.gI(),"ID game: " + game.getId() + "\n" +
                 "Ngày mua: " + gameLibrary.getNgayMua() + "\n" +
                 "Giá mua: " + gameLibrary.getGiaMua());
     }

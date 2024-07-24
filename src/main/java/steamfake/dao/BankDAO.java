@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BankDAO {
+public class BankDAO implements DataAccessObject<Bank> {
 
     private static BankDAO instance;
 
@@ -25,6 +25,26 @@ public class BankDAO {
         String sql = "SELECT * FROM Bank WHERE id = ?";
         List<Bank> bankList = selectBySQL(sql,id);
         return bankList.isEmpty() ? null : bankList.getFirst();
+    }
+
+    @Override
+    public int insert(Bank object) {
+        return 0;
+    }
+
+    @Override
+    public int update(Bank object) {
+        return 0;
+    }
+
+    @Override
+    public int delete(Bank object) {
+        return 0;
+    }
+
+    @Override
+    public Bank selectByID(Bank object) {
+        return null;
     }
 
     public List<Bank> selectAll() {

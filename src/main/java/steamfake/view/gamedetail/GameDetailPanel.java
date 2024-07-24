@@ -14,6 +14,7 @@ import steamfake.utils.SessionManager;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author BRAVOS
@@ -21,12 +22,12 @@ import java.util.List;
 public class GameDetailPanel extends JPanel {
 
     private final Game game;
-    private GameLibrary gameLibrary;
+    private GameLibrary gameLibrary = null;
     private List<Evaluation> commentList;
 
     public GameDetailPanel(Game game) {
         this.game = game;
-        if (SessionManager.user != null) {
+        if (SessionManager.isLogin()) {
             gameLibrary = GameLibraryDAO.gI().selectByGameIdAndAccountId(game.getId(), SessionManager.user.getId());
         }
         initComponents();
@@ -93,8 +94,9 @@ public class GameDetailPanel extends JPanel {
             }
         }
         else {
+            UUID id = SessionManager.user.getId();
             for(Evaluation gl : commentList) {
-                if (gl.getAccountID() != SessionManager.user.getId()) {
+                if (!gl.getAccountID().equals(id)) {
                     commentPanel.add(new CommentPanel(gl));
                 }
             }

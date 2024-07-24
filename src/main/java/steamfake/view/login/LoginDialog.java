@@ -51,13 +51,13 @@ public class LoginDialog extends JDialog {
     }
 
     private void lbDangKyMouseClicked(MouseEvent e) {
-        RegisterDialog RegisterDialog = new RegisterDialog(MFrame.getInstance());
+        RegisterDialog RegisterDialog = new RegisterDialog(MFrame.gI());
         LoginDialog.this.dispose();
         RegisterDialog.setVisible(true);
     }
 
     private void lbQuenMKMouseClicked(MouseEvent e) {
-        QuenMKDialog QuenMKDialog = new QuenMKDialog(MFrame.getInstance());
+        QuenMKDialog QuenMKDialog = new QuenMKDialog(MFrame.gI());
         LoginDialog.this.dispose();
         QuenMKDialog.setVisible(true);
     }
@@ -334,7 +334,7 @@ public class LoginDialog extends JDialog {
             return;
         }
         SessionManager.user = account;
-        HeaderPanel.getInstance().updateAccount();
+        HeaderPanel.gI().updateAccount();
         this.dispose();
     }
 

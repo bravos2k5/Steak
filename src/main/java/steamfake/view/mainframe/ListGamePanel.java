@@ -165,7 +165,7 @@ public class ListGamePanel extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                MFrame.getInstance().showGameDetail(game);
+                MFrame.gI().showGameDetail(game);
             }
         });
     }
