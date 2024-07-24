@@ -27,7 +27,8 @@ import java.io.IOException;
  */
 public class DownloadPanel extends JPanel {
 
-    private final Game game;
+    private Game game;
+    private volatile Status status = Status.WAITING;
 
     public DownloadPanel(Game game) {
         this.game = game;
@@ -36,6 +37,7 @@ public class DownloadPanel extends JPanel {
         lblIcon.setSize(new Dimension(61,30));
         lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()),lblIcon));
         lblProgress.setText("Pending...");
+        status = Status.WAITING;
         initEvent();
     }
 
@@ -121,7 +123,6 @@ public class DownloadPanel extends JPanel {
         FAILED
     }
 
-    private volatile Status status = Status.WAITING;
 
     public void start() {
         if(status == Status.WAITING) {
@@ -163,17 +164,23 @@ public class DownloadPanel extends JPanel {
     }
 
     public void cancelAction() {
-        status = Status.CANCELED;
-        lblProgress.setText("Đã hủy");
-        lblAction.setVisible(false);
-        prbProgress.setVisible(false);
+        if (status == Status.DOWNLOADING || status == Status.WAITING) {
+            status = Status.CANCELED;
+            lblProgress.setText("Đã hủy");
+            lblAction.setVisible(false);
+            prbProgress.setVisible(false);
+            DownloadQueue.gI().removeDownloadProcess(this);
+            game = null;
+        }
     }
 
     private void playAction() {
-        try {
-            XFile.runExeFile("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath());
-        } catch (IOException e) {
-            XMessage.alert(DownloadQueue.gI(), "Lỗi: " + e.getMessage());
+        if (status == Status.COMPLETE) {
+            try {
+                XFile.runExeFile("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath());
+            } catch (IOException e) {
+                XMessage.alert(DownloadQueue.gI(), "Lỗi: " + e.getMessage());
+            }
         }
     }
 

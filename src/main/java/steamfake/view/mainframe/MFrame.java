@@ -22,6 +22,7 @@ import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * @author BRAVOS
@@ -30,7 +31,14 @@ public class MFrame extends JFrame {
 
     private static MFrame instance;
 
-    public static MFrame getInstance() {
+    public static final int HOME_PAGE = 0;
+    public static final int LIBRARY_PAGE = 1;
+    public static final int ADD_MONEY_PAGE = 2;
+    public static final int MANAGE_PAGE = 3;
+    public static final int GAME_DETAIL_PAGE = 4;
+    public static final int SETTING_ACCOUNT_PAGE = 5;
+
+    public static MFrame gI() {
         if (instance == null) {
             instance = new MFrame();
         }
@@ -57,6 +65,7 @@ public class MFrame extends JFrame {
         lblManage = new JLabel();
         lblOut = new JLabel();
         lblDownload = new JLabel();
+        lblBack = new JLabel();
         headerPanel = new JPanel();
         scrollPane1 = new JScrollPane();
         mainPanel = new JPanel();
@@ -118,12 +127,27 @@ public class MFrame extends JFrame {
             lblDownload.setIcon(new ImageIcon(getClass().getResource("/icon/Download.png")));
             lblDownload.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 
+            //---- lblBack ----
+            lblBack.setIcon(new ImageIcon(getClass().getResource("/icon/left-chevron.png")));
+            lblBack.setHorizontalAlignment(SwingConstants.CENTER);
+            lblBack.setOpaque(true);
+            lblBack.setBackground(new Color(0x252730));
+
             GroupLayout panelSelectFunctionLayout = new GroupLayout(panelSelectFunction);
             panelSelectFunction.setLayout(panelSelectFunctionLayout);
             panelSelectFunctionLayout.setHorizontalGroup(
                 panelSelectFunctionLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
+                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
                     .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                         .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(148, 148, 148)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addGroup(panelSelectFunctionLayout.createParallelGroup()
@@ -131,21 +155,20 @@ public class MFrame extends JFrame {
                                     .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                .addGap(148, 148, 148)
-                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(47, Short.MAX_VALUE))
-                    .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
-                        .addGap(0, 96, Short.MAX_VALUE)
-                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90))
+                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
             panelSelectFunctionLayout.setVerticalGroup(
                 panelSelectFunctionLayout.createParallelGroup()
                     .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
                         .addGap(36, 36, 36)
                         .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
@@ -216,6 +239,7 @@ public class MFrame extends JFrame {
     private JLabel lblManage;
     private JLabel lblOut;
     private JLabel lblDownload;
+    private JLabel lblBack;
     private JPanel headerPanel;
     private JScrollPane scrollPane1;
     private JPanel mainPanel;
@@ -223,23 +247,34 @@ public class MFrame extends JFrame {
 
     private GameDisplay theMostDownloadedGame;
     private List<GameDisplay> gameList;
+    private final Stack<Component[]> componentStack = new Stack<>();
+    private int currentPageIndex = HOME_PAGE;
+    private int nextPageIndex = HOME_PAGE;
 
     private void initialize() {
-        this.setVisible(true);
         new LoadingScreen(this).setVisible(true);
         headerPanel.add(new LogoPanel());
-        headerPanel.add(HeaderPanel.getInstance());
+        headerPanel.add(HeaderPanel.gI());
         scrollPane1.getVerticalScrollBar().setUnitIncrement(30);
         initEventMenu();
     }
 
     private void initEventMenu() {
+        lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                back();
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lblBack.setBackground(Color.GRAY);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lblBack.setBackground(new Color(0x252730));
+            }
+        });
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mainPanel.removeAll();
                 initHomePage();
-                mainPanel.repaint();
-                mainPanel.revalidate();
                 setEffectMenu(lblHome);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -255,8 +290,6 @@ public class MFrame extends JFrame {
                 if (SessionManager.isLogin()) {
                     mainPanel.removeAll();
                     initLibraryPage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
                     setEffectMenu(lblLibrary);
                 }
                 else {
@@ -276,8 +309,6 @@ public class MFrame extends JFrame {
                 if (SessionManager.isLogin()) {
                     mainPanel.removeAll();
                     initAddMoneyPage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
                     setEffectMenu(lblAddMoney);
                 }
                 else {
@@ -297,8 +328,6 @@ public class MFrame extends JFrame {
                 if (SessionManager.isLogin()) {
                     mainPanel.removeAll();
                     initManagePage();
-                    mainPanel.repaint();
-                    mainPanel.revalidate();
                     setEffectMenu(lblManage);
                 }
                 else {
@@ -361,39 +390,59 @@ public class MFrame extends JFrame {
     }
 
     public void initHomePage() {
-        if(SessionManager.isLogin()) {
-            LibraryPanel.gI();
-        }
-        if (gameList == null || !SessionManager.isLogin()) {
-            gameList = GameDAO.gI().selectListGameDisplay();
+        mainPanel.removeAll();
+        int oldPageIndex = currentPageIndex;
+        gameList = GameDAO.gI().selectListGameDisplay();
+        if (gameList != null && !gameList.isEmpty()) {
             theMostDownloadedGame = gameList.getFirst();
             downloadResource();
-        }
-        HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
-        mainPanel.add(hotGamePanel);
-        for (GameDisplay game : gameList) {
-            if (game != null && !game.equals(theMostDownloadedGame)) {
-                ListGamePanel listGamePanel = new ListGamePanel(game);
-                mainPanel.add(listGamePanel);
+            HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
+            mainPanel.add(hotGamePanel);
+            for (GameDisplay game : gameList) {
+                if (game != null && !game.equals(theMostDownloadedGame)) {
+                    ListGamePanel listGamePanel = new ListGamePanel(game);
+                    mainPanel.add(listGamePanel);
+                }
             }
         }
         mainPanel.repaint();
         mainPanel.validate();
+        if (oldPageIndex != HOME_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
     }
 
     private void initLibraryPage() {
+        int oldPageIndex = currentPageIndex;
         LibraryPanel libraryPanel = LibraryPanel.gI();
         mainPanel.add(libraryPanel);
+        mainPanel.repaint();
+        mainPanel.validate();
+        if (oldPageIndex != LIBRARY_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
     }
 
     private void initAddMoneyPage() {
+        int oldPageIndex = currentPageIndex;
         WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
         mainPanel.add(panel);
+        mainPanel.repaint();
+        mainPanel.validate();
+        if (oldPageIndex != ADD_MONEY_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
     }
 
     private void initManagePage() {
+        int oldPageIndex = currentPageIndex;
         ManageGame manageGame = new ManageGame();
         mainPanel.add(manageGame);
+        mainPanel.repaint();
+        mainPanel.validate();
+        if (oldPageIndex != MANAGE_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
     }
 
     private void initDownloadPage() {
@@ -401,27 +450,53 @@ public class MFrame extends JFrame {
     }
 
     public void initSettingAccountPage() {
+        int oldPageIndex = currentPageIndex;
         mainPanel.removeAll();
         AccountPanel accountPanel = new AccountPanel();
         mainPanel.add(accountPanel);
         mainPanel.repaint();
         mainPanel.revalidate();
+        if (oldPageIndex != SETTING_ACCOUNT_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
     }
 
     public void showGameDetail(Game game) {
-        SwingUtilities.invokeLater(() -> {
-            GameDetailPanel gameDetail = new GameDetailPanel(game);
+        int oldPageIndex = currentPageIndex;
+        GameDetailPanel gameDetail = new GameDetailPanel(game);
+        mainPanel.removeAll();
+        mainPanel.add(gameDetail);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+        currentPageIndex = GAME_DETAIL_PAGE;
+        if (oldPageIndex != GAME_DETAIL_PAGE) {
+            componentStack.push(mainPanel.getComponents());
+        }
+    }
+
+    private void back() {
+        if (!componentStack.isEmpty()) {
+            Component[] components = componentStack.pop();
             mainPanel.removeAll();
-            mainPanel.add(gameDetail);
+            for (Component component : components) {
+                mainPanel.add(component);
+            }
             mainPanel.repaint();
             mainPanel.revalidate();
-        });
+        }
     }
 
     @Override
     public void dispose() {
         DownloadQueue.gI().cancelAllDownload();
         super.dispose();
+    }
+
+    public void clearAllData() {
+        gameList = null;
+        theMostDownloadedGame = null;
+        instance = null;
+        mainPanel.removeAll();
     }
 
 }

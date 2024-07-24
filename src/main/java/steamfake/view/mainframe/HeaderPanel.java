@@ -11,6 +11,7 @@ import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
+import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
 
@@ -27,7 +28,7 @@ public class HeaderPanel extends JPanel {
 
     private static HeaderPanel instance;
 
-    public static HeaderPanel getInstance() {
+    public static HeaderPanel gI() {
         if (instance == null) {
             instance = new HeaderPanel();
         }
@@ -210,6 +211,7 @@ public class HeaderPanel extends JPanel {
         initEffectHover();
         initSettingAccountPage();
         btnLogin.addActionListener(e -> login());
+        iconLogOut.setVisible(SessionManager.isLogin());
         iconLogOut.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -261,6 +263,7 @@ public class HeaderPanel extends JPanel {
             lblAdmin.setVisible(false);
         }
         btnLogin.setVisible(!SessionManager.isLogin());
+        iconLogOut.setVisible(SessionManager.isLogin());
         repaint();
     }
 
@@ -273,27 +276,28 @@ public class HeaderPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(!SessionManager.isLogin()) {
-                    XMessage.notificate(MFrame.getInstance(),"Bạn cần đăng nhập để sử dụng chức năng này");
-                    new LoginDialog(MFrame.getInstance()).setVisible(true);
+                    XMessage.notificate(MFrame.gI(),"Bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.gI()).setVisible(true);
                     return;
                 }
-                MFrame.getInstance().initSettingAccountPage();
+                MFrame.gI().initSettingAccountPage();
             }
         });
     }
 
     private void login() {
-        new LoginDialog(MFrame.getInstance()).setVisible(true);
-        MFrame.getInstance().getMainPanel().removeAll();
-        MFrame.getInstance().initHomePage();
+        new LoginDialog(MFrame.gI()).setVisible(true);
+        MFrame.gI().getMainPanel().removeAll();
+        MFrame.gI().initHomePage();
     }
 
     private void logout() {
+        MFrame.gI().clearAllData();
+        LibraryPanel.gI().clearAllData();
+        DownloadQueue.gI().cancelAllDownload();
         SessionManager.logOut();
         updateAccount();
-        MFrame.getInstance().getMainPanel().removeAll();
-        MFrame.getInstance().initHomePage();
-        LibraryPanel.gI().refreshLogout();
+        MFrame.gI().initHomePage();
     }
 
 }

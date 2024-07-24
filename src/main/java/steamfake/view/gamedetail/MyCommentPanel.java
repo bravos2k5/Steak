@@ -158,6 +158,9 @@ public class MyCommentPanel extends JPanel {
     private void initialize() {
         rateSlideEvent();
         btnSend.addActionListener(e -> sendAction());
+        txtComment.setEnabled(false);
+        txtComment.setDisabledTextColor(Color.white);
+        btnSend.setText("Sửa");
     }
 
     private void rateSlideEvent() {
@@ -193,7 +196,7 @@ public class MyCommentPanel extends JPanel {
         lblRate.setText(String.valueOf(slideRate.getValue()));
         txtComment.setText(evaluation.getComment());
         lblAvatar.setSize(new Dimension(81, 81));
-        if(SessionManager.user.getAvatar() != null && SessionManager.user.getAvatar().isBlank()) {
+        if(SessionManager.user.getAvatar() != null && !SessionManager.user.getAvatar().isBlank()) {
             lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" +
                     SessionManager.user.getId() + "/" + SessionManager.user.getAvatar()),lblAvatar));
         }
@@ -203,14 +206,23 @@ public class MyCommentPanel extends JPanel {
     }
 
     private void sendAction() {
+        if(!txtComment.isEnabled()) {
+            txtComment.setEnabled(true);
+            txtComment.setFocusable(true);
+            btnSend.setText("Gửi");
+            return;
+        }
         evaluation.setComment(txtComment.getText());
         evaluation.setRate(slideRate.getValue());
         int result = EvaluationDAO.gI().update(evaluation);
         if(result > 0) {
-            XMessage.notificate(MFrame.getInstance(),"Đánh giá thành công");
+            XMessage.notificate(MFrame.gI(),"Đánh giá thành công");
+            txtComment.setEnabled(false);
+            txtComment.setFocusable(false);
+            btnSend.setText("Sửa");
         }
         else {
-            XMessage.alert(MFrame.getInstance(),"Đánh giá thất bại");
+            XMessage.alert(MFrame.gI(),"Đánh giá thất bại");
         }
     }
 

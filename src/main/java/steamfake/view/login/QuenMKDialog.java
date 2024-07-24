@@ -306,7 +306,7 @@ public class QuenMKDialog extends JDialog {
         if(code.equals(verifyCode)) {
             if(newMK.equals(confirmMK) && AccountDAO.gI().changePassword(verifyUsername, XSecurity.hashPassword(newMK)) > 0) {
                 XMessage.notificate(this,"Đổi mật khẩu thành công");
-                LoginDialog loginDialog = new LoginDialog(MFrame.getInstance());
+                LoginDialog loginDialog = new LoginDialog(MFrame.gI());
                 QuenMKDialog.this.dispose();
                 loginDialog.setVisible(true);
             }

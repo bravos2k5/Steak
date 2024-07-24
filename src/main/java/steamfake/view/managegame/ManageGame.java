@@ -291,7 +291,7 @@ public class ManageGame extends JPanel {
         btnAddGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new SettingGame(MFrame.getInstance()).setVisible(true);
+                new SettingGame(MFrame.gI()).setVisible(true);
             }
         });
         int colCount = tblGames.getColumnModel().getColumnCount();
