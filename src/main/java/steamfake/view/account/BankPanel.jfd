@@ -1,0 +1,58 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:14:p, par l {seq {comp txtUsername:::p:350:p, space s:::p, comp btnChangePassword:::p:100:p}, comp comboBox1:::p:470:p, seq t {comp btnCancel:::p::p, space :34:34:p, comp btnUpdate:::p::p}}, space ::14:x}}"
+			"$verticalGroup": "par l {seq l {space :p:30:p, comp comboBox1:::p:50:p, space :p:41:p, par b {comp txtUsername::b:p:50:p, comp btnChangePassword::b:p:50:p}, space :p:41:p, par l {comp btnCancel:::p:45:p, comp btnUpdate:::p:45:p}, space ::40:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "comboBox1"
+				"font": new java.awt.Font( "SansSerif", 0, 20 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Xóa"
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+				"radius": 5
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnUpdate"
+				"text": "Thêm"
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtUsername"
+				"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
+				"noForcusColor": new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+				"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
+				"font": new java.awt.Font( "SansSerif", 0, 20 )
+				"radius": 0
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnChangePassword"
+				"originColor": new java.awt.Color( 32, 92, 195, 255 )
+				"hoverColor": new java.awt.Color( 72, 134, 240, 255 )
+				"radius": 0
+				"background": new java.awt.Color( 32, 92, 195, 255 )
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Up.png" )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 500, 330 )
+		} )
+	}
+}

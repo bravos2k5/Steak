@@ -4,15 +4,27 @@
 
 package steamfake.view.addmoney;
 
+import steamfake.dao.NapTienDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
 import steamfake.graphics.RadiusTextField;
+import steamfake.model.NapCard;
+import steamfake.model.NapTien;
+import steamfake.utils.SessionManager;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 /**
  * @author ACER
@@ -22,7 +34,7 @@ public class AddMoney extends JPanel {
     public AddMoney() {
         initComponents();
         scrollPane1.setBorder(null);
-        for (int i = 0 ; i<3 ; i++){
+        for (int i = 0; i < 3; i++) {
             panel4.add(new HistoryAddMoney());
         }
         radiusButton2.addMouseListener(new MouseAdapter() {
@@ -32,7 +44,7 @@ public class AddMoney extends JPanel {
                 new BankMoney(null).setVisible(true);
             }
         });
-
+        initialize();
     }
 
     private void initComponents() {
@@ -42,12 +54,16 @@ public class AddMoney extends JPanel {
         panel2 = new JPanel();
         radiusPanel1 = new RadiusPanel();
         radiusPanel2 = new RadiusPanel();
-        comboBox1 = new JComboBox<>();
-        comboBox2 = new JComboBox();
-        textField1 = new RadiusTextField();
-        textField2 = new RadiusTextField();
-        radiusButton1 = new RadiusButton();
+        cbbMobieNetwork = new JComboBox<>();
+        cbbPrice = new JComboBox<>();
+        txtSeri = new RadiusTextField();
+        txtID = new RadiusTextField();
+        btnAddCard = new RadiusButton();
         radiusLabel1 = new RadiusLabel();
+        label11 = new JLabel();
+        label12 = new JLabel();
+        label13 = new JLabel();
+        label14 = new JLabel();
         scrollPane1 = new JScrollPane();
         panel4 = new JPanel();
         panel3 = new JPanel();
@@ -99,44 +115,53 @@ public class AddMoney extends JPanel {
                         {
                             radiusPanel2.setBackground(new Color(0x252730));
 
-                            //---- comboBox1 ----
-                            comboBox1.setBackground(new Color(0x191b20));
-                            comboBox1.setFont(new Font("Inter", Font.BOLD, 16));
-                            comboBox1.setPrototypeDisplayValue("Card");
-                            comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
-                                "Viethel"
+                            //---- cbbMobieNetwork ----
+                            cbbMobieNetwork.setBackground(new Color(0x191b20));
+                            cbbMobieNetwork.setFont(new Font("Inter", Font.BOLD, 16));
+                            cbbMobieNetwork.setPrototypeDisplayValue("Card");
+                            cbbMobieNetwork.setModel(new DefaultComboBoxModel<>(new String[] {
+                                "Viettel",
+                                "Vinaphone",
+                                "Mobifone"
                             }));
-                            comboBox1.setSelectedIndex(-1);
+                            cbbMobieNetwork.setSelectedIndex(-1);
 
-                            //---- comboBox2 ----
-                            comboBox2.setBackground(new Color(0x191b20));
-                            comboBox2.setFont(new Font("Inter", Font.PLAIN, 16));
+                            //---- cbbPrice ----
+                            cbbPrice.setBackground(new Color(0x191b20));
+                            cbbPrice.setFont(new Font("Inter", Font.PLAIN, 16));
+                            cbbPrice.setModel(new DefaultComboBoxModel<>(new String[] {
+                                "10.000",
+                                "20.000",
+                                "50.000",
+                                "100.000",
+                                "500.000"
+                            }));
 
-                            //---- textField1 ----
-                            textField1.setForcusColor(new Color(0x0c8ce9));
-                            textField1.setEndGradientColor(new Color(0x191b20));
-                            textField1.setStartGradientColor(new Color(0x191b20));
-                            textField1.setRadius(7);
-                            textField1.setNoForcusColor(new Color(0x191b20));
-                            textField1.setFont(new Font("Inter", Font.BOLD, 16));
-                            textField1.setBackground(new Color(0x191b20));
+                            //---- txtSeri ----
+                            txtSeri.setForcusColor(new Color(0x0c8ce9));
+                            txtSeri.setEndGradientColor(new Color(0x191b20));
+                            txtSeri.setStartGradientColor(new Color(0x191b20));
+                            txtSeri.setRadius(7);
+                            txtSeri.setNoForcusColor(new Color(0x191b20));
+                            txtSeri.setFont(new Font("Inter", Font.BOLD, 16));
+                            txtSeri.setBackground(new Color(0x191b20));
 
-                            //---- textField2 ----
-                            textField2.setRadius(7);
-                            textField2.setForcusColor(new Color(0x0c8ce9));
-                            textField2.setNoForcusColor(new Color(0x191b20));
-                            textField2.setEndGradientColor(new Color(0x191b20));
-                            textField2.setStartGradientColor(new Color(0x191b20));
-                            textField2.setFont(new Font("Inter", Font.BOLD, 16));
-                            textField2.setBackground(new Color(0x191b20));
+                            //---- txtID ----
+                            txtID.setRadius(7);
+                            txtID.setForcusColor(new Color(0x0c8ce9));
+                            txtID.setNoForcusColor(new Color(0x191b20));
+                            txtID.setEndGradientColor(new Color(0x191b20));
+                            txtID.setStartGradientColor(new Color(0x191b20));
+                            txtID.setFont(new Font("Inter", Font.BOLD, 16));
+                            txtID.setBackground(new Color(0x191b20));
 
-                            //---- radiusButton1 ----
-                            radiusButton1.setText("N\u1ea1p th\u1ebb");
-                            radiusButton1.setOriginColor(new Color(0x35452a));
-                            radiusButton1.setBackground(new Color(0x35452a));
-                            radiusButton1.setRadius(7);
-                            radiusButton1.setHoverColor(new Color(0x429509));
-                            radiusButton1.setFont(new Font("Inter", Font.BOLD, 16));
+                            //---- btnAddCard ----
+                            btnAddCard.setText("N\u1ea1p th\u1ebb");
+                            btnAddCard.setOriginColor(new Color(0x35452a));
+                            btnAddCard.setBackground(new Color(0x35452a));
+                            btnAddCard.setRadius(7);
+                            btnAddCard.setHoverColor(new Color(0x429509));
+                            btnAddCard.setFont(new Font("Inter", Font.BOLD, 16));
 
                             //---- radiusLabel1 ----
                             radiusLabel1.setText("10.000 VN\u0110 = 8.000 VN\u0110");
@@ -145,37 +170,71 @@ public class AddMoney extends JPanel {
                             radiusLabel1.setBorderColor(new Color(0x416dd1));
                             radiusLabel1.setForeground(new Color(0x4ac26c));
 
+                            //---- label11 ----
+                            label11.setText("S\u1ed1 Seri");
+                            label11.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+                            //---- label12 ----
+                            label12.setText("M\u00e3 th\u1ebb");
+                            label12.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+                            //---- label13 ----
+                            label13.setText("M\u1ee9c Gi\u00e1");
+                            label13.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+                            //---- label14 ----
+                            label14.setText("Nh\u00e0 ma\u1ea1ng");
+                            label14.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
                             GroupLayout radiusPanel2Layout = new GroupLayout(radiusPanel2);
                             radiusPanel2.setLayout(radiusPanel2Layout);
                             radiusPanel2Layout.setHorizontalGroup(
                                 radiusPanel2Layout.createParallelGroup()
-                                    .addGroup(radiusPanel2Layout.createSequentialGroup()
+                                    .addGroup(GroupLayout.Alignment.TRAILING, radiusPanel2Layout.createSequentialGroup()
                                         .addGap(24, 24, 24)
-                                        .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
-                                            .addComponent(comboBox1, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                            .addComponent(textField1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(radiusButton1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                                        .addGap(100, 100, 100)
-                                        .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(comboBox2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                            .addComponent(textField2, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                                            .addComponent(radiusLabel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                                        .addGroup(radiusPanel2Layout.createParallelGroup()
+                                            .addGroup(radiusPanel2Layout.createSequentialGroup()
+                                                .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(cbbMobieNetwork, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                                    .addComponent(txtSeri, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(btnAddCard, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                                                .addGap(100, 100, 100))
+                                            .addGroup(radiusPanel2Layout.createSequentialGroup()
+                                                .addGroup(radiusPanel2Layout.createParallelGroup()
+                                                    .addComponent(label11, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label14, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)))
+                                        .addGroup(radiusPanel2Layout.createParallelGroup()
+                                            .addComponent(label13, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                                .addComponent(cbbPrice, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                                .addComponent(txtID, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                                                .addComponent(radiusLabel1, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
+                                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                         .addGap(26, 26, 26))
                             );
                             radiusPanel2Layout.setVerticalGroup(
                                 radiusPanel2Layout.createParallelGroup()
                                     .addGroup(GroupLayout.Alignment.TRAILING, radiusPanel2Layout.createSequentialGroup()
-                                        .addGap(35, 35, 35)
+                                        .addContainerGap()
                                         .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                            .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label14, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, 0)
                                         .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                            .addComponent(textField1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(textField2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(cbbMobieNetwork, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cbbPrice, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                                        .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+                                        .addGap(0, 0, 0)
+                                        .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(txtSeri, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                                         .addGap(50, 50, 50)
                                         .addGroup(radiusPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(radiusButton1, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
+                                            .addComponent(btnAddCard, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE)
                                             .addComponent(radiusLabel1, GroupLayout.DEFAULT_SIZE, 69, Short.MAX_VALUE))
                                         .addGap(40, 40, 40))
                             );
@@ -547,12 +606,16 @@ public class AddMoney extends JPanel {
     private JPanel panel2;
     private RadiusPanel radiusPanel1;
     private RadiusPanel radiusPanel2;
-    private JComboBox<String> comboBox1;
-    private JComboBox comboBox2;
-    private RadiusTextField textField1;
-    private RadiusTextField textField2;
-    private RadiusButton radiusButton1;
+    private JComboBox<String> cbbMobieNetwork;
+    private JComboBox<String> cbbPrice;
+    private RadiusTextField txtSeri;
+    private RadiusTextField txtID;
+    private RadiusButton btnAddCard;
     private RadiusLabel radiusLabel1;
+    private JLabel label11;
+    private JLabel label12;
+    private JLabel label13;
+    private JLabel label14;
     private JScrollPane scrollPane1;
     private JPanel panel4;
     private JPanel panel3;
@@ -578,4 +641,18 @@ public class AddMoney extends JPanel {
     private JLabel label9;
     private JLabel label10;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private void initialize() {
+        btnAddCard.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                addCard();
+            }
+        });
+    }
+
+    private void addCard() {
+
+    }
+
 }

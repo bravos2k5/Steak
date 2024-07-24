@@ -59,6 +59,8 @@ public class AccountPanel extends JPanel {
         label10 = new JLabel();
         cboSex = new JComboBox();
         label11 = new JLabel();
+        comboBox1 = new JComboBox();
+        btnChangePassword2 = new RadiusButton();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
@@ -199,6 +201,18 @@ public class AccountPanel extends JPanel {
                 label11.setText("Gi\u1edbi t\u00ednh");
                 label11.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
 
+                //---- comboBox1 ----
+                comboBox1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                comboBox1.setBackground(new Color(0x252730));
+
+                //---- btnChangePassword2 ----
+                btnChangePassword2.setOriginColor(new Color(0x205cc3));
+                btnChangePassword2.setHoverColor(new Color(0x4886f0));
+                btnChangePassword2.setRadius(0);
+                btnChangePassword2.setBackground(new Color(0x205cc3));
+                btnChangePassword2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+                btnChangePassword2.setIcon(new ImageIcon(getClass().getResource("/icon/Bank.png")));
+
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
                 panel2Layout.setHorizontalGroup(
@@ -231,17 +245,21 @@ public class AccountPanel extends JPanel {
                                             .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(label10, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(184, 184, 184)
+                                            .addGap(117, 117, 117)
                                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(label11, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                                 .addComponent(cboSex, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                                        .addComponent(txtUUID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
                                             .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(80, 80, 80)
-                                            .addGroup(panel2Layout.createParallelGroup()
+                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(30, 30, 30)
+                                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addGroup(panel2Layout.createSequentialGroup()
+                                                    .addComponent(comboBox1)
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(btnChangePassword2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(label6, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(panel2Layout.createSequentialGroup()
                                                     .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
@@ -277,7 +295,10 @@ public class AccountPanel extends JPanel {
                             .addGap(31, 31, 31)
                             .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(btnChangePassword2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
@@ -292,7 +313,7 @@ public class AccountPanel extends JPanel {
                                     .addComponent(label10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
                                     .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(25, Short.MAX_VALUE))
+                            .addContainerGap(22, Short.MAX_VALUE))
                 );
             }
 
@@ -418,7 +439,7 @@ public class AccountPanel extends JPanel {
                 .addGroup(layout.createSequentialGroup()
                     .addGap(40, 40, 40)
                     .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE))
+                    .addContainerGap(32, Short.MAX_VALUE))
         );
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
@@ -446,6 +467,8 @@ public class AccountPanel extends JPanel {
     private JLabel label10;
     private JComboBox cboSex;
     private JLabel label11;
+    private JComboBox comboBox1;
+    private RadiusButton btnChangePassword2;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
     private JLabel label14;

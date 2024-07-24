@@ -23,7 +23,7 @@ public class ManageWithdrawmoney extends JDialog {
         this.getContentPane().setBackground(Color.decode("#191B20"));
         DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
         cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 5; i++) {
             table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
         table1.getTableHeader().setBackground(new Color(32, 136, 203));

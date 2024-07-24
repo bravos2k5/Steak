@@ -11,6 +11,7 @@ import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 import steamfake.view.account.AccountPanel;
+import steamfake.view.addmoney.AddMoney;
 import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamedetail.GameDetailPanel;
 import steamfake.view.gamelib.LibraryPanel;
@@ -399,7 +400,13 @@ public class MFrame extends JFrame {
     private void initDownloadPage() {
         DownloadQueue.gI().setVisible(true);
     }
-
+    public void initAddPage() {
+        mainPanel.removeAll();
+        AddMoney addMoney = new AddMoney();
+        mainPanel.add(addMoney);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }
     public void initSettingAccountPage() {
         mainPanel.removeAll();
         AccountPanel accountPanel = new AccountPanel();

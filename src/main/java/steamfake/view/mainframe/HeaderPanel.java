@@ -4,6 +4,7 @@
 
 package steamfake.view.mainframe;
 
+import steamfake.Main;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
@@ -11,6 +12,7 @@ import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
+import steamfake.view.admin.MainAdmin;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
 
@@ -206,9 +208,10 @@ public class HeaderPanel extends JPanel {
         lblRole.setText("Khách");
         lblMoney.setText("Cái nịt");
         lblAvata.setText("");
-        lblAvata.setSize(new Dimension(50,50));
+        lblAvata.setSize(new Dimension(50, 50));
         initEffectHover();
         initSettingAccountPage();
+        initAddMoneyPage();
         btnLogin.addActionListener(e -> login());
         iconLogOut.addMouseListener(new MouseAdapter() {
             @Override
@@ -216,11 +219,18 @@ public class HeaderPanel extends JPanel {
                 logout();
             }
         });
+        lblAdmin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new MainAdmin(MFrame.getInstance()).setVisible(true);
+            }
+        });
+
     }
 
     private void initEffectHover() {
-        JLabel[] labels = {iconAddMoney, iconSettingAccount, iconLogOut,lblAdmin,lblSearch};
-        for(JLabel label : labels) {
+        JLabel[] labels = {iconAddMoney, iconSettingAccount, iconLogOut, lblAdmin, lblSearch};
+        for (JLabel label : labels) {
             label.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseEntered(java.awt.event.MouseEvent evt) {
                     label.setBackground(new Color(0x30333d));
@@ -237,23 +247,21 @@ public class HeaderPanel extends JPanel {
 
     public void updateAccount() {
         Account account = SessionManager.user;
-        if(account != null) {
+        if (account != null) {
             lblAdmin.setVisible(account.isAdmin());
             lblName.setText(account.getHoTen());
             lblRole.setText(account.isAdmin() ? "Quản trị viên" : "Thành viên");
             lblMoney.setText(account.getSoDuGame() + " VND");
             String avtPath = "data/avatars/" + account.getId() + "/" + account.getAvatar();
-            if(account.getAvatar() == null || account.getAvatar().isBlank()) {
+            if (account.getAvatar() == null || account.getAvatar().isBlank()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
-            }
-            else if(!new File(avtPath).exists()) {
+            } else if (!new File(avtPath).exists()) {
                 ResourceManager.downloadAvatar(account);
             }
-            if(new File(avtPath).exists()) {
+            if (new File(avtPath).exists()) {
                 lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(avtPath), lblAvata));
             }
-        }
-        else {
+        } else {
             lblAvata.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvata));
             lblName.setText("Chưa đăng nhập");
             lblRole.setText("Khách");
@@ -264,7 +272,7 @@ public class HeaderPanel extends JPanel {
         repaint();
     }
 
-    public void updateMoney(){
+    public void updateMoney() {
         SwingUtilities.invokeLater(() -> lblMoney.setText(SessionManager.user.getSoDuGame() + " VND"));
     }
 
@@ -272,12 +280,21 @@ public class HeaderPanel extends JPanel {
         iconSettingAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(!SessionManager.isLogin()) {
-                    XMessage.notificate(MFrame.getInstance(),"Bạn cần đăng nhập để sử dụng chức năng này");
+                if (!SessionManager.isLogin()) {
+                    XMessage.notificate(MFrame.getInstance(), "Bạn cần đăng nhập để sử dụng chức năng này");
                     new LoginDialog(MFrame.getInstance()).setVisible(true);
                     return;
                 }
                 MFrame.getInstance().initSettingAccountPage();
+            }
+        });
+    }
+
+    private void initAddMoneyPage() {
+        iconAddMoney.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                MFrame.getInstance().initAddPage();
             }
         });
     }
