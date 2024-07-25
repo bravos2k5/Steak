@@ -123,5 +123,4 @@ public class GameDetailPanel extends JPanel {
             this.repaint();
         }
     }
-
 }

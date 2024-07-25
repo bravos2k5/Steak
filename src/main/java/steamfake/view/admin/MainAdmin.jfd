@@ -1,0 +1,40 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp btnAddMoney:::p:151:p, comp button3:::p:151:p, comp button2:::p:151:p, comp button1:::p:151:p}, space ::29:x}}"
+			"$verticalGroup": "par l {seq l {space :p:21:p, comp button1:::p:40:p, space s:::p, comp button2:::p:40:p, space s:::p, comp button3:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space ::34:x}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button1"
+				"text": "Accout"
+				"font": new java.awt.Font( "SansSerif", 1, 20 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button2"
+				"text": "Game"
+				"font": new java.awt.Font( "SansSerif", 1, 20 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "button3"
+				"text": "Withdraw"
+				"font": &Font0 new java.awt.Font( "SansSerif", 1, 20 )
+				"background": &Color0 new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAddMoney"
+				"text": "Add Money"
+				"font": #Font0
+				"background": #Color0
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 210, 300 )
+		} )
+	}
+}
