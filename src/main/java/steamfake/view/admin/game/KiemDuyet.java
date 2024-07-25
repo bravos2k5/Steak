@@ -18,6 +18,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author ACER
@@ -239,8 +240,15 @@ public class KiemDuyet extends JDialog {
                 if(e.getClickCount() == 2) {
                     int row = tblPhieuKD.getSelectedRow();
                     if(row != -1) {
-                        PhieuKiemDuyet phieuKiemDuyet = currentList.get(row);
-                        new PreviewDetail(KiemDuyet.this,phieuKiemDuyet).setVisible(true);
+                        PhieuKiemDuyet phieuKiemDuyet = null;
+                        UUID id = UUID.fromString(tblPhieuKD.getValueAt(row,0).toString());
+                        for (PhieuKiemDuyet pkd : currentList) {
+                            if(pkd.getId().equals(id)) {
+                                phieuKiemDuyet = pkd;
+                                break;
+                            }
+                        }
+                        new PreviewDetail(KiemDuyet.this,phieuKiemDuyet,KiemDuyet.this).setVisible(true);
                     }
                 }
             }
@@ -259,7 +267,7 @@ public class KiemDuyet extends JDialog {
         return pkdMap.get(monthYear);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblPhieuKD.getModel();
         model.setRowCount(0);
         int trangThai = cboStatus.getSelectedIndex();

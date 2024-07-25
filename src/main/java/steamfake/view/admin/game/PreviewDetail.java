@@ -17,6 +17,7 @@ import steamfake.utils.XImage;
 import steamfake.utils.XJson;
 import steamfake.utils.XMessage;
 import steamfake.utils.azure.AzureBlobConnector;
+import steamfake.utils.azure.AzureBlobService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,11 +32,13 @@ public class PreviewDetail extends JDialog {
 
     private final PhieuKiemDuyet phieuKiemDuyet;
     private final PendingGame pendingGame;
+    private final KiemDuyet kiemDuyet;
 
-    public PreviewDetail(Window owner, PhieuKiemDuyet phieuKiemDuyet) {
+    public PreviewDetail(Window owner, PhieuKiemDuyet phieuKiemDuyet, KiemDuyet kiemDuyet) {
         super(owner);
         this.phieuKiemDuyet = phieuKiemDuyet;
         pendingGame = KiemDuyetDAO.getInstance().selectPendingGameById(phieuKiemDuyet);
+        this.kiemDuyet = kiemDuyet;
         this.setTitle("Preview: " + pendingGame.getGameID());
         initComponents();
         this.getContentPane().setBackground(Color.decode("#191b20"));
@@ -406,6 +409,8 @@ public class PreviewDetail extends JDialog {
         btnImgPreview.addActionListener(e -> showImagePreview());
         btnCopy.addActionListener(e -> copy());
         btnCancel.addActionListener(e -> dispose());
+        btnAccept.addActionListener(e -> accept());
+        btnReject.addActionListener(e -> reject());
     }
 
     private void loadGameData() {
@@ -444,11 +449,33 @@ public class PreviewDetail extends JDialog {
     }
 
     private void accept() {
-
+        String notification = XMessage.prompt(this,"Nhập thông điệp gửi đến người dùng:");
+        phieuKiemDuyet.setThongBao(notification);
+        phieuKiemDuyet.setStatus(PhieuKiemDuyet.ACCEPTED);
+        int result = KiemDuyetDAO.getInstance().acceptGame(phieuKiemDuyet);
+        if(result > 0) {
+            XMessage.notificate(this, "Duyệt game thành công");
+            kiemDuyet.fillTable();
+            dispose();
+        } else {
+            XMessage.alert(this, "Duyệt game thất bại");
+        }
     }
 
     private void reject() {
-
+        String notification = XMessage.prompt(this,"Nhập thông điệp gửi đến người dùng:");
+        phieuKiemDuyet.setThongBao(notification);
+        int result = KiemDuyetDAO.getInstance().rejectGame(phieuKiemDuyet);
+        if(result > 0) {
+            phieuKiemDuyet.setStatus(PhieuKiemDuyet.REJECTED);
+            XMessage.notificate(this,"Đã từ chối");
+            AzureBlobService.deleteManyFile(pendingGame.getGameID() + "/" + pendingGame.getVersion(),"games");
+            kiemDuyet.fillTable();
+            dispose();
+        }
+        else {
+            XMessage.alert(this,"Lỗi");
+        }
     }
 
     private void copy() {
@@ -458,7 +485,7 @@ public class PreviewDetail extends JDialog {
     }
 
     private String getLink() {
-        String link = AzureBlobConnector.gI().endPoint + "/games/";
+        String link = AzureBlobConnector.gI().endPoint + "games/";
         return link + pendingGame.getGameID() + "/" + pendingGame.getVersion() + "/game.zip";
     }
 

@@ -41,12 +41,12 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
      */
     @Override
     public int update(NapTien object) {
-        return 0;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int delete(NapTien object) {
-        return 0;
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
