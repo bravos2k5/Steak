@@ -59,7 +59,7 @@ public class AccountPanel extends JPanel {
         label10 = new JLabel();
         cboSex = new JComboBox();
         label11 = new JLabel();
-        comboBox1 = new JComboBox();
+        comboBox1 = new JComboBox<>();
         btnChangePassword2 = new RadiusButton();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
@@ -204,6 +204,16 @@ public class AccountPanel extends JPanel {
                 //---- comboBox1 ----
                 comboBox1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 comboBox1.setBackground(new Color(0x252730));
+                comboBox1.setMaximumRowCount(5);
+                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7"
+                }));
 
                 //---- btnChangePassword2 ----
                 btnChangePassword2.setOriginColor(new Color(0x205cc3));
@@ -467,7 +477,7 @@ public class AccountPanel extends JPanel {
     private JLabel label10;
     private JComboBox cboSex;
     private JLabel label11;
-    private JComboBox comboBox1;
+    private JComboBox<String> comboBox1;
     private RadiusButton btnChangePassword2;
     private RadiusLabel lblAvatar;
     private JLabel lblName;

@@ -165,6 +165,17 @@ new FormModel {
 						name: "comboBox1"
 						"font": new java.awt.Font( "SansSerif", 0, 20 )
 						"background": new java.awt.Color( 37, 39, 48, 255 )
+						"maximumRowCount": 5
+						"model": new javax.swing.DefaultComboBoxModel {
+							selectedItem: "1"
+							addElement( "1" )
+							addElement( "2" )
+							addElement( "3" )
+							addElement( "4" )
+							addElement( "5" )
+							addElement( "6" )
+							addElement( "7" )
+						}
 					} )
 					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 						name: "btnChangePassword2"

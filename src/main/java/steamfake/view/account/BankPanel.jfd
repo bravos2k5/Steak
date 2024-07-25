@@ -4,17 +4,18 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:14:p, par l {seq {comp txtUsername:::p:350:p, space s:::p, comp btnChangePassword:::p:100:p}, comp comboBox1:::p:470:p, seq t {comp btnCancel:::p::p, space :34:34:p, comp btnUpdate:::p::p}}, space ::14:x}}"
-			"$verticalGroup": "par l {seq l {space :p:30:p, comp comboBox1:::p:50:p, space :p:41:p, par b {comp txtUsername::b:p:50:p, comp btnChangePassword::b:p:50:p}, space :p:41:p, par l {comp btnCancel:::p:45:p, comp btnUpdate:::p:45:p}, space ::40:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:14:p, par l:::p {comp lbl125:::p:150:p, comp lbl123:::p:150:p, comp cbbNameBank::::470:x, comp lbl124::l:p:150:p, seq l {comp btnDelete:::p:100:p, space :::x, comp btnUpdate:::p:100:p, space :p:27:p, comp btnAdd:::p:100:p}, comp txtNumber::::470:x, comp txtName::l::470:x}, space ::34:x}}"
+			"$verticalGroup": "par l {seq l {comp lbl123:::p:30:p, space :::p, comp cbbNameBank:::p:50:p, space s:::p, comp lbl124:::p:30:p, space :::p, comp txtNumber:::p:50:p, space s:::p, comp lbl125:::p:30:p, space :::p, comp txtName:::p:50:p, space :p:42:p, par b {comp btnDelete::b:p:50:p, comp btnAdd::b:p:50:p, comp btnUpdate::b:p:50:p}, space ::43:x}}"
 		} ) {
 			name: "this"
+			"font": new java.awt.Font( "SansSerif", 0, 16 )
 			add( new FormComponent( "javax.swing.JComboBox" ) {
-				name: "comboBox1"
+				name: "cbbNameBank"
 				"font": new java.awt.Font( "SansSerif", 0, 20 )
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnCancel"
+				name: "btnDelete"
 				"text": "Xóa"
 				"background": new java.awt.Color( 62, 55, 55, 255 )
 				"originColor": new java.awt.Color( 62, 55, 55, 255 )
@@ -23,36 +24,61 @@ new FormModel {
 				"font": new java.awt.Font( "SansSerif", 1, 14 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnUpdate"
+				name: "btnAdd"
 				"text": "Thêm"
-				"background": new java.awt.Color( 53, 69, 42, 255 )
-				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
-				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"background": &Color0 new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": &Color1 new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": &Color2 new java.awt.Color( 53, 69, 42, 255 )
 				"radius": 5
-				"font": new java.awt.Font( "SansSerif", 1, 14 )
+				"font": &Font0 new java.awt.Font( "SansSerif", 1, 14 )
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
-				name: "txtUsername"
-				"forcusColor": new java.awt.Color( 12, 140, 233, 255 )
-				"noForcusColor": new java.awt.Color( 25, 27, 32, 255 )
-				"startGradientColor": new java.awt.Color( 25, 27, 32, 255 )
-				"endGradientColor": new java.awt.Color( 25, 27, 32, 255 )
-				"font": new java.awt.Font( "SansSerif", 0, 20 )
+				name: "txtNumber"
+				"forcusColor": &Color3 new java.awt.Color( 12, 140, 233, 255 )
+				"noForcusColor": &Color4 new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": &Color5 new java.awt.Color( 25, 27, 32, 255 )
+				"endGradientColor": &Color6 new java.awt.Color( 25, 27, 32, 255 )
+				"font": &Font1 new java.awt.Font( "SansSerif", 0, 20 )
 				"radius": 0
-				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"background": &Color7 new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl123"
+				"text": "Ngân hàng"
+				"font": &Font2 new java.awt.Font( "SansSerif", 0, 20 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl124"
+				"text": "Số tài khoản "
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl125"
+				"text": "Tên ngân hàng"
+				"font": #Font2
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtName"
+				"forcusColor": #Color3
+				"noForcusColor": #Color4
+				"startGradientColor": #Color5
+				"endGradientColor": #Color6
+				"font": #Font1
+				"radius": 0
+				"background": #Color7
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-				name: "btnChangePassword"
-				"originColor": new java.awt.Color( 32, 92, 195, 255 )
-				"hoverColor": new java.awt.Color( 72, 134, 240, 255 )
-				"radius": 0
-				"background": new java.awt.Color( 32, 92, 195, 255 )
-				"font": new java.awt.Font( "SansSerif", 1, 14 )
-				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Up.png" )
+				name: "btnUpdate"
+				"text": "Cập nhật"
+				"background": #Color0
+				"hoverColor": #Color1
+				"originColor": #Color2
+				"radius": 5
+				"font": #Font0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 500, 330 )
+			"size": new java.awt.Dimension( 520, 460 )
 		} )
 	}
 }

@@ -114,12 +114,12 @@ new FormModel {
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label13"
-									"text": "Mức Giá"
+									"text": "Mức giá"
 									"font": #Font2
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label14"
-									"text": "Nhà maạng"
+									"text": "Nhà mạng"
 									"font": #Font2
 								} )
 							} )

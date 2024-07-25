@@ -39,4 +39,8 @@ public class Bank {
         this.status = status;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 }

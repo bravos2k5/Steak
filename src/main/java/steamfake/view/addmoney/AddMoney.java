@@ -179,11 +179,11 @@ public class AddMoney extends JPanel {
                             label12.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
                             //---- label13 ----
-                            label13.setText("M\u1ee9c Gi\u00e1");
+                            label13.setText("M\u1ee9c gi\u00e1");
                             label13.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
                             //---- label14 ----
-                            label14.setText("Nh\u00e0 ma\u1ea1ng");
+                            label14.setText("Nh\u00e0 m\u1ea1ng");
                             label14.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
                             GroupLayout radiusPanel2Layout = new GroupLayout(radiusPanel2);
