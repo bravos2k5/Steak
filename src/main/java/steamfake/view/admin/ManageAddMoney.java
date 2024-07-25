@@ -21,22 +21,10 @@ public class ManageAddMoney extends JDialog {
     public ManageAddMoney(Window owner) {
         super(owner);
         initComponents();
+        initialize();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.decode("#191B20"));
-        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
-        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-        for (int i = 0; i < 6; i++) {
-            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
-        }
-        table1.getTableHeader().setBackground(new Color(32, 136, 203));
-        table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
-        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
-        table1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new Card(null).setVisible(true);
-            }
-        });
+
     }
 
     private void initComponents() {
@@ -105,7 +93,7 @@ public class ManageAddMoney extends JDialog {
                             "ID", "ID Account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"
                         }
                     ) {
-                        final boolean[] columnEditable = new boolean[] {
+                        boolean[] columnEditable = new boolean[] {
                             false, false, false, false, false, false
                         };
                         @Override
@@ -217,6 +205,26 @@ public class ManageAddMoney extends JDialog {
     private JTable table1;
     private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    public void initialize() {
+        DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
+        cellRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        for (int i = 0; i < 6; i++) {
+            table1.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
+        table1.getTableHeader().setBackground(new Color(32, 136, 203));
+        table1.getTableHeader().setPreferredSize(new Dimension(1200, 30));
+        table1.getTableHeader().setFont(new Font("SansSerif", Font.PLAIN, 16));
+        table1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new Card(null).setVisible(true);
+            }
+        });
+
+
+    }
+
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatDarkLaf());
         new ManageAddMoney(null).setVisible(true);

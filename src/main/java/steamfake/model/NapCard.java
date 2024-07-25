@@ -1,8 +1,11 @@
 package steamfake.model;
 
+
+
+import java.util.Date;
 import java.util.UUID;
 
-public class NapCard extends NapTien{
+public class NapCard extends NapTien {
 
     private String secretKey;
     private String seri;
@@ -10,7 +13,6 @@ public class NapCard extends NapTien{
 
     public NapCard(UUID id) {
         super(id);
-        this.setMethod(NAP_CARD);
     }
 
     public NapCard() {

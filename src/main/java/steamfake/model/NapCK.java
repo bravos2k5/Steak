@@ -1,5 +1,7 @@
 package steamfake.model;
 
+
+import java.util.Date;
 import java.util.UUID;
 
 public class NapCK extends NapTien {
@@ -8,7 +10,7 @@ public class NapCK extends NapTien {
 
     public NapCK(UUID id) {
         super(id);
-        this.setMethod(NAP_CK);
+
     }
 
     public NapCK() {

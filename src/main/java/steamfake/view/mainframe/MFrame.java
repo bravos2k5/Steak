@@ -121,7 +121,7 @@ public class MFrame extends JFrame {
             lblDownload.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 
             //---- lblBack ----
-            lblBack.setIcon(new ImageIcon(getClass().getResource("/icon/left-chevron.png")));
+            lblBack.setIcon(new ImageIcon(getClass().getResource("/icon/Left.png")));
             lblBack.setHorizontalAlignment(SwingConstants.CENTER);
             lblBack.setOpaque(true);
             lblBack.setBackground(new Color(0x252730));
@@ -139,8 +139,8 @@ public class MFrame extends JFrame {
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(148, 148, 148)
                                 .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 61, GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(61, 61, 61)
                                 .addGroup(panelSelectFunctionLayout.createParallelGroup()
@@ -161,7 +161,7 @@ public class MFrame extends JFrame {
                                 .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
-                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 57, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
                         .addGap(36, 36, 36)
                         .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                         .addGap(29, 29, 29)
