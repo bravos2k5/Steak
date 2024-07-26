@@ -13,7 +13,7 @@ public final class AzureBlobConnector {
 
     private static AzureBlobConnector instance;
     private final StorageSharedKeyCredential sharedKeyCredential;
-    private final String endPoint;
+    public final String endPoint;
     private final BlobServiceClient client;
 
     private AzureBlobConnector() {

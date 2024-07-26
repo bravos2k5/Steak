@@ -5,11 +5,13 @@
 package steamfake.view.account;
 
 import steamfake.dao.AccountDAO;
+import steamfake.dao.BankAccountDAO;
 import steamfake.graphics.DateTimeTextField;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
+import steamfake.model.BankAccount;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XFile;
 import steamfake.utils.XImage;
@@ -24,11 +26,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * @author ACER
  */
 public class AccountPanel extends JPanel {
+
+    private BankDialog bankDialog;
 
     public AccountPanel() {
         initComponents();
@@ -59,8 +64,8 @@ public class AccountPanel extends JPanel {
         label10 = new JLabel();
         cboSex = new JComboBox();
         label11 = new JLabel();
-        comboBox1 = new JComboBox<>();
-        btnChangePassword2 = new RadiusButton();
+        cboBankAccount = new JComboBox<>();
+        btnBankManagement = new RadiusButton();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
@@ -201,11 +206,11 @@ public class AccountPanel extends JPanel {
                 label11.setText("Gi\u1edbi t\u00ednh");
                 label11.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
 
-                //---- comboBox1 ----
-                comboBox1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-                comboBox1.setBackground(new Color(0x252730));
-                comboBox1.setMaximumRowCount(5);
-                comboBox1.setModel(new DefaultComboBoxModel<>(new String[] {
+                //---- cboBankAccount ----
+                cboBankAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                cboBankAccount.setBackground(new Color(0x252730));
+                cboBankAccount.setMaximumRowCount(5);
+                cboBankAccount.setModel(new DefaultComboBoxModel<>(new String[] {
                     "1",
                     "2",
                     "3",
@@ -215,13 +220,13 @@ public class AccountPanel extends JPanel {
                     "7"
                 }));
 
-                //---- btnChangePassword2 ----
-                btnChangePassword2.setOriginColor(new Color(0x205cc3));
-                btnChangePassword2.setHoverColor(new Color(0x4886f0));
-                btnChangePassword2.setRadius(0);
-                btnChangePassword2.setBackground(new Color(0x205cc3));
-                btnChangePassword2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-                btnChangePassword2.setIcon(new ImageIcon(getClass().getResource("/icon/Bank.png")));
+                //---- btnBankManagement ----
+                btnBankManagement.setOriginColor(new Color(0x205cc3));
+                btnBankManagement.setHoverColor(new Color(0x4886f0));
+                btnBankManagement.setRadius(0);
+                btnBankManagement.setBackground(new Color(0x205cc3));
+                btnBankManagement.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+                btnBankManagement.setIcon(new ImageIcon(getClass().getResource("/icon/Bank.png")));
 
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
@@ -267,9 +272,9 @@ public class AccountPanel extends JPanel {
                                             .addGap(30, 30, 30)
                                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addGroup(panel2Layout.createSequentialGroup()
-                                                    .addComponent(comboBox1)
+                                                    .addComponent(cboBankAccount)
                                                     .addGap(18, 18, 18)
-                                                    .addComponent(btnChangePassword2, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(btnBankManagement, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
                                                 .addComponent(label6, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(panel2Layout.createSequentialGroup()
                                                     .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
@@ -306,9 +311,9 @@ public class AccountPanel extends JPanel {
                             .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnChangePassword2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBankManagement, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(comboBox1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cboBankAccount, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
@@ -477,8 +482,8 @@ public class AccountPanel extends JPanel {
     private JLabel label10;
     private JComboBox cboSex;
     private JLabel label11;
-    private JComboBox<String> comboBox1;
-    private RadiusButton btnChangePassword2;
+    private JComboBox<String> cboBankAccount;
+    private RadiusButton btnBankManagement;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
     private JLabel label14;
@@ -514,6 +519,7 @@ public class AccountPanel extends JPanel {
         fillSexCbo();
         loadInfo();
         btnChangeEmail.addActionListener(e -> updateEmail());
+        btnBankManagement.addActionListener(e -> bankDialog.setVisible(true));
     }
 
     private void loadInfo() {
@@ -536,6 +542,14 @@ public class AccountPanel extends JPanel {
         txtName.setText(account.getHoTen());
         txtDob.getDatePicker().setSelectedDate(account.getDob().toLocalDate());
         cboSex.setSelectedItem(account.getGioiTinh());
+        loadBankAccount();
+    }
+
+    private void loadBankAccount() {
+        List<BankAccount> bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
+        cboBankAccount.removeAllItems();
+        bankAccountList.forEach(bankAccount -> cboBankAccount.addItem(bankAccount.toString()));
+        bankDialog = new BankDialog(MFrame.gI(), bankAccountList);
     }
 
     public void setTxtEmail(String email) {

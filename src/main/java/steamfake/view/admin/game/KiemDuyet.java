@@ -14,18 +14,22 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author ACER
  */
-public class BrowseGames extends JDialog {
+public class KiemDuyet extends JDialog {
 
     private final HashMap<MonthYear,List<PhieuKiemDuyet>> pkdMap = new HashMap<>();
+    private List<PhieuKiemDuyet> currentList;
     private int[] years;
 
-    public BrowseGames(Window owner) {
+    public KiemDuyet(Window owner) {
         super(owner);
         initComponents();
         initialize();
@@ -95,7 +99,7 @@ public class BrowseGames extends JDialog {
                             "ID", "Publisher_id", "Ng\u00e0y t\u1ea1o", "Tr\u1ea1ng th\u00e1i"
                         }
                     ) {
-                        final boolean[] columnEditable = new boolean[] {
+                        boolean[] columnEditable = new boolean[] {
                             false, false, false, false
                         };
                         @Override
@@ -230,6 +234,25 @@ public class BrowseGames extends JDialog {
         cboYears.addItemListener(e -> fillTable());
         cboMonths.addItemListener(e -> fillTable());
         cboStatus.addItemListener(e -> fillTable());
+        tblPhieuKD.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() == 2) {
+                    int row = tblPhieuKD.getSelectedRow();
+                    if(row != -1) {
+                        PhieuKiemDuyet phieuKiemDuyet = null;
+                        UUID id = UUID.fromString(tblPhieuKD.getValueAt(row,0).toString());
+                        for (PhieuKiemDuyet pkd : currentList) {
+                            if(pkd.getId().equals(id)) {
+                                phieuKiemDuyet = pkd;
+                                break;
+                            }
+                        }
+                        new PreviewDetail(KiemDuyet.this,phieuKiemDuyet,KiemDuyet.this).setVisible(true);
+                    }
+                }
+            }
+        });
     }
 
     private List<PhieuKiemDuyet> getPkdList() {
@@ -244,12 +267,12 @@ public class BrowseGames extends JDialog {
         return pkdMap.get(monthYear);
     }
 
-    private void fillTable() {
+    public void fillTable() {
         DefaultTableModel model = (DefaultTableModel) tblPhieuKD.getModel();
         model.setRowCount(0);
         int trangThai = cboStatus.getSelectedIndex();
-        List<PhieuKiemDuyet> list = getPkdList();
-        for (PhieuKiemDuyet phieuKiemDuyet : list) {
+        currentList = getPkdList();
+        for (PhieuKiemDuyet phieuKiemDuyet : currentList) {
             if(phieuKiemDuyet.getStatus() != trangThai) {
                 continue;
             }
@@ -290,7 +313,7 @@ public class BrowseGames extends JDialog {
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatMacDarkLaf());
-        new BrowseGames(null).setVisible(true);
+        new KiemDuyet(null).setVisible(true);
     }
 
 }

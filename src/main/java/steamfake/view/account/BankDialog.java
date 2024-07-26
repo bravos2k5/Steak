@@ -4,20 +4,17 @@
 
 package steamfake.view.account;
 
-import java.awt.*;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-
-import com.formdev.flatlaf.FlatDarkLaf;
 import steamfake.StaticData;
 import steamfake.dao.BankAccountDAO;
-import steamfake.dao.BankDAO;
-import steamfake.graphics.*;
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusTextField;
 import steamfake.model.Bank;
 import steamfake.model.BankAccount;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -26,15 +23,16 @@ import java.util.List;
  * @author ACER
  */
 public class
-BankPanel extends JDialog {
+BankDialog extends JDialog {
 
     private boolean isEditing = false;
+    private final List<BankAccount> bankAccountList;
 
-    public BankPanel(Window owner) {
+    public BankDialog(Window owner, List<BankAccount> bankAccountList) {
         super(owner);
+        this.bankAccountList = bankAccountList;
         initComponents();
         this.getContentPane().setBackground(new Color(0x191b20));
-
         initialize();
 
     }
@@ -53,6 +51,8 @@ BankPanel extends JDialog {
 
         //======== this ========
         setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+        setModal(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         var contentPane = getContentPane();
 
         //---- cbbNameBank ----
@@ -174,6 +174,7 @@ BankPanel extends JDialog {
 
 
     private void initialize() {
+        loadBank();
         initEvent();
     }
 
@@ -187,7 +188,7 @@ BankPanel extends JDialog {
                     txtName.setVisible(false);
                     btnUpdate.setVisible(false);
                     lbl125.setVisible(false);
-                    loadCBBAdd();
+                    loadBank();
                 } else {
                     addBankAccount();
                 }
@@ -211,42 +212,45 @@ BankPanel extends JDialog {
 
     }
 
-
     private void update() {
-        if (isString(txtNumber.getText())) {
+        if (isValid(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
             bankAccount.setSoTaiKhoan(txtNumber.getText());
             if (BankAccountDAO.gI().update(bankAccount)>0) {
                 XMessage.notificate(this, "Sua tai khoan thanh cong");
-                loadCBBAccountBank();
+                loadBankAccount();
             }
+            return;
         }
         XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
     }
 
     private void delete(){
-        if (isString(txtNumber.getText())) {
+        if (isValid(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
             if (BankAccountDAO.gI().delete(bankAccount)>0) {
                 XMessage.notificate(this, "Sua tai khoan thanh cong");
-                loadCBBAccountBank();
+                loadBankAccount();
             }
+            return;
         }
         XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
-
     }
 
-    private void loadCBBAccountBank() {
-        BankAccountDAO.gI().selectByAccount(SessionManager.user).forEach(cbbNameBank::addItem);
+
+
+    private void loadBankAccount() {
+        cbbNameBank.removeAllItems();
+        bankAccountList.forEach(cbbNameBank::addItem);
     }
 
-    private void loadCBBAdd() {
-        StaticData.bankList.stream().filter(Bank::isStatus).forEach(cbbNameBank::addItem);
+    private void loadBank() {
+        StaticData.bankList.stream().forEach(cbbNameBank::addItem);
     }
 
     private void addBankAccount() {
         Bank bank = (Bank) cbbNameBank.getSelectedItem();
-        if (isString(txtNumber.getText())) {
+        if (isValid(txtNumber.getText())) {
             if (bank != null) {
                 BankAccount bankAccount = new BankAccount();
                 bankAccount.setAccountID(SessionManager.user.getId());
@@ -254,7 +258,7 @@ BankPanel extends JDialog {
                 bankAccount.setBankID(bank.getId());
                 if (BankAccountDAO.gI().insert(bankAccount) > 0) {
                     XMessage.notificate(this, "Them ngan hang thanh cong");
-                    loadCBBAdd();
+                    loadBank();
                 }
                 XMessage.alert(this, "Thêm thất bại");
             }
@@ -264,12 +268,8 @@ BankPanel extends JDialog {
 
     }
 
-    private boolean isString(String str) {
+    private boolean isValid(String str) {
         return str.matches("\\d{10}");
     }
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatDarkLaf());
-        new BankPanel(null).setVisible(true);
-    }
 }
