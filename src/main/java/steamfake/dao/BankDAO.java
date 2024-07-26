@@ -48,7 +48,7 @@ public class BankDAO implements DataAccessObject<Bank> {
     }
 
     public List<Bank> selectAll() {
-        return selectBySQL("SELECT * FROM Bank");
+        return selectBySQL("SELECT * FROM Bank WHERE trang_thai = 1");
     }
 
     public List<Bank> selectBySQL(String sql, Object...args) {
