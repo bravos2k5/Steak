@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -26,8 +26,8 @@ new FormModel {
 					"font": new java.awt.Font( "SansSerif", 0, 20 )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq {par l {comp txtUsername:::p:350:p, comp lbl123:::p:150:p}, space ::80:x, par l {comp label5::l:p:150:p, seq l {comp txtEmail:::p:350:p, space s:::p, comp btnChangeEmail:::p:100:p}}, space :p:72:p}, seq {comp label8:::p:150:p, space :0:820:x}, seq l {par t:::p {seq {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:117:p, par l:::p {comp label11::::130:x, comp cboSex::::130:x}}, seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p, comp txtUUID::l:p:400:p}, space :p:30:p, par l:::p {seq l {comp comboBox1:::::x, space s:::p, comp btnChangePassword2:::p:100:p}, comp label6:::p:150:p, seq {comp txtJoinDate:::p:350:p, space s:::p, comp btnChangePassword:::p:100:p}}}}, space ::72:x}}}}"
-					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtUsername:::p:50:p}, seq t {comp label5:::p:30:p, space :6:6:p, par l {comp txtEmail:::p:50:p, comp btnChangeEmail:::::x}}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, par b {comp txtJoinDate::b:p:50:p, comp btnChangePassword::b:p:50:p}}, space :p:31:p, comp label8:::p:30:p, space :::p, par b {comp btnChangePassword2::b:p:50:p, comp txtUUID::b:p:50:p, comp comboBox1::b:p:50:p}, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}}, space ::22:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq {par l {comp txtUsername:::p:350:p, comp lbl123:::p:150:p}, space ::80:x, par l {comp label5::l:p:150:p, seq l {comp txtEmail:::p:350:p, space s:::p, comp btnChangeEmail:::p:100:p}}, space :p:72:p}, seq {comp label8:::p:150:p, space :0:820:x}, seq l {par t:::p {seq {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:117:p, par l:::p {comp label11::::130:x, comp cboSex::::130:x}}, seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p, comp txtUUID::l:p:400:p}, space :p:30:p, par l:::p {seq l {comp cboBankAccount:::::x, space s:::p, comp btnBankManagement:::p:100:p}, comp label6:::p:150:p, seq {comp txtJoinDate:::p:350:p, space s:::p, comp btnChangePassword:::p:100:p}}}}, space ::72:x}}}}"
+					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtUsername:::p:50:p}, seq t {comp label5:::p:30:p, space :6:6:p, par l {comp txtEmail:::p:50:p, comp btnChangeEmail:::::x}}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, par b {comp txtJoinDate::b:p:50:p, comp btnChangePassword::b:p:50:p}}, space :p:31:p, comp label8:::p:30:p, space :::p, par b {comp btnBankManagement::b:p:50:p, comp txtUUID::b:p:50:p, comp cboBankAccount::b:p:50:p}, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}}, space ::22:x}}"
 				} ) {
 					name: "panel2"
 					"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -162,7 +162,7 @@ new FormModel {
 						"font": #Font1
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "cboBankAccount"
 						"font": new java.awt.Font( "SansSerif", 0, 20 )
 						"background": new java.awt.Color( 37, 39, 48, 255 )
 						"maximumRowCount": 5
@@ -178,7 +178,7 @@ new FormModel {
 						}
 					} )
 					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-						name: "btnChangePassword2"
+						name: "btnBankManagement"
 						"originColor": #Color4
 						"hoverColor": #Color5
 						"radius": 0

@@ -151,7 +151,7 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
             if(rs.next()) {
                 PendingGame pendingGame = new PendingGame();
                 pendingGame.setGameID(rs.getObject("game_id", java.util.UUID.class));
-                pendingGame.setName(rs.getString("name"));
+                pendingGame.setName(rs.getString("game_name"));
                 pendingGame.setAvatar(rs.getString("avatar"));
                 pendingGame.setGiaTien(rs.getDouble("gia_tien"));
                 pendingGame.setAge(rs.getInt("age"));
