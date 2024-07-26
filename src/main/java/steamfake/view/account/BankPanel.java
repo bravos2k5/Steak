@@ -216,7 +216,7 @@ BankPanel extends JDialog {
         if (isString(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
             bankAccount.setSoTaiKhoan(txtNumber.getText());
-            if (BankAccountDAO.gI().update(bankAccount)>0) {
+            if (BankAccountDAO.gI().update(bankAccount) > 0) {
                 XMessage.notificate(this, "Sua tai khoan thanh cong");
                 loadCBBAccountBank();
             }
@@ -224,10 +224,10 @@ BankPanel extends JDialog {
         XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
     }
 
-    private void delete(){
+    private void delete() {
         if (isString(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
-            if (BankAccountDAO.gI().delete(bankAccount)>0) {
+            if (BankAccountDAO.gI().delete(bankAccount) > 0) {
                 XMessage.notificate(this, "Sua tai khoan thanh cong");
                 loadCBBAccountBank();
             }
