@@ -24,6 +24,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.Date;
 import java.util.List;
@@ -32,13 +34,12 @@ import java.util.List;
  * @author ACER
  */
 public class AccountPanel extends JPanel {
-
-    private BankDialog bankDialog;
-
     public AccountPanel() {
         initComponents();
         initialize();
     }
+
+    List<BankAccount> bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -64,7 +65,7 @@ public class AccountPanel extends JPanel {
         label10 = new JLabel();
         cboSex = new JComboBox();
         label11 = new JLabel();
-        cboBankAccount = new JComboBox<>();
+        cboBankAccount = new JComboBox();
         btnBankManagement = new RadiusButton();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
@@ -210,15 +211,6 @@ public class AccountPanel extends JPanel {
                 cboBankAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 cboBankAccount.setBackground(new Color(0x252730));
                 cboBankAccount.setMaximumRowCount(5);
-                cboBankAccount.setModel(new DefaultComboBoxModel<>(new String[] {
-                    "1",
-                    "2",
-                    "3",
-                    "4",
-                    "5",
-                    "6",
-                    "7"
-                }));
 
                 //---- btnBankManagement ----
                 btnBankManagement.setOriginColor(new Color(0x205cc3));
@@ -482,7 +474,7 @@ public class AccountPanel extends JPanel {
     private JLabel label10;
     private JComboBox cboSex;
     private JLabel label11;
-    private JComboBox<String> cboBankAccount;
+    private JComboBox cboBankAccount;
     private RadiusButton btnBankManagement;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
@@ -507,6 +499,19 @@ public class AccountPanel extends JPanel {
                 changeAvatar();
             }
         });
+        btnBankManagement.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                BankDialog bankDialog =new BankDialog(MFrame.gI(),bankAccountList);
+                bankDialog.setVisible(true);
+                bankDialog.addWindowFocusListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        addItemCBBAccount();
+                    }
+                });
+            }
+        });
         btnUpdate.addActionListener(e -> updateAction());
         txtUsername.setEnabled(false);
         txtEmail.setEnabled(false);
@@ -519,7 +524,6 @@ public class AccountPanel extends JPanel {
         fillSexCbo();
         loadInfo();
         btnChangeEmail.addActionListener(e -> updateEmail());
-        btnBankManagement.addActionListener(e -> bankDialog.setVisible(true));
     }
 
     private void loadInfo() {
@@ -528,11 +532,10 @@ public class AccountPanel extends JPanel {
         lblSoDuDoanhThu.setText(account.getSoDuThuNhap() + "");
         lblSoDuGame.setText(account.getSoDuGame() + "");
         lblAvatar.setSize(new Dimension(120, 120));
-        if(account.getAvatar() != null && !account.getAvatar().isEmpty()) {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()),lblAvatar));
-        }
-        else {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
+        if (account.getAvatar() != null && !account.getAvatar().isEmpty()) {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()), lblAvatar));
+        } else {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvatar));
         }
         txtUsername.setText(account.getUsername());
         txtEmail.setText(account.getEmail());
@@ -542,14 +545,12 @@ public class AccountPanel extends JPanel {
         txtName.setText(account.getHoTen());
         txtDob.getDatePicker().setSelectedDate(account.getDob().toLocalDate());
         cboSex.setSelectedItem(account.getGioiTinh());
-        loadBankAccount();
+        addItemCBBAccount();
     }
 
-    private void loadBankAccount() {
-        List<BankAccount> bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
+    private void addItemCBBAccount() {
         cboBankAccount.removeAllItems();
-        bankAccountList.forEach(bankAccount -> cboBankAccount.addItem(bankAccount.toString()));
-        bankDialog = new BankDialog(MFrame.gI(), bankAccountList);
+        bankAccountList.forEach(cboBankAccount::addItem);
     }
 
     public void setTxtEmail(String email) {
@@ -577,14 +578,14 @@ public class AccountPanel extends JPanel {
     private void updateAction() {
         String msg = "";
         String oldAvatar = SessionManager.user.getAvatar();
-        if(txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
+        if (txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
                 txtPhoneNumber.getText().isBlank() || txtDob.getDatePicker().getSelectedDate() == null) {
             msg += "Vui lòng nhập đầy đủ thông tin\n";
         }
-        if(!txtPhoneNumber.getText().isBlank() && !XRegex.isPhone(txtPhoneNumber.getText())) {
+        if (!txtPhoneNumber.getText().isBlank() && !XRegex.isPhone(txtPhoneNumber.getText())) {
             msg += "Số điện thoại không hợp lệ\n";
         }
-        if(!msg.isBlank()) {
+        if (!msg.isBlank()) {
             JOptionPane.showMessageDialog(this, msg, "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -595,21 +596,20 @@ public class AccountPanel extends JPanel {
         account.setPhone(txtPhoneNumber.getText());
 
         String avatar = lblAvatar.getToolTipText();
-        if(avatar != null && !avatar.isEmpty()) {
+        if (avatar != null && !avatar.isEmpty()) {
             account.setAvatar(new File(avatar).getName());
         }
-        if(AccountDAO.gI().updatePersonalInfo(account) > 0) {
+        if (AccountDAO.gI().updatePersonalInfo(account) > 0) {
             if (avatar != null && !avatar.isEmpty()) {
-                AzureBlobService.upload(avatar,"avatars/" + account.getId() + "/" + new File(avatar).getName(),"images");
-                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar,"images");
-                XFile.copyFile(avatar,"data/avatars/" + account.getId() + "/" + new File(avatar).getName());
+                AzureBlobService.upload(avatar, "avatars/" + account.getId() + "/" + new File(avatar).getName(), "images");
+                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar, "images");
+                XFile.copyFile(avatar, "data/avatars/" + account.getId() + "/" + new File(avatar).getName());
                 new File("data/avatars/" + account.getId() + "/" + oldAvatar).deleteOnExit();
             }
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             SessionManager.user = account;
             HeaderPanel.gI().updateAccount();
-        }
-        else {
+        } else {
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }

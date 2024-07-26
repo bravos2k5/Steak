@@ -6,6 +6,7 @@ package steamfake.view.account;
 
 import steamfake.StaticData;
 import steamfake.dao.BankAccountDAO;
+import steamfake.dao.BankDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Bank;
@@ -15,9 +16,12 @@ import steamfake.utils.XMessage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author ACER
@@ -33,6 +37,8 @@ BankDialog extends JDialog {
         this.bankAccountList = bankAccountList;
         initComponents();
         this.getContentPane().setBackground(new Color(0x191b20));
+        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
         initialize();
 
     }
@@ -174,25 +180,42 @@ BankDialog extends JDialog {
 
 
     private void initialize() {
-        loadBank();
+        loadBankAccount();
+        cbbNameBank.setSelectedIndex(-1);
         initEvent();
     }
 
     private void initEvent() {
+        cbbNameBank.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                    if (!isEditing) {
+                        BankAccount bankAccount = bankAccountList.get(cbbNameBank.getSelectedIndex());
+                        txtName.setText(BankDAO.gI().selectByID(String.valueOf(bankAccount.getBankID())).getName());
+                        txtNumber.setText(bankAccount.getSoTaiKhoan());
+                    }
+                }
+            }
+        });
+
         btnAdd.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (!isEditing) {
                     isEditing = true;
+                    loadBank();
+                    txtNumber.setText("");
                     btnAdd.setText("Save");
+                    btnDelete.setText("Hủy");
                     txtName.setVisible(false);
                     btnUpdate.setVisible(false);
                     lbl125.setVisible(false);
-                    loadBank();
                 } else {
+                    btnDelete.setText("Xóa");
                     addBankAccount();
+                    resetForm();
                 }
-
             }
         });
         btnDelete.addMouseListener(new MouseAdapter() {
@@ -204,19 +227,41 @@ BankDialog extends JDialog {
                     isEditing = false;
                     lbl125.setVisible(true);
                     btnDelete.setText("Xoa");
+                    resetForm();
                 } else {
-
+                    if (isValid(txtNumber.getText())) {
+                        delete();
+                        resetForm();
+                    }
                 }
             }
         });
+        btnUpdate.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (isValid(txtNumber.getText())) {
+                    update();
+                    resetForm();
+                }
+            }
+        });
+    }
 
+    private void resetForm() {
+        txtName.setText("");
+        txtNumber.setText("");
+        isEditing = false;
+        txtName.setVisible(true);
+        txtNumber.setVisible(true);
+        btnUpdate.setVisible(true);
+        loadBankAccount();
     }
 
     private void update() {
         if (isValid(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
             bankAccount.setSoTaiKhoan(txtNumber.getText());
-            if (BankAccountDAO.gI().update(bankAccount)>0) {
+            if (BankAccountDAO.gI().update(bankAccount) > 0) {
                 XMessage.notificate(this, "Sua tai khoan thanh cong");
                 loadBankAccount();
             }
@@ -225,27 +270,22 @@ BankDialog extends JDialog {
         XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
     }
 
-    private void delete(){
+    private void delete() {
         if (isValid(txtNumber.getText())) {
             BankAccount bankAccount = (BankAccount) cbbNameBank.getSelectedItem();
-            if (BankAccountDAO.gI().delete(bankAccount)>0) {
-                XMessage.notificate(this, "Sua tai khoan thanh cong");
-                loadBankAccount();
+            if (BankAccountDAO.gI().delete(bankAccount) > 0) {
+                XMessage.notificate(this, "Xoa tai khoan thanh cong");
+                bankAccountList.remove(bankAccount);
+                resetForm();
+            } else {
+                XMessage.notificate(this, "Xoa that bai");
             }
-            return;
+
         }
-        XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
-    }
+        else {
+            XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
+        }
 
-
-
-    private void loadBankAccount() {
-        cbbNameBank.removeAllItems();
-        bankAccountList.forEach(cbbNameBank::addItem);
-    }
-
-    private void loadBank() {
-        StaticData.bankList.stream().forEach(cbbNameBank::addItem);
     }
 
     private void addBankAccount() {
@@ -253,20 +293,35 @@ BankDialog extends JDialog {
         if (isValid(txtNumber.getText())) {
             if (bank != null) {
                 BankAccount bankAccount = new BankAccount();
+                bankAccount.setId(UUID.randomUUID());
                 bankAccount.setAccountID(SessionManager.user.getId());
                 bankAccount.setSoTaiKhoan(txtNumber.getText().trim());
                 bankAccount.setBankID(bank.getId());
                 if (BankAccountDAO.gI().insert(bankAccount) > 0) {
                     XMessage.notificate(this, "Them ngan hang thanh cong");
-                    loadBank();
+                    bankAccountList.add(bankAccount);
+                    loadBankAccount();
+                } else {
+                    XMessage.alert(this, "Thêm thất bại");
                 }
-                XMessage.alert(this, "Thêm thất bại");
+
             }
         } else {
             XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
         }
 
     }
+
+    private void loadBankAccount() {
+        cbbNameBank.removeAllItems();
+        bankAccountList.forEach(cbbNameBank::addItem);
+    }
+
+    private void loadBank() {
+        cbbNameBank.removeAllItems();
+        StaticData.bankList.stream().forEach(cbbNameBank::addItem);
+    }
+
 
     private boolean isValid(String str) {
         return str.matches("\\d{10}");
