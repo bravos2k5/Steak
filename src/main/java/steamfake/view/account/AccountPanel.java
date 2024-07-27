@@ -502,7 +502,7 @@ public class AccountPanel extends JPanel {
         btnBankManagement.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                BankDialog bankDialog =new BankDialog(MFrame.gI(),bankAccountList);
+                BankDialog bankDialog =new BankDialog(MFrame.gI(),bankAccountList,AccountPanel.this);
                 bankDialog.setVisible(true);
                 bankDialog.addWindowFocusListener(new WindowAdapter() {
                     @Override
@@ -548,7 +548,7 @@ public class AccountPanel extends JPanel {
         addItemCBBAccount();
     }
 
-    private void addItemCBBAccount() {
+    public void addItemCBBAccount() {
         cboBankAccount.removeAllItems();
         bankAccountList.forEach(cboBankAccount::addItem);
     }

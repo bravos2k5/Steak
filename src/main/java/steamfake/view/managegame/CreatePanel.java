@@ -26,8 +26,8 @@ import java.util.UUID;
 /**
  * @author ACER
  */
-public class SettingGame extends JDialog {
-    public SettingGame(Window owner) {
+public class CreatePanel extends JDialog {
+    public CreatePanel(Window owner) {
         super(owner);
         initComponents();
         this.getContentPane().setBackground(new Color(25,27,32));
@@ -120,7 +120,7 @@ public class SettingGame extends JDialog {
         }
 
         //---- label4 ----
-        label4.setText("M\u00f4 t\u1ea3");
+        label4.setText("M\u00f4 t\u1ea3 (h\u1ed7 tr\u1ee3 HTML)");
         label4.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
         //---- lblAvatar ----
@@ -495,7 +495,7 @@ public class SettingGame extends JDialog {
     private void addRemoveImageEvent() {
         cboImages.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.DESELECTED) {
-                int choice = XMessage.confirm(SettingGame.this, "Bạn có chắc chắn muốn xóa ảnh này không?");
+                int choice = XMessage.confirm(CreatePanel.this, "Bạn có chắc chắn muốn xóa ảnh này không?");
                 if(choice == JOptionPane.YES_OPTION) {
                     cboImages.removeItemAt(cboImages.getSelectedIndex());
                 }
@@ -509,7 +509,7 @@ public class SettingGame extends JDialog {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 XImage.imageFileFilter(fileChooser);
-                int result = fileChooser.showOpenDialog(SettingGame.this);
+                int result = fileChooser.showOpenDialog(CreatePanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
                     lblAvatar.setToolTipText(fileChooser.getSelectedFile().getAbsolutePath());

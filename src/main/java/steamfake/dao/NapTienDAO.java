@@ -5,7 +5,10 @@ import steamfake.model.NapCard;
 import steamfake.model.NapTien;
 import steamfake.utils.database.XJdbc;
 
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class NapTienDAO implements DataAccessObject<NapTien> {
 
@@ -75,8 +78,54 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
 
     @Override
     public List<NapTien> selectBySQL(String sql, Object... args) {
-      return List.of();
+        List<NapTien> list = new ArrayList<>();
+        try(ResultSet rs = XJdbc.getResultSet(sql, args)) {
+            while(rs.next()) {
+                int method = rs.getInt("method");
+                NapTien napTien;
+                if(method == NapTien.NAP_CARD) {
+                    napTien = new NapCard();
+                    ((NapCard) napTien).setSecretKey(rs.getString("secret_key"));
+                    ((NapCard) napTien).setSeri(rs.getString("seri"));
+                    ((NapCard) napTien).setNhaMang(rs.getInt("nha_mang"));
+                }
+                else {
+                    napTien = new NapCK();
+                    ((NapCK) napTien).setHinhThuc(rs.getInt("hinh_thuc"));
+                }
+                napTien.setId(UUID.fromString(rs.getString("id")));
+                napTien.setAccountID(UUID.fromString(rs.getString("account_id")));
+                napTien.setMethod(method);
+                napTien.setNgayNap(rs.getDate("ngay_nap"));
+                napTien.setStatus(rs.getInt("status"));
+                napTien.setSoTien(rs.getDouble("so_tien"));
+                list.add(napTien);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return list;
     }
 
+    public List<NapTien> selectByMethod(int method) {
+        String sql = "{CALL SP_LAY_THONG_TIN_NAP(?)}";
+        return selectBySQL(sql, method);
+    }
+
+    public List<NapTien> selectByMethodAndAccount(int method, UUID accountID) {
+        String sql = "{CALL SP_LAY_THONG_TIN_NAP_BY_ACCOUNT_ID(?, ?)}";
+        return selectBySQL(sql, accountID, method);
+    }
+
+    public int acceptPhieuNap(NapTien napTien) {
+        String sql = "{CALL SP_DUYET_PHIEU_NAP(?,?,?,?,?)}";
+        return XJdbc.update(sql, napTien.getId(), napTien.getAccountID(), napTien.getSoTien(),napTien.getMethod(), NapTien.ACCEPTED);
+    }
+
+    public int rejectPhieuNap(NapTien napTien) {
+        String sql = "{CALL SP_DUYET_PHIEU_NAP(?,?,?,?,?)}";
+        return XJdbc.update(sql, napTien.getId(), napTien.getAccountID(), napTien.getSoTien(),napTien.getMethod(), NapTien.REJECTED);
+    }
 
 }

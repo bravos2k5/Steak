@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -194,8 +194,8 @@ new FormModel {
 								"borderWidth": 1
 								"background": #Color0
 								add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:0:x, comp radiusLabel2:::p::p}, seq {comp radiusButton2:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}, seq l {space :p:122:p, comp comboBox3:::p:692:p, space :0:136:x}}"
-									"$verticalGroup": "par l {seq {space :p:49:p, comp radiusLabel2:::p::p, space :p:53:p, comp comboBox3:::p:50:p, space ::96:x, par b {comp radiusButton2::b:p:69:p, comp radiusLabel3::b:p:69:p}, space :p:32:p}}"
+									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:0:x, comp radiusLabel2:::p::p}, seq {comp btnAddBank:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}, seq l {space :p:122:p, comp comboBox3:::p:692:p, space :0:136:x}}"
+									"$verticalGroup": "par l {seq {space :p:49:p, comp radiusLabel2:::p::p, space :p:53:p, comp comboBox3:::p:50:p, space ::96:x, par b {comp btnAddBank::b:p:69:p, comp radiusLabel3::b:p:69:p}, space :p:32:p}}"
 								} ) {
 									name: "radiusPanel4"
 									"background": #Color1
@@ -205,7 +205,7 @@ new FormModel {
 										"font": #Font0
 									} )
 									add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-										name: "radiusButton2"
+										name: "btnAddBank"
 										"text": "Nạp tiền"
 										"originColor": #Color3
 										"background": #Color4

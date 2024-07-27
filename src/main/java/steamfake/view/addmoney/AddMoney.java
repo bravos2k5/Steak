@@ -4,27 +4,16 @@
 
 package steamfake.view.addmoney;
 
-import steamfake.dao.NapTienDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
 import steamfake.graphics.RadiusTextField;
-import steamfake.model.NapCard;
-import steamfake.model.NapTien;
-import steamfake.utils.SessionManager;
+import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.Date;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.UUID;
 
 /**
  * @author ACER
@@ -34,14 +23,11 @@ public class AddMoney extends JPanel {
     public AddMoney() {
         initComponents();
         scrollPane1.setBorder(null);
-        for (int i = 0; i < 3; i++) {
-            panel4.add(new HistoryAddMoney());
-        }
-        radiusButton2.addMouseListener(new MouseAdapter() {
+        btnAddBank.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 super.mouseClicked(e);
-                new BankMoney(null).setVisible(true);
+                new BankMoney(MFrame.gI()).setVisible(true);
             }
         });
         initialize();
@@ -77,7 +63,7 @@ public class AddMoney extends JPanel {
         radiusPanel3 = new RadiusPanel();
         radiusPanel4 = new RadiusPanel();
         comboBox3 = new JComboBox();
-        radiusButton2 = new RadiusButton();
+        btnAddBank = new RadiusButton();
         radiusLabel2 = new RadiusPanel();
         radiusLabel3 = new RadiusLabel();
         scrollPane2 = new JScrollPane();
@@ -372,13 +358,13 @@ public class AddMoney extends JPanel {
                                 comboBox3.setBackground(new Color(0x191b20));
                                 comboBox3.setFont(new Font("Inter", Font.BOLD, 16));
 
-                                //---- radiusButton2 ----
-                                radiusButton2.setText("N\u1ea1p ti\u1ec1n");
-                                radiusButton2.setOriginColor(new Color(0x35452a));
-                                radiusButton2.setBackground(new Color(0x35452a));
-                                radiusButton2.setRadius(7);
-                                radiusButton2.setHoverColor(new Color(0x429509));
-                                radiusButton2.setFont(new Font("Inter", Font.BOLD, 16));
+                                //---- btnAddBank ----
+                                btnAddBank.setText("N\u1ea1p ti\u1ec1n");
+                                btnAddBank.setOriginColor(new Color(0x35452a));
+                                btnAddBank.setBackground(new Color(0x35452a));
+                                btnAddBank.setRadius(7);
+                                btnAddBank.setHoverColor(new Color(0x429509));
+                                btnAddBank.setFont(new Font("Inter", Font.BOLD, 16));
 
                                 //======== radiusLabel2 ========
                                 {
@@ -417,7 +403,7 @@ public class AddMoney extends JPanel {
                                                     .addGap(0, 0, Short.MAX_VALUE)
                                                     .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                                    .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(btnAddBank, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                                                     .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)))
                                             .addGap(40, 40, 40))
@@ -435,7 +421,7 @@ public class AddMoney extends JPanel {
                                             .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                                             .addGroup(radiusPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                                .addComponent(radiusButton2, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(btnAddBank, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
                                             .addGap(32, 32, 32))
                                 );
@@ -629,7 +615,7 @@ public class AddMoney extends JPanel {
     private RadiusPanel radiusPanel3;
     private RadiusPanel radiusPanel4;
     private JComboBox comboBox3;
-    private RadiusButton radiusButton2;
+    private RadiusButton btnAddBank;
     private RadiusPanel radiusLabel2;
     private RadiusLabel radiusLabel3;
     private JScrollPane scrollPane2;

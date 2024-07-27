@@ -65,7 +65,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
-				"text": "Mô tả"
+				"text": "Mô tả (hỗ trợ HTML)"
 				"font": #Font1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

@@ -17,7 +17,6 @@ import steamfake.utils.XMessage;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -31,14 +30,15 @@ BankDialog extends JDialog {
 
     private boolean isEditing = false;
     private final List<BankAccount> bankAccountList;
+    private final AccountPanel accountPanel;
 
-    public BankDialog(Window owner, List<BankAccount> bankAccountList) {
+    public BankDialog(Window owner, List<BankAccount> bankAccountList, AccountPanel accountPanel) {
         super(owner);
         this.bankAccountList = bankAccountList;
+        this.accountPanel = accountPanel;
         initComponents();
         this.getContentPane().setBackground(new Color(0x191b20));
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
         initialize();
 
     }
@@ -186,15 +186,12 @@ BankDialog extends JDialog {
     }
 
     private void initEvent() {
-        cbbNameBank.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    if (!isEditing) {
-                        BankAccount bankAccount = bankAccountList.get(cbbNameBank.getSelectedIndex());
-                        txtName.setText(BankDAO.gI().selectByID(String.valueOf(bankAccount.getBankID())).getName());
-                        txtNumber.setText(bankAccount.getSoTaiKhoan());
-                    }
+        cbbNameBank.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                if (!isEditing) {
+                    BankAccount bankAccount = bankAccountList.get(cbbNameBank.getSelectedIndex());
+                    txtName.setText(BankDAO.gI().selectByID(String.valueOf(bankAccount.getBankID())).getName());
+                    txtNumber.setText(bankAccount.getSoTaiKhoan());
                 }
             }
         });
@@ -267,7 +264,7 @@ BankDialog extends JDialog {
             }
             return;
         }
-        XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
+        XMessage.alert(this, "Số tài khoản phải đủ 10 chữ số và không có chữ");
     }
 
     private void delete() {
@@ -281,9 +278,6 @@ BankDialog extends JDialog {
                 XMessage.notificate(this, "Xoa that bai");
             }
 
-        }
-        else {
-            XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
         }
 
     }
@@ -304,12 +298,10 @@ BankDialog extends JDialog {
                 } else {
                     XMessage.alert(this, "Thêm thất bại");
                 }
-
             }
         } else {
-            XMessage.alert(null, "Số tài khoản phải đủ 10 chữ số và không có chữ");
+            XMessage.alert(null, "Số tài khoản phải trên 8 chữ số và không có chữ");
         }
-
     }
 
     private void loadBankAccount() {
@@ -324,7 +316,13 @@ BankDialog extends JDialog {
 
 
     private boolean isValid(String str) {
-        return str.matches("\\d{10}");
+        return str.matches("^\\d{8,}$");
+    }
+
+    @Override
+    public void dispose() {
+        accountPanel.addItemCBBAccount();
+        super.dispose();
     }
 
 }
