@@ -210,6 +210,7 @@ public class HeaderPanel extends JPanel {
         lblAvata.setSize(new Dimension(50,50));
         initEffectHover();
         initSettingAccountPage();
+        initAddMoneyPage();
         btnLogin.addActionListener(e -> login());
         iconLogOut.setVisible(SessionManager.isLogin());
         iconLogOut.addMouseListener(new MouseAdapter() {
@@ -281,6 +282,19 @@ public class HeaderPanel extends JPanel {
                     return;
                 }
                 MFrame.gI().showAccountSetting();
+            }
+        });
+    }
+    private void initAddMoneyPage() {
+        iconAddMoney.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(!SessionManager.isLogin()) {
+                    XMessage.notificate(MFrame.gI()," bạn cần đăng nhập để sử dụng chức năng này");
+                    new LoginDialog(MFrame.gI()).setVisible(true);
+                    return;
+                }
+                MFrame.gI().showAddMoney();
             }
         });
     }

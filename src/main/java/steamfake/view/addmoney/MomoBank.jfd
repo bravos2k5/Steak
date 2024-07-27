@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::44:x, par l {seq t {comp label21:::p::p, space :p:133:p}, seq t {comp radiusPanel3:::p::p, space :p:23:p}, seq t {comp radiusButton1:::p:300:p, space :p:122:p}}}}"
-				"$verticalGroup": "par l {seq t {space :p:18:p, comp label21:::p::p, space u:::p, comp radiusPanel3:::p::p, space ::30:x, comp radiusButton1:::p:30:p, space :p:21:p}}"
+				"$horizontalGroup": "par l {seq {space ::44:x, par l {seq t {comp label21:::p::p, space :p:133:p}, seq t {comp radiusPanel3:::p::p, space :p:23:p}, seq t {comp btnPay:::p:300:p, space :p:122:p}}}}"
+				"$verticalGroup": "par l {seq t {space :p:18:p, comp label21:::p::p, space u:::p, comp radiusPanel3:::p::p, space ::26:x, comp btnPay:::p:40:p, space :p:15:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -60,7 +60,7 @@ new FormModel {
 					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/image 8.png" )
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-					name: "radiusButton1"
+					name: "btnPay"
 					"text": "Thanh toán"
 					"font": new java.awt.Font( "SansSerif", 1, 14 )
 				} )
