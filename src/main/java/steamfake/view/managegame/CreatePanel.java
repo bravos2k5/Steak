@@ -70,6 +70,8 @@ public class SettingGame extends JDialog {
         txtVersion = new RadiusTextField();
 
         //======== this ========
+        setModal(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         var contentPane = getContentPane();
 
         //---- txtName ----

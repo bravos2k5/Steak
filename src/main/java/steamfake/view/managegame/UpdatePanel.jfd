@@ -1,0 +1,201 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq t {space ::759:x, comp label10:::p::p, space :p:105:p}, seq l {space :p:50:p, par l {seq {comp label11:::p::p, space s:::p, comp txtRam:::p:100:p, space :p:33:p, comp label12:::p::p, space s:::p, comp txtRom:::p:100:p, space :p:45:p, comp lblVersion:::p::p, space s:::p, comp txtVersion:::p:100:p, space :0:0:x}, seq {comp cboImages:::p:316:p, space :p:1:p, comp btnAddImage:::p::p, space :::x}, seq {par l {seq l {space :0:0:x, comp btnCancel:::p:100:p, space s:::p, comp btnUpload:::p:100:p, space :p:16:p}, seq l {par t {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp txtCost:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp cboAge:::p:184:p}}, comp txtName:::p:540:p}, space :p:108:p, comp lblAvatar:::p:150:p}, par l {comp label4:::p::p, comp scrollPane1:::p:798:p, seq l {comp txtFolderPath:::p:252:p, space :0:0:p, comp btnInfoFolder:::p::p, space u:::p, comp btnSelectFolder:::p::p}, comp label8::l:p:336:p}}, space :0:0:x}, seq l {comp label6:::p:206:p, space ::228:x, par l {seq l {comp txtExecFilePath:::p:240:p, space :0:0:p, comp btnInfoExec:::p::p, space u:::p, comp btnSelectExecFile:::p:97:p}, seq t {comp label7:::p:206:p, space :p:182:p}, comp label9::l:p::p}}}, space :p:26:p}}}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par l {comp cboAge:::p:30:p, comp txtCost::l:p:30:p}}, seq l {space :p:35:p, comp lblAvatar:::p:150:p}}, space :::p, comp label10:::p::p, space :p:18:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, par b {comp label6::b:p:30:p, comp label7::b:p:30:p}, space s:::p, par b {comp btnInfoFolder::b:p::p, comp btnSelectFolder::b:p::p, comp txtFolderPath::b:p::p, comp txtExecFilePath::b:p::p, comp btnInfoExec::b:p::p, comp btnSelectExecFile::b:p::p}, space :p:41:p, comp label8:::p:30:p, space s:::p, par b {comp cboImages::b:p:40:p, comp btnAddImage::b:p:40:p, comp label9::b:p::p}, space :p:38:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space ::46:x, par b {comp btnUpload::b:p:30:p, comp btnCancel::b:p:30:p}, space :p:47:p}}"
+		} ) {
+			name: "this"
+			"modal": true
+			"defaultCloseOperation": 2
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtName"
+				"radius": 0
+				"forcusColor": &Color0 new java.awt.Color( 12, 140, 233, 255 )
+				"font": &Font0 new java.awt.Font( "SansSerif", 0, 14 )
+				"endGradientColor": &Color1 new java.awt.Color( 37, 39, 48, 255 )
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"noForcusColor": &Color2 new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label1"
+				"text": "Tên game"
+				"font": &Font1 new java.awt.Font( "SansSerif", 0, 16 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label2"
+				"text": "Giá game"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtCost"
+				"radius": 0
+				"forcusColor": #Color0
+				"font": #Font0
+				"endGradientColor": #Color1
+				"noForcusColor": #Color2
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"placeholder": "VND"
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cboAge"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "Integer"
+				}
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label3"
+				"text": "Độ tuổi"
+				"font": #Font1
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "scrollPane1"
+				add( new FormComponent( "javax.swing.JTextArea" ) {
+					name: "txtDescriptsion"
+					"background": new java.awt.Color( 37, 39, 48, 255 )
+					"font": new java.awt.Font( "SansSerif", 0, 14 )
+					"lineWrap": true
+					"wrapStyleWord": true
+				} )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label4"
+				"text": "Mô tả"
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblAvatar"
+				"background": sfield java.awt.Color white
+				"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/plus-sign.png" )
+				"horizontalAlignment": 0
+				"cursor": new java.awt.Cursor( 12 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label6"
+				"text": "Upload folder game"
+				"font": &Font2 new java.awt.Font( "SansSerif", 1, 18 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnUpload"
+				"text": "Đăng lên"
+				"horizontalAlignment": 0
+				"font": &Font3 new java.awt.Font( "SansSerif", 1, 14 )
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Hủy bỏ"
+				"horizontalAlignment": 0
+				"font": #Font3
+				"background": new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": new java.awt.Color( 62, 55, 55, 255 )
+				"radius": 5
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtFolderPath"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnInfoFolder"
+				"text": "?"
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnSelectFolder"
+				"text": "Chọn folder"
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label7"
+				"text": "File thực thi game"
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JTextField" ) {
+				name: "txtExecFilePath"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnInfoExec"
+				"text": "?"
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnSelectExecFile"
+				"text": "Chọn file"
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label8"
+				"text": "Upload ảnh giới thiệu (tối đa 10 ảnh)"
+				"font": #Font2
+			} )
+			add( new FormComponent( "javax.swing.JComboBox" ) {
+				name: "cboImages"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				auxiliary() {
+					"JavaCodeGenerator.typeParameters": "String"
+				}
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnAddImage"
+				"text": "Thêm ảnh"
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label9"
+				"text": "Không chọn trùng ảnh và nên chọn ảnh độ phân giải cao"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label10"
+				"text": "Avatar"
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label11"
+				"text": "Ram yêu cầu:"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtRam"
+				"placeholder": "Megabyte"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "label12"
+				"text": "Rom yêu cầu:"
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtRom"
+				"placeholder": "Megabyte"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblVersion"
+				"text": "Phiên bản:"
+				"font": new java.awt.Font( "Segoe UI", 0, 14 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtVersion"
+				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"endGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+				"startGradientColor": new java.awt.Color( 37, 39, 48, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 900, 1000 )
+		} )
+	}
+}
