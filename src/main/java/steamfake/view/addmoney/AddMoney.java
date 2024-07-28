@@ -13,7 +13,9 @@ import steamfake.model.NapCK;
 import steamfake.model.NapCard;
 import steamfake.model.NapTien;
 import steamfake.utils.SessionManager;
+import steamfake.utils.XMessage;
 import steamfake.view.mainframe.MFrame;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -22,6 +24,7 @@ import java.sql.Date;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -32,14 +35,15 @@ public class AddMoney extends JPanel {
 
     public AddMoney() {
         initComponents();
-        scrollPane1.setBorder(null);
+        scrollPane2.setBorder(null);
+        scrollPane3.setBorder(null);
         initialize();
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         panel1 = new JPanel();
-        tabbedPane1 = new JTabbedPane();
+        tabs = new JTabbedPane();
         panel2 = new JPanel();
         radiusPanel1 = new RadiusPanel();
         radiusPanel2 = new RadiusPanel();
@@ -53,14 +57,14 @@ public class AddMoney extends JPanel {
         label12 = new JLabel();
         label13 = new JLabel();
         label14 = new JLabel();
-        scrollPane1 = new JScrollPane();
-        panel4 = new JPanel();
-        panel3 = new JPanel();
-        label2 = new JLabel();
-        label3 = new JLabel();
-        label4 = new JLabel();
-        label5 = new JLabel();
-        label1 = new JLabel();
+        this3 = new JPanel();
+        label17 = new JLabel();
+        label18 = new JLabel();
+        label19 = new JLabel();
+        label20 = new JLabel();
+        scrollPane3 = new JScrollPane();
+        pnlCardHistory = new JPanel();
+        label21 = new JLabel();
         panel5 = new JPanel();
         panel6 = new JPanel();
         radiusPanel3 = new RadiusPanel();
@@ -73,13 +77,13 @@ public class AddMoney extends JPanel {
         cbbPrice2 = new JComboBox<>();
         label16 = new JLabel();
         scrollPane2 = new JScrollPane();
-        panel7 = new JPanel();
-        panel8 = new JPanel();
+        pnlBankHistory = new JPanel();
+        label10 = new JLabel();
+        this2 = new JPanel();
         label6 = new JLabel();
         label7 = new JLabel();
         label8 = new JLabel();
         label9 = new JLabel();
-        label10 = new JLabel();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -88,10 +92,10 @@ public class AddMoney extends JPanel {
         {
             panel1.setBackground(new Color(0x252730));
 
-            //======== tabbedPane1 ========
+            //======== tabs ========
             {
-                tabbedPane1.setBackground(new Color(0x252730));
-                tabbedPane1.setFont(new Font("Inter", Font.BOLD, 16));
+                tabs.setBackground(new Color(0x252730));
+                tabs.setFont(new Font("Inter", Font.BOLD, 16));
 
                 //======== panel2 ========
                 {
@@ -240,7 +244,7 @@ public class AddMoney extends JPanel {
                                 .addGroup(radiusPanel1Layout.createSequentialGroup()
                                     .addGap(25, 25, 25)
                                     .addComponent(radiusPanel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap(25, Short.MAX_VALUE))
+                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         );
                         radiusPanel1Layout.setVerticalGroup(
                             radiusPanel1Layout.createParallelGroup()
@@ -251,70 +255,73 @@ public class AddMoney extends JPanel {
                         );
                     }
 
-                    //======== scrollPane1 ========
+                    //======== this3 ========
                     {
-                        scrollPane1.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+                        this3.setBackground(new Color(0x191b20));
+                        this3.setMaximumSize(new Dimension(1000, 50));
 
-                        //======== panel4 ========
+                        //---- label17 ----
+                        label17.setText("ID");
+                        label17.setFont(new Font("Inter", Font.BOLD, 14));
+                        label17.setHorizontalAlignment(SwingConstants.CENTER);
+
+                        //---- label18 ----
+                        label18.setText("Ng\u00e0y n\u1ea1p");
+                        label18.setFont(new Font("Inter", Font.BOLD, 14));
+                        label18.setHorizontalAlignment(SwingConstants.CENTER);
+
+                        //---- label19 ----
+                        label19.setText("M\u1ec7nh gi\u00e1");
+                        label19.setFont(new Font("Inter", Font.BOLD, 14));
+                        label19.setHorizontalAlignment(SwingConstants.CENTER);
+
+                        //---- label20 ----
+                        label20.setText("Tr\u1ea1ng th\u00e1i");
+                        label20.setFont(new Font("Inter", Font.BOLD, 14));
+                        label20.setHorizontalAlignment(SwingConstants.CENTER);
+                        label20.setForeground(Color.white);
+
+                        GroupLayout this3Layout = new GroupLayout(this3);
+                        this3.setLayout(this3Layout);
+                        this3Layout.setHorizontalGroup(
+                            this3Layout.createParallelGroup()
+                                .addGroup(this3Layout.createSequentialGroup()
+                                    .addComponent(label17, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, 0)
+                                    .addComponent(label18, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, 0)
+                                    .addComponent(label19, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, 0)
+                                    .addComponent(label20, GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                                    .addContainerGap())
+                        );
+                        this3Layout.setVerticalGroup(
+                            this3Layout.createParallelGroup()
+                                .addGroup(GroupLayout.Alignment.TRAILING, this3Layout.createSequentialGroup()
+                                    .addGap(0, 0, Short.MAX_VALUE)
+                                    .addGroup(this3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                        .addComponent(label17, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label18, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label19, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label20, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+                        );
+                    }
+
+                    //======== scrollPane3 ========
+                    {
+                        scrollPane3.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+                        //======== pnlCardHistory ========
                         {
-                            panel4.setBackground(new Color(0x252730));
-                            panel4.setLayout(new BoxLayout(panel4, BoxLayout.Y_AXIS));
+                            pnlCardHistory.setBackground(new Color(0x252730));
+                            pnlCardHistory.setLayout(new BoxLayout(pnlCardHistory, BoxLayout.Y_AXIS));
                         }
-                        scrollPane1.setViewportView(panel4);
+                        scrollPane3.setViewportView(pnlCardHistory);
                     }
 
-                    //======== panel3 ========
-                    {
-                        panel3.setBackground(new Color(0x191b20));
-
-                        //---- label2 ----
-                        label2.setText("ID");
-                        label2.setFont(new Font("Inter", Font.BOLD, 16));
-                        label2.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        //---- label3 ----
-                        label3.setText("Ng\u00e0y N\u1ea1p");
-                        label3.setFont(new Font("Inter", Font.BOLD, 16));
-                        label3.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        //---- label4 ----
-                        label4.setText("Tr\u1ea1ng th\u00e1i");
-                        label4.setFont(new Font("Inter", Font.BOLD, 16));
-                        label4.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        //---- label5 ----
-                        label5.setText("ID");
-                        label5.setFont(new Font("Inter", Font.BOLD, 16));
-                        label5.setHorizontalAlignment(SwingConstants.CENTER);
-
-                        GroupLayout panel3Layout = new GroupLayout(panel3);
-                        panel3.setLayout(panel3Layout);
-                        panel3Layout.setHorizontalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createSequentialGroup()
-                                    .addGap(0, 0, 0)
-                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(label4, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, 0)
-                                    .addComponent(label5, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        );
-                        panel3Layout.setVerticalGroup(
-                            panel3Layout.createParallelGroup()
-                                .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(label3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label4, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(label5, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                        );
-                    }
-
-                    //---- label1 ----
-                    label1.setText("L\u1ecbch s\u1eed n\u1ea1p th\u1ebb");
-                    label1.setFont(new Font("Inter", Font.BOLD, 16));
+                    //---- label21 ----
+                    label21.setText("L\u1ecbch s\u1eed n\u1ea1p th\u1ebb ");
+                    label21.setFont(new Font("Inter", Font.BOLD, 16));
 
                     GroupLayout panel2Layout = new GroupLayout(panel2);
                     panel2.setLayout(panel2Layout);
@@ -322,26 +329,30 @@ public class AddMoney extends JPanel {
                         panel2Layout.createParallelGroup()
                             .addComponent(radiusPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(panel2Layout.createSequentialGroup()
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 790, Short.MAX_VALUE))
-                            .addComponent(panel3, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
-                            .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                                .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(this3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(scrollPane3, GroupLayout.Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(label21, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(784, Short.MAX_VALUE))
                     );
                     panel2Layout.setVerticalGroup(
                         panel2Layout.createParallelGroup()
                             .addGroup(panel2Layout.createSequentialGroup()
                                 .addGap(0, 0, 0)
                                 .addComponent(radiusPanel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(label1, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(panel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                                .addComponent(label21, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(this3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, 0)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                                .addGap(16, 16, 16))
+                                .addComponent(scrollPane3, GroupLayout.PREFERRED_SIZE, 177, GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
                     );
                 }
-                tabbedPane1.addTab("N\u1ea1p th\u1ebb c\u00e0o", panel2);
+                tabs.addTab("N\u1ea1p th\u1ebb c\u00e0o", panel2);
 
                 //======== panel5 ========
                 {
@@ -430,12 +441,12 @@ public class AddMoney extends JPanel {
                                             .addGap(24, 24, 24)
                                             .addGroup(radiusPanel4Layout.createParallelGroup()
                                                 .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                                    .addGap(0, 97, Short.MAX_VALUE)
+                                                    .addGap(0, 0, Short.MAX_VALUE)
                                                     .addGroup(radiusPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                         .addComponent(label15, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(cbbBank, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
                                                         .addComponent(label16, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(cbbPrice2, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+                                                        .addComponent(cbbPrice2))
                                                     .addGap(97, 97, 97)
                                                     .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(radiusPanel4Layout.createSequentialGroup()
@@ -490,66 +501,69 @@ public class AddMoney extends JPanel {
                         {
                             scrollPane2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-                            //======== panel7 ========
+                            //======== pnlBankHistory ========
                             {
-                                panel7.setBackground(new Color(0x252730));
-                                panel7.setLayout(new BoxLayout(panel7, BoxLayout.Y_AXIS));
+                                pnlBankHistory.setBackground(new Color(0x252730));
+                                pnlBankHistory.setLayout(new BoxLayout(pnlBankHistory, BoxLayout.Y_AXIS));
                             }
-                            scrollPane2.setViewportView(panel7);
-                        }
-
-                        //======== panel8 ========
-                        {
-                            panel8.setBackground(new Color(0x191b20));
-
-                            //---- label6 ----
-                            label6.setText("ID");
-                            label6.setFont(new Font("Inter", Font.BOLD, 16));
-                            label6.setHorizontalAlignment(SwingConstants.CENTER);
-
-                            //---- label7 ----
-                            label7.setText("Ng\u00e0y N\u1ea1p");
-                            label7.setFont(new Font("Inter", Font.BOLD, 16));
-                            label7.setHorizontalAlignment(SwingConstants.CENTER);
-
-                            //---- label8 ----
-                            label8.setText("Tr\u1ea1ng th\u00e1i");
-                            label8.setFont(new Font("Inter", Font.BOLD, 16));
-                            label8.setHorizontalAlignment(SwingConstants.CENTER);
-
-                            //---- label9 ----
-                            label9.setText("ID");
-                            label9.setFont(new Font("Inter", Font.BOLD, 16));
-                            label9.setHorizontalAlignment(SwingConstants.CENTER);
-
-                            GroupLayout panel8Layout = new GroupLayout(panel8);
-                            panel8.setLayout(panel8Layout);
-                            panel8Layout.setHorizontalGroup(
-                                panel8Layout.createParallelGroup()
-                                    .addGroup(panel8Layout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
-                                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, 0)
-                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            );
-                            panel8Layout.setVerticalGroup(
-                                panel8Layout.createParallelGroup()
-                                    .addGroup(panel8Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                            );
+                            scrollPane2.setViewportView(pnlBankHistory);
                         }
 
                         //---- label10 ----
                         label10.setText("L\u1ecbch s\u1eed n\u1ea1p ng\u00e2n h\u00e0ng ");
                         label10.setFont(new Font("Inter", Font.BOLD, 16));
+
+                        //======== this2 ========
+                        {
+                            this2.setBackground(new Color(0x191b20));
+                            this2.setMaximumSize(new Dimension(1000, 50));
+
+                            //---- label6 ----
+                            label6.setText("ID");
+                            label6.setFont(new Font("Inter", Font.BOLD, 14));
+                            label6.setHorizontalAlignment(SwingConstants.CENTER);
+
+                            //---- label7 ----
+                            label7.setText("Ng\u00e0y n\u1ea1p");
+                            label7.setFont(new Font("Inter", Font.BOLD, 14));
+                            label7.setHorizontalAlignment(SwingConstants.CENTER);
+
+                            //---- label8 ----
+                            label8.setText("M\u1ec7nh gi\u00e1");
+                            label8.setFont(new Font("Inter", Font.BOLD, 14));
+                            label8.setHorizontalAlignment(SwingConstants.CENTER);
+
+                            //---- label9 ----
+                            label9.setText("Tr\u1ea1ng th\u00e1i");
+                            label9.setFont(new Font("Inter", Font.BOLD, 14));
+                            label9.setHorizontalAlignment(SwingConstants.CENTER);
+                            label9.setForeground(Color.white);
+
+                            GroupLayout this2Layout = new GroupLayout(this2);
+                            this2.setLayout(this2Layout);
+                            this2Layout.setHorizontalGroup(
+                                this2Layout.createParallelGroup()
+                                    .addGroup(this2Layout.createSequentialGroup()
+                                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 310, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(label7, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 230, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(label9, GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                                        .addContainerGap())
+                            );
+                            this2Layout.setVerticalGroup(
+                                this2Layout.createParallelGroup()
+                                    .addGroup(GroupLayout.Alignment.TRAILING, this2Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
+                                        .addGroup(this2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                            .addComponent(label6, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label7, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+                            );
+                        }
 
                         GroupLayout panel6Layout = new GroupLayout(panel6);
                         panel6.setLayout(panel6Layout);
@@ -558,10 +572,14 @@ public class AddMoney extends JPanel {
                                 .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
                                     .addGap(0, 0, Short.MAX_VALUE)
                                     .addGroup(panel6Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(radiusPanel3, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(panel8, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(scrollPane2, GroupLayout.Alignment.TRAILING)))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
+                                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 210, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(771, 771, 771))
+                                        .addComponent(this2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel6Layout.createSequentialGroup()
+                                            .addComponent(radiusPanel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addContainerGap())
+                                        .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)))
                         );
                         panel6Layout.setVerticalGroup(
                             panel6Layout.createParallelGroup()
@@ -570,7 +588,7 @@ public class AddMoney extends JPanel {
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(label10, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(panel8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(this2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 0, 0)
                                     .addComponent(scrollPane2, GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                     .addGap(16, 16, 16))
@@ -588,7 +606,7 @@ public class AddMoney extends JPanel {
                             .addComponent(panel6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     );
                 }
-                tabbedPane1.addTab("Ng\u00e2n h\u00e0ng", panel5);
+                tabs.addTab("Ng\u00e2n h\u00e0ng", panel5);
             }
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
@@ -597,14 +615,14 @@ public class AddMoney extends JPanel {
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
                         .addGap(50, 50, 50)
-                        .addComponent(tabbedPane1, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tabs, GroupLayout.PREFERRED_SIZE, 1000, GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(50, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(tabbedPane1, GroupLayout.PREFERRED_SIZE, 744, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tabs, GroupLayout.PREFERRED_SIZE, 744, GroupLayout.PREFERRED_SIZE))
             );
         }
 
@@ -629,7 +647,7 @@ public class AddMoney extends JPanel {
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
-    private JTabbedPane tabbedPane1;
+    private JTabbedPane tabs;
     private JPanel panel2;
     private RadiusPanel radiusPanel1;
     private RadiusPanel radiusPanel2;
@@ -643,14 +661,14 @@ public class AddMoney extends JPanel {
     private JLabel label12;
     private JLabel label13;
     private JLabel label14;
-    private JScrollPane scrollPane1;
-    private JPanel panel4;
-    private JPanel panel3;
-    private JLabel label2;
-    private JLabel label3;
-    private JLabel label4;
-    private JLabel label5;
-    private JLabel label1;
+    private JPanel this3;
+    private JLabel label17;
+    private JLabel label18;
+    private JLabel label19;
+    private JLabel label20;
+    private JScrollPane scrollPane3;
+    private JPanel pnlCardHistory;
+    private JLabel label21;
     private JPanel panel5;
     private JPanel panel6;
     private RadiusPanel radiusPanel3;
@@ -663,13 +681,13 @@ public class AddMoney extends JPanel {
     private JComboBox<String> cbbPrice2;
     private JLabel label16;
     private JScrollPane scrollPane2;
-    private JPanel panel7;
-    private JPanel panel8;
+    private JPanel pnlBankHistory;
+    private JLabel label10;
+    private JPanel this2;
     private JLabel label6;
     private JLabel label7;
     private JLabel label8;
     private JLabel label9;
-    private JLabel label10;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
@@ -690,6 +708,12 @@ public class AddMoney extends JPanel {
                 }
             }
         });
+        tabs.addChangeListener(e -> {
+            if (tabs.getSelectedIndex() == 1) {
+                fillBankHistory();
+            }
+        });
+        fillCardHistory();
     }
 
 
@@ -697,7 +721,7 @@ public class AddMoney extends JPanel {
         napTien.setId(UUID.randomUUID());
         napTien.setAccountID(SessionManager.user.getId());
         napTien.setMethod(method);
-        napTien.setStatus(0);
+        napTien.setStatus(NapTien.PENDING);
         napTien.setNgayNap(Date.valueOf(LocalDate.now()));
         if (method == NapCard.NAP_CARD) {
             napTien.setSoTien(formatMoney((String) cbbPrice.getSelectedItem()) * 0.8);
@@ -714,22 +738,22 @@ public class AddMoney extends JPanel {
         card.setNhaMang(cbbMobieNetwork.getSelectedIndex() + 1);
         card.setNgayNap(Date.valueOf(LocalDate.now()));
         if (NapTienDAO.getInstance().insert(card) > 0) {
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            fillCardHistory();
+            XMessage.notificate(MFrame.gI(), "Thêm thành công");
         }else {
-            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            XMessage.notificate(MFrame.gI(), "Thêm thất bại");
         }
-
     }
 
     public void addBank(int method) {
-        NapCK ck =addNapTien(new NapCK(), NapCard.NAP_CK);
+        NapCK ck = addNapTien(new NapCK(), NapCard.NAP_CK);
         ck.setHinhThuc(method);
         if (NapTienDAO.getInstance().insert(ck) > 0) {
-            JOptionPane.showMessageDialog(this, "Thêm thành công");
+            fillBankHistory();
+            XMessage.notificate(MFrame.gI(), "Thêm thành công");
         }else {
-            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+            XMessage.notificate(MFrame.gI(), "Thêm thất bại");
         }
-
     }
 
     private double formatMoney(String money) {
@@ -739,7 +763,30 @@ public class AddMoney extends JPanel {
         } catch (ParseException e) {
             throw new RuntimeException(e);
         }
+    }
 
+    public String getSoTienNapBank() {
+        return (String) cbbPrice2.getSelectedItem();
+    }
+
+    private void fillCardHistory() {
+        List<NapTien> napTienList = NapTienDAO.getInstance().selectByMethodAndAccount(NapTien.NAP_CARD, SessionManager.user.getId());
+        pnlCardHistory.removeAll();
+        for(NapTien napTien : napTienList) {
+            pnlCardHistory.add(new HistoryItem(napTien));
+        }
+        pnlCardHistory.revalidate();
+        pnlCardHistory.repaint();
+    }
+
+    private void fillBankHistory() {
+        List<NapTien> napTienList = NapTienDAO.getInstance().selectByMethodAndAccount(NapTien.NAP_CK, SessionManager.user.getId());
+        pnlBankHistory.removeAll();
+        for(NapTien napTien : napTienList) {
+            pnlBankHistory.add(new HistoryItem(napTien));
+        }
+        pnlBankHistory.revalidate();
+        pnlBankHistory.repaint();
     }
 
 }

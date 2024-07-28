@@ -4,35 +4,31 @@
 
 package steamfake.view.addmoney;
 
-import com.formdev.flatlaf.FlatDarkLaf;
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusPanel;
+import steamfake.model.NapCK;
+import steamfake.utils.SessionManager;
+import steamfake.utils.XMessage;
 
+import javax.swing.*;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import steamfake.graphics.*;
-import steamfake.model.NapCK;
 
 
 /**
  * @author ACER
  */
 public class BankMoney extends JDialog {
-    private final AddMoney addMoney ;
-    public BankMoney(Window owner ,AddMoney addMoney) {
 
+    private final AddMoney addMoney ;
+
+    public BankMoney(Window owner ,AddMoney addMoney) {
         super(owner);
         this.addMoney = addMoney;
         initComponents();
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.getContentPane().setBackground(new Color(0x191b20));
-        btnPay.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                dispose();
-            }
-        });
+        initialize();
     }
 
     private void initComponents() {
@@ -48,8 +44,8 @@ public class BankMoney extends JDialog {
         label6 = new JLabel();
         label7 = new JLabel();
         label8 = new JLabel();
-        label9 = new JLabel();
-        label10 = new JLabel();
+        lblNoiDungCK = new JLabel();
+        lblSoTienCK = new JLabel();
         label25 = new JLabel();
         btnPay = new RadiusButton();
 
@@ -95,7 +91,7 @@ public class BankMoney extends JDialog {
                     label6.setHorizontalAlignment(SwingConstants.CENTER);
 
                     //---- label7 ----
-                    label7.setText("\u00d4ng Tr\u1ecbnh V\u0103n Thu\u1eadt");
+                    label7.setText("Tr\u1ecbnh V\u0103n Thu\u1eadt");
                     label7.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label7.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -104,15 +100,14 @@ public class BankMoney extends JDialog {
                     label8.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label8.setHorizontalAlignment(SwingConstants.CENTER);
 
-                    //---- label9 ----
-                    label9.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
-                    label9.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-                    label9.setHorizontalAlignment(SwingConstants.CENTER);
+                    //---- lblNoiDungCK ----
+                    lblNoiDungCK.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                    lblNoiDungCK.setHorizontalAlignment(SwingConstants.CENTER);
+                    lblNoiDungCK.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
-                    //---- label10 ----
-                    label10.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
-                    label10.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-                    label10.setHorizontalAlignment(SwingConstants.CENTER);
+                    //---- lblSoTienCK ----
+                    lblSoTienCK.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                    lblSoTienCK.setHorizontalAlignment(SwingConstants.CENTER);
 
                     GroupLayout radiusPanel1Layout = new GroupLayout(radiusPanel1);
                     radiusPanel1.setLayout(radiusPanel1Layout);
@@ -126,14 +121,19 @@ public class BankMoney extends JDialog {
                                     .addComponent(label3, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label4, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
-                                .addGroup(radiusPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(label7, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label6, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label9, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(label10, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-                                .addGap(55, 55, 55))
+                                .addGroup(radiusPanel1Layout.createParallelGroup()
+                                    .addGroup(radiusPanel1Layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(radiusPanel1Layout.createParallelGroup()
+                                            .addComponent(label7, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                            .addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(lblNoiDungCK, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(label6, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGap(55, 55, 55))
+                                    .addGroup(radiusPanel1Layout.createSequentialGroup()
+                                        .addGap(57, 57, 57)
+                                        .addComponent(lblSoTienCK, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(55, Short.MAX_VALUE))))
                     );
                     radiusPanel1Layout.setVerticalGroup(
                         radiusPanel1Layout.createParallelGroup()
@@ -147,9 +147,9 @@ public class BankMoney extends JDialog {
                                         .addGap(12, 12, 12)
                                         .addComponent(label8, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblNoiDungCK, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lblSoTienCK, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                                     .addGroup(radiusPanel1Layout.createSequentialGroup()
                                         .addComponent(label1, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -253,17 +253,36 @@ public class BankMoney extends JDialog {
     private JLabel label6;
     private JLabel label7;
     private JLabel label8;
-    private JLabel label9;
-    private JLabel label10;
+    private JLabel lblNoiDungCK;
+    private JLabel lblSoTienCK;
     private JLabel label25;
     private RadiusButton btnPay;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
-
+    private void initialize() {
+        lblNoiDungCK.setText(SessionManager.user.getId().toString());
+        lblSoTienCK.setText(addMoney.getSoTienNapBank());
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0x191b20));
+        btnPay.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
+        lblNoiDungCK.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(SessionManager.user.getId().toString()), null);
+                XMessage.notificate(BankMoney.this, "Đã copy nội dung chuyển khoản");
+            }
+        });
+    }
 
     @Override
     public void dispose() {
+        super.dispose();
         addMoney.addBank(NapCK.NGAN_HANG);
     }
 

@@ -97,14 +97,13 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
                 napTien.setAccountID(UUID.fromString(rs.getString("account_id")));
                 napTien.setMethod(method);
                 napTien.setNgayNap(rs.getDate("ngay_nap"));
-                napTien.setStatus(rs.getInt("status"));
+                napTien.setStatus(rs.getInt("trang_thai"));
                 napTien.setSoTien(rs.getDouble("so_tien"));
                 list.add(napTien);
             }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-
         return list;
     }
 

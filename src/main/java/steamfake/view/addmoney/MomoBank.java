@@ -4,13 +4,15 @@
 
 package steamfake.view.addmoney;
 
+import steamfake.graphics.RadiusButton;
+import steamfake.graphics.RadiusPanel;
+import steamfake.model.NapCK;
+import steamfake.utils.SessionManager;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.*;
-import javax.swing.GroupLayout;
-import steamfake.graphics.*;
-import steamfake.model.NapCK;
 
 /**
  * @author ACER
@@ -21,14 +23,7 @@ public class MomoBank extends JDialog {
         super(owner);
         initComponents();
         this.addMoney = addMoney;
-        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-        this.getContentPane().setBackground(new Color(0x191b20));
-        btnPay.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                dispose();
-            }
-        });
+
     }
 
     private void initComponents() {
@@ -40,7 +35,7 @@ public class MomoBank extends JDialog {
         label24 = new JLabel();
         label27 = new JLabel();
         label28 = new JLabel();
-        label29 = new JLabel();
+        lblNoiDung = new JLabel();
         label21 = new JLabel();
         btnPay = new RadiusButton();
 
@@ -61,27 +56,26 @@ public class MomoBank extends JDialog {
                 label22.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                 //---- label23 ----
-                label23.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                label23.setText("T\u00ean t\u00e0i kho\u1ea3n");
                 label23.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                 //---- label24 ----
-                label24.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                label24.setText("N\u1ed9i dung");
                 label24.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                 //---- label27 ----
-                label27.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
                 label27.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                 label27.setHorizontalAlignment(SwingConstants.CENTER);
+                label27.setText("0704795312");
 
                 //---- label28 ----
-                label28.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                label28.setText("Nguy\u1ec5n Qu\u1ed1c B\u1ea3o");
                 label28.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                 label28.setHorizontalAlignment(SwingConstants.CENTER);
 
-                //---- label29 ----
-                label29.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
-                label29.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
-                label29.setHorizontalAlignment(SwingConstants.CENTER);
+                //---- lblNoiDung ----
+                lblNoiDung.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
+                lblNoiDung.setHorizontalAlignment(SwingConstants.CENTER);
 
                 GroupLayout radiusPanel3Layout = new GroupLayout(radiusPanel3);
                 radiusPanel3.setLayout(radiusPanel3Layout);
@@ -93,12 +87,16 @@ public class MomoBank extends JDialog {
                                 .addComponent(label22, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label23, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                 .addComponent(label24, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
-                            .addGroup(radiusPanel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                .addComponent(label28, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label27, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(label29, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE))
-                            .addGap(24, 24, 24))
+                            .addGap(29, 29, 29)
+                            .addGroup(radiusPanel3Layout.createParallelGroup()
+                                .addGroup(radiusPanel3Layout.createSequentialGroup()
+                                    .addGroup(radiusPanel3Layout.createParallelGroup()
+                                        .addComponent(label28, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                                        .addComponent(label27, GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE))
+                                    .addGap(24, 24, 24))
+                                .addGroup(radiusPanel3Layout.createSequentialGroup()
+                                    .addComponent(lblNoiDung, GroupLayout.PREFERRED_SIZE, 308, GroupLayout.PREFERRED_SIZE)
+                                    .addContainerGap(24, Short.MAX_VALUE))))
                 );
                 radiusPanel3Layout.setVerticalGroup(
                     radiusPanel3Layout.createParallelGroup()
@@ -110,7 +108,7 @@ public class MomoBank extends JDialog {
                                     .addGap(12, 12, 12)
                                     .addComponent(label28, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                                     .addGap(12, 12, 12)
-                                    .addComponent(label29, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblNoiDung, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(radiusPanel3Layout.createSequentialGroup()
                                     .addComponent(label22, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
@@ -179,10 +177,25 @@ public class MomoBank extends JDialog {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
+    private void initialize() {
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0x191b20));
+        btnPay.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
+        lblNoiDung.setText(SessionManager.user.getId().toString());
+    }
+
     @Override
     public void dispose() {
+        super.dispose();
         addMoney.addBank(NapCK.MOMO);
-    }// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    }
+
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private RadiusPanel radiusPanel3;
     private JLabel label22;
@@ -190,7 +203,7 @@ public class MomoBank extends JDialog {
     private JLabel label24;
     private JLabel label27;
     private JLabel label28;
-    private JLabel label29;
+    private JLabel lblNoiDung;
     private JLabel label21;
     private RadiusButton btnPay;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
