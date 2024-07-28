@@ -103,6 +103,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "txtFolderPath"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 				name: "btnInfoFolder"
@@ -122,6 +123,7 @@ new FormModel {
 			add( new FormComponent( "javax.swing.JTextField" ) {
 				name: "txtExecFilePath"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
 			} )
 			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 				name: "btnInfoExec"

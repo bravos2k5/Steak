@@ -16,6 +16,7 @@ public class PendingGame {
     private int rom;
     private String version;
     private String execPath;
+    private String imageToDelete;
 
     public PendingGame() {
     }
@@ -122,6 +123,14 @@ public class PendingGame {
 
     public String getAvatarPath() {
         return "data/games/" + gameID + "/" + version + "/images/" + avatar;
+    }
+
+    public String getImageToDelete() {
+        return imageToDelete;
+    }
+
+    public void setImageToDelete(String imageToDelete) {
+        this.imageToDelete = imageToDelete;
     }
 
 }

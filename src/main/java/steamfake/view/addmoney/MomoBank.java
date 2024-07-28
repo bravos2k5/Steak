@@ -23,7 +23,7 @@ public class MomoBank extends JDialog {
         super(owner);
         initComponents();
         this.addMoney = addMoney;
-
+        initialize();
     }
 
     private void initComponents() {
