@@ -9,13 +9,11 @@ import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.PendingGame;
 import steamfake.model.PhieuKiemDuyet;
-import steamfake.utils.SessionManager;
-import steamfake.utils.XImage;
-import steamfake.utils.XJson;
-import steamfake.utils.XMessage;
+import steamfake.utils.*;
 import steamfake.view.waiting.UploadGameDialog;
 
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.io.File;
@@ -153,6 +151,7 @@ public class CreatePanel extends JDialog {
 
         //---- txtFolderPath ----
         txtFolderPath.setBackground(new Color(0x252730));
+        txtFolderPath.setEditable(false);
 
         //---- btnInfoFolder ----
         btnInfoFolder.setText("?");
@@ -168,6 +167,7 @@ public class CreatePanel extends JDialog {
 
         //---- txtExecFilePath ----
         txtExecFilePath.setBackground(new Color(0x252730));
+        txtExecFilePath.setEditable(false);
 
         //---- btnInfoExec ----
         btnInfoExec.setText("?");
@@ -405,6 +405,9 @@ public class CreatePanel extends JDialog {
     private void initialize() {
         fillAgeBox();
         initEvent();
+        ((AbstractDocument) txtRam.getDocument()).setDocumentFilter(new NumberOnlyFilter());
+        ((AbstractDocument) txtRom.getDocument()).setDocumentFilter(new NumberOnlyFilter());
+        ((AbstractDocument) txtCost.getDocument()).setDocumentFilter(new NumberOnlyFilter());
     }
 
     private void fillAgeBox() {

@@ -4,22 +4,52 @@
 
 package steamfake.view.managegame;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import steamfake.dao.GameDAO;
+import steamfake.dao.KiemDuyetDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
+import steamfake.graphics.slider.SlideShow;
+import steamfake.graphics.swing.PictureBox;
+import steamfake.model.Game;
+import steamfake.model.PendingGame;
+import steamfake.model.PhieuKiemDuyet;
+import steamfake.utils.*;
+import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.waiting.UploadGameDialog;
+import steamfake.view.waiting.WaitingDialog;
 
 import javax.swing.*;
+import javax.swing.text.AbstractDocument;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.UUID;
 
 /**
  * @author ACER
  */
 public class UpdatePanel extends JDialog {
-    public UpdatePanel(Window owner) {
+
+    private final Game game;
+    private final List<String> images;
+    private final List<String> imagesToDelete = new ArrayList<>();
+    private final List<String> imagesToAdd = new ArrayList<>();
+
+    public UpdatePanel(Window owner, Game game) {
         super(owner);
+        this.game = game;
+        images = XJson.fromJson(game.getImages(), new TypeReference<>() {});
         initComponents();
         this.getContentPane().setBackground(new Color(25,27,32));
         lblAvatar.setToolTipText("");
-
+        initialize();
     }
 
     private void initComponents() {
@@ -61,6 +91,7 @@ public class UpdatePanel extends JDialog {
         label13 = new JLabel();
         txtNewVersion = new RadiusTextField();
         btnClose = new RadiusButton();
+        btnPreview = new JButton();
 
         //======== this ========
         setModal(true);
@@ -185,6 +216,7 @@ public class UpdatePanel extends JDialog {
         txtVersion.setBackground(new Color(0x252730));
         txtVersion.setEndGradientColor(new Color(0x252730));
         txtVersion.setStartGradientColor(new Color(0x252730));
+        txtVersion.setEnabled(false);
 
         //---- rdoInfoOnly ----
         rdoInfoOnly.setText("Ch\u1ec9 c\u1eadp nh\u1eadt th\u00f4ng tin");
@@ -194,6 +226,7 @@ public class UpdatePanel extends JDialog {
 
         //======== pnlNewVersion ========
         {
+            pnlNewVersion.setOpaque(false);
 
             //---- label6 ----
             label6.setText("Upload folder game");
@@ -201,6 +234,7 @@ public class UpdatePanel extends JDialog {
 
             //---- txtFolderPath ----
             txtFolderPath.setBackground(new Color(0x252730));
+            txtFolderPath.setEditable(false);
 
             //---- btnInfoFolder ----
             btnInfoFolder.setText("?");
@@ -216,6 +250,7 @@ public class UpdatePanel extends JDialog {
 
             //---- txtExecFilePath ----
             txtExecFilePath.setBackground(new Color(0x252730));
+            txtExecFilePath.setEditable(false);
 
             //---- btnInfoExec ----
             btnInfoExec.setText("?");
@@ -240,28 +275,30 @@ public class UpdatePanel extends JDialog {
                 pnlNewVersionLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, pnlNewVersionLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(pnlNewVersionLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                            .addGroup(pnlNewVersionLayout.createSequentialGroup()
-                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
-                                .addGap(228, 228, 228)
-                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnlNewVersionLayout.createSequentialGroup()
-                                .addComponent(txtFolderPath, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(btnInfoFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)
-                                .addComponent(btnSelectFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(txtExecFilePath, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(btnInfoExec, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addComponent(btnSelectExecFile, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlNewVersionLayout.createParallelGroup()
                             .addGroup(pnlNewVersionLayout.createSequentialGroup()
                                 .addComponent(label13, GroupLayout.PREFERRED_SIZE, 154, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txtNewVersion, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE)
-                                .addGap(485, 485, 485))))
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtNewVersion, GroupLayout.PREFERRED_SIZE, 173, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlNewVersionLayout.createSequentialGroup()
+                                .addGroup(pnlNewVersionLayout.createParallelGroup()
+                                    .addComponent(label6, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlNewVersionLayout.createSequentialGroup()
+                                        .addComponent(txtFolderPath, GroupLayout.PREFERRED_SIZE, 252, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(btnInfoFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(btnSelectFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                .addGap(38, 38, 38)
+                                .addGroup(pnlNewVersionLayout.createParallelGroup()
+                                    .addGroup(pnlNewVersionLayout.createSequentialGroup()
+                                        .addComponent(txtExecFilePath, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(btnInfoExec, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(btnSelectExecFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(label7, GroupLayout.PREFERRED_SIZE, 206, GroupLayout.PREFERRED_SIZE))))
+                        .addGap(9, 9, 9))
             );
             pnlNewVersionLayout.setVerticalGroup(
                 pnlNewVersionLayout.createParallelGroup()
@@ -275,14 +312,14 @@ public class UpdatePanel extends JDialog {
                             .addComponent(txtFolderPath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnInfoFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnSelectFolder, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtExecFilePath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnInfoExec, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSelectExecFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSelectExecFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtExecFilePath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(pnlNewVersionLayout.createParallelGroup()
                             .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewVersion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(8, Short.MAX_VALUE))
+                        .addContainerGap(7, Short.MAX_VALUE))
             );
         }
 
@@ -294,6 +331,9 @@ public class UpdatePanel extends JDialog {
         btnClose.setOriginColor(new Color(0x3e3737));
         btnClose.setRadius(5);
         btnClose.setHoverColor(new Color(0x9d2424));
+
+        //---- btnPreview ----
+        btnPreview.setText("Preview");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -324,7 +364,10 @@ public class UpdatePanel extends JDialog {
                                     .addComponent(btnAddImage, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
                                     .addComponent(label9))
-                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(contentPaneLayout.createSequentialGroup()
+                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnPreview))))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(rdoInfoOnly)
                             .addGap(55, 55, 55)
@@ -389,7 +432,9 @@ public class UpdatePanel extends JDialog {
                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(scrollPane1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                    .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnPreview))
                     .addGap(18, 18, 18)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(cboImages, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
@@ -464,13 +509,289 @@ public class UpdatePanel extends JDialog {
     private JLabel label13;
     private RadiusTextField txtNewVersion;
     private RadiusButton btnClose;
+    private JButton btnPreview;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-
-    private void loadData() {
-
+    private void initialize() {
+        fillAge();
+        loadData();
+        btnPreview.addActionListener(e -> showImagePreview());
+        rdoInfoOnly.addActionListener(e -> pnlNewVersion.setVisible(false));
+        rdoNewVersion.addActionListener(e -> pnlNewVersion.setVisible(true));
+        rdoInfoOnly.setSelected(true);
+        pnlNewVersion.setVisible(false);
+        ((AbstractDocument) txtRam.getDocument()).setDocumentFilter(new NumberOnlyFilter());
+        ((AbstractDocument) txtRom.getDocument()).setDocumentFilter(new NumberOnlyFilter());
+        ((AbstractDocument) txtCost.getDocument()).setDocumentFilter(new NumberOnlyFilter());
+        cboImages.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                deleteImage();
+            }
+        });
+        lblAvatar.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                changeAvatar();
+            }
+        });
+        btnAddImage.addActionListener(e -> addImage());
+        btnUpload.addActionListener(e -> upload());
+        btnClose.addActionListener(e -> closeGame());
+        btnCancel.addActionListener(e -> dispose());
+        btnSelectFolder.addActionListener(e -> selectFolderPath());
+        btnSelectExecFile.addActionListener(e -> selectExecFile());
     }
 
+    private void deleteImage() {
+        if(cboImages.getSelectedIndex() != -1) {
+            if (XMessage.confirm(this, "Bạn có chắc chắn muốn xóa ảnh này không?") == JOptionPane.YES_OPTION) {
+                images.remove(cboImages.getSelectedIndex());
+                imagesToDelete.add(cboImages.getItemAt(cboImages.getSelectedIndex()));
+                for(String image : imagesToAdd) {
+                    if(image.contains(cboImages.getItemAt(cboImages.getSelectedIndex()))) {
+                        imagesToAdd.remove(image);
+                        break;
+                    }
+                }
+                cboImages.removeItemAt(cboImages.getSelectedIndex());
+            }
+        }
+    }
 
+    private void loadData() {
+        txtName.setText(game.getName());
+        txtCost.setText(String.valueOf(game.getGiaTien()));
+        cboAge.setSelectedItem(game.getAge());
+        txtDescriptsion.setText(game.getMoTa());
+        txtRam.setText(String.valueOf(game.getRam()));
+        txtRom.setText(String.valueOf(game.getRom()));
+        txtVersion.setText(game.getVersion());
+        images.forEach(cboImages::addItem);
+        ResourceManager.downloadGameResource(game);
+        lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblAvatar));
+    }
+
+    private void showImagePreview() {
+        List<PictureBox> pictureBoxes = new ArrayList<>();
+        JDialog dialog = new JDialog(this);
+        SlideShow slideShow = new SlideShow();
+        for(String image : images) {
+            PictureBox pictureBox = new PictureBox();
+            pictureBox.setImage(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + image));
+            pictureBoxes.add(pictureBox);
+        }
+        dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
+        slideShow.initSlideShow(pictureBoxes);
+        dialog.add(slideShow);
+        dialog.setSize(new Dimension(1400, 800));
+        dialog.validate();
+        dialog.setLocationRelativeTo(this);
+        dialog.setModal(true);
+        dialog.setVisible(true);
+    }
+
+    private void fillAge() {
+        for (int i = 3; i <= 18; i++) {
+            cboAge.addItem(i);
+        }
+    }
+
+    private void changeAvatar() {
+        JFileChooser fileChooser = new JFileChooser();
+        XImage.imageFileFilter(fileChooser);
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            String fileName = fileChooser.getSelectedFile().getName();
+            if (images.contains(fileName)) {
+                XMessage.alert(this, "Ảnh đã tồn tại");
+            } else {
+                images.add(fileName);
+                imagesToAdd.add(fileChooser.getSelectedFile().getAbsolutePath());
+                lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
+                imagesToDelete.add(game.getAvatar());
+                game.setAvatar(fileName);
+            }
+        }
+    }
+
+    private void selectFolderPath() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            txtFolderPath.setText(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }
+
+    private void selectExecFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileFilter() {
+            @Override
+            public boolean accept(java.io.File f) {
+                return f.isDirectory() || f.getName().endsWith(".exe");
+            }
+
+            @Override
+            public String getDescription() {
+                return "Executable file (*.exe)";
+            }
+        });
+        int result = fileChooser.showOpenDialog(this);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath();
+            if(!path.startsWith(txtFolderPath.getText())) {
+                XMessage.alert(this, "File thực thi game phải nằm trong folder game");
+            } else {
+                txtExecFilePath.setText(path);
+            }
+        }
+    }
+
+    private PendingGame isValidData() {
+        StringBuilder alert = new StringBuilder();
+        if (txtName.getText().isEmpty()) {
+            alert.append("Tên game không được để trống\n");
+        }
+        if (txtCost.getText().isEmpty()) {
+            alert.append("Giá game không được để trống\n");
+        }
+        if (txtRam.getText().isEmpty()) {
+            alert.append("Ram yêu cầu không được để trống\n");
+        }
+        if (txtRom.getText().isEmpty()) {
+            alert.append("Rom yêu cầu không được để trống\n");
+        }
+        if (txtDescriptsion.getText().isEmpty()) {
+            alert.append("Mô tả không được để trống\n");
+        }
+        if (images.isEmpty()) {
+            alert.append("Chưa có ảnh giới thiệu\n");
+        }
+        if(lblAvatar.getIcon().toString().equals(Objects.requireNonNull(getClass().getResource("/icon/plus-sign.png")).toString())) {
+            alert.append("Chưa chọn ảnh đại diện\n");
+        }
+        if (rdoNewVersion.isSelected()) {
+            if (txtFolderPath.getText().isEmpty()) {
+                alert.append("Chưa chọn folder game\n");
+            }
+            if (txtExecFilePath.getText().isEmpty()) {
+                alert.append("Chưa chọn file thực thi game\n");
+            }
+            if (txtNewVersion.getText().isEmpty()) {
+                alert.append("Chưa nhập phiên bản mới\n");
+            }
+            else if(txtNewVersion.getText().equals(game.getVersion())) {
+                alert.append("Phiên bản mới không được trùng với phiên bản hiện tại\n");
+            }
+        }
+        if (!alert.toString().isEmpty()) {
+            XMessage.alert(this, alert.toString());
+            return null;
+        }
+        PendingGame g = new PendingGame();
+        g.setGameID(game.getId());
+        g.setName(txtName.getText());
+        g.setGiaTien(Double.parseDouble(txtCost.getText()));
+        g.setAge((Integer) cboAge.getSelectedItem());
+        g.setMoTa(txtDescriptsion.getText());
+        g.setRam(Integer.parseInt(txtRam.getText()));
+        g.setRom(Integer.parseInt(txtRom.getText()));
+        g.setImages(XJson.toJson(images));
+        g.setVersion(txtNewVersion.getText());
+        g.setAvatar(game.getAvatar());
+        g.setImageToDelete(XJson.toJson(imagesToDelete));
+        if(rdoNewVersion.isSelected()) {
+            String parent = new File(txtExecFilePath.getText()).getParentFile().getAbsolutePath();
+            String parentExec = parent.substring(parent.lastIndexOf("\\") + 1);
+            String execFilePath = parentExec + "\\" + new File(txtExecFilePath.getText()).getName();
+            g.setExecPath(execFilePath);
+        }
+        else {
+            g.setExecPath(game.getExecPath());
+        }
+        return g;
+    }
+
+    private void addImage() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setMultiSelectionEnabled(true);
+        XImage.imageFileFilter(fileChooser);
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            for (var file : fileChooser.getSelectedFiles()) {
+                String fileName = file.getName();
+                if (images.contains(fileName)) {
+                    XMessage.alert(this, "Ảnh đã tồn tại");
+                } else {
+                    images.add(fileName);
+                    imagesToAdd.add(file.getAbsolutePath());
+                    cboImages.addItem(fileName);
+                }
+            }
+        }
+    }
+
+    private void upload() {
+        PendingGame pg = isValidData();
+        PhieuKiemDuyet pkd = phieuKiemDuyetGenerated();
+        if (pg != null && pkd != null) {
+            pg.setReviewID(pkd.getId());
+            int result = KiemDuyetDAO.getInstance().createGame(pkd, pg);
+            if (result > 0) {
+                if(rdoNewVersion.isSelected()) {
+                    uploadNewVersion();
+                }
+                else {
+                    WaitingDialog waitingDialog = new WaitingDialog(this);
+                    waitingDialog.start();
+                    Thread thread = new Thread(() -> {
+                        for (String imagePath : imagesToAdd) {
+                            AzureBlobService.upload(imagePath,game.getId() + "/" + game.getVersion() + "/images/" +
+                                    imagePath.substring(imagePath.lastIndexOf("\\") + 1),"games");
+                        }
+                        waitingDialog.stop();
+                        XMessage.alert(this, "Đã tạo phiếu kiểm duyệt thành công");
+                        dispose();
+                    });
+                    thread.start();
+                }
+            } else {
+                XMessage.alert(this, "Cập nhật game thất bại");
+            }
+        }
+    }
+
+    private void uploadNewVersion() {
+        new UploadGameDialog(this,txtFolderPath.getText(),game.getId(),txtNewVersion.getText(),imagesToAdd).setVisible(true);
+    }
+
+    private PhieuKiemDuyet phieuKiemDuyetGenerated() {
+        PendingGame pg = isValidData();
+        if(pg != null) {
+            PhieuKiemDuyet pkd = new PhieuKiemDuyet();
+            pkd.setId(UUID.randomUUID());
+            pkd.setMoTa("Cập nhật game ");
+            pkd.setPublisherID(SessionManager.user.getId());
+            pkd.setNgayTao(new Date(System.currentTimeMillis()));
+            pkd.setStatus(PhieuKiemDuyet.PENDING);
+            pkd.setThongBao("");
+            return pkd;
+        }
+        return null;
+    }
+
+    private void closeGame() {
+        int choice = XMessage.confirm(this, "Bạn có chắc chắn muốn đóng game không?\n" +
+                "Sau khi đóng game sẽ không thể mở lại!\n" +
+                "Những người đã mua game vẫn có thể chơi tiếp!");
+        if (choice == JOptionPane.YES_OPTION) {
+            int result = GameDAO.gI().closeGame(game);
+            if (result > 0) {
+                XMessage.alert(this, "Đã đóng game");
+                dispose();
+            } else {
+                XMessage.alert(this, "Đóng game thất bại");
+            }
+        }
+    }
 
 }

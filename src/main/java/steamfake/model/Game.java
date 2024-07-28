@@ -10,7 +10,7 @@ public class Game {
     private UUID publisherID;
     private String name;
     private String avatar;
-    private float giaTien;
+    private double giaTien;
     private int age;
     private String images;
     private String moTa;
@@ -61,11 +61,11 @@ public class Game {
         this.avatar = avatar;
     }
 
-    public float getGiaTien() {
+    public double getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(float giaTien) {
+    public void setGiaTien(double giaTien) {
         this.giaTien = giaTien;
     }
 

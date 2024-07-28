@@ -8,8 +8,6 @@ import steamfake.graphics.swing.PictureBox;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SlideShow extends JLayeredPane {
     private final JPanel panel;
@@ -42,14 +40,12 @@ public class SlideShow extends JLayeredPane {
                         if (next) {
                             componentOut = panel.getComponent(checkNext(currentIndex));
                             currentIndex = getNext(pageClick - 1);
-                            componentShow = panel.getComponent(currentIndex);
-                            animator.start();
                         } else {
                             componentOut = panel.getComponent(checkBack(currentIndex));
                             currentIndex = getBack(pageClick + 1);
-                            componentShow = panel.getComponent(currentIndex);
-                            animator.start();
                         }
+                        componentShow = panel.getComponent(currentIndex);
+                        animator.start();
                     }
                 }
             }
@@ -93,12 +89,7 @@ public class SlideShow extends JLayeredPane {
         setLayout(new MigLayout("fill, inset 0", "[fill, center]", "3[fill]3"));
         add(pagination, "pos 0.5al 1al n n");
         add(panel, "w 100%-6!");
-        timer = new Timer(moveTime, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                next();
-            }
-        });
+        timer = new Timer(moveTime, ae -> next());
     }
 
     public int getMoveTime() {
