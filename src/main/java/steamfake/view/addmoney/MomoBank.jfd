@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -15,8 +15,8 @@ new FormModel {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label22::l:p:120:p, comp label23::l:p:120:p, comp label24::l:p:120:p}, space ::87:x, par l:::p {comp label28::l:::x, comp label27::l:::x, comp label29::l:p:250:p}, space :p:24:p}}"
-					"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq l {comp label27:::p:25:p, space :p:12:p, comp label28:::p:25:p, space :p:12:p, comp label29:::p:25:p}, seq l {comp label22:::p:25:p, space u:::p, comp label23:::p:25:p, space u:::p, comp label24:::p:25:p}}, space ::15:x}}"
+					"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label22::l:p:120:p, comp label23::l:p:120:p, comp label24::l:p:120:p}, space :p:29:p, par l {seq {par l {comp label28::::308:x, comp label27::::308:x}, space :p:24:p}, seq l {comp lblNoiDung:::p:308:p, space ::24:x}}}}"
+					"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq {comp label27:::p:25:p, space :p:12:p, comp label28:::p:25:p, space :p:12:p, comp lblNoiDung:::p:25:p}, seq {comp label22:::p:25:p, space u:::p, comp label23:::p:25:p, space u:::p, comp label24:::p:25:p}}, space ::15:x}}"
 				} ) {
 					name: "radiusPanel3"
 					"background": new java.awt.Color( 70, 72, 76, 255 )
@@ -28,29 +28,28 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label23"
-						"text": "Số tài khoản :"
+						"text": "Tên tài khoản"
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label24"
-						"text": "Số tài khoản :"
+						"text": "Nội dung"
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label27"
-						"text": "Số tài khoản :"
 						"font": #Font0
 						"horizontalAlignment": 0
+						"text": "0704795312"
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label28"
-						"text": "Số tài khoản :"
+						"text": "Nguyễn Quốc Bảo"
 						"font": #Font0
 						"horizontalAlignment": 0
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label29"
-						"text": "Số tài khoản :"
+						name: "lblNoiDung"
 						"font": #Font0
 						"horizontalAlignment": 0
 					} )

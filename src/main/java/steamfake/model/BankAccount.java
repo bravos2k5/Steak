@@ -52,6 +52,6 @@ public class BankAccount {
 
     @Override
     public String toString() {
-        return StaticData.bankList.get(bankID) + " - " + soTaiKhoan;
+        return StaticData.bankList.get(bankID - 1) + " - " + soTaiKhoan;
     }
 }

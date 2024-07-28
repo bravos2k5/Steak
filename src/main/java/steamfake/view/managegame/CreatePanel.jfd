@@ -8,6 +8,8 @@ new FormModel {
 			"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par l {comp cboAge:::p:30:p, comp txtCost::l:p:30:p}}, seq l {space :p:35:p, comp lblAvatar:::p:150:p}}, space :::p, comp label10:::p::p, space :p:18:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, par b {comp label6::b:p:30:p, comp label7::b:p:30:p}, space s:::p, par b {comp btnInfoFolder::b:p::p, comp btnSelectFolder::b:p::p, comp txtFolderPath::b:p::p, comp txtExecFilePath::b:p::p, comp btnInfoExec::b:p::p, comp btnSelectExecFile::b:p::p}, space :p:41:p, comp label8:::p:30:p, space s:::p, par b {comp cboImages::b:p:40:p, comp btnAddImage::b:p:40:p, comp label9::b:p::p}, space :p:38:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space ::46:x, par b {comp btnUpload::b:p:30:p, comp btnCancel::b:p:30:p}, space :p:47:p}}"
 		} ) {
 			name: "this"
+			"modal": true
+			"defaultCloseOperation": 2
 			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
 				name: "txtName"
 				"radius": 0
@@ -63,7 +65,7 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label4"
-				"text": "Mô tả"
+				"text": "Mô tả (hỗ trợ HTML)"
 				"font": #Font1
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {

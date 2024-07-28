@@ -226,10 +226,8 @@ public class RegisterDialog extends JDialog {
                                     .addGroup(GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
                                         .addComponent(label10)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 92, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE)
-                                        .addGap(42, 42, 42)
+                                        .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(88, 88, 88)
                                         .addComponent(lblNhapMaStatus))
                                     .addGroup(panelBorder1Layout.createParallelGroup()
                                         .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -258,7 +256,10 @@ public class RegisterDialog extends JDialog {
                                             .addComponent(label9)
                                             .addGap(47, 47, 47)
                                             .addComponent(lblEmailStatus))
-                                        .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 426, GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panelBorder1Layout.createSequentialGroup()
+                                            .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 356, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 52, GroupLayout.PREFERRED_SIZE))))
                                 .addGap(60, 60, 60))
                             .addGroup(GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
                                 .addComponent(lbQuayLai)
@@ -315,13 +316,14 @@ public class RegisterDialog extends JDialog {
                             .addComponent(label9)
                             .addComponent(lblEmailStatus))
                         .addGap(5, 5, 5)
-                        .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelBorder1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(label10)
-                            .addComponent(btnGui, GroupLayout.PREFERRED_SIZE, 24, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblNhapMaStatus))
+                            .addComponent(lblNhapMaStatus)
+                            .addComponent(txtNhapMa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                         .addGroup(panelBorder1Layout.createParallelGroup()
                             .addComponent(btnDangKy, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
@@ -428,6 +430,12 @@ public class RegisterDialog extends JDialog {
             account.setEmail(email);
             account.setDob(Date.valueOf(dob));
             account.setGioiTinh(Account.OTHER);
+            account.setNgayTao(new Date(System.currentTimeMillis()));
+            if(AccountDAO.gI().isExistUsername(txtTaiKhoan.getText())) {
+                lblUsernameStatus.setText("Username đã tồn tại");
+                lblUsernameStatus.setForeground(Color.RED);
+                return;
+            }
             int result = AccountDAO.gI().register(account);
             if (result > 0) {
                 JOptionPane.showMessageDialog(this,"Đăng ký thành công");
@@ -484,10 +492,6 @@ public class RegisterDialog extends JDialog {
                 }
                 else if(txtTaiKhoan.getText().length() > 32) {
                     lblUsernameStatus.setText("Username phải <=32 ký tự");
-                    lblUsernameStatus.setForeground(Color.RED);
-                }
-                else if(AccountDAO.gI().isExistUsername(txtTaiKhoan.getText())) {
-                    lblUsernameStatus.setText("Username đã tồn tại");
                     lblUsernameStatus.setForeground(Color.RED);
                 }
                 else {
@@ -678,7 +682,4 @@ public class RegisterDialog extends JDialog {
         });
 
     }
-
-
-
 }

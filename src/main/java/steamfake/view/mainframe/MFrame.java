@@ -366,6 +366,15 @@ public class MFrame extends JFrame {
         }
     }
 
+    private void refreshPanel() {
+        SwingUtilities.invokeLater(() -> {
+            scrollPane1.repaint();
+            scrollPane1.validate();
+            mainPanel.repaint();
+            mainPanel.validate();
+        });
+    }
+
     public void showHomePage() {
         handleBeforeChange();
         gameList = GameDAO.gI().selectListGameDisplay();
@@ -374,40 +383,36 @@ public class MFrame extends JFrame {
         }
         theMostDownloadedGame = gameList.getFirst();
         downloadResource();
-        HotGamePanel2 hotGamePanel = new HotGamePanel2(theMostDownloadedGame);
+        HotGameItem hotGamePanel = new HotGameItem(theMostDownloadedGame);
         mainPanel.add(hotGamePanel);
         for (GameDisplay game : gameList) {
             if (game != null && !game.equals(theMostDownloadedGame)) {
-                ListGamePanel listGamePanel = new ListGamePanel(game);
-                mainPanel.add(listGamePanel);
+                NormalGameItem normalGameItem = new NormalGameItem(game);
+                mainPanel.add(normalGameItem);
             }
         }
-        mainPanel.repaint();
-        mainPanel.validate();
+        refreshPanel();
     }
 
     private void showLibrary() {
         handleBeforeChange();
         LibraryPanel libraryPanel = LibraryPanel.gI();
         mainPanel.add(libraryPanel);
-        mainPanel.repaint();
-        mainPanel.validate();
+        refreshPanel();
     }
 
     private void showWithdrawMoney() {
         handleBeforeChange();
         WithdrawMoneyPanel panel = new WithdrawMoneyPanel();
         mainPanel.add(panel);
-        mainPanel.repaint();
-        mainPanel.validate();
+        refreshPanel();
     }
 
     private void showGameManagement() {
         handleBeforeChange();
         ManageGame manageGame = new ManageGame();
         mainPanel.add(manageGame);
-        mainPanel.repaint();
-        mainPanel.validate();
+        refreshPanel();
     }
 
     private void showDownloadPage() {
@@ -418,22 +423,19 @@ public class MFrame extends JFrame {
         handleBeforeChange();
         AccountPanel accountPanel = new AccountPanel();
         mainPanel.add(accountPanel);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+       refreshPanel();
     }
     public void showAddMoney() {
         handleBeforeChange();
         AddMoney addMoneyPanel = new AddMoney();
         mainPanel.add(addMoneyPanel);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+        refreshPanel();
     }
     public void showGameDetail(Game game) {
         handleBeforeChange();
         GameDetailPanel gameDetail = new GameDetailPanel(game);
         mainPanel.add(gameDetail);
-        mainPanel.repaint();
-        mainPanel.revalidate();
+        refreshPanel();
     }
 
     public void search(String key) {
@@ -461,8 +463,7 @@ public class MFrame extends JFrame {
                 for (Component component : components) {
                     mainPanel.add(component);
                 }
-                mainPanel.repaint();
-                mainPanel.revalidate();
+                refreshPanel();
             });
         }
     }
@@ -470,17 +471,16 @@ public class MFrame extends JFrame {
 
     @Override
     public void dispose() {
-        DownloadQueue.gI().cancelAllDownload();
         super.dispose();
+        DownloadQueue.gI().cancelAllDownload();
     }
 
     public void clearAllData() {
         gameList = null;
         theMostDownloadedGame = null;
-        instance = null;
         stack.clear();
         mainPanel.removeAll();
+        instance = null;
     }
-
 
 }
