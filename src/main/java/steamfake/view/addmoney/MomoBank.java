@@ -5,17 +5,30 @@
 package steamfake.view.addmoney;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import steamfake.graphics.*;
+import steamfake.model.NapCK;
 
 /**
  * @author ACER
  */
 public class MomoBank extends JDialog {
-    public MomoBank(Window owner) {
+    private final AddMoney addMoney ;
+    public MomoBank(Window owner, AddMoney addMoney) {
         super(owner);
         initComponents();
+        this.addMoney = addMoney;
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0x191b20));
+        btnPay.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
     }
 
     private void initComponents() {
@@ -29,7 +42,7 @@ public class MomoBank extends JDialog {
         label28 = new JLabel();
         label29 = new JLabel();
         label21 = new JLabel();
-        radiusButton1 = new RadiusButton();
+        btnPay = new RadiusButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -111,9 +124,9 @@ public class MomoBank extends JDialog {
             //---- label21 ----
             label21.setIcon(new ImageIcon(getClass().getResource("/icon/image 8.png")));
 
-            //---- radiusButton1 ----
-            radiusButton1.setText("Thanh to\u00e1n");
-            radiusButton1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+            //---- btnPay ----
+            btnPay.setText("Thanh to\u00e1n");
+            btnPay.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -129,7 +142,7 @@ public class MomoBank extends JDialog {
                                 .addComponent(radiusPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(23, 23, 23))
                             .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
-                                .addComponent(radiusButton1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)
                                 .addGap(122, 122, 122))))
             );
             panel1Layout.setVerticalGroup(
@@ -139,9 +152,9 @@ public class MomoBank extends JDialog {
                         .addComponent(label21)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(radiusPanel3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addComponent(radiusButton1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                        .addGap(21, 21, 21))
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                        .addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
             );
         }
 
@@ -166,7 +179,10 @@ public class MomoBank extends JDialog {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    @Override
+    public void dispose() {
+        addMoney.addBank(NapCK.MOMO);
+    }// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private RadiusPanel radiusPanel3;
     private JLabel label22;
@@ -176,6 +192,6 @@ public class MomoBank extends JDialog {
     private JLabel label28;
     private JLabel label29;
     private JLabel label21;
-    private RadiusButton radiusButton1;
+    private RadiusButton btnPay;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

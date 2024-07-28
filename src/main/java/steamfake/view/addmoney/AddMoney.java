@@ -4,16 +4,26 @@
 
 package steamfake.view.addmoney;
 
+import steamfake.dao.NapTienDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
 import steamfake.graphics.RadiusTextField;
+import steamfake.model.NapCK;
+import steamfake.model.NapCard;
+import steamfake.model.NapTien;
+import steamfake.utils.SessionManager;
 import steamfake.view.mainframe.MFrame;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.text.NumberFormat;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.util.Locale;
+import java.util.UUID;
 
 /**
  * @author ACER
@@ -23,13 +33,6 @@ public class AddMoney extends JPanel {
     public AddMoney() {
         initComponents();
         scrollPane1.setBorder(null);
-        btnAddBank.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-                new BankMoney(MFrame.gI()).setVisible(true);
-            }
-        });
         initialize();
     }
 
@@ -62,10 +65,13 @@ public class AddMoney extends JPanel {
         panel6 = new JPanel();
         radiusPanel3 = new RadiusPanel();
         radiusPanel4 = new RadiusPanel();
-        comboBox3 = new JComboBox();
+        cbbBank = new JComboBox<>();
         btnAddBank = new RadiusButton();
         radiusLabel2 = new RadiusPanel();
         radiusLabel3 = new RadiusLabel();
+        label15 = new JLabel();
+        cbbPrice2 = new JComboBox<>();
+        label16 = new JLabel();
         scrollPane2 = new JScrollPane();
         panel7 = new JPanel();
         panel8 = new JPanel();
@@ -107,8 +113,9 @@ public class AddMoney extends JPanel {
                             cbbMobieNetwork.setPrototypeDisplayValue("Card");
                             cbbMobieNetwork.setModel(new DefaultComboBoxModel<>(new String[] {
                                 "Viettel",
+                                "Mobifone",
                                 "Vinaphone",
-                                "Mobifone"
+                                "VietNamMobie"
                             }));
                             cbbMobieNetwork.setSelectedIndex(-1);
 
@@ -354,9 +361,13 @@ public class AddMoney extends JPanel {
                             {
                                 radiusPanel4.setBackground(new Color(0x252730));
 
-                                //---- comboBox3 ----
-                                comboBox3.setBackground(new Color(0x191b20));
-                                comboBox3.setFont(new Font("Inter", Font.BOLD, 16));
+                                //---- cbbBank ----
+                                cbbBank.setBackground(new Color(0x191b20));
+                                cbbBank.setFont(new Font("Inter", Font.BOLD, 16));
+                                cbbBank.setModel(new DefaultComboBoxModel<>(new String[] {
+                                    "Ng\u00e2n H\u00e0ng",
+                                    "MoMo"
+                                }));
 
                                 //---- btnAddBank ----
                                 btnAddBank.setText("N\u1ea1p ti\u1ec1n");
@@ -392,6 +403,25 @@ public class AddMoney extends JPanel {
                                 radiusLabel3.setBorderColor(new Color(0x416dd1));
                                 radiusLabel3.setForeground(new Color(0x4ac26c));
 
+                                //---- label15 ----
+                                label15.setText("H\u00ecnh th\u1ee9c");
+                                label15.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
+                                //---- cbbPrice2 ----
+                                cbbPrice2.setBackground(new Color(0x191b20));
+                                cbbPrice2.setFont(new Font("Inter", Font.PLAIN, 16));
+                                cbbPrice2.setModel(new DefaultComboBoxModel<>(new String[] {
+                                    "10.000",
+                                    "20.000",
+                                    "50.000",
+                                    "100.000",
+                                    "500.000"
+                                }));
+
+                                //---- label16 ----
+                                label16.setText("M\u1ee9c gi\u00e1");
+                                label16.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+
                                 GroupLayout radiusPanel4Layout = new GroupLayout(radiusPanel4);
                                 radiusPanel4.setLayout(radiusPanel4Layout);
                                 radiusPanel4Layout.setHorizontalGroup(
@@ -400,26 +430,37 @@ public class AddMoney extends JPanel {
                                             .addGap(24, 24, 24)
                                             .addGroup(radiusPanel4Layout.createParallelGroup()
                                                 .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                                    .addGap(0, 0, Short.MAX_VALUE)
+                                                    .addGap(0, 97, Short.MAX_VALUE)
+                                                    .addGroup(radiusPanel4Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(label15, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cbbBank, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+                                                        .addComponent(label16, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(cbbPrice2, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE))
+                                                    .addGap(97, 97, 97)
                                                     .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(radiusPanel4Layout.createSequentialGroup()
                                                     .addComponent(btnAddBank, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
                                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                                                     .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)))
                                             .addGap(40, 40, 40))
-                                        .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                            .addGap(122, 122, 122)
-                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 692, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(0, 136, Short.MAX_VALUE))
                                 );
                                 radiusPanel4Layout.setVerticalGroup(
                                     radiusPanel4Layout.createParallelGroup()
                                         .addGroup(radiusPanel4Layout.createSequentialGroup()
-                                            .addGap(49, 49, 49)
-                                            .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(53, 53, 53)
-                                            .addComponent(comboBox3, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                                            .addGroup(radiusPanel4Layout.createParallelGroup()
+                                                .addGroup(radiusPanel4Layout.createSequentialGroup()
+                                                    .addGap(49, 49, 49)
+                                                    .addComponent(radiusLabel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(radiusPanel4Layout.createSequentialGroup()
+                                                    .addGap(36, 36, 36)
+                                                    .addComponent(label15, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                                    .addGap(0, 0, 0)
+                                                    .addComponent(cbbBank, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
+                                            .addGap(18, 18, 18)
+                                            .addComponent(label16, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(0, 0, 0)
+                                            .addComponent(cbbPrice2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                                             .addGroup(radiusPanel4Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                                 .addComponent(btnAddBank, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(radiusLabel3, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE))
@@ -614,10 +655,13 @@ public class AddMoney extends JPanel {
     private JPanel panel6;
     private RadiusPanel radiusPanel3;
     private RadiusPanel radiusPanel4;
-    private JComboBox comboBox3;
+    private JComboBox<String> cbbBank;
     private RadiusButton btnAddBank;
     private RadiusPanel radiusLabel2;
     private RadiusLabel radiusLabel3;
+    private JLabel label15;
+    private JComboBox<String> cbbPrice2;
+    private JLabel label16;
     private JScrollPane scrollPane2;
     private JPanel panel7;
     private JPanel panel8;
@@ -635,9 +679,66 @@ public class AddMoney extends JPanel {
                 addCard();
             }
         });
+        btnAddBank.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (cbbBank.getSelectedIndex()  == NapCK.NGAN_HANG) {
+                    new BankMoney(MFrame.gI(),AddMoney.this).setVisible(true);
+                }
+                 else if  (cbbBank.getSelectedIndex()== NapCK.MOMO) {
+                    new MomoBank(MFrame.gI(),AddMoney.this).setVisible(true);
+                }
+            }
+        });
+    }
+
+
+    private <T extends NapTien> T addNapTien(T napTien, int method) {
+        napTien.setId(UUID.randomUUID());
+        napTien.setAccountID(SessionManager.user.getId());
+        napTien.setMethod(method);
+        napTien.setStatus(0);
+        napTien.setNgayNap(Date.valueOf(LocalDate.now()));
+        if (method == NapCard.NAP_CARD) {
+            napTien.setSoTien(formatMoney((String) cbbPrice.getSelectedItem()) * 0.8);
+        } else if (method == NapCard.NAP_CK) {
+            napTien.setSoTien(formatMoney((String) cbbPrice2.getSelectedItem()));
+        }
+        return napTien;
     }
 
     private void addCard() {
+        NapCard card = addNapTien(new NapCard(), NapCard.NAP_CARD);
+        card.setSecretKey(txtID.getText());
+        card.setSeri(txtSeri.getText());
+        card.setNhaMang(cbbMobieNetwork.getSelectedIndex() + 1);
+        card.setNgayNap(Date.valueOf(LocalDate.now()));
+        if (NapTienDAO.getInstance().insert(card) > 0) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        }else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+
+    }
+
+    public void addBank(int method) {
+        NapCK ck =addNapTien(new NapCK(), NapCard.NAP_CK);
+        ck.setHinhThuc(method);
+        if (NapTienDAO.getInstance().insert(ck) > 0) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công");
+        }else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại");
+        }
+
+    }
+
+    private double formatMoney(String money) {
+        try {
+            NumberFormat formatter = NumberFormat.getNumberInstance(Locale.GERMANY);
+            return formatter.parse(money).doubleValue();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

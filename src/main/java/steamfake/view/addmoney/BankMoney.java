@@ -7,20 +7,32 @@ package steamfake.view.addmoney;
 import com.formdev.flatlaf.FlatDarkLaf;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 import steamfake.graphics.*;
-
-
+import steamfake.model.NapCK;
 
 
 /**
  * @author ACER
  */
 public class BankMoney extends JDialog {
-    public BankMoney(Window owner) {
+    private final AddMoney addMoney ;
+    public BankMoney(Window owner ,AddMoney addMoney) {
+
         super(owner);
+        this.addMoney = addMoney;
         initComponents();
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        this.getContentPane().setBackground(new Color(0x191b20));
+        btnPay.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                dispose();
+            }
+        });
     }
 
     private void initComponents() {
@@ -39,7 +51,7 @@ public class BankMoney extends JDialog {
         label9 = new JLabel();
         label10 = new JLabel();
         label25 = new JLabel();
-        radiusButton1 = new RadiusButton();
+        btnPay = new RadiusButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -62,33 +74,33 @@ public class BankMoney extends JDialog {
                     label1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label2 ----
-                    label2.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label2.setText("T\u00ean ng\u01b0\u1eddi nh\u1eadn");
                     label2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label3 ----
-                    label3.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label3.setText("T\u00ean ng\u00e2n h\u00e0ng");
                     label3.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label4 ----
-                    label4.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label4.setText("N\u1ed9i dung");
                     label4.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label5 ----
-                    label5.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label5.setText("S\u1ed1 ti\u1ec1n");
                     label5.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label6 ----
-                    label6.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label6.setText("104879865299");
                     label6.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label6.setHorizontalAlignment(SwingConstants.CENTER);
 
                     //---- label7 ----
-                    label7.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label7.setText("\u00d4ng Tr\u1ecbnh V\u0103n Thu\u1eadt");
                     label7.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label7.setHorizontalAlignment(SwingConstants.CENTER);
 
                     //---- label8 ----
-                    label8.setText("S\u1ed1 t\u00e0i kho\u1ea3n :");
+                    label8.setText("Vietinbank");
                     label8.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label8.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -156,9 +168,9 @@ public class BankMoney extends JDialog {
                 label25.setText("L\u01b0u \u00fd : N\u1ed9i dung sai l\u00e0 ti\u1ec1n b\u1ea1n s\u1ebd ko \u0111\u01b0\u1ee3c ho\u00e0n tr\u1ea3 d\u01b0\u1edbi b\u1ea5t k\u1ef3 h\u00ecnh th\u1ee9c n\u00e0o");
                 label25.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
-                //---- radiusButton1 ----
-                radiusButton1.setText("Thanh to\u00e1n");
-                radiusButton1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+                //---- btnPay ----
+                btnPay.setText("Thanh to\u00e1n");
+                btnPay.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
@@ -173,7 +185,7 @@ public class BankMoney extends JDialog {
                                         .addComponent(label25, GroupLayout.PREFERRED_SIZE, 500, GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addGap(127, 127, 127)
-                                    .addComponent(radiusButton1, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 300, GroupLayout.PREFERRED_SIZE)))
                             .addContainerGap(27, Short.MAX_VALUE))
                 );
                 panel2Layout.setVerticalGroup(
@@ -184,8 +196,8 @@ public class BankMoney extends JDialog {
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(label25, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(radiusButton1, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(36, Short.MAX_VALUE))
+                            .addComponent(btnPay, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(26, Short.MAX_VALUE))
                 );
             }
 
@@ -228,6 +240,7 @@ public class BankMoney extends JDialog {
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
 
+
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private JPanel panel2;
@@ -243,10 +256,15 @@ public class BankMoney extends JDialog {
     private JLabel label9;
     private JLabel label10;
     private JLabel label25;
-    private RadiusButton radiusButton1;
+    private RadiusButton btnPay;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatDarkLaf());
-        new BankMoney(null).setVisible(true);
+
+
+
+
+    @Override
+    public void dispose() {
+        addMoney.addBank(NapCK.NGAN_HANG);
     }
+
 }
