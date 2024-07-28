@@ -47,16 +47,17 @@ new FormModel {
 									"model": new javax.swing.DefaultComboBoxModel {
 										selectedItem: "Viettel"
 										addElement( "Viettel" )
-										addElement( "Vinaphone" )
 										addElement( "Mobifone" )
+										addElement( "Vinaphone" )
+										addElement( "VietNamMobie" )
 									}
 									"selectedIndex": -1
 								} )
 								add( new FormComponent( "javax.swing.JComboBox" ) {
 									name: "cbbPrice"
-									"background": new java.awt.Color( 25, 27, 32, 255 )
-									"font": new java.awt.Font( "Inter", 0, 16 )
-									"model": new javax.swing.DefaultComboBoxModel {
+									"background": &Color3 new java.awt.Color( 25, 27, 32, 255 )
+									"font": &Font1 new java.awt.Font( "Inter", 0, 16 )
+									"model": &DefaultComboBoxModel0 new javax.swing.DefaultComboBoxModel {
 										selectedItem: "10.000"
 										addElement( "10.000" )
 										addElement( "20.000" )
@@ -88,39 +89,39 @@ new FormModel {
 								add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 									name: "btnAddCard"
 									"text": "Nạp thẻ"
-									"originColor": &Color3 new java.awt.Color( 53, 69, 42, 255 )
-									"background": &Color4 new java.awt.Color( 53, 69, 42, 255 )
+									"originColor": &Color4 new java.awt.Color( 53, 69, 42, 255 )
+									"background": &Color5 new java.awt.Color( 53, 69, 42, 255 )
 									"radius": 7
-									"hoverColor": &Color5 new java.awt.Color( 66, 149, 9, 255 )
-									"font": &Font1 new java.awt.Font( "Inter", 1, 16 )
+									"hoverColor": &Color6 new java.awt.Color( 66, 149, 9, 255 )
+									"font": &Font2 new java.awt.Font( "Inter", 1, 16 )
 								} )
 								add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 									name: "radiusLabel1"
 									"text": "10.000 VNĐ = 8.000 VNĐ"
-									"background": &Color6 new java.awt.Color( 35, 48, 77, 255 )
+									"background": &Color7 new java.awt.Color( 35, 48, 77, 255 )
 									"font": &SwingDerivedFont0 new com.jformdesigner.model.SwingDerivedFont( "SansSerif", 1, 4, false )
-									"borderColor": &Color7 new java.awt.Color( 65, 109, 209, 255 )
-									"foreground": &Color8 new java.awt.Color( 74, 194, 108, 255 )
+									"borderColor": &Color8 new java.awt.Color( 65, 109, 209, 255 )
+									"foreground": &Color9 new java.awt.Color( 74, 194, 108, 255 )
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label11"
 									"text": "Số Seri"
-									"font": &Font2 new java.awt.Font( "SansSerif", 0, 16 )
+									"font": &Font3 new java.awt.Font( "SansSerif", 0, 16 )
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label12"
 									"text": "Mã thẻ"
-									"font": #Font2
+									"font": #Font3
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label13"
 									"text": "Mức giá"
-									"font": #Font2
+									"font": #Font3
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label14"
 									"text": "Nhà mạng"
-									"font": #Font2
+									"font": #Font3
 								} )
 							} )
 						} )
@@ -131,7 +132,7 @@ new FormModel {
 								"axis": 1
 							} ) {
 								name: "panel4"
-								"background": &Color9 new java.awt.Color( 37, 39, 48, 255 )
+								"background": &Color10 new java.awt.Color( 37, 39, 48, 255 )
 							} )
 						} )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -139,36 +140,36 @@ new FormModel {
 							"$verticalGroup": "par l {par b:l {comp label3::b:p:50:p, comp label4::b:p:50:p, comp label2::b:p:50:p, comp label5::b:p:50:p}}"
 						} ) {
 							name: "panel3"
-							"background": &Color10 new java.awt.Color( 25, 27, 32, 255 )
+							"background": &Color11 new java.awt.Color( 25, 27, 32, 255 )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label2"
 								"text": "ID"
-								"font": &Font3 new java.awt.Font( "Inter", 1, 16 )
+								"font": &Font4 new java.awt.Font( "Inter", 1, 16 )
 								"horizontalAlignment": 0
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label3"
 								"text": "Ngày Nạp"
-								"font": #Font3
+								"font": #Font4
 								"horizontalAlignment": 0
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label4"
 								"text": "Trạng thái"
-								"font": #Font3
+								"font": #Font4
 								"horizontalAlignment": 0
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label5"
 								"text": "ID"
-								"font": #Font3
+								"font": #Font4
 								"horizontalAlignment": 0
 							} )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label1"
 							"text": "Lịch sử nạp thẻ"
-							"font": &Font4 new java.awt.Font( "Inter", 1, 16 )
+							"font": &Font5 new java.awt.Font( "Inter", 1, 16 )
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Nạp thẻ cào"
@@ -194,42 +195,63 @@ new FormModel {
 								"borderWidth": 1
 								"background": #Color0
 								add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:0:x, comp radiusLabel2:::p::p}, seq {comp radiusButton2:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}, seq l {space :p:122:p, comp comboBox3:::p:692:p, space :0:136:x}}"
-									"$verticalGroup": "par l {seq {space :p:49:p, comp radiusLabel2:::p::p, space :p:53:p, comp comboBox3:::p:50:p, space ::96:x, par b {comp radiusButton2::b:p:69:p, comp radiusLabel3::b:p:69:p}, space :p:32:p}}"
+									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:97:x, par l:::p {comp label15:::p:100:p, comp cbbBank::::692:x, comp label16:::p:100:p, comp cbbPrice2::l::692:x}, space :p:97:p, comp radiusLabel2:::p::p}, seq {comp btnAddBank:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}}"
+									"$verticalGroup": "par l {seq {par l {seq {space :p:49:p, comp radiusLabel2:::p::p}, seq l {space :p:36:p, comp label15:::p:30:p, space :0:0:p, comp cbbBank:::p:50:p}}, space s:::p, comp label16:::p:30:p, space :0:0:p, comp cbbPrice2:::p:50:p, space ::34:x, par b {comp btnAddBank::b:p:69:p, comp radiusLabel3::b:p:69:p}, space :p:32:p}}"
 								} ) {
 									name: "radiusPanel4"
 									"background": #Color1
 									add( new FormComponent( "javax.swing.JComboBox" ) {
-										name: "comboBox3"
+										name: "cbbBank"
 										"background": #Color2
 										"font": #Font0
+										"model": new javax.swing.DefaultComboBoxModel {
+											selectedItem: "Ngân Hàng"
+											addElement( "Ngân Hàng" )
+											addElement( "MoMo" )
+										}
 									} )
 									add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-										name: "radiusButton2"
+										name: "btnAddBank"
 										"text": "Nạp tiền"
-										"originColor": #Color3
-										"background": #Color4
+										"originColor": #Color4
+										"background": #Color5
 										"radius": 7
-										"hoverColor": #Color5
-										"font": #Font1
+										"hoverColor": #Color6
+										"font": #Font2
 									} )
 									add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 										"$horizontalGroup": "par l {space :0:0:x}"
 										"$verticalGroup": "par l {space :0:0:x}"
 									} ) {
 										name: "radiusLabel2"
-										"background": #Color6
+										"background": #Color7
 										"font": #SwingDerivedFont0
-										"borderColor": #Color7
-										"foreground": #Color8
+										"borderColor": #Color8
+										"foreground": #Color9
 									} )
 									add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 										name: "radiusLabel3"
 										"text": "10.000 VNĐ = 10.000 coin"
-										"background": #Color6
+										"background": #Color7
 										"font": #SwingDerivedFont0
-										"borderColor": #Color7
-										"foreground": #Color8
+										"borderColor": #Color8
+										"foreground": #Color9
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label15"
+										"text": "Hình thức"
+										"font": #Font3
+									} )
+									add( new FormComponent( "javax.swing.JComboBox" ) {
+										name: "cbbPrice2"
+										"background": #Color3
+										"font": #Font1
+										"model": #DefaultComboBoxModel0
+									} )
+									add( new FormComponent( "javax.swing.JLabel" ) {
+										name: "label16"
+										"text": "Mức giá"
+										"font": #Font3
 									} )
 								} )
 							} )
@@ -240,7 +262,7 @@ new FormModel {
 									"axis": 1
 								} ) {
 									name: "panel7"
-									"background": #Color9
+									"background": #Color10
 								} )
 							} )
 							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
@@ -248,36 +270,36 @@ new FormModel {
 								"$verticalGroup": "par l {par b:l {comp label7::b:p:50:p, comp label8::b:p:50:p, comp label6::b:p:50:p, comp label9::b:p:50:p}}"
 							} ) {
 								name: "panel8"
-								"background": #Color10
+								"background": #Color11
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label6"
 									"text": "ID"
-									"font": #Font3
+									"font": #Font4
 									"horizontalAlignment": 0
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label7"
 									"text": "Ngày Nạp"
-									"font": #Font3
+									"font": #Font4
 									"horizontalAlignment": 0
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label8"
 									"text": "Trạng thái"
-									"font": #Font3
+									"font": #Font4
 									"horizontalAlignment": 0
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label9"
 									"text": "ID"
-									"font": #Font3
+									"font": #Font4
 									"horizontalAlignment": 0
 								} )
 							} )
 							add( new FormComponent( "javax.swing.JLabel" ) {
 								name: "label10"
 								"text": "Lịch sử nạp ngân hàng "
-								"font": #Font4
+								"font": #Font5
 							} )
 						} )
 					}, new FormLayoutConstraints( null ) {

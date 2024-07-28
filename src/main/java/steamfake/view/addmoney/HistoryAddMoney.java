@@ -25,6 +25,7 @@ public class HistoryAddMoney extends JPanel {
 
         //======== this ========
         setBackground(new Color(0x252730));
+        setMaximumSize(new Dimension(1000, 50));
 
         //---- label1 ----
         label1.setText("123");

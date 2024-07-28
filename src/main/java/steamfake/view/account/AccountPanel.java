@@ -507,6 +507,7 @@ public class AccountPanel extends JPanel {
                 bankDialog.addWindowFocusListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
+                        bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
                         addItemCBBAccount();
                     }
                 });

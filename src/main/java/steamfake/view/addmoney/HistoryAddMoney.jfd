@@ -9,6 +9,7 @@ new FormModel {
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 37, 39, 48, 255 )
+			"maximumSize": new java.awt.Dimension( 1000, 50 )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "label1"
 				"text": "123"

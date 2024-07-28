@@ -15,8 +15,8 @@ new FormModel {
 				name: "panel1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {par l {seq {space :p:25:p, par t {comp radiusPanel1:::p::p, comp label25:::p:500:p}}, seq l {space :p:127:p, comp radiusButton1:::p:300:p}}, space ::27:x}}"
-					"$verticalGroup": "par l {seq l {space :p:20:p, comp radiusPanel1:::p::p, space :::p, comp label25:::p:30:p, space u:::p, comp radiusButton1:::p:30:p, space ::36:x}}"
+					"$horizontalGroup": "par l {seq {par l {seq l {space :p:25:p, par t {comp radiusPanel1:::p::p, comp label25:::p:500:p}}, seq l {space :p:127:p, comp btnPay:::p:300:p}}, space ::27:x}}"
+					"$verticalGroup": "par l {seq l {space :p:20:p, comp radiusPanel1:::p::p, space :::p, comp label25:::p:30:p, space u:::p, comp btnPay:::p:40:p, space ::26:x}}"
 				} ) {
 					name: "panel2"
 					"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -34,39 +34,39 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label2"
-							"text": "Số tài khoản :"
+							"text": "Tên người nhận"
 							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label3"
-							"text": "Số tài khoản :"
+							"text": "Tên ngân hàng"
 							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label4"
-							"text": "Số tài khoản :"
+							"text": "Nội dung"
 							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label5"
-							"text": "Số tài khoản :"
+							"text": "Số tiền"
 							"font": #Font0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label6"
-							"text": "Số tài khoản :"
+							"text": "104879865299"
 							"font": #Font0
 							"horizontalAlignment": 0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label7"
-							"text": "Số tài khoản :"
+							"text": "Ông Trịnh Văn Thuật"
 							"font": #Font0
 							"horizontalAlignment": 0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label8"
-							"text": "Số tài khoản :"
+							"text": "Vietinbank"
 							"font": #Font0
 							"horizontalAlignment": 0
 						} )
@@ -89,7 +89,7 @@ new FormModel {
 						"font": new java.awt.Font( "SansSerif", 0, 14 )
 					} )
 					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-						name: "radiusButton1"
+						name: "btnPay"
 						"text": "Thanh toán"
 						"font": new java.awt.Font( "SansSerif", 1, 14 )
 					} )

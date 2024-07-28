@@ -29,16 +29,15 @@ import java.util.UUID;
 public class
 BankDialog extends JDialog {
 
-    private boolean isEditing = false;
+      
     private final List<BankAccount> bankAccountList;
-
+    private static boolean isEditing = false;
     public BankDialog(Window owner, List<BankAccount> bankAccountList) {
         super(owner);
         this.bankAccountList = bankAccountList;
         initComponents();
         this.getContentPane().setBackground(new Color(0x191b20));
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         initialize();
 
     }
