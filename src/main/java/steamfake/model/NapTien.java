@@ -14,6 +14,9 @@ public abstract class NapTien {
 
     public static final int NAP_CARD = 0;
     public static final int NAP_CK = 1;
+    public static final int PENDING = 0;
+    public static final int ACCEPTED = 1;
+    public static final int REJECTED = 2;
 
     public NapTien(UUID id) {
         this.id = id;

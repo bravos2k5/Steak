@@ -17,7 +17,6 @@ public class XRegex {
         String regexEasy = ".{6,}";
         String regexMedium = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$";
         String regexHard = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&]).{10,}$";
-
         if (password.matches(regexHard)) {
             return HARD;
         }
@@ -28,7 +27,6 @@ public class XRegex {
             return EASY;
         }
         return CANT_USE;
-
     }
 
     public static boolean isPhone(String phone) {

@@ -1,22 +1,21 @@
 /*
- * Created by JFormDesigner on Sat Jul 13 21:41:08 ICT 2024
+ * Created by JFormDesigner on Fri Jul 19 20:14:08 ICT 2024
  */
 
-package steamfake.view.account;
+package steamfake.view.admin.account;
 
 import steamfake.dao.AccountDAO;
-import steamfake.dao.BankAccountDAO;
 import steamfake.graphics.DateTimeTextField;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
-import steamfake.model.BankAccount;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XFile;
 import steamfake.utils.XImage;
 import steamfake.utils.XRegex;
 import steamfake.utils.azure.AzureBlobService;
+import steamfake.view.account.ChangePassword;
 import steamfake.view.mainframe.HeaderPanel;
 import steamfake.view.mainframe.MFrame;
 
@@ -24,22 +23,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.File;
 import java.sql.Date;
-import java.util.List;
 
 /**
- * @author ACER
+ * @author ADMIN
  */
-public class AccountPanel extends JPanel {
-    public AccountPanel() {
+public class ShowAccount extends JFrame {
+    public ShowAccount() {
         initComponents();
         initialize();
     }
-
-    List<BankAccount> bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
@@ -47,7 +41,6 @@ public class AccountPanel extends JPanel {
         label1 = new JLabel();
         label3 = new JLabel();
         panel2 = new JPanel();
-        txtUsername = new RadiusTextField();
         lbl123 = new JLabel();
         label5 = new JLabel();
         txtEmail = new RadiusTextField();
@@ -65,19 +58,19 @@ public class AccountPanel extends JPanel {
         label10 = new JLabel();
         cboSex = new JComboBox();
         label11 = new JLabel();
-        cboBankAccount = new JComboBox();
-        btnBankManagement = new RadiusButton();
+        txtNameAccount = new RadiusTextField();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
         lblSoDuGame = new JLabel();
         lblSoDuDoanhThu = new JLabel();
         label17 = new JLabel();
-        btnCancel = new RadiusButton();
+        btnBan = new RadiusButton();
         btnUpdate = new RadiusButton();
+        btnCancel = new RadiusButton();
 
         //======== this ========
-        setBackground(new Color(0x191b20));
+        var contentPane = getContentPane();
 
         //======== panel1 ========
         {
@@ -94,17 +87,6 @@ public class AccountPanel extends JPanel {
             //======== panel2 ========
             {
                 panel2.setBackground(new Color(0x191b20));
-
-                //---- txtUsername ----
-                txtUsername.setForcusColor(new Color(0x0c8ce9));
-                txtUsername.setNoForcusColor(new Color(0x191b20));
-                txtUsername.setStartGradientColor(new Color(0x191b20));
-                txtUsername.setEndGradientColor(new Color(0x191b20));
-                txtUsername.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-                txtUsername.setRadius(0);
-                txtUsername.setBackground(new Color(0x252730));
-                txtUsername.setEditable(false);
-                txtUsername.setEnabled(false);
 
                 //---- lbl123 ----
                 lbl123.setText("T\u00ean t\u00e0i kho\u1ea3n");
@@ -207,18 +189,14 @@ public class AccountPanel extends JPanel {
                 label11.setText("Gi\u1edbi t\u00ednh");
                 label11.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
 
-                //---- cboBankAccount ----
-                cboBankAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
-                cboBankAccount.setBackground(new Color(0x252730));
-                cboBankAccount.setMaximumRowCount(5);
-
-                //---- btnBankManagement ----
-                btnBankManagement.setOriginColor(new Color(0x205cc3));
-                btnBankManagement.setHoverColor(new Color(0x4886f0));
-                btnBankManagement.setRadius(0);
-                btnBankManagement.setBackground(new Color(0x205cc3));
-                btnBankManagement.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-                btnBankManagement.setIcon(new ImageIcon(getClass().getResource("/icon/Bank.png")));
+                //---- txtNameAccount ----
+                txtNameAccount.setForcusColor(new Color(0x0c8ce9));
+                txtNameAccount.setNoForcusColor(new Color(0x191b20));
+                txtNameAccount.setStartGradientColor(new Color(0x191b20));
+                txtNameAccount.setEndGradientColor(new Color(0x191b20));
+                txtNameAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                txtNameAccount.setRadius(0);
+                txtNameAccount.setBackground(new Color(0x252730));
 
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
@@ -229,8 +207,8 @@ public class AccountPanel extends JPanel {
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addGroup(panel2Layout.createParallelGroup()
-                                        .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbl123, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lbl123, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNameAccount, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                                     .addGroup(panel2Layout.createParallelGroup()
                                         .addComponent(label5, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
@@ -252,21 +230,17 @@ public class AccountPanel extends JPanel {
                                             .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(label10, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(117, 117, 117)
+                                            .addGap(184, 184, 184)
                                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(label11, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
                                                 .addComponent(cboSex, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
+                                        .addComponent(txtUUID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
                                             .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(30, 30, 30)
-                                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(panel2Layout.createSequentialGroup()
-                                                    .addComponent(cboBankAccount)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(btnBankManagement, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+                                            .addGap(80, 80, 80)
+                                            .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(label6, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(panel2Layout.createSequentialGroup()
                                                     .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
@@ -282,7 +256,7 @@ public class AccountPanel extends JPanel {
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addComponent(lbl123, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtUsername, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtNameAccount, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
@@ -302,10 +276,7 @@ public class AccountPanel extends JPanel {
                             .addGap(31, 31, 31)
                             .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnBankManagement, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cboBankAccount, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
@@ -320,7 +291,7 @@ public class AccountPanel extends JPanel {
                                     .addComponent(label10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
                                     .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(22, Short.MAX_VALUE))
+                            .addContainerGap(25, Short.MAX_VALUE))
                 );
             }
 
@@ -352,21 +323,29 @@ public class AccountPanel extends JPanel {
             //---- label17 ----
             label17.setIcon(new ImageIcon(getClass().getResource("/icon/coin.png")));
 
-            //---- btnCancel ----
-            btnCancel.setText("H\u1ee7y b\u1ecf");
-            btnCancel.setBackground(new Color(0x3e3737));
-            btnCancel.setOriginColor(new Color(0x3e3737));
-            btnCancel.setHoverColor(new Color(0x9d2424));
-            btnCancel.setRadius(5);
-            btnCancel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+            //---- btnBan ----
+            btnBan.setText("Ban!");
+            btnBan.setBackground(new Color(0x3e3737));
+            btnBan.setOriginColor(new Color(0x3e3737));
+            btnBan.setHoverColor(new Color(0x9d2424));
+            btnBan.setRadius(5);
+            btnBan.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
             //---- btnUpdate ----
-            btnUpdate.setText("\u0110\u0103ng l\u00ean");
+            btnUpdate.setText("Update");
             btnUpdate.setBackground(new Color(0x35452a));
             btnUpdate.setHoverColor(new Color(0x429509));
             btnUpdate.setOriginColor(new Color(0x35452a));
             btnUpdate.setRadius(5);
             btnUpdate.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+
+            //---- btnCancel ----
+            btnCancel.setText("Cancel");
+            btnCancel.setBackground(new Color(0x3e3737));
+            btnCancel.setOriginColor(new Color(0x3e3737));
+            btnCancel.setHoverColor(new Color(0x999999));
+            btnCancel.setRadius(5);
+            btnCancel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
@@ -377,8 +356,11 @@ public class AccountPanel extends JPanel {
                             .addGroup(panel1Layout.createSequentialGroup()
                                 .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(btnBan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16))
                             .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
@@ -426,66 +408,37 @@ public class AccountPanel extends JPanel {
                         .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addGap(20, 20, 20)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnBan, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(21, Short.MAX_VALUE))
             );
         }
 
-        GroupLayout layout = new GroupLayout(this);
-        setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(50, 50, 50)
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE))
+        GroupLayout contentPaneLayout = new GroupLayout(contentPane);
+        contentPane.setLayout(contentPaneLayout);
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createParallelGroup()
+                    .addGroup(contentPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 1108, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup()
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(40, 40, 40)
-                    .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(32, Short.MAX_VALUE))
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createParallelGroup()
+                    .addGroup(contentPaneLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(0, 744, Short.MAX_VALUE)
         );
+        pack();
+        setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
-
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JPanel panel1;
-    private JLabel label1;
-    private JLabel label3;
-    private JPanel panel2;
-    private RadiusTextField txtUsername;
-    private JLabel lbl123;
-    private JLabel label5;
-    private RadiusTextField txtEmail;
-    private RadiusButton btnChangeEmail;
-    private JLabel label6;
-    private JLabel label7;
-    private RadiusTextField txtPhoneNumber;
-    private RadiusTextField txtJoinDate;
-    private RadiusButton btnChangePassword;
-    private RadiusTextField txtUUID;
-    private JLabel label8;
-    private RadiusTextField txtName;
-    private JLabel label9;
-    private DateTimeTextField txtDob;
-    private JLabel label10;
-    private JComboBox cboSex;
-    private JLabel label11;
-    private JComboBox cboBankAccount;
-    private RadiusButton btnBankManagement;
-    private RadiusLabel lblAvatar;
-    private JLabel lblName;
-    private JLabel label14;
-    private JLabel lblSoDuGame;
-    private JLabel lblSoDuDoanhThu;
-    private JLabel label17;
-    private RadiusButton btnCancel;
-    private RadiusButton btnUpdate;
-    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
-
     private void initialize() {
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
@@ -499,24 +452,10 @@ public class AccountPanel extends JPanel {
                 changeAvatar();
             }
         });
-        btnBankManagement.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                BankDialog bankDialog =new BankDialog(MFrame.gI(),bankAccountList,AccountPanel.this);
-                bankDialog.setVisible(true);
-                bankDialog.addWindowFocusListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        bankAccountList = BankAccountDAO.gI().selectByAccount(SessionManager.user);
-                        addItemCBBAccount();
-                    }
-                });
-            }
-        });
         btnUpdate.addActionListener(e -> updateAction());
-        txtUsername.setEnabled(false);
+        txtNameAccount.setEnabled(false);
         txtEmail.setEnabled(false);
-        txtUsername.setDisabledTextColor(Color.white);
+        txtNameAccount.setDisabledTextColor(Color.white);
         txtEmail.setDisabledTextColor(Color.white);
         txtUUID.setDisabledTextColor(Color.white);
         txtJoinDate.setDisabledTextColor(Color.white);
@@ -524,8 +463,11 @@ public class AccountPanel extends JPanel {
         txtUUID.setEnabled(false);
         fillSexCbo();
         loadInfo();
-        btnChangeEmail.addActionListener(e -> updateEmail());
+//        btnChangeEmail.addActionListener(e -> updateEmail());
     }
+
+//    private void updateEmail() {
+//    }
 
     private void loadInfo() {
         Account account = SessionManager.user;
@@ -533,12 +475,13 @@ public class AccountPanel extends JPanel {
         lblSoDuDoanhThu.setText(account.getSoDuThuNhap() + "");
         lblSoDuGame.setText(account.getSoDuGame() + "");
         lblAvatar.setSize(new Dimension(120, 120));
-        if (account.getAvatar() != null && !account.getAvatar().isEmpty()) {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()), lblAvatar));
-        } else {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvatar));
+        if(account.getAvatar() != null && !account.getAvatar().isEmpty()) {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()),lblAvatar));
         }
-        txtUsername.setText(account.getUsername());
+        else {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
+        }
+        txtNameAccount.setText(account.getUsername());
         txtEmail.setText(account.getEmail());
         txtPhoneNumber.setText(account.getPhone());
         txtJoinDate.setText(account.getNgayTao().toString());
@@ -546,12 +489,6 @@ public class AccountPanel extends JPanel {
         txtName.setText(account.getHoTen());
         txtDob.getDatePicker().setSelectedDate(account.getDob().toLocalDate());
         cboSex.setSelectedItem(account.getGioiTinh());
-        addItemCBBAccount();
-    }
-
-    public void addItemCBBAccount() {
-        cboBankAccount.removeAllItems();
-        bankAccountList.forEach(cboBankAccount::addItem);
     }
 
     public void setTxtEmail(String email) {
@@ -579,14 +516,14 @@ public class AccountPanel extends JPanel {
     private void updateAction() {
         String msg = "";
         String oldAvatar = SessionManager.user.getAvatar();
-        if (txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
+        if(txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
                 txtPhoneNumber.getText().isBlank() || txtDob.getDatePicker().getSelectedDate() == null) {
             msg += "Vui lòng nhập đầy đủ thông tin\n";
         }
-        if (!txtPhoneNumber.getText().isBlank() && !XRegex.isPhone(txtPhoneNumber.getText())) {
+        if(!XRegex.isPhone(txtPhoneNumber.getText())) {
             msg += "Số điện thoại không hợp lệ\n";
         }
-        if (!msg.isBlank()) {
+        if(!msg.isBlank()) {
             JOptionPane.showMessageDialog(this, msg, "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -597,28 +534,60 @@ public class AccountPanel extends JPanel {
         account.setPhone(txtPhoneNumber.getText());
 
         String avatar = lblAvatar.getToolTipText();
-        if (avatar != null && !avatar.isEmpty()) {
+        if(avatar != null && !avatar.isEmpty()) {
             account.setAvatar(new File(avatar).getName());
         }
-        if (AccountDAO.gI().updatePersonalInfo(account) > 0) {
+        if(AccountDAO.gI().updatePersonalInfo(account) > 0) {
             if (avatar != null && !avatar.isEmpty()) {
-                AzureBlobService.upload(avatar, "avatars/" + account.getId() + "/" + new File(avatar).getName(), "images");
-                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar, "images");
-                XFile.copyFile(avatar, "data/avatars/" + account.getId() + "/" + new File(avatar).getName());
-                new File("data/avatars/" + account.getId() + "/" + oldAvatar).deleteOnExit();
+                AzureBlobService.upload(avatar,"avatars/" + account.getId() + "/" + new File(avatar).getName(),"images");
+                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar,"images");
+                XFile.copyFile(avatar,"data/avatars/" + account.getId() + "/" + new File(avatar).getName());
+                new File("data/avatasr/" + account.getId() + "/" + oldAvatar).deleteOnExit();
             }
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
             SessionManager.user = account;
             HeaderPanel.gI().updateAccount();
-        } else {
+        }
+        else {
             JOptionPane.showMessageDialog(this, "Cập nhật thông tin thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    private void updateEmail() {
-        new ChangeEmail(MFrame.gI(), this).setVisible(true);
-    }
+//    private void updateEmail() {
+//        new ChangeEmail(MFrame.getInstance(), this).setVisible(true);
+//    }
 
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    private JPanel panel1;
+    private JLabel label1;
+    private JLabel label3;
+    private JPanel panel2;
+    private JLabel lbl123;
+    private JLabel label5;
+    private RadiusTextField txtEmail;
+    private RadiusButton btnChangeEmail;
+    private JLabel label6;
+    private JLabel label7;
+    private RadiusTextField txtPhoneNumber;
+    private RadiusTextField txtJoinDate;
+    private RadiusButton btnChangePassword;
+    private RadiusTextField txtUUID;
+    private JLabel label8;
+    private RadiusTextField txtName;
+    private JLabel label9;
+    private DateTimeTextField txtDob;
+    private JLabel label10;
+    private JComboBox cboSex;
+    private JLabel label11;
+    private RadiusTextField txtNameAccount;
+    private RadiusLabel lblAvatar;
+    private JLabel lblName;
+    private JLabel label14;
+    private JLabel lblSoDuGame;
+    private JLabel lblSoDuDoanhThu;
+    private JLabel label17;
+    private RadiusButton btnBan;
+    private RadiusButton btnUpdate;
+    private RadiusButton btnCancel;
+    // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }
-
-

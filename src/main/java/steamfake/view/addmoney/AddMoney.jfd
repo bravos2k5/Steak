@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -10,23 +10,23 @@ new FormModel {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:50:p, comp tabbedPane1:::p:1000:p, space ::50:x}}"
-				"$verticalGroup": "par l {seq t {space :0:0:x, comp tabbedPane1:::p:744:p}}"
+				"$horizontalGroup": "par l {seq l {space :p:50:p, comp tabs:::p:1000:p, space ::50:x}}"
+				"$verticalGroup": "par l {seq t {space :0:0:x, comp tabs:::p:744:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
-					name: "tabbedPane1"
+					name: "tabs"
 					"background": new java.awt.Color( 37, 39, 48, 255 )
 					"font": new java.awt.Font( "Inter", 1, 16 )
 					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {comp radiusPanel1:::::x, seq l {comp label1:::p:210:p, space :0:790:x}, comp panel3::l::1000:x, comp scrollPane1::l::1000:x}"
-						"$verticalGroup": "par l {seq l {space :0:0:p, comp radiusPanel1:::p::p, space s:::p, comp label1:::p:50:p, space :::p, comp panel3:::p::p, space :0:0:p, comp scrollPane1::::171:x, space :p:16:p}}"
+						"$horizontalGroup": "par l {comp radiusPanel1:::::x, seq l {par t:::p {comp this3::l:::x, comp scrollPane3::l::1000:x}, space :0:0:x}, seq l {space :::p, comp label21:::p:210:p, space ::784:x}}"
+						"$verticalGroup": "par l {seq l {space :0:0:p, comp radiusPanel1:::p::p, space ::16:x, comp label21:::p:50:p, space u:::p, comp this3:::p::p, space :0:0:p, comp scrollPane3:::p:177:p, space :::p}}"
 					} ) {
 						name: "panel2"
 						"background": new java.awt.Color( 37, 39, 48, 255 )
 						add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq l {space :p:25:p, comp radiusPanel2:::p::p, space ::25:x}}"
+							"$horizontalGroup": "par l {seq l {space :p:25:p, comp radiusPanel2:::p::p, space :::x}}"
 							"$verticalGroup": "par l {seq l {space :p:25:p, comp radiusPanel2:::p::p, space ::25:x}}"
 						} ) {
 							name: "radiusPanel1"
@@ -125,51 +125,53 @@ new FormModel {
 								} )
 							} )
 						} )
+						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+							"$horizontalGroup": "par l {seq l {comp label17:::p:310:p, space :0:0:p, comp label18:::p:195:p, space :0:0:p, comp label19:::p:230:p, space :0:0:p, comp label20::::259:x, space :::p}}"
+							"$verticalGroup": "par l {seq t {space :0:0:x, par b {comp label17::b:p:50:p, comp label18::b:p:50:p, comp label19::b:p:50:p, comp label20::b:p:50:p}}}"
+						} ) {
+							name: "this3"
+							"background": &Color10 new java.awt.Color( 25, 27, 32, 255 )
+							"maximumSize": &Dimension0 new java.awt.Dimension( 1000, 50 )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label17"
+								"text": "ID"
+								"font": &Font4 new java.awt.Font( "Inter", 1, 14 )
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label18"
+								"text": "Ngày nạp"
+								"font": &Font5 new java.awt.Font( "Inter", 1, 14 )
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label19"
+								"text": "Mệnh giá"
+								"font": &Font6 new java.awt.Font( "Inter", 1, 14 )
+								"horizontalAlignment": 0
+							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label20"
+								"text": "Trạng thái"
+								"font": &Font7 new java.awt.Font( "Inter", 1, 14 )
+								"horizontalAlignment": 0
+								"foreground": &Color11 new java.awt.Color( 255, 255, 255, 255 )
+							} )
+						} )
 						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
-							name: "scrollPane1"
+							name: "scrollPane3"
 							"horizontalScrollBarPolicy": 31
 							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 								"axis": 1
 							} ) {
-								name: "panel4"
-								"background": &Color10 new java.awt.Color( 37, 39, 48, 255 )
-							} )
-						} )
-						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq l {space :0:0:p, comp label2:::p:200:p, space :0:0:p, comp label3:::p:300:p, space :0:0:p, comp label4:::p:300:p, space :0:0:p, comp label5:::p:200:p, space :::x}}"
-							"$verticalGroup": "par l {par b:l {comp label3::b:p:50:p, comp label4::b:p:50:p, comp label2::b:p:50:p, comp label5::b:p:50:p}}"
-						} ) {
-							name: "panel3"
-							"background": &Color11 new java.awt.Color( 25, 27, 32, 255 )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label2"
-								"text": "ID"
-								"font": &Font4 new java.awt.Font( "Inter", 1, 16 )
-								"horizontalAlignment": 0
-							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label3"
-								"text": "Ngày Nạp"
-								"font": #Font4
-								"horizontalAlignment": 0
-							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label4"
-								"text": "Trạng thái"
-								"font": #Font4
-								"horizontalAlignment": 0
-							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label5"
-								"text": "ID"
-								"font": #Font4
-								"horizontalAlignment": 0
+								name: "pnlCardHistory"
+								"background": &Color12 new java.awt.Color( 37, 39, 48, 255 )
 							} )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
-							name: "label1"
-							"text": "Lịch sử nạp thẻ"
-							"font": &Font5 new java.awt.Font( "Inter", 1, 16 )
+							name: "label21"
+							"text": "Lịch sử nạp thẻ "
+							"font": &Font8 new java.awt.Font( "Inter", 1, 16 )
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Nạp thẻ cào"
@@ -181,8 +183,8 @@ new FormModel {
 						name: "panel5"
 						"background": new java.awt.Color( 37, 39, 48, 255 )
 						add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-							"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {comp label10:::p:210:p, comp radiusPanel3::t:::x, comp panel8::l:p:1000:p, comp scrollPane2::t:::x}}}"
-							"$verticalGroup": "par l {seq l {comp radiusPanel3:::p::p, space u:::p, comp label10:::p:50:p, space :::p, comp panel8:::p::p, space :0:0:p, comp scrollPane2::::177:x, space :p:16:p}}"
+							"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {seq t {comp label10:::p:210:p, space :p:771:p}, comp this2::l:::x, seq t {comp radiusPanel3:::::x, space :::p}, comp scrollPane2::::1000:x}}}"
+							"$verticalGroup": "par l {seq l {comp radiusPanel3:::p::p, space u:::p, comp label10:::p:50:p, space :::p, comp this2:::p::p, space :0:0:p, comp scrollPane2::::177:x, space :p:16:p}}"
 						} ) {
 							name: "panel6"
 							"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -195,7 +197,7 @@ new FormModel {
 								"borderWidth": 1
 								"background": #Color0
 								add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:97:x, par l:::p {comp label15:::p:100:p, comp cbbBank::::692:x, comp label16:::p:100:p, comp cbbPrice2::l::692:x}, space :p:97:p, comp radiusLabel2:::p::p}, seq {comp btnAddBank:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}}"
+									"$horizontalGroup": "par l {seq {space :p:24:p, par l {seq {space :0:0:x, par l:::p {comp label15:::p:100:p, comp cbbBank::::692:x, comp label16:::p:100:p, comp cbbPrice2::l:::x}, space :p:97:p, comp radiusLabel2:::p::p}, seq {comp btnAddBank:::p:400:p, space ::86:x, comp radiusLabel3:::p:400:p}}, space :p:40:p}}"
 									"$verticalGroup": "par l {seq {par l {seq {space :p:49:p, comp radiusLabel2:::p::p}, seq l {space :p:36:p, comp label15:::p:30:p, space :0:0:p, comp cbbBank:::p:50:p}}, space s:::p, comp label16:::p:30:p, space :0:0:p, comp cbbPrice2:::p:50:p, space ::34:x, par b {comp btnAddBank::b:p:69:p, comp radiusLabel3::b:p:69:p}, space :p:32:p}}"
 								} ) {
 									name: "radiusPanel4"
@@ -261,16 +263,22 @@ new FormModel {
 								add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 									"axis": 1
 								} ) {
-									name: "panel7"
-									"background": #Color10
+									name: "pnlBankHistory"
+									"background": #Color12
 								} )
 							} )
+							add( new FormComponent( "javax.swing.JLabel" ) {
+								name: "label10"
+								"text": "Lịch sử nạp ngân hàng "
+								"font": #Font8
+							} )
 							add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-								"$horizontalGroup": "par l {seq l {space :0:0:p, comp label6:::p:200:p, space :0:0:p, comp label7:::p:300:p, space :0:0:p, comp label8:::p:300:p, space :0:0:p, comp label9:::p:200:p, space :::x}}"
-								"$verticalGroup": "par l {par b:l {comp label7::b:p:50:p, comp label8::b:p:50:p, comp label6::b:p:50:p, comp label9::b:p:50:p}}"
+								"$horizontalGroup": "par l {seq l {comp label6:::p:310:p, space :0:0:p, comp label7:::p:195:p, space :0:0:p, comp label8:::p:230:p, space :::p, comp label9::::253:x, space :::p}}"
+								"$verticalGroup": "par l {seq t {space :0:0:x, par b {comp label6::b:p:50:p, comp label7::b:p:50:p, comp label8::b:p:50:p, comp label9::b:p:50:p}}}"
 							} ) {
-								name: "panel8"
-								"background": #Color11
+								name: "this2"
+								"background": #Color10
+								"maximumSize": #Dimension0
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label6"
 									"text": "ID"
@@ -279,27 +287,23 @@ new FormModel {
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label7"
-									"text": "Ngày Nạp"
-									"font": #Font4
+									"text": "Ngày nạp"
+									"font": #Font5
 									"horizontalAlignment": 0
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label8"
-									"text": "Trạng thái"
-									"font": #Font4
+									"text": "Mệnh giá"
+									"font": #Font6
 									"horizontalAlignment": 0
 								} )
 								add( new FormComponent( "javax.swing.JLabel" ) {
 									name: "label9"
-									"text": "ID"
-									"font": #Font4
+									"text": "Trạng thái"
+									"font": #Font7
 									"horizontalAlignment": 0
+									"foreground": #Color11
 								} )
-							} )
-							add( new FormComponent( "javax.swing.JLabel" ) {
-								name: "label10"
-								"text": "Lịch sử nạp ngân hàng "
-								"font": #Font5
 							} )
 						} )
 					}, new FormLayoutConstraints( null ) {

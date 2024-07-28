@@ -124,7 +124,7 @@ public class LibraryPanel extends JPanel {
     private JPanel undownloadedPanel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-    private HashMap<GameLibrary, Game> libraryMap;
+    private final HashMap<GameLibrary, Game> libraryMap;
 
 
     private void initialize() {

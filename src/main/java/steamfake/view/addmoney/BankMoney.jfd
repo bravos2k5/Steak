@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -21,8 +21,8 @@ new FormModel {
 					name: "panel2"
 					"background": new java.awt.Color( 37, 39, 48, 255 )
 					add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label1::l:p:120:p, comp label2::l:p:120:p, comp label3::l:p:120:p, comp label4::l:p:120:p, comp label5::l:p:120:p}, space ::56:x, par l:::p {comp label7::l:::x, comp label6::l:::x, comp label8::l:::x, comp label9::l:::x, comp label10:::p:250:p}, space :p:55:p}}"
-						"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq l {comp label6:::p:25:p, space :p:12:p, comp label7:::p:25:p, space :p:12:p, comp label8:::p:25:p, space u:::p, comp label9:::p:25:p, space u:::p, comp label10:::p:25:p}, seq l {comp label1:::p:25:p, space u:::p, comp label2:::p:25:p, space u:::p, comp label3:::p:25:p, space u:::p, comp label4:::p:25:p, space u:::p, comp label5:::p:25:p}}, space ::15:x}}"
+						"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label1::l:p:120:p, comp label2::l:p:120:p, comp label3::l:p:120:p, comp label4::l:p:120:p, comp label5::l:p:120:p}, par l {seq {space :p:18:p, par l {comp label7::l::288:x, comp label8::l:::x, comp lblNoiDungCK::l:::x, comp label6::t:::x}, space :p:55:p}, seq l {space :p:57:p, comp lblSoTienCK:::p:249:p, space ::55:x}}}}"
+						"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq {comp label6:::p:25:p, space :p:12:p, comp label7:::p:25:p, space :p:12:p, comp label8:::p:25:p, space u:::p, comp lblNoiDungCK:::p:25:p, space u:::p, comp lblSoTienCK:::p:25:p}, seq {comp label1:::p:25:p, space u:::p, comp label2:::p:25:p, space u:::p, comp label3:::p:25:p, space u:::p, comp label4:::p:25:p, space u:::p, comp label5:::p:25:p}}, space ::15:x}}"
 					} ) {
 						name: "radiusPanel1"
 						"background": new java.awt.Color( 70, 72, 76, 255 )
@@ -60,7 +60,7 @@ new FormModel {
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
 							name: "label7"
-							"text": "Ông Trịnh Văn Thuật"
+							"text": "Trịnh Văn Thuật"
 							"font": #Font0
 							"horizontalAlignment": 0
 						} )
@@ -71,14 +71,13 @@ new FormModel {
 							"horizontalAlignment": 0
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
-							name: "label9"
-							"text": "Số tài khoản :"
+							name: "lblNoiDungCK"
 							"font": #Font0
 							"horizontalAlignment": 0
+							"cursor": new java.awt.Cursor( 12 )
 						} )
 						add( new FormComponent( "javax.swing.JLabel" ) {
-							name: "label10"
-							"text": "Số tài khoản :"
+							name: "lblSoTienCK"
 							"font": #Font0
 							"horizontalAlignment": 0
 						} )

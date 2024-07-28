@@ -20,11 +20,11 @@ import java.util.List;
 /**
  * @author ACER
  */
-public class HotGamePanel2 extends JPanel {
+public class HotGameItem extends JPanel {
 
     private final GameDisplay game;
 
-    public HotGamePanel2(GameDisplay game) {
+    public HotGameItem(GameDisplay game) {
         this.game = game;
         initComponents();
         initialize();

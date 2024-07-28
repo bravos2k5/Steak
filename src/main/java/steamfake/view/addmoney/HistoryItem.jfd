@@ -1,0 +1,43 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {comp lblId:::p:310:p, space :0:0:p, comp lblDate:::p:195:p, space :0:0:p, comp lblSoTien:::p:230:p, space :0:0:p, comp lblStatus:::p:249:p, space :0:16:x}}"
+			"$verticalGroup": "par l {seq t {space :0:0:x, par b {comp lblId::b:p:50:p, comp lblDate::b:p:50:p, comp lblSoTien::b:p:50:p, comp lblStatus::b:p:50:p}}}"
+		} ) {
+			name: "this"
+			"background": new java.awt.Color( 27, 29, 38, 255 )
+			"maximumSize": new java.awt.Dimension( 1000, 50 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblId"
+				"text": "12345678912345678912345678912345"
+				"font": new java.awt.Font( "Inter", 1, 14 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblDate"
+				"text": "01/01/2020"
+				"font": new java.awt.Font( "Inter", 1, 14 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblSoTien"
+				"text": "10.000"
+				"font": new java.awt.Font( "Inter", 1, 14 )
+				"horizontalAlignment": 0
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblStatus"
+				"text": "Đã duyệt"
+				"font": new java.awt.Font( "Inter", 1, 14 )
+				"horizontalAlignment": 0
+				"foreground": new java.awt.Color( 3, 253, 103, 255 )
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1000, 50 )
+		} )
+	}
+}

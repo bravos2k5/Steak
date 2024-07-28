@@ -18,11 +18,11 @@ import java.awt.event.MouseEvent;
 /**
  * @author ACER
  */
-public class ListGamePanel extends JPanel {
+public class NormalGameItem extends JPanel {
 
     private final GameDisplay game;
 
-    public ListGamePanel(GameDisplay game) {
+    public NormalGameItem(GameDisplay game) {
         this.game = game;
         initComponents();
         loadInfo();
