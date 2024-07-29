@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space ::522:x, par l {seq t {comp label10:::p::p, space :p:105:p}, seq t {comp btnClose:::p:100:p, space s:::p, comp btnCancel:::p:100:p, space s:::p, comp btnUpload:::p:100:p, space :p:40:p}}}, seq l {space :p:50:p, par l {seq {space :p:10:p, par l {seq l {comp cboImages:::p:316:p, space :p:1:p, comp btnAddImage:::p::p, space s:::p, comp label9:::p::p}, comp label8::l:p:336:p}}, seq {comp rdoInfoOnly:::p::p, space :p:55:p, comp rdoNewVersion:::p::p}, seq {comp label11:::p::p, space s:::p, comp txtRam:::p:100:p, space :p:33:p, comp label12:::p::p, space s:::p, comp txtRom:::p:100:p, space :p:45:p, comp lblVersion:::p::p, space s:::p, comp txtVersion:::p:127:p}, par t {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp txtCost:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp cboAge:::p:184:p}}, comp txtName:::p:540:p}, space :p:108:p, comp lblAvatar:::p:150:p}, par l {comp label4:::p::p, comp scrollPane1:::p:798:p}}, comp pnlNewVersion::l:p:809:p}, space ::39:x}}"
-			"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par l {comp cboAge:::p:30:p, comp txtCost::l:p:30:p}}, seq l {space :p:35:p, comp lblAvatar:::p:150:p}}, space :::p, comp label10:::p::p, space :p:18:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, comp label8:::p:30:p, space s:::p, par b {comp cboImages::b:p:40:p, comp btnAddImage::b:p:40:p, comp label9::b:p::p}, space :p:47:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space s:::p, par b {comp rdoInfoOnly::b:p::p, comp rdoNewVersion::b:p::p}, space u:::p, comp pnlNewVersion:::::x, space u:::p, par b {comp btnUpload::b:p:30:p, comp btnCancel::b:p:30:p, comp btnClose::b:p::p}, space :p:18:p}}"
+			"$horizontalGroup": "par l {seq t {space ::522:x, par l {seq t {comp label10:::p::p, space :p:105:p}, seq t {comp btnClose:::p:100:p, space s:::p, comp btnCancel:::p:100:p, space s:::p, comp btnUpload:::p:100:p, space :p:40:p}}}, seq l {space :p:50:p, par l {seq {space :p:10:p, par l {seq l {comp cboImages:::p:316:p, space :p:1:p, comp btnAddImage:::p::p, space s:::p, comp label9:::p::p}, seq l {comp label8:::p:336:p, space s:::p, comp btnPreview:::p::p}}}, seq {comp rdoInfoOnly:::p::p, space :p:55:p, comp rdoNewVersion:::p::p}, seq {comp label11:::p::p, space s:::p, comp txtRam:::p:100:p, space :p:33:p, comp label12:::p::p, space s:::p, comp txtRom:::p:100:p, space :p:45:p, comp lblVersion:::p::p, space s:::p, comp txtVersion:::p:127:p}, par t {seq {par l {comp label1:::p::p, seq l {par l {comp label2:::p::p, comp txtCost:::p:216:p}, space :p:50:p, par l {comp label3:::p::p, comp cboAge:::p:184:p}}, comp txtName:::p:540:p}, space :p:108:p, comp lblAvatar:::p:150:p}, par l {comp label4:::p::p, comp scrollPane1:::p:798:p}}, comp pnlNewVersion::l:p:809:p}, space ::39:x}}"
+			"$verticalGroup": "par l {seq l {par l {seq {space :p:25:p, comp label1:::p:30:p, space :::p, comp txtName:::p:30:p, space s:::p, par b {comp label2::b:p:30:p, comp label3::b:p:30:p}, space :::p, par l {comp cboAge:::p:30:p, comp txtCost::l:p:30:p}}, seq l {space :p:35:p, comp lblAvatar:::p:150:p}}, space :::p, comp label10:::p::p, space :p:18:p, comp label4:::p:30:p, space :::p, comp scrollPane1:::p:300:p, space s:::p, par b {comp label8::b:p:30:p, comp btnPreview::b:p::p}, space s:::p, par b {comp cboImages::b:p:40:p, comp btnAddImage::b:p:40:p, comp label9::b:p::p}, space :p:47:p, par b {comp label11::b:p::p, comp txtRam::b:p::p, comp label12::b:p::p, comp txtRom::b:p::p, comp lblVersion::b:p::p, comp txtVersion::b:p::p}, space s:::p, par b {comp rdoInfoOnly::b:p::p, comp rdoNewVersion::b:p::p}, space u:::p, comp pnlNewVersion:::::x, space u:::p, par b {comp btnUpload::b:p:30:p, comp btnCancel::b:p:30:p, comp btnClose::b:p::p}, space :p:18:p}}"
 		} ) {
 			name: "this"
 			"modal": true
@@ -154,6 +154,7 @@ new FormModel {
 				"background": &Color6 new java.awt.Color( 37, 39, 48, 255 )
 				"endGradientColor": &Color7 new java.awt.Color( 37, 39, 48, 255 )
 				"startGradientColor": &Color8 new java.awt.Color( 37, 39, 48, 255 )
+				"enabled": false
 			} )
 			add( new FormComponent( "javax.swing.JRadioButton" ) {
 				name: "rdoInfoOnly"
@@ -166,10 +167,11 @@ new FormModel {
 				"$buttonGroup": new FormReference( "buttonGroup1" )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:0:x, par l:::p {seq l {comp label6:::p:206:p, space :228:228:p, comp label7:::p:206:p}, seq l {comp txtFolderPath:::p:252:p, space :0:0:p, comp btnInfoFolder:::p::p, space :p:21:p, comp btnSelectFolder:::p::p, space :47:47:p, comp txtExecFilePath:::p:240:p, space :0:0:p, comp btnInfoExec:::p::p, space :12:12:p, comp btnSelectExecFile:::p:97:p}, seq l {comp label13:::p:154:p, space :::x, comp txtNewVersion:::p:173:p, space :p:485:p}}}}"
-				"$verticalGroup": "par l {seq l {space :p:14:p, par l {comp label6:::p:30:p, comp label7:::p:30:p}, space :18:18:p, par l {comp txtFolderPath:::p::p, comp btnInfoFolder:::p::p, comp btnSelectFolder:::p::p, comp txtExecFilePath:::p::p, comp btnInfoExec:::p::p, comp btnSelectExecFile:::p::p}, space s:::p, par l {comp label13:::p:30:p, comp txtNewVersion:::p::p}, space ::8:x}}"
+				"$horizontalGroup": "par l {seq t {space :0:0:x, par l {seq l {comp label13:::p:154:p, space :p::p, comp txtNewVersion:::p:173:p}, seq l {par l {comp label6::l:p:206:p, seq l {comp txtFolderPath:::p:252:p, space :0:0:p, comp btnInfoFolder:::p::p, space :p:21:p, comp btnSelectFolder:::p::p}}, space :p:38:p, par l {seq l {comp txtExecFilePath:::p:249:p, space :::p, comp btnInfoExec:::p::p, space :p:12:p, comp btnSelectExecFile:::p::p}, comp label7:::p:206:p}}}, space :p:9:p}}"
+				"$verticalGroup": "par l {seq l {space :p:14:p, par l {comp label6:::p:30:p, comp label7:::p:30:p}, space :18:18:p, par l {comp txtFolderPath:::p::p, comp btnInfoFolder:::p::p, comp btnSelectFolder:::p::p, comp btnInfoExec:::p::p, comp btnSelectExecFile::l:p::p, comp txtExecFilePath::l:p::p}, space s:::p, par l {comp label13:::p:30:p, comp txtNewVersion:::p::p}, space ::7:x}}"
 			} ) {
 				name: "pnlNewVersion"
+				"opaque": false
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "label6"
 					"text": "Upload folder game"
@@ -178,6 +180,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "txtFolderPath"
 					"background": new java.awt.Color( 37, 39, 48, 255 )
+					"editable": false
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnInfoFolder"
@@ -197,6 +200,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextField" ) {
 					name: "txtExecFilePath"
 					"background": new java.awt.Color( 37, 39, 48, 255 )
+					"editable": false
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnInfoExec"
@@ -229,6 +233,10 @@ new FormModel {
 				"originColor": #Color4
 				"radius": 5
 				"hoverColor": #Color5
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnPreview"
+				"text": "Preview"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

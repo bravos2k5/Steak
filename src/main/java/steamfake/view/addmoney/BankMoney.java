@@ -125,9 +125,9 @@ public class BankMoney extends JDialog {
                                     .addComponent(label3, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label4, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(radiusPanel1Layout.createParallelGroup()
                                     .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
                                         .addGroup(radiusPanel1Layout.createParallelGroup()
                                             .addComponent(label7, GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
                                             .addComponent(label8, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -135,8 +135,7 @@ public class BankMoney extends JDialog {
                                             .addComponent(label6, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGap(55, 55, 55))
                                     .addGroup(radiusPanel1Layout.createSequentialGroup()
-                                        .addGap(57, 57, 57)
-                                        .addComponent(lblSoTienCK, GroupLayout.PREFERRED_SIZE, 249, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblSoTienCK, GroupLayout.PREFERRED_SIZE, 288, GroupLayout.PREFERRED_SIZE)
                                         .addContainerGap(55, Short.MAX_VALUE))))
                     );
                     radiusPanel1Layout.setVerticalGroup(

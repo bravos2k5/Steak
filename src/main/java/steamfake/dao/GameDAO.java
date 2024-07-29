@@ -96,7 +96,7 @@ public class GameDAO implements DataAccessObject<Game> {
                 game.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
                 game.setName(rs.getNString("name"));
                 game.setAvatar(rs.getString("avatar"));
-                game.setGiaTien(rs.getFloat("gia_tien"));
+                game.setGiaTien(rs.getDouble("gia_tien"));
                 game.setAge(rs.getInt("age"));
                 game.setImages(rs.getString("images"));
                 game.setMoTa(rs.getString("mo_ta"));
@@ -186,6 +186,11 @@ public class GameDAO implements DataAccessObject<Game> {
         return null;
     }
 
+    public int closeGame(Game game) {
+            String sql = "UPDATE Game SET isOpened = 0 WHERE id = ?";
+            return XJdbc.update(sql,game.getId());
+    }
+
     public List<GameDisplay> selectListGameDisplay() {
         String sql = "{CALL SP_GET_DISPLAY_GAMES(?)}";
         List<GameDisplay> gameDisplayList = new ArrayList<>();
@@ -199,7 +204,7 @@ public class GameDAO implements DataAccessObject<Game> {
                 gameDisplay.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
                 gameDisplay.setName(rs.getNString("name"));
                 gameDisplay.setAvatar(rs.getString("avatar"));
-                gameDisplay.setGiaTien(rs.getFloat("gia_tien"));
+                gameDisplay.setGiaTien(rs.getDouble("gia_tien"));
                 gameDisplay.setAge(rs.getInt("age"));
                 gameDisplay.setImages(rs.getString("images"));
                 gameDisplay.setMoTa(rs.getString("mo_ta"));

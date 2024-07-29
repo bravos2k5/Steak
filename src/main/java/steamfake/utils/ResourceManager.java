@@ -60,6 +60,8 @@ public class ResourceManager {
         }
     }
 
+
+
     public static void deleteOldVersionResource(Game game) {
         String azurePath = game.getId() + "/" + game.getVersion() + "/";
         String localPath = GAME_RESOURCE_PATH + azurePath;

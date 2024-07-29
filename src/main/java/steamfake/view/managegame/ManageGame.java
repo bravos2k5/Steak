@@ -58,6 +58,7 @@ public class ManageGame extends JPanel {
         scrollPane2 = new JScrollPane();
         tblReviews = new JTable();
         cboReviewFilter = new JComboBox<>();
+        btnRefresh = new JButton();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -91,7 +92,7 @@ public class ManageGame extends JPanel {
                                 "ID game", "T\u00ean game", "Tr\u1ea1ng th\u00e1i"
                             }
                         ) {
-                            final boolean[] columnEditable = new boolean[] {
+                            boolean[] columnEditable = new boolean[] {
                                 false, false, false
                             };
                             @Override
@@ -176,7 +177,7 @@ public class ManageGame extends JPanel {
                                 "M\u00e3 phi\u1ebfu duy\u1ec7t", "M\u00f4 t\u1ea3", "Ng\u00e0y \u0111\u0103ng", "Tr\u1ea1ng Th\u00e1i", "L\u00fd do"
                             }
                         ) {
-                            final boolean[] columnEditable = new boolean[] {
+                            boolean[] columnEditable = new boolean[] {
                                 true, true, false, true, true
                             };
                             @Override
@@ -205,25 +206,33 @@ public class ManageGame extends JPanel {
                         "B\u1ecb t\u1eeb ch\u1ed1i"
                     }));
 
+                    //---- btnRefresh ----
+                    btnRefresh.setIcon(new ImageIcon(getClass().getResource("/icon/Refresh.png")));
+
                     GroupLayout panel3Layout = new GroupLayout(panel3);
                     panel3.setLayout(panel3Layout);
                     panel3Layout.setHorizontalGroup(
                         panel3Layout.createParallelGroup()
                             .addGroup(panel3Layout.createSequentialGroup()
                                 .addGap(33, 33, 33)
-                                .addGroup(panel3Layout.createParallelGroup()
-                                    .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1016, GroupLayout.PREFERRED_SIZE))
+                                .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1016, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel3Layout.createSequentialGroup()
+                                        .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(32, Short.MAX_VALUE))
                     );
                     panel3Layout.setVerticalGroup(
                         panel3Layout.createParallelGroup()
                             .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                .addGroup(panel3Layout.createParallelGroup()
+                                    .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnRefresh, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 604, GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(16, Short.MAX_VALUE))
+                                .addContainerGap(15, Short.MAX_VALUE))
                     );
                 }
                 tabs.addTab("Phi\u1ebfu duy\u1ec7t", panel3);
@@ -278,6 +287,7 @@ public class ManageGame extends JPanel {
     private JScrollPane scrollPane2;
     private JTable tblReviews;
     private JComboBox<String> cboReviewFilter;
+    private JButton btnRefresh;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -306,8 +316,21 @@ public class ManageGame extends JPanel {
                 fillTheReviewTable();
             }
         });
+        tblGames.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2){
+                    int row = tblGames.getSelectedRow();
+                    if(row != -1) {
+                        Game game = gameList.get(row);
+                        new UpdatePanel(MFrame.gI(),game).setVisible(true);
+                    }
+                }
+            }
+        });
         cboGameFilter.addItemListener(e -> fillTheGameTable());
         fillTheGameTable();
+        btnRefresh.addActionListener(e -> refresh());
     }
 
     private void fillTheGameTable() {
@@ -329,10 +352,17 @@ public class ManageGame extends JPanel {
         }
     }
 
+    private void refresh() {
+        phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByPublisherID(SessionManager.user.getId());
+        fillTheReviewTable();
+    }
+
     private void fillTheReviewTable() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblReviews.getModel();
         defaultTableModel.setRowCount(0);
-        phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByPublisherID(SessionManager.user.getId());
+        if (phieuKiemDuyetList == null || phieuKiemDuyetList.isEmpty()) {
+            phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByPublisherID(SessionManager.user.getId());
+        }
         for(PhieuKiemDuyet phieuKiemDuyet : phieuKiemDuyetList) {
             String status = switch (phieuKiemDuyet.getStatus()) {
                 case PhieuKiemDuyet.PENDING -> "Chờ duyệt";
