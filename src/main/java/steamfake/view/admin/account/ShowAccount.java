@@ -5,11 +5,13 @@
 package steamfake.view.admin.account;
 
 import steamfake.dao.AccountDAO;
+import steamfake.dao.BankAccountDAO;
 import steamfake.graphics.DateTimeTextField;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
+import steamfake.model.BankAccount;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XFile;
 import steamfake.utils.XImage;
@@ -25,14 +27,22 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.sql.Date;
+import java.util.UUID;
+import java.util.List;
 
 /**
  * @author ADMIN
  */
 public class ShowAccount extends JFrame {
-    public ShowAccount() {
+    private final Account account;
+    private final ManagerAccountDialog managerAccountDialog;
+    public ShowAccount(Account account ,ManagerAccountDialog managerAccountDialog) {
+        this.account = account;
+        this.managerAccountDialog = managerAccountDialog;
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         initialize();
+
     }
 
     private void initComponents() {
@@ -44,12 +54,10 @@ public class ShowAccount extends JFrame {
         lbl123 = new JLabel();
         label5 = new JLabel();
         txtEmail = new RadiusTextField();
-        btnChangeEmail = new RadiusButton();
         label6 = new JLabel();
         label7 = new JLabel();
         txtPhoneNumber = new RadiusTextField();
         txtJoinDate = new RadiusTextField();
-        btnChangePassword = new RadiusButton();
         txtUUID = new RadiusTextField();
         label8 = new JLabel();
         txtName = new RadiusTextField();
@@ -59,6 +67,9 @@ public class ShowAccount extends JFrame {
         cboSex = new JComboBox();
         label11 = new JLabel();
         txtNameAccount = new RadiusTextField();
+        cboBankAccount = new JComboBox();
+        label12 = new JLabel();
+        txtRole = new RadiusTextField();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
@@ -104,13 +115,8 @@ public class ShowAccount extends JFrame {
                 txtEmail.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 txtEmail.setRadius(0);
                 txtEmail.setBackground(new Color(0x252730));
-
-                //---- btnChangeEmail ----
-                btnChangeEmail.setOriginColor(new Color(0x205cc3));
-                btnChangeEmail.setHoverColor(new Color(0x4886f0));
-                btnChangeEmail.setRadius(0);
-                btnChangeEmail.setBackground(new Color(0x205cc3));
-                btnChangeEmail.setIcon(new ImageIcon(getClass().getResource("/icon/Refresh.png")));
+                txtEmail.setEditable(false);
+                txtEmail.setEnabled(false);
 
                 //---- label6 ----
                 label6.setText("Ng\u00e0y tham gia:");
@@ -128,6 +134,8 @@ public class ShowAccount extends JFrame {
                 txtPhoneNumber.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 txtPhoneNumber.setRadius(0);
                 txtPhoneNumber.setBackground(new Color(0x252730));
+                txtPhoneNumber.setEditable(false);
+                txtPhoneNumber.setEnabled(false);
 
                 //---- txtJoinDate ----
                 txtJoinDate.setForcusColor(new Color(0x0c8ce9));
@@ -140,14 +148,6 @@ public class ShowAccount extends JFrame {
                 txtJoinDate.setEditable(false);
                 txtJoinDate.setEnabled(false);
 
-                //---- btnChangePassword ----
-                btnChangePassword.setText("\u0110\u1ed5i m\u1eadt kh\u1ea9u");
-                btnChangePassword.setOriginColor(new Color(0x205cc3));
-                btnChangePassword.setHoverColor(new Color(0x4886f0));
-                btnChangePassword.setRadius(0);
-                btnChangePassword.setBackground(new Color(0x205cc3));
-                btnChangePassword.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-
                 //---- txtUUID ----
                 txtUUID.setForcusColor(new Color(0x0c8ce9));
                 txtUUID.setNoForcusColor(new Color(0x191b20));
@@ -156,6 +156,8 @@ public class ShowAccount extends JFrame {
                 txtUUID.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 txtUUID.setRadius(0);
                 txtUUID.setBackground(new Color(0x252730));
+                txtUUID.setEditable(false);
+                txtUUID.setEnabled(false);
 
                 //---- label8 ----
                 label8.setText("UUID");
@@ -197,6 +199,28 @@ public class ShowAccount extends JFrame {
                 txtNameAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
                 txtNameAccount.setRadius(0);
                 txtNameAccount.setBackground(new Color(0x252730));
+                txtNameAccount.setEditable(false);
+                txtNameAccount.setEnabled(false);
+
+                //---- cboBankAccount ----
+                cboBankAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                cboBankAccount.setBackground(new Color(0x252730));
+                cboBankAccount.setMaximumRowCount(5);
+
+                //---- label12 ----
+                label12.setText("Ch\u1ee9 v\u1ee5");
+                label12.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+
+                //---- txtRole ----
+                txtRole.setForcusColor(new Color(0x0c8ce9));
+                txtRole.setNoForcusColor(new Color(0x191b20));
+                txtRole.setStartGradientColor(new Color(0x191b20));
+                txtRole.setEndGradientColor(new Color(0x191b20));
+                txtRole.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+                txtRole.setRadius(0);
+                txtRole.setBackground(new Color(0x252730));
+                txtRole.setEditable(false);
+                txtRole.setEnabled(false);
 
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
@@ -206,47 +230,51 @@ public class ShowAccount extends JFrame {
                             .addGap(30, 30, 30)
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addGroup(panel2Layout.createParallelGroup()
-                                        .addComponent(lbl123, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNameAccount, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                    .addGroup(panel2Layout.createParallelGroup()
-                                        .addComponent(label5, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(panel2Layout.createSequentialGroup()
-                                            .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(btnChangeEmail, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(72, 72, 72))
-                                .addGroup(panel2Layout.createSequentialGroup()
                                     .addComponent(label8, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                     .addGap(0, 820, Short.MAX_VALUE))
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(panel2Layout.createSequentialGroup()
                                             .addGroup(panel2Layout.createParallelGroup()
-                                                .addComponent(label9, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(lbl123, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtNameAccount, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
                                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addGroup(panel2Layout.createParallelGroup()
-                                                .addComponent(label10, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(184, 184, 184)
-                                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(label11, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                                                .addComponent(cboSex, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)))
-                                        .addComponent(txtUUID, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
-                                            .addGroup(panel2Layout.createParallelGroup()
-                                                .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-                                            .addGap(80, 80, 80)
-                                            .addGroup(panel2Layout.createParallelGroup()
-                                                .addComponent(label6, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(panel2Layout.createSequentialGroup()
-                                                    .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(btnChangePassword, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))))
-                                    .addContainerGap(72, Short.MAX_VALUE))))
+                                                .addComponent(label5, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 468, GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
+                                                .addGroup(panel2Layout.createParallelGroup()
+                                                    .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
+                                                .addGap(80, 80, 80)
+                                                .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                    .addGroup(panel2Layout.createSequentialGroup()
+                                                        .addComponent(label6, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                                        .addGap(318, 318, 318))
+                                                    .addComponent(txtJoinDate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addGroup(GroupLayout.Alignment.LEADING, panel2Layout.createSequentialGroup()
+                                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(cboBankAccount, GroupLayout.PREFERRED_SIZE, 468, GroupLayout.PREFERRED_SIZE))))
+                                    .addContainerGap(72, Short.MAX_VALUE))
+                                .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                                    .addGroup(panel2Layout.createParallelGroup()
+                                        .addComponent(label9, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panel2Layout.createParallelGroup()
+                                        .addComponent(label10, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 152, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(28, 28, 28)
+                                    .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(label11, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cboSex, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(panel2Layout.createParallelGroup()
+                                        .addComponent(label12, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtRole, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(60, 60, 60))))
                 );
                 panel2Layout.setVerticalGroup(
                     panel2Layout.createParallelGroup()
@@ -259,10 +287,8 @@ public class ShowAccount extends JFrame {
                                     .addComponent(txtNameAccount, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addGroup(panel2Layout.createParallelGroup()
-                                        .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(btnChangeEmail, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtEmail, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addGap(59, 59, 59)
                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(label7, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
@@ -270,28 +296,34 @@ public class ShowAccount extends JFrame {
                             .addGap(6, 6, 6)
                             .addGroup(panel2Layout.createParallelGroup()
                                 .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnChangePassword, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
-                            .addGap(31, 31, 31)
-                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(panel2Layout.createParallelGroup()
+                                .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label9, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(6, 6, 6)
-                                    .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
-                                .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cboSex, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(cboBankAccount, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(panel2Layout.createParallelGroup()
+                                        .addGroup(panel2Layout.createSequentialGroup()
+                                            .addComponent(label9, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(6, 6, 6)
+                                            .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(panel2Layout.createSequentialGroup()
+                                            .addComponent(label10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addGap(6, 6, 6)
+                                            .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                                            .addComponent(label11, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(cboSex, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label10, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(label12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
-                                    .addComponent(txtDob, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(25, Short.MAX_VALUE))
+                                    .addComponent(txtRole, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)))
+                            .addContainerGap(23, Short.MAX_VALUE))
                 );
             }
 
@@ -439,21 +471,16 @@ public class ShowAccount extends JFrame {
         setLocationRelativeTo(getOwner());
         // JFormDesigner - End of component initialization  //GEN-END:initComponents  @formatter:on
     }
+
     private void initialize() {
-        btnChangePassword.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                new ChangePassword(MFrame.gI()).setVisible(true);
-            }
-        });
         lblAvatar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 changeAvatar();
             }
         });
-        btnUpdate.addActionListener(e -> updateAction());
         txtNameAccount.setEnabled(false);
+
         txtEmail.setEnabled(false);
         txtNameAccount.setDisabledTextColor(Color.white);
         txtEmail.setDisabledTextColor(Color.white);
@@ -461,25 +488,33 @@ public class ShowAccount extends JFrame {
         txtJoinDate.setDisabledTextColor(Color.white);
         txtJoinDate.setEnabled(false);
         txtUUID.setEnabled(false);
+        initEvent();
         fillSexCbo();
         loadInfo();
-//        btnChangeEmail.addActionListener(e -> updateEmail());
     }
 
-//    private void updateEmail() {
-//    }
+    private void initEvent() {
+        btnBan.addActionListener(e -> {
+            boolean ban = !account.isBan();
+            account.setBan(ban);
+            btnBan.setText(ban ? "Unban" : "Ban");
+            if (AccountDAO.gI().khoaTaiKhoan(account, ban) > 0) {
+                JOptionPane.showMessageDialog(this, "Thay đổi thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "Thay đổi thất bại");
+            }
+        });
+    }
 
     private void loadInfo() {
-        Account account = SessionManager.user;
         lblName.setText(account.getHoTen());
         lblSoDuDoanhThu.setText(account.getSoDuThuNhap() + "");
         lblSoDuGame.setText(account.getSoDuGame() + "");
         lblAvatar.setSize(new Dimension(120, 120));
-        if(account.getAvatar() != null && !account.getAvatar().isEmpty()) {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()),lblAvatar));
-        }
-        else {
-            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")),lblAvatar));
+        if (account.getAvatar() != null && !account.getAvatar().isEmpty()) {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon("data/avatars/" + account.getId() + "/" + account.getAvatar()), lblAvatar));
+        } else {
+            lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(getClass().getResource("/icon/default_avatar.png")), lblAvatar));
         }
         txtNameAccount.setText(account.getUsername());
         txtEmail.setText(account.getEmail());
@@ -489,16 +524,21 @@ public class ShowAccount extends JFrame {
         txtName.setText(account.getHoTen());
         txtDob.getDatePicker().setSelectedDate(account.getDob().toLocalDate());
         cboSex.setSelectedItem(account.getGioiTinh());
+        txtRole.setText(account.isAdmin() ? "Admin" : "Member");
+        btnBan.setText(account.isBan() ? "Unban" : "Ban");
+        loadAccountBank(account);
     }
 
-    public void setTxtEmail(String email) {
-        txtEmail.setText(email);
-    }
 
     private void fillSexCbo() {
-        cboSex.addItem("Nam");
-        cboSex.addItem("Nữ");
-        cboSex.addItem("Khác");
+        if (account.getGioiTinh() == Account.FEMALE) {
+            cboSex.addItem("Nữ");
+        } else if (account.getGioiTinh() == Account.MALE) {
+
+            cboSex.addItem("Nam");
+        } else {
+            cboSex.addItem("Khác");
+        }
     }
 
     private void changeAvatar() {
@@ -513,51 +553,18 @@ public class ShowAccount extends JFrame {
         }
     }
 
-    private void updateAction() {
-        String msg = "";
-        String oldAvatar = SessionManager.user.getAvatar();
-        if(txtEmail.getText().isBlank() || txtName.getText().isBlank() ||
-                txtPhoneNumber.getText().isBlank() || txtDob.getDatePicker().getSelectedDate() == null) {
-            msg += "Vui lòng nhập đầy đủ thông tin\n";
-        }
-        if(!XRegex.isPhone(txtPhoneNumber.getText())) {
-            msg += "Số điện thoại không hợp lệ\n";
-        }
-        if(!msg.isBlank()) {
-            JOptionPane.showMessageDialog(this, msg, "Lỗi", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        Account account = SessionManager.user;
-        account.setHoTen(txtName.getText());
-        account.setDob(Date.valueOf(txtDob.getDatePicker().getSelectedDate()));
-        account.setGioiTinh(cboSex.getSelectedIndex());
-        account.setPhone(txtPhoneNumber.getText());
 
-        String avatar = lblAvatar.getToolTipText();
-        if(avatar != null && !avatar.isEmpty()) {
-            account.setAvatar(new File(avatar).getName());
-        }
-        if(AccountDAO.gI().updatePersonalInfo(account) > 0) {
-            if (avatar != null && !avatar.isEmpty()) {
-                AzureBlobService.upload(avatar,"avatars/" + account.getId() + "/" + new File(avatar).getName(),"images");
-                AzureBlobService.delete("avatars/" + account.getId() + "/" + oldAvatar,"images");
-                XFile.copyFile(avatar,"data/avatars/" + account.getId() + "/" + new File(avatar).getName());
-                new File("data/avatasr/" + account.getId() + "/" + oldAvatar).deleteOnExit();
-            }
-            JOptionPane.showMessageDialog(this, "Cập nhật thông tin thành công", "Thành công", JOptionPane.INFORMATION_MESSAGE);
-            SessionManager.user = account;
-            HeaderPanel.gI().updateAccount();
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Cập nhật thông tin thất bại", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+    private void loadAccountBank(Account account) {
+        List<BankAccount> list = BankAccountDAO.gI().selectByAccount(account);
+        list.forEach(cboBankAccount::addItem);
+
     }
 
-//    private void updateEmail() {
-//        new ChangeEmail(MFrame.getInstance(), this).setVisible(true);
-//    }
-
-    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    @Override
+    public void dispose() {
+        managerAccountDialog.getBtnSearch().doClick();
+        super.dispose();
+    }// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private JLabel label1;
     private JLabel label3;
@@ -565,12 +572,10 @@ public class ShowAccount extends JFrame {
     private JLabel lbl123;
     private JLabel label5;
     private RadiusTextField txtEmail;
-    private RadiusButton btnChangeEmail;
     private JLabel label6;
     private JLabel label7;
     private RadiusTextField txtPhoneNumber;
     private RadiusTextField txtJoinDate;
-    private RadiusButton btnChangePassword;
     private RadiusTextField txtUUID;
     private JLabel label8;
     private RadiusTextField txtName;
@@ -580,6 +585,9 @@ public class ShowAccount extends JFrame {
     private JComboBox cboSex;
     private JLabel label11;
     private RadiusTextField txtNameAccount;
+    private JComboBox cboBankAccount;
+    private JLabel label12;
+    private RadiusTextField txtRole;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
     private JLabel label14;
