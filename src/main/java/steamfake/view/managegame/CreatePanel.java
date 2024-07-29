@@ -536,7 +536,7 @@ public class CreatePanel extends JDialog {
                     int result = KiemDuyetDAO.getInstance().createGame(phieuKiemDuyet,pendingGame);
                     if(result > 0) {
                         images.add(lblAvatar.getToolTipText());
-                        new UploadGameDialog(this, txtFolderPath.getText(),pendingGame.getGameID(), txtVersion.getText(), images).setVisible(true);
+                        new UploadGameDialog(this, txtFolderPath.getText(),pendingGame.getGameID(), txtVersion.getText(), images,false).setVisible(true);
                         this.dispose();
                     } else {
                         XMessage.alert(this, "Upload game thất bại");

@@ -22,7 +22,6 @@ import steamfake.view.waiting.WaitingDialog;
 import javax.swing.*;
 import javax.swing.text.AbstractDocument;
 import java.awt.*;
-import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -92,6 +91,7 @@ public class UpdatePanel extends JDialog {
         txtNewVersion = new RadiusTextField();
         btnClose = new RadiusButton();
         btnPreview = new JButton();
+        btnDeleteImage = new JButton();
 
         //======== this ========
         setModal(true);
@@ -319,7 +319,7 @@ public class UpdatePanel extends JDialog {
                         .addGroup(pnlNewVersionLayout.createParallelGroup()
                             .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNewVersion, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             );
         }
 
@@ -334,6 +334,9 @@ public class UpdatePanel extends JDialog {
 
         //---- btnPreview ----
         btnPreview.setText("Preview");
+
+        //---- btnDeleteImage ----
+        btnDeleteImage.setText("X\u00f3a \u1ea3nh n\u00e0y");
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -367,7 +370,8 @@ public class UpdatePanel extends JDialog {
                                 .addGroup(contentPaneLayout.createSequentialGroup()
                                     .addComponent(label8, GroupLayout.PREFERRED_SIZE, 336, GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnPreview))))
+                                    .addComponent(btnPreview))
+                                .addComponent(btnDeleteImage)))
                         .addGroup(contentPaneLayout.createSequentialGroup()
                             .addComponent(rdoInfoOnly)
                             .addGap(55, 55, 55)
@@ -440,7 +444,9 @@ public class UpdatePanel extends JDialog {
                         .addComponent(cboImages, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAddImage, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                         .addComponent(label9))
-                    .addGap(47, 47, 47)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(btnDeleteImage)
+                    .addGap(21, 21, 21)
                     .addGroup(contentPaneLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                         .addComponent(label11)
                         .addComponent(txtRam, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
@@ -510,6 +516,7 @@ public class UpdatePanel extends JDialog {
     private RadiusTextField txtNewVersion;
     private RadiusButton btnClose;
     private JButton btnPreview;
+    private JButton btnDeleteImage;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
@@ -523,11 +530,7 @@ public class UpdatePanel extends JDialog {
         ((AbstractDocument) txtRam.getDocument()).setDocumentFilter(new NumberOnlyFilter());
         ((AbstractDocument) txtRom.getDocument()).setDocumentFilter(new NumberOnlyFilter());
         ((AbstractDocument) txtCost.getDocument()).setDocumentFilter(new NumberOnlyFilter());
-        cboImages.addItemListener(e -> {
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                deleteImage();
-            }
-        });
+        btnDeleteImage.addActionListener(e -> deleteImage());
         lblAvatar.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -542,22 +545,6 @@ public class UpdatePanel extends JDialog {
         btnSelectExecFile.addActionListener(e -> selectExecFile());
     }
 
-    private void deleteImage() {
-        if(cboImages.getSelectedIndex() != -1) {
-            if (XMessage.confirm(this, "Bạn có chắc chắn muốn xóa ảnh này không?") == JOptionPane.YES_OPTION) {
-                images.remove(cboImages.getSelectedIndex());
-                imagesToDelete.add(cboImages.getItemAt(cboImages.getSelectedIndex()));
-                for(String image : imagesToAdd) {
-                    if(image.contains(cboImages.getItemAt(cboImages.getSelectedIndex()))) {
-                        imagesToAdd.remove(image);
-                        break;
-                    }
-                }
-                cboImages.removeItemAt(cboImages.getSelectedIndex());
-            }
-        }
-    }
-
     private void loadData() {
         txtName.setText(game.getName());
         txtCost.setText(String.valueOf(game.getGiaTien()));
@@ -569,6 +556,23 @@ public class UpdatePanel extends JDialog {
         images.forEach(cboImages::addItem);
         ResourceManager.downloadGameResource(game);
         lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()), lblAvatar));
+    }
+
+    private void deleteImage() {
+        if(cboImages.getSelectedIndex() != -1) {
+            if (XMessage.confirm(this, "Bạn có chắc chắn muốn xóa ảnh này không?") == JOptionPane.YES_OPTION) {
+                images.remove(cboImages.getSelectedIndex());
+                for(String image : imagesToAdd) {
+                    if(image.contains(cboImages.getItemAt(cboImages.getSelectedIndex()))
+                            && !image.contains(game.getAvatar())) {
+                        imagesToAdd.remove(image);
+                        imagesToDelete.add(cboImages.getItemAt(cboImages.getSelectedIndex()));
+                        break;
+                    }
+                }
+                cboImages.removeItemAt(cboImages.getSelectedIndex());
+            }
+        }
     }
 
     private void showImagePreview() {
@@ -607,7 +611,9 @@ public class UpdatePanel extends JDialog {
                 images.add(fileName);
                 imagesToAdd.add(fileChooser.getSelectedFile().getAbsolutePath());
                 lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
-                imagesToDelete.add(game.getAvatar());
+                if(!images.contains(game.getAvatar())) {
+                    imagesToDelete.add(game.getAvatar());
+                }
                 game.setAvatar(fileName);
             }
         }
@@ -739,6 +745,8 @@ public class UpdatePanel extends JDialog {
             if (result > 0) {
                 if(rdoNewVersion.isSelected()) {
                     uploadNewVersion();
+                    XMessage.alert(this, "Đã tạo phiếu kiểm duyệt thành công");
+                    dispose();
                 }
                 else {
                     WaitingDialog waitingDialog = new WaitingDialog(this);
@@ -761,7 +769,7 @@ public class UpdatePanel extends JDialog {
     }
 
     private void uploadNewVersion() {
-        new UploadGameDialog(this,txtFolderPath.getText(),game.getId(),txtNewVersion.getText(),imagesToAdd).setVisible(true);
+        new UploadGameDialog(this,txtFolderPath.getText(),game.getId(),txtNewVersion.getText(),imagesToAdd,true).setVisible(true);
     }
 
     private PhieuKiemDuyet phieuKiemDuyetGenerated() {
