@@ -34,14 +34,14 @@ import java.util.UUID;
 /**
  * @author ACER
  */
-public class UpdatePanel extends JDialog {
+public class UpdatingPanel extends JDialog {
 
     private final Game game;
     private final List<String> images;
     private final List<String> imagesToDelete = new ArrayList<>();
     private final List<String> imagesToAdd = new ArrayList<>();
 
-    public UpdatePanel(Window owner, Game game) {
+    public UpdatingPanel(Window owner, Game game) {
         super(owner);
         this.game = game;
         images = XJson.fromJson(game.getImages(), new TypeReference<>() {});

@@ -2,9 +2,7 @@
  * Created by JFormDesigner on Mon Jul 15 20:10:09 ICT 2024
  */
 
-package steamfake.view.admin;
-
-import com.formdev.flatlaf.FlatDarkLaf;
+package steamfake.view.admin.addmoney;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -17,14 +15,13 @@ import java.awt.event.MouseEvent;
 /**
  * @author ACER
  */
-public class ManageAddMoney extends JDialog {
-    public ManageAddMoney(Window owner) {
+public class AddMoneyManagement extends JDialog {
+    public AddMoneyManagement(Window owner) {
         super(owner);
         initComponents();
         initialize();
         this.setResizable(false);
         this.getContentPane().setBackground(Color.decode("#191B20"));
-
     }
 
     private void initComponents() {
@@ -42,6 +39,8 @@ public class ManageAddMoney extends JDialog {
         panel4 = new JPanel();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         var contentPane = getContentPane();
 
         //======== tabbedPane1 ========
@@ -136,7 +135,7 @@ public class ManageAddMoney extends JDialog {
                                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(858, Short.MAX_VALUE))
+                            .addContainerGap(850, Short.MAX_VALUE))
                         .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
                 );
                 panel3Layout.setVerticalGroup(
@@ -218,15 +217,8 @@ public class ManageAddMoney extends JDialog {
         table1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new Card(null).setVisible(true);
+                new CardDetail(null).setVisible(true);
             }
         });
-
-
-    }
-
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatDarkLaf());
-        new ManageAddMoney(null).setVisible(true);
     }
 }

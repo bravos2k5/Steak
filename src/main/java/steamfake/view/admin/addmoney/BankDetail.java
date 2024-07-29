@@ -2,20 +2,18 @@
  * Created by JFormDesigner on Mon Jul 15 21:07:27 ICT 2024
  */
 
-package steamfake.view.admin;
+package steamfake.view.admin.addmoney;
 
-import java.awt.*;
+import steamfake.graphics.RadiusButton;
+
 import javax.swing.*;
-import javax.swing.GroupLayout;
-import javax.swing.table.*;
-
-import steamfake.graphics.*;
+import java.awt.*;
 
 /**
  * @author ACER
  */
-public class Bank extends JDialog {
-    public Bank(Window owner) {
+public class BankDetail extends JDialog {
+    public BankDetail(Window owner) {
         super(owner);
         initComponents();
     }

@@ -24,8 +24,8 @@ import java.util.UUID;
 /**
  * @author ACER
  */
-public class CreatePanel extends JDialog {
-    public CreatePanel(Window owner) {
+public class CreatingPanel extends JDialog {
+    public CreatingPanel(Window owner) {
         super(owner);
         initComponents();
         this.getContentPane().setBackground(new Color(25,27,32));
@@ -498,7 +498,7 @@ public class CreatePanel extends JDialog {
     private void addRemoveImageEvent() {
         cboImages.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.DESELECTED) {
-                int choice = XMessage.confirm(CreatePanel.this, "Bạn có chắc chắn muốn xóa ảnh này không?");
+                int choice = XMessage.confirm(CreatingPanel.this, "Bạn có chắc chắn muốn xóa ảnh này không?");
                 if(choice == JOptionPane.YES_OPTION) {
                     cboImages.removeItemAt(cboImages.getSelectedIndex());
                 }
@@ -512,7 +512,7 @@ public class CreatePanel extends JDialog {
                 JFileChooser fileChooser = new JFileChooser();
                 fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
                 XImage.imageFileFilter(fileChooser);
-                int result = fileChooser.showOpenDialog(CreatePanel.this);
+                int result = fileChooser.showOpenDialog(CreatingPanel.this);
                 if (result == JFileChooser.APPROVE_OPTION) {
                     lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
                     lblAvatar.setToolTipText(fileChooser.getSelectedFile().getAbsolutePath());

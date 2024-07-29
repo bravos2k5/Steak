@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * @author ACER
  */
-public class ManageGame extends JPanel {
+public class GameManagement extends JPanel {
 
     private static final DefaultTableCellRenderer cellRenderer = new DefaultTableCellRenderer();
     private List<Game> gameList;
@@ -36,7 +36,7 @@ public class ManageGame extends JPanel {
     private static final int OPENED = 1;
     private static final int CLOSED = 2;
 
-    public ManageGame() {
+    public GameManagement() {
         initComponents();
         initialize();
     }
@@ -301,7 +301,7 @@ public class ManageGame extends JPanel {
         btnAddGame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new CreatePanel(MFrame.gI()).setVisible(true);
+                new CreatingPanel(MFrame.gI()).setVisible(true);
             }
         });
         int colCount = tblGames.getColumnModel().getColumnCount();
@@ -323,7 +323,7 @@ public class ManageGame extends JPanel {
                     int row = tblGames.getSelectedRow();
                     if(row != -1) {
                         Game game = gameList.get(row);
-                        new UpdatePanel(MFrame.gI(),game).setVisible(true);
+                        new UpdatingPanel(MFrame.gI(),game).setVisible(true);
                     }
                 }
             }

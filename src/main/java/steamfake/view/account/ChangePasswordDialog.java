@@ -16,8 +16,8 @@ import java.awt.*;
 /**
  * @author ACER
  */
-public class ChangePassword extends JDialog {
-    public ChangePassword(Window owner) {
+public class ChangePasswordDialog extends JDialog {
+    public ChangePasswordDialog(Window owner) {
         super(owner);
         initComponents();
         initialize();
