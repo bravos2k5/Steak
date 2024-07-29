@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -25,8 +25,8 @@ new FormModel {
 					"font": new java.awt.Font( "SansSerif", 0, 20 )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq {par l {comp lbl123:::p:150:p, comp txtNameAccount:::p:350:p}, space ::80:x, par l {comp label5::l:p:150:p, seq l {comp txtEmail:::p:350:p, space s:::p, comp btnChangeEmail:::p:100:p}}, space :p:72:p}, seq {comp label8:::p:150:p, space :0:820:x}, seq l {par t:::p {seq {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:184:p, par l:::p {comp label11::::130:x, comp cboSex::::130:x}}, comp txtUUID:::::x, seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p}, space :p:80:p, par l {comp label6:::p:150:p, seq {comp txtJoinDate:::p:350:p, space s:::p, comp btnChangePassword:::p:100:p}}}}, space ::72:x}}}}"
-					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtNameAccount:::p:50:p}, seq t {comp label5:::p:30:p, space :6:6:p, par l {comp txtEmail:::p:50:p, comp btnChangeEmail:::::x}}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, par b {comp txtJoinDate::b:p:50:p, comp btnChangePassword::b:p:50:p}}, space :p:31:p, comp label8:::p:30:p, space :::p, comp txtUUID:::p:50:p, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}}, space ::25:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq {comp label8:::p:150:p, space :0:820:x}, seq l {par t {seq {par l {comp lbl123:::p:150:p, comp txtNameAccount:::p:350:p}, space :::x, par l {comp label5:::p:150:p, comp txtEmail:::p:468:p}}, par t:::p {seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p}, space :p:80:p, par l:::p {seq {comp label6:::p:150:p, space :p:318:p}, comp txtJoinDate:::::x}}, seq l {comp txtUUID:::p:400:p, space :::x, comp cboBankAccount:::p:468:p}}}, space ::72:x}, seq t {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:28:p, par l:::p {comp label11:::::x, comp cboSex:::p:130:p}, space s:::p, par l {comp label12:::p:150:p, comp txtRole:::p:130:p}, space :p:60:p}}}}"
+					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtNameAccount:::p:50:p}, seq {comp label5:::p:30:p, space :::p, comp txtEmail:::p:50:p}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, comp txtJoinDate:::p:50:p}, space :p:33:p, par t {seq {comp label8:::p:30:p, space :::p, par t {comp txtUUID:::p:50:p, comp cboBankAccount:::p:50:p}, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}, seq t {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}}}, seq {comp label12:::p:30:p, space :6:6:p, comp txtRole:::p:45:p}}, space ::23:x}}"
 				} ) {
 					name: "panel2"
 					"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -49,14 +49,8 @@ new FormModel {
 						"font": &Font1 new java.awt.Font( "SansSerif", 0, 20 )
 						"radius": 0
 						"background": &Color4 new java.awt.Color( 37, 39, 48, 255 )
-					} )
-					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-						name: "btnChangeEmail"
-						"originColor": &Color5 new java.awt.Color( 32, 92, 195, 255 )
-						"hoverColor": &Color6 new java.awt.Color( 72, 134, 240, 255 )
-						"radius": 0
-						"background": &Color7 new java.awt.Color( 32, 92, 195, 255 )
-						"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Refresh.png" )
+						"editable": false
+						"enabled": false
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label6"
@@ -77,6 +71,8 @@ new FormModel {
 						"font": #Font1
 						"radius": 0
 						"background": new java.awt.Color( 37, 39, 48, 255 )
+						"editable": false
+						"enabled": false
 					} )
 					add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
 						name: "txtJoinDate"
@@ -86,18 +82,9 @@ new FormModel {
 						"endGradientColor": #Color3
 						"font": #Font1
 						"radius": 0
-						"background": new java.awt.Color( 37, 39, 48, 255 )
+						"background": &Color5 new java.awt.Color( 37, 39, 48, 255 )
 						"editable": false
 						"enabled": false
-					} )
-					add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-						name: "btnChangePassword"
-						"text": "Đổi mật khẩu"
-						"originColor": #Color5
-						"hoverColor": #Color6
-						"radius": 0
-						"background": #Color7
-						"font": new java.awt.Font( "SansSerif", 1, 14 )
 					} )
 					add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
 						name: "txtUUID"
@@ -108,6 +95,8 @@ new FormModel {
 						"font": #Font1
 						"radius": 0
 						"background": new java.awt.Color( 37, 39, 48, 255 )
+						"editable": false
+						"enabled": false
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label8"
@@ -157,6 +146,31 @@ new FormModel {
 						"font": #Font1
 						"radius": 0
 						"background": #Color4
+						"editable": false
+						"enabled": false
+					} )
+					add( new FormComponent( "javax.swing.JComboBox" ) {
+						name: "cboBankAccount"
+						"font": new java.awt.Font( "SansSerif", 0, 20 )
+						"background": new java.awt.Color( 37, 39, 48, 255 )
+						"maximumRowCount": 5
+					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label12"
+						"text": "Chứ vụ"
+						"font": #Font0
+					} )
+					add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+						name: "txtRole"
+						"forcusColor": #Color0
+						"noForcusColor": #Color1
+						"startGradientColor": #Color2
+						"endGradientColor": #Color3
+						"font": #Font1
+						"radius": 0
+						"background": #Color5
+						"editable": false
+						"enabled": false
 					} )
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
@@ -196,8 +210,8 @@ new FormModel {
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnBan"
 					"text": "Ban!"
-					"background": &Color8 new java.awt.Color( 62, 55, 55, 255 )
-					"originColor": &Color9 new java.awt.Color( 62, 55, 55, 255 )
+					"background": &Color6 new java.awt.Color( 62, 55, 55, 255 )
+					"originColor": &Color7 new java.awt.Color( 62, 55, 55, 255 )
 					"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
 					"radius": 5
 					"font": &Font3 new java.awt.Font( "SansSerif", 1, 14 )
@@ -214,8 +228,8 @@ new FormModel {
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnCancel"
 					"text": "Cancel"
-					"background": #Color8
-					"originColor": #Color9
+					"background": #Color6
+					"originColor": #Color7
 					"hoverColor": new java.awt.Color( 153, 153, 153, 255 )
 					"radius": 5
 					"font": #Font3
