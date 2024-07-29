@@ -5,11 +5,13 @@
 package steamfake.view.admin.game;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import steamfake.dao.GameDAO;
 import steamfake.dao.KiemDuyetDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
+import steamfake.model.Game;
 import steamfake.model.PendingGame;
 import steamfake.model.PhieuKiemDuyet;
 import steamfake.utils.ResourceManager;
@@ -33,12 +35,14 @@ public class PreviewDetail extends JDialog {
     private final PhieuKiemDuyet phieuKiemDuyet;
     private final PendingGame pendingGame;
     private final KiemDuyet kiemDuyet;
+    private final List<String> imagesPath;
 
     public PreviewDetail(Window owner, PhieuKiemDuyet phieuKiemDuyet, KiemDuyet kiemDuyet) {
         super(owner);
         this.phieuKiemDuyet = phieuKiemDuyet;
         pendingGame = KiemDuyetDAO.getInstance().selectPendingGameById(phieuKiemDuyet);
         this.kiemDuyet = kiemDuyet;
+        imagesPath = XJson.fromJson(pendingGame.getImages(), new TypeReference<>() {});
         this.setTitle("Preview: " + pendingGame.getGameID());
         initComponents();
         this.getContentPane().setBackground(Color.decode("#191b20"));
@@ -425,16 +429,14 @@ public class PreviewDetail extends JDialog {
         txtAge.setText(pendingGame.getAge() + "");
         ResourceManager.downloadGameResource(pendingGame);
         lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(pendingGame.getAvatarPath()), lblAvatar));
-        List<String> images = XJson.fromJson(pendingGame.getImages(), new TypeReference<>() {});
-        images.forEach(cboImages::addItem);
+        imagesPath.forEach(cboImages::addItem);
     }
 
     private void showImagePreview() {
-        List<String> images = XJson.fromJson(pendingGame.getImages(), new TypeReference<>() {});
         List<PictureBox> pictureBoxes = new ArrayList<>();
         JDialog dialog = new JDialog(this);
         SlideShow slideShow = new SlideShow();
-        for(String image : images) {
+        for(String image : imagesPath) {
             PictureBox pictureBox = new PictureBox();
             pictureBox.setImage(new ImageIcon("data/games/" + pendingGame.getGameID() + "/" + pendingGame.getVersion() + "/images/" + image));
             pictureBoxes.add(pictureBox);
@@ -454,11 +456,28 @@ public class PreviewDetail extends JDialog {
         phieuKiemDuyet.setStatus(PhieuKiemDuyet.ACCEPTED);
         int result = KiemDuyetDAO.getInstance().acceptGame(phieuKiemDuyet);
         if(result > 0) {
-            XMessage.notificate(this, "Duyệt game thành công");
             kiemDuyet.fillTable();
+            handleData();
+            XMessage.notificate(this, "Duyệt game thành công");
             dispose();
         } else {
             XMessage.alert(this, "Duyệt game thất bại");
+        }
+    }
+
+    private void handleData() {
+        if(phieuKiemDuyet.getMoTa().contains("Update")) {
+            Game currentVersion = GameDAO.gI().selectByID(new Game(pendingGame.getGameID()));
+            List<String> imagesPath = XJson.fromJson(currentVersion.getImages(), new TypeReference<>() {});
+            List<String> imageToDelete = XJson.fromJson(pendingGame.getImageToDelete(), new TypeReference<>() {});
+            String oldPrefix = currentVersion.getId() + "/" + currentVersion.getVersion() + "/";
+            String newPrefix = pendingGame.getGameID() + "/" + pendingGame.getVersion() + "/";
+            if (imagesPath != null && imageToDelete != null) {
+                imagesPath.removeAll(imageToDelete);
+                for(String path : imagesPath) {
+                    AzureBlobService.rename(oldPrefix + path,newPrefix + path,"games");
+                }
+            }
         }
     }
 

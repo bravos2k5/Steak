@@ -4,19 +4,14 @@
 
 package steamfake.view.admin.account;
 
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.table.*;
-
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.FlatDarkLaf;
-import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import steamfake.dao.AccountDAO;
 import steamfake.model.Account;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
-
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
@@ -25,18 +20,12 @@ import java.util.function.Predicate;
 /**
  * @author ADMIN
  */
-public class ManagerAccountDialog extends JDialog {
-    private static List<Account> accountList = AccountDAO.gI().selectAll();
+public class AccountManagement extends JDialog {
+    private final List<Account> accountList = AccountDAO.gI().selectAll();
     private List<Account> listAccountChange = accountList;
 
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatDarkLaf());
-        FlatRobotoFont.install();
-        UIManager.put("DefaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-        new ManagerAccountDialog().setVisible(true);
-    }
-
-    public ManagerAccountDialog() {
+    public AccountManagement(Window window) {
+        super(window);
         initComponents();
         init();
         scrollPane1.setBorder(null);
@@ -46,28 +35,15 @@ public class ManagerAccountDialog extends JDialog {
 
 
     private void initEvent() {
-        table1.addMouseListener(new MouseAdapter() {
+        tblAccount.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2) {
-                    int index = table1.getSelectedRow();
-                    if (!txtSearch.getText().isEmpty()) {
-                        new ShowAccount(listAccountChange(account -> account.getUsername().contains(txtSearch.getText()), index), ManagerAccountDialog.this).setVisible(true);
-                    } else {
-                        if (cbbFindAccount.getSelectedIndex() == 1) {
-                            new ShowAccount(listAccountChange(Account::isBan, index), ManagerAccountDialog.this).setVisible(true);
-                        }
-                        if (cbbFindAccount.getSelectedIndex() == 0) {
-                            new ShowAccount(accountList.get(index), ManagerAccountDialog.this).setVisible(true);
-                        }
-                        if (cbbFindAccount.getSelectedIndex() == 2) {
-                            new ShowAccount(listAccountChange(Account::isAdmin, index), ManagerAccountDialog.this).setVisible(true);
-                        }
-                    }
+                    showDetail();
                 }
             }
         });
-        cbbFindAccount.addItemListener(e -> {
+        cboFilter.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 cbbFill();
             }
@@ -78,7 +54,7 @@ public class ManagerAccountDialog extends JDialog {
                     fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
                     cbbFill();
             } else {
-                if (cbbFindAccount.getSelectedIndex() != 0) {
+                if (cboFilter.getSelectedIndex() != 0) {
                     cbbFill();
                 } else {
                     fillTableAccount();
@@ -96,23 +72,38 @@ public class ManagerAccountDialog extends JDialog {
         });
     }
 
+    private void showDetail() {
+        int index = tblAccount.getSelectedRow();
+        if (!txtSearch.getText().isEmpty()) {
+            new AccountDetail(listAccountChange(account -> account.getUsername().contains(txtSearch.getText()), index), AccountManagement.this).setVisible(true);
+        } else {
+            if (cboFilter.getSelectedIndex() == 1) {
+                new AccountDetail(listAccountChange(Account::isBan, index), AccountManagement.this).setVisible(true);
+            }
+            if (cboFilter.getSelectedIndex() == 0) {
+                new AccountDetail(accountList.get(index), AccountManagement.this).setVisible(true);
+            }
+            if (cboFilter.getSelectedIndex() == 2) {
+                new AccountDetail(listAccountChange(Account::isAdmin, index), AccountManagement.this).setVisible(true);
+            }
+        }
+    }
+
     private void cbbFill() {
         if (!listAccountChange.isEmpty()) {
-            if (cbbFindAccount.getSelectedIndex() == 0) {
+            if (cboFilter.getSelectedIndex() == 0) {
                 listAccountChange = accountList;
                 fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
             }
-            if (cbbFindAccount.getSelectedIndex() == 1) {
+            if (cboFilter.getSelectedIndex() == 1) {
                 fillTableChange(Account::isBan);
             }
-            if (cbbFindAccount.getSelectedIndex() == 2) {
+            if (cboFilter.getSelectedIndex() == 2) {
                 fillTableChange(Account::isAdmin);
             }
         } else {
             listAccountChange = accountList;
-            btnSearch.doClick();
         }
-
     }
 
     private Account listAccountChange(Predicate<Account> filter, int selectedIndex) {
@@ -134,7 +125,7 @@ public class ManagerAccountDialog extends JDialog {
                 + "margin:5,20,5,20;");
 
         //chỉnh chiều cao, màu nền khi di chuột và nhấn, màu đường phân cách, và kiểu phông chữ của tiêu đề bảng
-        table1.getTableHeader().putClientProperty(FlatClientProperties.STYLE, ""
+        tblAccount.getTableHeader().putClientProperty(FlatClientProperties.STYLE, ""
                 + "height:45;"
                 + "hoverBackground:$TableHeader.hoverBackground;"
                 + "pressedBackground:null;"
@@ -142,7 +133,7 @@ public class ManagerAccountDialog extends JDialog {
                 + "font:bold;");
 
         // chỉnh chiều cao hàng, hiển thị đường kẻ ngang, khoảng cách giữa các ô, màu viền ô, màu nền và màu chữ của ô được chọnnn
-        table1.putClientProperty(FlatClientProperties.STYLE, ""
+        tblAccount.putClientProperty(FlatClientProperties.STYLE, ""
                 + "rowHeight:35;"
                 + "showVerticalLines:true;"
                 + "intercellSpacing:0,1;"
@@ -154,31 +145,31 @@ public class ManagerAccountDialog extends JDialog {
         lbAccount.putClientProperty(FlatClientProperties.STYLE, ""
                 + "font:bold +5;");
 
-//        table1.setBackground(Color.BLACK); // Đổi màu nền của JTable
-//        table1.setForeground(Color.WHITE); // Đổi màu chữ của JTable
-        table1.getTableHeader().setBackground(Color.decode("#4E4E4E")); // Đổi màu nền của header JTable
-        table1.getTableHeader().setForeground(Color.WHITE); // Đổi màu chữ của header JTable
+//        tblAccount.setBackground(Color.BLACK); // Đổi màu nền của JTable
+//        tblAccount.setForeground(Color.WHITE); // Đổi màu chữ của JTable
+        tblAccount.getTableHeader().setBackground(Color.decode("#4E4E4E")); // Đổi màu nền của header JTable
+        tblAccount.getTableHeader().setForeground(Color.WHITE); // Đổi màu chữ của header JTable
 
 //        // Lấy tất cả các cột và đặt chúng không thể kéo được
-//        for (int i = 0; i < table1.getColumnCount(); i++) {
-//            TableColumn column = table1.getColumnModel().getColumn(i);
+//        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
+//            TableColumn column = tblAccount.getColumnModel().getColumn(i);
 //            column.setResizable(false);
 //        }
 
         // Đặt các cột không thể di chuyển
-        table1.getTableHeader().setReorderingAllowed(false);
+        tblAccount.getTableHeader().setReorderingAllowed(false);
     }
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         panel1 = new JPanel();
         scrollPane1 = new JScrollPane();
-        table1 = new JTable();
+        tblAccount = new JTable();
         separator1 = new JSeparator();
         lbAccount = new JLabel();
         txtSearch = new JTextField();
         btnSearch = new JButton();
-        cbbFindAccount = new JComboBox<>();
+        cboFilter = new JComboBox<>();
 
         //======== this ========
         setBackground(Color.darkGray);
@@ -191,8 +182,8 @@ public class ManagerAccountDialog extends JDialog {
             //======== scrollPane1 ========
             {
 
-                //---- table1 ----
-                table1.setModel(new DefaultTableModel(
+                //---- tblAccount ----
+                tblAccount.setModel(new DefaultTableModel(
                     new Object[][] {
                         {null, null, null, null},
                         {null, null, null, null},
@@ -227,7 +218,7 @@ public class ManagerAccountDialog extends JDialog {
                     }
                 });
                 {
-                    TableColumnModel cm = table1.getColumnModel();
+                    TableColumnModel cm = tblAccount.getColumnModel();
                     cm.getColumn(0).setResizable(false);
                     cm.getColumn(0).setPreferredWidth(300);
                     cm.getColumn(1).setResizable(false);
@@ -237,10 +228,10 @@ public class ManagerAccountDialog extends JDialog {
                     cm.getColumn(3).setResizable(false);
                     cm.getColumn(3).setPreferredWidth(100);
                 }
-                table1.setBackground(new Color(0x191b20));
-                table1.setForeground(Color.white);
-                table1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-                scrollPane1.setViewportView(table1);
+                tblAccount.setBackground(new Color(0x191b20));
+                tblAccount.setForeground(Color.white);
+                tblAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+                scrollPane1.setViewportView(tblAccount);
             }
 
             //---- lbAccount ----
@@ -259,9 +250,9 @@ public class ManagerAccountDialog extends JDialog {
             btnSearch.setForeground(Color.white);
             btnSearch.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
 
-            //---- cbbFindAccount ----
-            cbbFindAccount.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
-            cbbFindAccount.setModel(new DefaultComboBoxModel<>(new String[] {
+            //---- cboFilter ----
+            cboFilter.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
+            cboFilter.setModel(new DefaultComboBoxModel<>(new String[] {
                 "T\u1ea5t c\u1ea3",
                 "Ban",
                 "Admin"
@@ -281,8 +272,8 @@ public class ManagerAccountDialog extends JDialog {
                                 .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 180, GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addComponent(btnSearch)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 453, Short.MAX_VALUE)
-                                .addComponent(cbbFindAccount, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 449, Short.MAX_VALUE)
+                                .addComponent(cboFilter, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
                                 .addGap(39, 39, 39))))
                     .addComponent(scrollPane1)
                     .addComponent(separator1, GroupLayout.Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 998, Short.MAX_VALUE)
@@ -297,7 +288,7 @@ public class ManagerAccountDialog extends JDialog {
                             .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
                             .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnSearch, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbbFindAccount, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cboFilter, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
                         .addComponent(separator1, GroupLayout.PREFERRED_SIZE, 3, GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
@@ -323,23 +314,23 @@ public class ManagerAccountDialog extends JDialog {
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private JScrollPane scrollPane1;
-    private JTable table1;
+    private JTable tblAccount;
     private JSeparator separator1;
     private JLabel lbAccount;
     private JTextField txtSearch;
     private JButton btnSearch;
-    private JComboBox<String> cbbFindAccount;
+    private JComboBox<String> cboFilter;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
     private void fillTableAccount() {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) table1.getModel();
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblAccount.getModel();
         defaultTableModel.setRowCount(0);
         for (Account account : accountList) {
             defaultTableModel.addRow(new Object[]{account.getId(), account.getUsername(), account.getEmail(), account.getNgayTao()});
         }
-        for (int i = 0; i < table1.getColumnCount(); i++) {
-            table1.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
+            tblAccount.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                     Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
@@ -359,7 +350,7 @@ public class ManagerAccountDialog extends JDialog {
 
 
     private void fillTableChange(Predicate<Account> filter) {
-        DefaultTableModel defaultTableModel = (DefaultTableModel) table1.getModel();
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblAccount.getModel();
         defaultTableModel.setRowCount(0);
         if (txtSearch.getText().isEmpty()) {
             listAccountChange = accountList.stream().filter(filter).toList();

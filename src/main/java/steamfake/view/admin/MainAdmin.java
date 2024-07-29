@@ -5,10 +5,12 @@
 package steamfake.view.admin;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import steamfake.view.admin.account.AccountManagement;
+import steamfake.view.admin.addmoney.AddMoneyManagement;
+import steamfake.view.admin.withdrawmoney.WithdrawManagement;
 
-import java.awt.*;
 import javax.swing.*;
-import javax.swing.GroupLayout;
+import java.awt.*;
 
 /**
  * @author ACER
@@ -26,31 +28,31 @@ public class MainAdmin extends JDialog {
 
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
-        button1 = new JButton();
-        button2 = new JButton();
-        button3 = new JButton();
+        btnAccount = new JButton();
+        btnGame = new JButton();
+        btnWithdraw = new JButton();
         btnAddMoney = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
 
-        //---- button1 ----
-        button1.setText("Accout");
-        button1.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-        button1.setBackground(new Color(0x252730));
+        //---- btnAccount ----
+        btnAccount.setText("Account");
+        btnAccount.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        btnAccount.setBackground(new Color(0x252730));
 
-        //---- button2 ----
-        button2.setText("Game");
-        button2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-        button2.setBackground(new Color(0x252730));
+        //---- btnGame ----
+        btnGame.setText("Game");
+        btnGame.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        btnGame.setBackground(new Color(0x252730));
 
-        //---- button3 ----
-        button3.setText("Withdraw");
-        button3.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-        button3.setBackground(new Color(0x252730));
+        //---- btnWithdraw ----
+        btnWithdraw.setText("Withdraw");
+        btnWithdraw.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        btnWithdraw.setBackground(new Color(0x252730));
 
         //---- btnAddMoney ----
-        btnAddMoney.setText("Add Money");
+        btnAddMoney.setText("Add money");
         btnAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         btnAddMoney.setBackground(new Color(0x252730));
 
@@ -62,20 +64,20 @@ public class MainAdmin extends JDialog {
                     .addGap(28, 28, 28)
                     .addGroup(contentPaneLayout.createParallelGroup()
                         .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button3, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button2, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(button1, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnWithdraw, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGame, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAccount, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(29, Short.MAX_VALUE))
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(21, 21, 21)
-                    .addComponent(button1, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAccount, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(button2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGame, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(button3, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnWithdraw, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(34, Short.MAX_VALUE))
@@ -87,15 +89,16 @@ public class MainAdmin extends JDialog {
 
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
+    private JButton btnAccount;
+    private JButton btnGame;
+    private JButton btnWithdraw;
     private JButton btnAddMoney;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
-        btnAddMoney.addActionListener(e -> new ManageAddMoney(getOwner()).setVisible(true));
-
+        btnAddMoney.addActionListener(e -> new AddMoneyManagement(this));
+        btnAccount.addActionListener(e -> new AccountManagement(this));
+        btnWithdraw.addActionListener(e -> new WithdrawManagement(this));
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {

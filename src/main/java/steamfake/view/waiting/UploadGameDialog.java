@@ -22,13 +22,16 @@ public class UploadGameDialog extends JDialog {
     private List<String> imagesPath;
     private UUID gameID;
     private String version;
+    private final boolean isUpdate;
 
-    public UploadGameDialog(Window owner, String gamePath, UUID gameID, String version, List<String> imagesPath) {
+    public UploadGameDialog(Window owner, String gamePath, UUID gameID,
+                            String version, List<String> imagesPath, boolean isUpdate) {
         super(owner);
         this.gamePath = gamePath;
         this.gameID = gameID;
         this.version = version;
         this.imagesPath = imagesPath;
+        this.isUpdate = isUpdate;
         initComponents();
     }
 
@@ -80,16 +83,19 @@ public class UploadGameDialog extends JDialog {
 
     private void startUpload() {
         try {
+
             lblStatus.setText("Đang nén dữ liệu...");
             new File("data/temp/game.zip").delete();
             new File("data/temp").mkdirs();
             XFile.zipFolder(gamePath,"data/temp/game.zip");
             progressBar1.setValue(25);
             Thread.sleep(1000);
+
             lblStatus.setText("Đang tải lên game...");
             AzureBlobService.upload("data/temp/game.zip",gameID + "/" + version + "/game.zip","games");
             progressBar1.setValue(50);
             Thread.sleep(1000);
+
             lblStatus.setText("Đang tải lên ảnh...");
             for (String imagePath : imagesPath) {
                 AzureBlobService.upload(imagePath,gameID + "/" + version + "/images/" +
@@ -97,12 +103,14 @@ public class UploadGameDialog extends JDialog {
             }
             progressBar1.setValue(75);
             Thread.sleep(1000);
+
             lblStatus.setText("Đang hoàn tất quá trình upload...");
             if(new File("data/temp/game.zip").delete()) {
                 progressBar1.setValue(100);
                 lblStatus.setText("Hoàn tất!");
             }
             Thread.sleep(1000);
+
         } catch (InterruptedException e) {
             lblStatus.setText("Lỗi: " + e.getMessage());
             throw new RuntimeException(e);

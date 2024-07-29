@@ -16,7 +16,7 @@ import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamedetail.GameDetailPanel;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
-import steamfake.view.managegame.ManageGame;
+import steamfake.view.managegame.GameManagement;
 import steamfake.view.waiting.LoadingScreen;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
@@ -410,7 +410,7 @@ public class MFrame extends JFrame {
 
     private void showGameManagement() {
         handleBeforeChange();
-        ManageGame manageGame = new ManageGame();
+        GameManagement manageGame = new GameManagement();
         mainPanel.add(manageGame);
         refreshPanel();
     }
@@ -423,7 +423,7 @@ public class MFrame extends JFrame {
         handleBeforeChange();
         AccountPanel accountPanel = new AccountPanel();
         mainPanel.add(accountPanel);
-       refreshPanel();
+        refreshPanel();
     }
     public void showAddMoney() {
         handleBeforeChange();

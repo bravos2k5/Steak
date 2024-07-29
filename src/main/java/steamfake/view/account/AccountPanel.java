@@ -490,7 +490,7 @@ public class AccountPanel extends JPanel {
         btnChangePassword.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                new ChangePassword(MFrame.gI()).setVisible(true);
+                new ChangePasswordDialog(MFrame.gI()).setVisible(true);
             }
         });
         lblAvatar.addMouseListener(new MouseAdapter() {
@@ -616,7 +616,7 @@ public class AccountPanel extends JPanel {
     }
 
     private void updateEmail() {
-        new ChangeEmail(MFrame.gI(), this).setVisible(true);
+        new ChangeEmailDialog(MFrame.gI(), this).setVisible(true);
     }
 
 }

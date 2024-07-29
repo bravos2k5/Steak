@@ -128,4 +128,13 @@ public class AzureBlobService {
         }
     }
 
+    public synchronized static void rename(String oldName, String newName, String container) {
+        BlobClient oldClient = getContainerClient(container).getBlobClient(oldName);
+        if(oldClient.exists()) {
+            BlobClient newClient = getContainerClient(container).getBlobClient(newName);
+            newClient.copyFromUrl(oldClient.getBlobUrl());
+            oldClient.delete();
+        }
+    }
+
 }
