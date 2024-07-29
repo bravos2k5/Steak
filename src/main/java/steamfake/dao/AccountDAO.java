@@ -170,11 +170,11 @@ public class AccountDAO implements DataAccessObject<Account> {
         XJdbc.update(sql,account.getSoDuThuNhap(),account.getId());
     }
 
-    public void khoaTaiKhoan(Account account) {
+    public int khoaTaiKhoan(Account account ,boolean isBan) {
         String sql = "UPDATE Account " +
-                "SET isBan = 1 " +
+                "SET isBan =" + (isBan ? 1 : 0) +
                 "WHERE id = ?";
-        XJdbc.update(sql,account.getId());
+       return XJdbc.update(sql,account.getId());
     }
 
     public boolean isExistUsername(String username) {
