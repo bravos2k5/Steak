@@ -50,6 +50,8 @@ public class KiemDuyet extends JDialog {
         panel4 = new JPanel();
 
         //======== this ========
+        setModal(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         var contentPane = getContentPane();
 
         //======== tabbedPane1 ========

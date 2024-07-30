@@ -7,6 +7,7 @@ package steamfake.view.admin;
 import com.formdev.flatlaf.FlatDarkLaf;
 import steamfake.view.admin.account.AccountManagement;
 import steamfake.view.admin.addmoney.AddMoneyManagement;
+import steamfake.view.admin.game.KiemDuyet;
 import steamfake.view.admin.withdrawmoney.WithdrawManagement;
 
 import javax.swing.*;
@@ -96,9 +97,10 @@ public class MainAdmin extends JDialog {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
-        btnAddMoney.addActionListener(e -> new AddMoneyManagement(this));
-        btnAccount.addActionListener(e -> new AccountManagement(this));
-        btnWithdraw.addActionListener(e -> new WithdrawManagement(this));
+        btnGame.addActionListener(e -> new KiemDuyet(this).setVisible(true));
+        btnAddMoney.addActionListener(e -> new AddMoneyManagement(this).setVisible(true));
+        btnAccount.addActionListener(e -> new AccountManagement(this).setVisible(true));
+        btnWithdraw.addActionListener(e -> new WithdrawManagement(this).setVisible(true));
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
