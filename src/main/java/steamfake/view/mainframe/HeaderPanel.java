@@ -11,6 +11,7 @@ import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
+import steamfake.view.admin.MainAdmin;
 import steamfake.view.download.DownloadQueue;
 import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
@@ -265,6 +266,12 @@ public class HeaderPanel extends JPanel {
         }
         btnLogin.setVisible(!SessionManager.isLogin());
         iconLogOut.setVisible(SessionManager.isLogin());
+        lblAdmin.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                showAdminDialog();
+            }
+        });
         repaint();
     }
 
@@ -297,6 +304,12 @@ public class HeaderPanel extends JPanel {
                 MFrame.gI().showAddMoney();
             }
         });
+    }
+
+    private void showAdminDialog() {
+        if(SessionManager.user.isAdmin()) {
+            new MainAdmin(MFrame.gI()).setVisible(true);
+        }
     }
 
     private void login() {
