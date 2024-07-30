@@ -191,6 +191,7 @@ public class GameDAO implements DataAccessObject<Game> {
             return XJdbc.update(sql,game.getId());
     }
 
+
     public List<GameDisplay> selectListGameDisplay() {
         String sql = "{CALL SP_GET_DISPLAY_GAMES(?)}";
         List<GameDisplay> gameDisplayList = new ArrayList<>();

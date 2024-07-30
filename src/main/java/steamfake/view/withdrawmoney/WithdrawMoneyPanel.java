@@ -551,7 +551,7 @@ public class WithdrawMoneyPanel extends JPanel {
     }
 
     private void addRow(PhieuRutTien phieuRutTien) {
-        ListWithdrawMoney data = new ListWithdrawMoney();
+        WithdrawInfoItem data = new WithdrawInfoItem();
         data.getColNgayRut().setText(phieuRutTien.getNgayRut().toString());
         data.getColSoTien().setText(phieuRutTien.getSoTienRut() + "");
         data.getColType().setText(phieuRutTien.getMethod() == PhieuRutTien.METHOD_ATM ? "Ngân hàng" : "Tài khoản game");

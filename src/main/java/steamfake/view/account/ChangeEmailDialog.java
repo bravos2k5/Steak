@@ -19,13 +19,13 @@ import java.util.Random;
 /**
  * @author BRAVOS
  */
-public class ChangeEmail extends JDialog {
+public class ChangeEmailDialog extends JDialog {
     private String otp = "";
     private String newEmail = "";
     private long lastSendOTP = 0;
     private final AccountPanel accountPanel;
 
-    public ChangeEmail(Window window, AccountPanel accountPanel) {
+    public ChangeEmailDialog(Window window, AccountPanel accountPanel) {
         super(window);
         this.accountPanel = accountPanel;
         initComponents();

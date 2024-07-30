@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -10,15 +10,15 @@ new FormModel {
 			name: "this"
 			"background": sfield java.awt.Color darkGray
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:34:p, par l {seq l {comp lbAccount:::p::p, space :::x}, seq l {comp txtSearch:::p:180:p, space :12:12:p, comp btnSearch:::p::p, space ::453:x, comp cbbFindAccount:::p:200:p, space :p:39:p}}}, comp scrollPane1::l:::x, comp separator1::t::998:x}"
-				"$verticalGroup": "par l {seq t {space :p:14:p, comp lbAccount:::p::p, space u:::p, par l {comp txtSearch:::p:30:p, par b {comp btnSearch::b:p:30:p, comp cbbFindAccount::b:p:30:p}}, space ::17:x, comp separator1:::p:3:p, space :0:0:p, comp scrollPane1:::p:586:p}}"
+				"$horizontalGroup": "par l {seq l {space :p:34:p, par l {seq l {comp lbAccount:::p::p, space :::x}, seq l {comp txtSearch:::p:180:p, space :12:12:p, comp btnSearch:::p::p, space ::449:x, comp cboFilter:::p:200:p, space :p:39:p}}}, comp scrollPane1::l:::x, comp separator1::t::998:x}"
+				"$verticalGroup": "par l {seq t {space :p:14:p, comp lbAccount:::p::p, space u:::p, par l {comp txtSearch:::p:30:p, par b {comp btnSearch::b:p:30:p, comp cboFilter::b:p:30:p}}, space ::17:x, comp separator1:::p:3:p, space :0:0:p, comp scrollPane1:::p:586:p}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 25, 27, 32, 255 )
 				add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 					name: "scrollPane1"
 					add( new FormComponent( "javax.swing.JTable" ) {
-						name: "table1"
+						name: "tblAccount"
 						"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 							add( new java.util.Vector {
 								add( null )
@@ -183,7 +183,7 @@ new FormModel {
 					"font": new java.awt.Font( "SansSerif", 0, 16 )
 				} )
 				add( new FormComponent( "javax.swing.JComboBox" ) {
-					name: "cbbFindAccount"
+					name: "cboFilter"
 					"font": new java.awt.Font( "SansSerif", 0, 16 )
 					"model": new javax.swing.DefaultComboBoxModel {
 						selectedItem: "Tất cả"
@@ -199,4 +199,3 @@ new FormModel {
 		} )
 	}
 }
-

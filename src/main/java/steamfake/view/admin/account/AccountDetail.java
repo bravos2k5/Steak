@@ -12,33 +12,24 @@ import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
 import steamfake.model.BankAccount;
-import steamfake.utils.SessionManager;
-import steamfake.utils.XFile;
 import steamfake.utils.XImage;
-import steamfake.utils.XRegex;
-import steamfake.utils.azure.AzureBlobService;
-import steamfake.view.account.ChangePassword;
-import steamfake.view.mainframe.HeaderPanel;
-import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.sql.Date;
-import java.util.UUID;
 import java.util.List;
 
 /**
  * @author ADMIN
  */
-public class ShowAccount extends JFrame {
+public class AccountDetail extends JFrame {
+
     private final Account account;
-    private final ManagerAccountDialog managerAccountDialog;
-    public ShowAccount(Account account ,ManagerAccountDialog managerAccountDialog) {
+    private final AccountManagement accountManagement;
+    public AccountDetail(Account account , AccountManagement accountManagement) {
         this.account = account;
-        this.managerAccountDialog = managerAccountDialog;
+        this.accountManagement = accountManagement;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         initComponents();
         initialize();
@@ -208,7 +199,7 @@ public class ShowAccount extends JFrame {
                 cboBankAccount.setMaximumRowCount(5);
 
                 //---- label12 ----
-                label12.setText("Ch\u1ee9 v\u1ee5");
+                label12.setText("Role");
                 label12.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
 
                 //---- txtRole ----
@@ -562,9 +553,11 @@ public class ShowAccount extends JFrame {
 
     @Override
     public void dispose() {
-        managerAccountDialog.getBtnSearch().doClick();
+        accountManagement.getBtnSearch().doClick();
         super.dispose();
-    }// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
+    }
+
+    // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private JPanel panel1;
     private JLabel label1;
     private JLabel label3;

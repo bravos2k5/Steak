@@ -15,8 +15,8 @@ import java.awt.*;
 /**
  * @author ACER
  */
-public class ManageWithdrawmoney extends JDialog {
-    public ManageWithdrawmoney(Window owner) {
+public class WithdrawManagement extends JDialog {
+    public WithdrawManagement(Window owner) {
         super(owner);
         initComponents();
         this.setResizable(false);
@@ -47,6 +47,8 @@ public class ManageWithdrawmoney extends JDialog {
         panel4 = new JPanel();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
         var contentPane = getContentPane();
 
         //======== tabbedPane1 ========
@@ -140,7 +142,7 @@ public class ManageWithdrawmoney extends JDialog {
                                     .addComponent(label2, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(comboBox2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap(858, Short.MAX_VALUE))
+                            .addContainerGap(850, Short.MAX_VALUE))
                         .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
                 );
                 panel3Layout.setVerticalGroup(
@@ -211,6 +213,6 @@ public class ManageWithdrawmoney extends JDialog {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatDarkLaf());
-        new ManageWithdrawmoney(null).setVisible(true);
+        new WithdrawManagement(null).setVisible(true);
     }
 }

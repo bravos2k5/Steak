@@ -8,6 +8,7 @@ import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
 import steamfake.model.join.GameDisplay;
 import steamfake.utils.XImage;
+import steamfake.view.waiting.WaitingDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -165,7 +166,13 @@ public class NormalGameItem extends JPanel {
         this.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                MFrame.gI().showGameDetail(game);
+                WaitingDialog waitingDialog = new WaitingDialog(MFrame.gI());
+                waitingDialog.start();
+                Thread thread = new Thread(() -> {
+                    MFrame.gI().showGameDetail(game);
+                    waitingDialog.stop();
+                });
+                thread.start();
             }
         });
     }

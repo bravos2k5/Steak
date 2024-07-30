@@ -12,8 +12,8 @@ import java.awt.event.MouseEvent;
 /**
  * @author ACER
  */
-public class ListWithdrawMoney extends JPanel {
-    public ListWithdrawMoney() {
+public class WithdrawInfoItem extends JPanel {
+    public WithdrawInfoItem() {
         initComponents();
         this.addMouseListener(new MouseAdapter() {
             @Override
