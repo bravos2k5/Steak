@@ -26,7 +26,8 @@ public class ResourceManager {
         String azurePath = game.getId() + "/" + game.getVersion() + "/images/";
         String localPath = GAME_RESOURCE_PATH + azurePath;
         List<String> images = XJson.fromJson(game.getImages(), new TypeReference<>() {});
-        if (images != null) {
+        if (images != null && game.getAvatar() != null) {
+            images.add(game.getAvatar());
             for (String image : images) {
                 String azureImage = azurePath + image;
                 String localImage = localPath + image;
@@ -41,7 +42,8 @@ public class ResourceManager {
         String azurePath = game.getGameID() + "/" + game.getVersion() + "/images/";
         String localPath = GAME_RESOURCE_PATH + azurePath;
         List<String> images = XJson.fromJson(game.getImages(), new TypeReference<>() {});
-        if (images != null) {
+        if (images != null && game.getAvatar() != null) {
+            images.add(game.getAvatar());
             for (String image : images) {
                 String azureImage = azurePath + image;
                 String localImage = localPath + image;

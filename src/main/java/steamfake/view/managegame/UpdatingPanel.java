@@ -745,7 +745,8 @@ public class UpdatingPanel extends JDialog {
             if (result > 0) {
                 if(rdoNewVersion.isSelected()) {
                     uploadNewVersion();
-                    XMessage.alert(this, "Đã tạo phiếu kiểm duyệt thành công");
+                    copyOldFileToNewVersion(game,pg);
+                    XMessage.notificate(this, "Đã tạo phiếu kiểm duyệt thành công");
                     dispose();
                 }
                 else {
@@ -757,7 +758,7 @@ public class UpdatingPanel extends JDialog {
                                     imagePath.substring(imagePath.lastIndexOf("\\") + 1),"games");
                         }
                         waitingDialog.stop();
-                        XMessage.alert(this, "Đã tạo phiếu kiểm duyệt thành công");
+                        XMessage.notificate(this, "Đã tạo phiếu kiểm duyệt thành công");
                         dispose();
                     });
                     thread.start();
@@ -768,8 +769,20 @@ public class UpdatingPanel extends JDialog {
         }
     }
 
+    private void copyOldFileToNewVersion(Game game, PendingGame pg) {
+        new Thread(() -> {
+            if (game.getAvatar().equals(pg.getAvatar())) {
+                images.add(game.getAvatar());
+            }
+            for (String images : images) {
+                AzureBlobService.copy(game.getId() + "/" + game.getVersion() + "/images/" + images,
+                        game.getId() + "/" + pg.getVersion() + "/images/" + images,"games");
+            }
+        }).start();
+    }
+
     private void uploadNewVersion() {
-        new UploadGameDialog(this,txtFolderPath.getText(),game.getId(),txtNewVersion.getText(),imagesToAdd,true).setVisible(true);
+        new UploadGameDialog(this,txtFolderPath.getText(),game.getId(),txtNewVersion.getText(),imagesToAdd).setVisible(true);
     }
 
     private PhieuKiemDuyet phieuKiemDuyetGenerated() {
