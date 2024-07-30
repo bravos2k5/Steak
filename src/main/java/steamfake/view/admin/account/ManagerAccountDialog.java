@@ -110,7 +110,7 @@ public class ManagerAccountDialog extends JDialog {
             }
         } else {
             listAccountChange = accountList;
-            btnSearch.doClick();
+
         }
 
     }
