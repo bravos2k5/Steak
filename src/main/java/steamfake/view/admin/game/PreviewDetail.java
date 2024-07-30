@@ -461,7 +461,7 @@ public class PreviewDetail extends JDialog {
         int result = KiemDuyetDAO.getInstance().acceptGame(phieuKiemDuyet);
         if(result > 0) {
             kiemDuyet.fillTable();
-            handleData();
+            deleteOldVersion();
             XMessage.notificate(this, "Duyệt game thành công");
             dispose();
         } else {
@@ -469,22 +469,9 @@ public class PreviewDetail extends JDialog {
         }
     }
 
-    private void loadImages() {
-
-    }
-
-    private void handleData() {
+    private void deleteOldVersion() {
         if(phieuKiemDuyet.getMoTa().contains("Update")) {
-            List<String> imagesPath = XJson.fromJson(currentVersion.getImages(), new TypeReference<>() {});
-            List<String> imageToDelete = XJson.fromJson(pendingGame.getImageToDelete(), new TypeReference<>() {});
-            String oldPrefix = currentVersion.getId() + "/" + currentVersion.getVersion() + "/";
-            String newPrefix = pendingGame.getGameID() + "/" + pendingGame.getVersion() + "/";
-            if (imagesPath != null && imageToDelete != null) {
-                imagesPath.removeAll(imageToDelete);
-                for(String path : imagesPath) {
-                    AzureBlobService.rename(oldPrefix + path,newPrefix + path,"games");
-                }
-            }
+            AzureBlobService.deleteManyFile(currentVersion.getId() + "/" + currentVersion.getVersion(),"games");
         }
     }
 

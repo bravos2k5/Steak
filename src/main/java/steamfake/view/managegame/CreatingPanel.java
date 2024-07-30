@@ -466,6 +466,11 @@ public class CreatingPanel extends JDialog {
                     return "Executable file (*.exe)";
                 }
             });
+            if(txtFolderPath.getText().isEmpty()) {
+                XMessage.alert(this, "Vui lòng chọn folder game trước");
+                return;
+            }
+            fileChooser.setCurrentDirectory(new File(txtFolderPath.getText()));
             int result = fileChooser.showOpenDialog(this);
             if (result == JFileChooser.APPROVE_OPTION) {
                 String path = fileChooser.getSelectedFile().getAbsolutePath();
@@ -536,7 +541,7 @@ public class CreatingPanel extends JDialog {
                     int result = KiemDuyetDAO.getInstance().createGame(phieuKiemDuyet,pendingGame);
                     if(result > 0) {
                         images.add(lblAvatar.getToolTipText());
-                        new UploadGameDialog(this, txtFolderPath.getText(),pendingGame.getGameID(), txtVersion.getText(), images,false).setVisible(true);
+                        new UploadGameDialog(this, txtFolderPath.getText(),pendingGame.getGameID(), txtVersion.getText(), images).setVisible(true);
                         this.dispose();
                     } else {
                         XMessage.alert(this, "Upload game thất bại");
