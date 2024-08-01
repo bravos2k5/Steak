@@ -29,10 +29,10 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
         String sql = "{CALL SP_TAO_PHIEU_KIEM_DUYET(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
         return XJdbc.update(sql,
                 phieuKiemDuyet.getId(), phieuKiemDuyet.getPublisherID(), phieuKiemDuyet.getMoTa(),
-                phieuKiemDuyet.getThongBao(),pendingGame.getGameID(),pendingGame.getName(),
-                pendingGame.getAvatar(),pendingGame.getGiaTien(),pendingGame.getAge(),
-                pendingGame.getImages(),pendingGame.getMoTa(),pendingGame.getRam(),
-                pendingGame.getRom(),pendingGame.getVersion(),pendingGame.getExecPath(),
+                phieuKiemDuyet.getThongBao(), pendingGame.getGameID(), pendingGame.getName(),
+                pendingGame.getAvatar(), pendingGame.getGiaTien(), pendingGame.getAge(),
+                pendingGame.getImages(), pendingGame.getMoTa(), pendingGame.getRam(),
+                pendingGame.getRom(), pendingGame.getVersion(), pendingGame.getExecPath(),
                 pendingGame.getImageToDelete());
     }
 
@@ -43,7 +43,7 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
 
     public int rejectGame(PhieuKiemDuyet phieuKiemDuyet) {
         String sql = "{CALL SP_REJECT_GAME(?,?)}";
-        return XJdbc.update(sql, phieuKiemDuyet.getId(),phieuKiemDuyet.getThongBao());
+        return XJdbc.update(sql, phieuKiemDuyet.getId(), phieuKiemDuyet.getThongBao());
     }
 
     @Override
@@ -80,7 +80,7 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
 
     public List<PhieuKiemDuyet> selectBySQL(String sql, Object... args) {
         List<PhieuKiemDuyet> phieuKiemDuyetList = new ArrayList<>();
-        try(ResultSet rs = XJdbc.getResultSet(sql, args)) {
+        try (ResultSet rs = XJdbc.getResultSet(sql, args)) {
             while (rs.next()) {
                 PhieuKiemDuyet phieuKiemDuyet = new PhieuKiemDuyet();
                 phieuKiemDuyet.setId(rs.getObject("id", java.util.UUID.class));
@@ -110,7 +110,7 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
     public List<Integer> selectListYear() {
         String sql = "SELECT DISTINCT YEAR(ngay_tao) FROM PHIEU_KIEM_DUYET";
         List<Integer> listYear = new ArrayList<>();
-        try(ResultSet rs = XJdbc.getResultSet(sql)) {
+        try (ResultSet rs = XJdbc.getResultSet(sql)) {
             while (rs.next()) {
                 listYear.add(rs.getInt(1));
             }
@@ -123,13 +123,13 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
     public List<PhieuKiemDuyet> selectByMonthAndYear(MonthYear monthYear) {
         int month = monthYear.getMonth();
         int year = monthYear.getYear();
-        if(month == 0 && year == 0) {
+        if (month == 0 && year == 0) {
             return selectAll();
         }
-        if(month == 0) {
+        if (month == 0) {
             return selectByYear(year);
         }
-        if(year == 0) {
+        if (year == 0) {
             return selectByMonth(month);
         }
         String sql = "SELECT * FROM PHIEU_KIEM_DUYET WHERE MONTH(ngay_tao) = ? AND YEAR(ngay_tao) = ?";
@@ -148,8 +148,8 @@ public class KiemDuyetDAO implements DataAccessObject<PhieuKiemDuyet> {
 
     public PendingGame selectPendingGameById(PhieuKiemDuyet phieuKiemDuyet) {
         String sql = "SELECT * FROM PENDING_GAMES WHERE review_id = ?";
-        try(ResultSet rs = XJdbc.getResultSet(sql, phieuKiemDuyet.getId())) {
-            if(rs.next()) {
+        try (ResultSet rs = XJdbc.getResultSet(sql, phieuKiemDuyet.getId())) {
+            if (rs.next()) {
                 PendingGame pendingGame = new PendingGame();
                 pendingGame.setGameID(rs.getObject("game_id", java.util.UUID.class));
                 pendingGame.setName(rs.getString("game_name"));
