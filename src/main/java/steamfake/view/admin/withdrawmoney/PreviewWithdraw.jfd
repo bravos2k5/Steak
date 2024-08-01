@@ -1,0 +1,148 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq {space :p:21:p, par l:::p {seq {comp btnCancel:::p:100:p, space :::x, comp btnReject:::p:100:p, space :18:18:p, comp btnAccept:::p:100:p}, comp lbl126:::p:150:p, comp lbl128:::p:150:p, comp lbl124:::p:150:p, comp lbl123:::p:150:p, comp txtIDAccout::l::430:x, comp txtUserName::l::430:x, comp txtFullName::l::430:x, seq l {par l {comp lbl125:::p:150:p, comp txtMethod:::p:200:p}, space ::30:x, par l:::p {comp txtStatus::::200:x, comp lbl127::::200:x}}, comp txtPrice::l::430:x}, space ::47:x}}"
+			"$verticalGroup": "par l {seq l {space :p:19:p, comp lbl123:::p:30:p, space :::p, comp txtIDAccout:::p:50:p, space s:::p, comp lbl124:::p:30:p, space :::p, comp txtUserName:::p:50:p, space s:::p, comp lbl128:::p:30:p, space :::p, comp txtFullName:::p:50:p, space s:::p, par l {seq {comp lbl125:::p:30:p, space :::p, comp txtMethod:::p:50:p}, seq {comp lbl127:::p:30:p, space :::p, comp txtStatus:::p:50:p}}, space s:::p, comp lbl126:::p:30:p, space :::p, comp txtPrice:::p:50:p, space ::89:x, par l {comp btnCancel:::p:30:p, comp btnReject::l:p:30:p, comp btnAccept:::p:30:p}, space :p:29:p}}"
+		} ) {
+			name: "this"
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtIDAccout"
+				"forcusColor": &Color0 new java.awt.Color( 12, 140, 233, 255 )
+				"noForcusColor": &Color1 new java.awt.Color( 25, 27, 32, 255 )
+				"startGradientColor": &Color2 new java.awt.Color( 25, 27, 32, 255 )
+				"endGradientColor": &Color3 new java.awt.Color( 25, 27, 32, 255 )
+				"font": &Font0 new java.awt.Font( "SansSerif", 0, 20 )
+				"radius": 0
+				"background": &Color4 new java.awt.Color( 37, 39, 48, 255 )
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl123"
+				"text": "ID Account"
+				"font": &Font1 new java.awt.Font( "SansSerif", 0, 20 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtUserName"
+				"forcusColor": #Color0
+				"noForcusColor": #Color1
+				"startGradientColor": #Color2
+				"endGradientColor": #Color3
+				"font": #Font0
+				"radius": 0
+				"background": #Color4
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl124"
+				"text": "Tên tài khoản"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtMethod"
+				"forcusColor": #Color0
+				"noForcusColor": #Color1
+				"startGradientColor": #Color2
+				"endGradientColor": #Color3
+				"font": #Font0
+				"radius": 0
+				"background": #Color4
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl125"
+				"text": "HInh Thuc"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtPrice"
+				"forcusColor": #Color0
+				"noForcusColor": #Color1
+				"startGradientColor": #Color2
+				"endGradientColor": #Color3
+				"font": #Font0
+				"radius": 0
+				"background": #Color4
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl126"
+				"text": "Số tiền"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtStatus"
+				"forcusColor": #Color0
+				"noForcusColor": #Color1
+				"startGradientColor": #Color2
+				"endGradientColor": #Color3
+				"font": #Font0
+				"radius": 0
+				"background": #Color4
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl127"
+				"text": "Trang Thai"
+				"font": #Font1
+			} )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lbl128"
+				"text": "Họ tên"
+				"font": #Font1
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
+				name: "txtFullName"
+				"forcusColor": #Color0
+				"noForcusColor": #Color1
+				"startGradientColor": #Color2
+				"endGradientColor": #Color3
+				"font": #Font0
+				"radius": 0
+				"background": #Color4
+				"editable": false
+				"enabled": false
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnCancel"
+				"text": "Cancel"
+				"horizontalAlignment": 0
+				"font": &Font2 new java.awt.Font( "SansSerif", 1, 14 )
+				"background": &Color5 new java.awt.Color( 62, 55, 55, 255 )
+				"originColor": &Color6 new java.awt.Color( 62, 55, 55, 255 )
+				"radius": 5
+				"hoverColor": sfield java.awt.Color gray
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnReject"
+				"text": "Từ chối"
+				"horizontalAlignment": 0
+				"font": #Font2
+				"background": #Color5
+				"originColor": #Color6
+				"radius": 5
+				"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
+			} )
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnAccept"
+				"text": "Duyệt"
+				"horizontalAlignment": 0
+				"font": #Font2
+				"background": new java.awt.Color( 53, 69, 42, 255 )
+				"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
+				"originColor": new java.awt.Color( 53, 69, 42, 255 )
+				"radius": 5
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 500, 700 )
+		} )
+	}
+}

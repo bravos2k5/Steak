@@ -5,6 +5,7 @@
 package steamfake.view.admin.account;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.FlatDarkLaf;
 import steamfake.dao.AccountDAO;
 import steamfake.model.Account;
 
@@ -46,13 +47,16 @@ public class AccountManagement extends JDialog {
         cboFilter.addItemListener(e -> {
             if (e.getStateChange() == ItemEvent.SELECTED) {
                 cbbFill();
+                if (!txtSearch.getText().isEmpty()) {
+                    btnSearch.doClick();
+                }
             }
         });
         btnSearch.addActionListener(e -> {
             listAccountChange = accountList;
             if (!txtSearch.getText().isEmpty()) {
-                    fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
-                    cbbFill();
+                fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
+                cbbFill();
             } else {
                 if (cboFilter.getSelectedIndex() != 0) {
                     cbbFill();
@@ -329,12 +333,17 @@ public class AccountManagement extends JDialog {
         for (Account account : accountList) {
             defaultTableModel.addRow(new Object[]{account.getId(), account.getUsername(), account.getEmail(), account.getNgayTao()});
         }
-        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
-            tblAccount.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
+        renderTable(accountList, tblAccount);
+
+    }
+
+    private void renderTable(List<Account> list, JTable table) {
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                     Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                    Account account = accountList.get(row);
+                    Account account = list.get(row);
                     if (account.isBan()) {
                         c.setForeground(Color.RED);
                     } else if (account.isAdmin()) {
@@ -348,7 +357,6 @@ public class AccountManagement extends JDialog {
         }
     }
 
-
     private void fillTableChange(Predicate<Account> filter) {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblAccount.getModel();
         defaultTableModel.setRowCount(0);
@@ -359,7 +367,14 @@ public class AccountManagement extends JDialog {
         listAccountChange.forEach(e -> {
             defaultTableModel.addRow(new Object[]{e.getId(), e.getUsername(), e.getEmail(), e.getNgayTao()});
         });
+        renderTable(listAccountChange, tblAccount);
 
+
+    }
+
+    public static void main(String[] args) throws UnsupportedLookAndFeelException {
+        UIManager.setLookAndFeel(new FlatDarkLaf());
+        new AccountManagement(null).setVisible(true);
     }
 
     public JButton getBtnSearch() {
