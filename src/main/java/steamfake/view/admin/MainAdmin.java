@@ -33,12 +33,13 @@ public class MainAdmin extends JDialog {
         btnGame = new JButton();
         btnWithdraw = new JButton();
         btnAddMoney = new JButton();
+        btnAddMoney2 = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
 
         //---- btnAccount ----
-        btnAccount.setText("Account");
+        btnAccount.setText("T\u00e0i kho\u1ea3n");
         btnAccount.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         btnAccount.setBackground(new Color(0x252730));
 
@@ -48,14 +49,19 @@ public class MainAdmin extends JDialog {
         btnGame.setBackground(new Color(0x252730));
 
         //---- btnWithdraw ----
-        btnWithdraw.setText("Withdraw");
+        btnWithdraw.setText("R\u00fat ti\u1ec1n");
         btnWithdraw.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         btnWithdraw.setBackground(new Color(0x252730));
 
         //---- btnAddMoney ----
-        btnAddMoney.setText("Add money");
+        btnAddMoney.setText("N\u1ea1p ti\u1ec1n");
         btnAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         btnAddMoney.setBackground(new Color(0x252730));
+
+        //---- btnAddMoney2 ----
+        btnAddMoney2.setText("Th\u1ed1ng k\u00ea");
+        btnAddMoney2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        btnAddMoney2.setBackground(new Color(0x252730));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -64,6 +70,7 @@ public class MainAdmin extends JDialog {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(28, 28, 28)
                     .addGroup(contentPaneLayout.createParallelGroup()
+                        .addComponent(btnAddMoney2, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnWithdraw, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnGame, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
@@ -81,7 +88,9 @@ public class MainAdmin extends JDialog {
                     .addComponent(btnWithdraw, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(34, Short.MAX_VALUE))
+                    .addGap(18, 18, 18)
+                    .addComponent(btnAddMoney2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(31, Short.MAX_VALUE))
         );
         pack();
         setLocationRelativeTo(getOwner());
@@ -94,6 +103,7 @@ public class MainAdmin extends JDialog {
     private JButton btnGame;
     private JButton btnWithdraw;
     private JButton btnAddMoney;
+    private JButton btnAddMoney2;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {

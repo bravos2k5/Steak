@@ -4,13 +4,13 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp btnAddMoney:::p:151:p, comp btnWithdraw:::p:151:p, comp btnGame:::p:151:p, comp btnAccount:::p:151:p}, space ::29:x}}"
-			"$verticalGroup": "par l {seq l {space :p:21:p, comp btnAccount:::p:40:p, space s:::p, comp btnGame:::p:40:p, space s:::p, comp btnWithdraw:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space ::34:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp btnAddMoney2:::p:151:p, comp btnAddMoney:::p:151:p, comp btnWithdraw:::p:151:p, comp btnGame:::p:151:p, comp btnAccount:::p:151:p}, space ::29:x}}"
+			"$verticalGroup": "par l {seq l {space :p:21:p, comp btnAccount:::p:40:p, space s:::p, comp btnGame:::p:40:p, space s:::p, comp btnWithdraw:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space s:::p, comp btnAddMoney2:::p:40:p, space ::31:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnAccount"
-				"text": "Account"
+				"text": "Tài khoản"
 				"font": new java.awt.Font( "SansSerif", 1, 20 )
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 			} )
@@ -22,19 +22,25 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnWithdraw"
-				"text": "Withdraw"
+				"text": "Rút tiền"
 				"font": &Font0 new java.awt.Font( "SansSerif", 1, 20 )
 				"background": &Color0 new java.awt.Color( 37, 39, 48, 255 )
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnAddMoney"
-				"text": "Add money"
+				"text": "Nạp tiền"
+				"font": #Font0
+				"background": #Color0
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnAddMoney2"
+				"text": "Thống kê"
 				"font": #Font0
 				"background": #Color0
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )
-			"size": new java.awt.Dimension( 210, 300 )
+			"size": new java.awt.Dimension( 210, 355 )
 		} )
 	}
 }
