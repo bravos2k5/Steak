@@ -137,4 +137,12 @@ public class AzureBlobService {
         }
     }
 
+    public synchronized static void copy(String core, String cell, String container) {
+        BlobClient coreClient = getContainerClient(container).getBlobClient(core);
+        if(coreClient.exists()) {
+            BlobClient cellClient = getContainerClient(container).getBlobClient(cell);
+            cellClient.copyFromUrl(coreClient.getBlobUrl());
+        }
+    }
+
 }

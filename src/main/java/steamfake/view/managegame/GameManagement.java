@@ -178,7 +178,7 @@ public class GameManagement extends JPanel {
                             }
                         ) {
                             boolean[] columnEditable = new boolean[] {
-                                true, true, false, true, true
+                                false, false, false, false, false
                             };
                             @Override
                             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -22,16 +22,14 @@ public class UploadGameDialog extends JDialog {
     private List<String> imagesPath;
     private UUID gameID;
     private String version;
-    private final boolean isUpdate;
 
     public UploadGameDialog(Window owner, String gamePath, UUID gameID,
-                            String version, List<String> imagesPath, boolean isUpdate) {
+                            String version, List<String> imagesPath) {
         super(owner);
         this.gamePath = gamePath;
         this.gameID = gameID;
         this.version = version;
         this.imagesPath = imagesPath;
-        this.isUpdate = isUpdate;
         initComponents();
     }
 
