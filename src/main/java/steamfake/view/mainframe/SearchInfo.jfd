@@ -1,0 +1,23 @@
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+			"$horizontalGroup": "par l {seq l {space :p:22:p, comp lblInfo:::p:1136:p, space ::42:x}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp lblInfo:::p::p, space ::9:x}}"
+		} ) {
+			name: "this"
+			"opaque": false
+			"maximumSize": new java.awt.Dimension( 1200, 40 )
+			add( new FormComponent( "javax.swing.JLabel" ) {
+				name: "lblInfo"
+				"font": new java.awt.Font( "Segoe UI", 0, 18 )
+				"text": "Co"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 1200, 40 )
+		} )
+	}
+}

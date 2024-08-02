@@ -10,9 +10,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.TreeMap;
 
-public class RevenueChart extends JPanel {
+public class CompanyRevenueChart extends JPanel {
 
-    public RevenueChart() {
+
+    private TreeMap<Integer,Integer> revenueMapAllYear = null;
+
+    public CompanyRevenueChart() {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         ChartPanel chartPanel = createChartPanel(createAllYearChart());
         chartPanel.addChartMouseListener(new ChartMouseListener() {
@@ -31,16 +34,16 @@ public class RevenueChart extends JPanel {
 
     private DefaultCategoryDataset createAllYearDataset() {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        TreeMap<Integer,Integer> revenueMap = StatisticDAO.selectTotalRevenueEachYear();
-        for (Integer year : revenueMap.keySet()) {
-            dataset.addValue(revenueMap.get(year), "Tổng Doanh Thu", year);
+        revenueMapAllYear = StatisticDAO.selectRevenueEachYear();
+        for (Integer year : revenueMapAllYear.keySet()) {
+            dataset.addValue(revenueMapAllYear.get(year), "Tổng Doanh Thu", year);
         }
         return dataset;
     }
 
     private DefaultCategoryDataset createYearDataset(int year) {
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        TreeMap<Integer,Integer> revenueMap = StatisticDAO.selectTotalRevenueEachMonth(year);
+        TreeMap<Integer,Integer> revenueMap = StatisticDAO.selectRevenueEachMonth(year);
         for (Integer month : revenueMap.keySet()) {
             dataset.addValue(revenueMap.get(month), "Tổng Doanh Thu", month);
         }
@@ -102,5 +105,13 @@ public class RevenueChart extends JPanel {
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setVisible(true);
     }
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////TOP DOI TAC///////////////////
+
+
+
 
 }

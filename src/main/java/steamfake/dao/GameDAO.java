@@ -187,19 +187,31 @@ public class GameDAO implements DataAccessObject<Game> {
     }
 
     public int closeGame(Game game) {
-            String sql = "UPDATE Game SET isOpened = 0 WHERE id = ?";
-            return XJdbc.update(sql,game.getId());
+        String sql = "UPDATE Game SET isOpened = 0 WHERE id = ?";
+        return XJdbc.update(sql,game.getId());
     }
 
-
-    public List<GameDisplay> selectListGameDisplay() {
-        String sql = "{CALL SP_GET_DISPLAY_GAMES(?)}";
-        List<GameDisplay> gameDisplayList = new ArrayList<>();
+    public List<GameDisplay> selectGameByKeyword(String keyword) {
+        String sql = "{CALL SP_TIM_KIEM_GAME(?,?)}";
         int age = 12;
         if(SessionManager.isLogin()) {
             age = new Date(System.currentTimeMillis()).toLocalDate().getYear() - SessionManager.user.getDob().toLocalDate().getYear();
         }
-        try(ResultSet rs = XJdbc.getResultSet(sql,age)) {
+        return selectListGameDisplayBySQL(sql,keyword,age);
+    }
+
+    public List<GameDisplay> selectListGameDisplay() {
+        String sql = "{CALL SP_GET_DISPLAY_GAMES(?)}";
+        int age = 12;
+        if(SessionManager.isLogin()) {
+            age = new Date(System.currentTimeMillis()).toLocalDate().getYear() - SessionManager.user.getDob().toLocalDate().getYear();
+        }
+        return selectListGameDisplayBySQL(sql,age);
+    }
+
+    public List<GameDisplay> selectListGameDisplayBySQL(String sql, Object... args) {
+        List<GameDisplay> gameDisplayList = new ArrayList<>();
+        try (ResultSet rs = XJdbc.getResultSet(sql, args)) {
             while (rs.next()) {
                 GameDisplay gameDisplay = new GameDisplay(UUID.fromString(rs.getString("id")));
                 gameDisplay.setPublisherID(UUID.fromString(rs.getString("publisher_id")));
@@ -221,10 +233,13 @@ public class GameDAO implements DataAccessObject<Game> {
                 gameDisplay.setPublisherName(rs.getNString("ho_ten"));
                 gameDisplayList.add(gameDisplay);
             }
+            return gameDisplayList;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return gameDisplayList;
     }
 
+
 }
+
+

@@ -213,6 +213,12 @@ public class HeaderPanel extends JPanel {
         initSettingAccountPage();
         initAddMoneyPage();
         btnLogin.addActionListener(e -> login());
+        lblSearch.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                search();
+            }
+        });
         iconLogOut.setVisible(SessionManager.isLogin());
         iconLogOut.addMouseListener(new MouseAdapter() {
             @Override
