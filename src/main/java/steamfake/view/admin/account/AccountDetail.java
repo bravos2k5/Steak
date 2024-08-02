@@ -27,7 +27,8 @@ public class AccountDetail extends JFrame {
 
     private final Account account;
     private final AccountManagement accountManagement;
-    public AccountDetail(Account account , AccountManagement accountManagement) {
+
+    public AccountDetail(Account account, AccountManagement accountManagement) {
         this.account = account;
         this.accountManagement = accountManagement;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -68,7 +69,6 @@ public class AccountDetail extends JFrame {
         lblSoDuDoanhThu = new JLabel();
         label17 = new JLabel();
         btnBan = new RadiusButton();
-        btnUpdate = new RadiusButton();
         btnCancel = new RadiusButton();
 
         //======== this ========
@@ -354,14 +354,6 @@ public class AccountDetail extends JFrame {
             btnBan.setRadius(5);
             btnBan.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
-            //---- btnUpdate ----
-            btnUpdate.setText("Update");
-            btnUpdate.setBackground(new Color(0x35452a));
-            btnUpdate.setHoverColor(new Color(0x429509));
-            btnUpdate.setOriginColor(new Color(0x35452a));
-            btnUpdate.setRadius(5);
-            btnUpdate.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
-
             //---- btnCancel ----
             btnCancel.setText("Cancel");
             btnCancel.setBackground(new Color(0x3e3737));
@@ -381,9 +373,7 @@ public class AccountDetail extends JFrame {
                                 .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnBan, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))
+                                .addGap(114, 114, 114))
                             .addGroup(GroupLayout.Alignment.LEADING, panel1Layout.createSequentialGroup()
                                 .addGap(50, 50, 50)
                                 .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
@@ -432,8 +422,7 @@ public class AccountDetail extends JFrame {
                         .addGap(20, 20, 20)
                         .addGroup(panel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                             .addComponent(btnBan, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCancel, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(21, Short.MAX_VALUE))
             );
         }
@@ -494,7 +483,12 @@ public class AccountDetail extends JFrame {
             } else {
                 JOptionPane.showMessageDialog(this, "Thay đổi thất bại");
             }
+
         });
+        btnCancel.addActionListener(e -> {
+            dispose();
+        });
+
     }
 
     private void loadInfo() {
@@ -588,7 +582,6 @@ public class AccountDetail extends JFrame {
     private JLabel lblSoDuDoanhThu;
     private JLabel label17;
     private RadiusButton btnBan;
-    private RadiusButton btnUpdate;
     private RadiusButton btnCancel;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 }

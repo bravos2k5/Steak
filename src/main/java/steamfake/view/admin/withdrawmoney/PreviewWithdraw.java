@@ -248,9 +248,12 @@ public class PreviewWithdraw extends JDialog {
         txtIDAccout.setText(phieuRutTien.getAccountID() + "");
         txtUserName.setText(account.getUsername());
         txtFullName.setText(account.getHoTen());
+        if (phieuRutTien.getTrangThai() != PhieuRutTien.PENDING) {
+            offButton();
+        }
         String status = switch (phieuRutTien.getTrangThai()) {
-            case PhieuRutTien.PENDING -> "Chưa duyet";
-            case PhieuRutTien.ACCEPTED -> "Dã duyet";
+            case PhieuRutTien.PENDING -> "Chưa Duyệt";
+            case PhieuRutTien.ACCEPTED -> "Đã Duyệt";
             case PhieuRutTien.REJECTED -> "Từ Chối";
             default -> "";
         };
@@ -276,6 +279,7 @@ public class PreviewWithdraw extends JDialog {
     private void acceptWithdraw(int status) {
         if (status == PhieuRutTien.ACCEPTED) {
             if (RutTienDAO.gI().updateStatus(phieuRutTien, PhieuRutTien.ACCEPTED) > 0) {
+                withdrawManagement.fillToWithdraw();
                 XMessage.notificate(PreviewWithdraw.this, "Duyet Thanh cong");
                 dispose();
             } else {
@@ -284,6 +288,7 @@ public class PreviewWithdraw extends JDialog {
 
         } else if (status == PhieuRutTien.REJECTED) {
             if (RutTienDAO.gI().rejectWithdraw(phieuRutTien) > 0) {
+                withdrawManagement.fillToWithdraw();
                 XMessage.notificate(PreviewWithdraw.this, "Tu choi thanh cong");
                 dispose();
             } else {
@@ -293,9 +298,14 @@ public class PreviewWithdraw extends JDialog {
 
     }
 
+    private void offButton() {
+        btnAccept.setVisible(false);
+        btnReject.setVisible(false);
+    }
+
     @Override
     public void dispose() {
-        withdrawManagement.fillToWithdraw();
+
         super.dispose();
     }// JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
     private RadiusTextField txtIDAccout;

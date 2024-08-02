@@ -132,8 +132,8 @@ public class HeaderPanel extends JPanel {
                     .addGroup(layout.createParallelGroup()
                         .addComponent(lblName)
                         .addComponent(lblRole, GroupLayout.PREFERRED_SIZE, 138, GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 91, GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                     .addGap(110, 110, 110)
                     .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, 555, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
@@ -165,7 +165,7 @@ public class HeaderPanel extends JPanel {
                                 .addComponent(lblSearch, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                     .addComponent(txtSearch, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(btnLogin, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
                             .addGap(17, 17, 17))
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup()
@@ -206,7 +206,7 @@ public class HeaderPanel extends JPanel {
         lblName.setText("Chưa đăng nhập");
         lblAdmin.setVisible(false);
         lblRole.setText("Khách");
-        lblMoney.setText("Cái nịt");
+        lblMoney.setText("0");
         lblAvata.setText("");
         lblAvata.setSize(new Dimension(50,50));
         initEffectHover();

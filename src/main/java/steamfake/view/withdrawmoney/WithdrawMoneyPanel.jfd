@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,18 +9,21 @@ new FormModel {
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
+			"maximumSize": new java.awt.Dimension( 1141, 766 )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {space :p:18:p, comp panel2:::p::p, space :p:57:p, par l:::p {comp panel3:::::x, comp scrollPane1:::::x}, space ::65:x}}"
 				"$verticalGroup": "par l {seq l {space :p:35:p, par t {comp panel2:::p::p, seq {comp panel3:::p::p, space :0:0:p, comp scrollPane1:::p:600:p}}, space :0:35:x}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
+				"maximumSize": new java.awt.Dimension( 1129, 685 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :23:23:p, par l:::p {comp label4::l:p:300:p, seq l {comp lblGameBalance:::p:200:p, space :::x, comp lblBank:::p:200:p}, par t:l {seq {comp btn1m:::p:120:p, space :48:48:p, comp btn2m:::p:120:p, space :42:42:p, comp btnJack:::p:120:p}, par l:::p {seq {comp label1:::p:170:p, space :::x, comp lblBalance:::p:200:p}, comp txtWithdrawMoney:::::x, comp label3::l:p:200:p, seq {comp btn100k:::p:120:p, space ::48:x, comp btn200k:::p:120:p, space :p:42:p, comp btn400k:::p:120:p}}}, comp cboBank::l:::x, seq l {comp label5:::p:250:p, space :::x, comp btnConfirm:::p:74:p, space :p:29:p}}, space ::27:x}}"
+					"$horizontalGroup": "par l {seq l {space :23:23:p, par l:::p {comp label4::l:p:300:p, seq l {comp lblGameBalance:::p:200:p, space :::x, comp lblBank:::p:200:p}, par t:l {seq {comp btn1m:::p:120:p, space :48:48:p, comp btn2m:::p:120:p, space :42:42:p, comp btnJack:::p:120:p}, par l:::p {seq {comp label1:::p:170:p, space :::x, comp lblBalance:::p:200:p}, comp txtWithdrawMoney:::::x, comp label3::l:p:200:p, seq {comp btn100k:::p:120:p, space ::48:x, comp btn200k:::p:120:p, space :p:42:p, comp btn400k:::p:120:p}}}, comp cboBank::l:::x, seq l {comp label5:::p:250:p, space :::x, comp btnConfirm:::p:80:p, space :p:29:p}}, space ::27:x}}"
 					"$verticalGroup": "par l {seq l {space :p:21:p, par b {comp label1::b:p:30:p, comp lblBalance::b:p::p}, space :::p, comp txtWithdrawMoney:::p:59:p, space u:::p, comp label3:::p:30:p, space s:::p, par b {comp btn100k::b:p:50:p, comp btn400k::b:p:50:p, comp btn200k::b:p:50:p}, space :p:52:p, par l {comp btn1m:::p:50:p, comp btn2m:::p:50:p, comp btnJack:::p:50:p}, space :p:37:p, comp label4:::p:30:p, space :p:35:p, par b {comp lblGameBalance::b:p:50:p, comp lblBank::b:p:50:p}, space :p:30:p, comp cboBank:::p:49:p, space :p:35:p, par b {comp label5::b:p:20:p, comp btnConfirm::b:p:30:p}, space ::26:x}}"
 				} ) {
 					name: "panel2"
 					"background": new java.awt.Color( 25, 27, 32, 255 )
+					"maximumSize": new java.awt.Dimension( 479, 630 )
 					add( new FormComponent( "steamfake.graphics.RadiusTextField" ) {
 						name: "txtWithdrawMoney"
 						"radius": 7
@@ -176,7 +179,7 @@ new FormModel {
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label9"
-						"text": "Ngày rút"
+						"text": "Trạng thái"
 						"horizontalAlignment": 0
 						"font": #Font3
 					} )
@@ -189,6 +192,7 @@ new FormModel {
 						"axis": 1
 					} ) {
 						name: "historyPanel"
+						"maximumSize": new java.awt.Dimension( 1000, 10000 )
 					} )
 				} )
 			} )

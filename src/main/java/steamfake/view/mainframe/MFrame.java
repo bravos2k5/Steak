@@ -94,8 +94,8 @@ public class MFrame extends JFrame {
 
             //---- lblAddMoney ----
             lblAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-            lblAddMoney.setText(" N\u1ea1p ti\u1ec1n       ");
-            lblAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblAddMoney.setText(" R\u00fat tii\u1ec1n       ");
+            lblAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Request Money.png")));
             lblAddMoney.setBackground(new Color(0x191b20));
             lblAddMoney.setOpaque(true);
             lblAddMoney.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -104,7 +104,7 @@ public class MFrame extends JFrame {
             lblManage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
             lblManage.setHorizontalAlignment(SwingConstants.TRAILING);
             lblManage.setText(" Qu\u1ea3n l\u00fd        ");
-            lblManage.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblManage.setIcon(new ImageIcon(getClass().getResource("/icon/Business.png")));
             lblManage.setBackground(new Color(0x191b20));
             lblManage.setOpaque(true);
 
@@ -112,7 +112,7 @@ public class MFrame extends JFrame {
             lblOut.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
             lblOut.setHorizontalAlignment(SwingConstants.CENTER);
             lblOut.setText(" Tho\u00e1t       ");
-            lblOut.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblOut.setIcon(new ImageIcon(getClass().getResource("/icon/Export.png")));
             lblOut.setBackground(new Color(0x191b20));
             lblOut.setOpaque(true);
 
@@ -130,52 +130,52 @@ public class MFrame extends JFrame {
             GroupLayout panelSelectFunctionLayout = new GroupLayout(panelSelectFunction);
             panelSelectFunction.setLayout(panelSelectFunctionLayout);
             panelSelectFunctionLayout.setHorizontalGroup(
-                    panelSelectFunctionLayout.createParallelGroup()
-                            .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
-                                    .addGap(0, 96, Short.MAX_VALUE)
-                                    .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(90, 90, 90))
+                panelSelectFunctionLayout.createParallelGroup()
+                    .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
+                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90))
+                    .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                        .addGroup(panelSelectFunctionLayout.createParallelGroup()
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                    .addGroup(panelSelectFunctionLayout.createParallelGroup()
-                                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                                    .addGap(148, 148, 148)
-                                                    .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
-                                                    .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                                    .addGap(61, 61, 61)
-                                                    .addGroup(panelSelectFunctionLayout.createParallelGroup()
-                                                            .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
-                                                    .addGap(0, 0, Short.MAX_VALUE)))
-                                    .addContainerGap())
+                                .addGap(148, 148, 148)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(61, 61, 61)
+                                .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                                    .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 280, GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())
             );
             panelSelectFunctionLayout.setVerticalGroup(
-                    panelSelectFunctionLayout.createParallelGroup()
+                panelSelectFunctionLayout.createParallelGroup()
+                    .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                        .addGroup(panelSelectFunctionLayout.createParallelGroup()
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                    .addGroup(panelSelectFunctionLayout.createParallelGroup()
-                                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                                    .addGap(36, 36, 36)
-                                                    .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(36, 36, 36)
-                                    .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(38, 38, 38)
-                                    .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(37, 37, 37)
-                                    .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                                    .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(19, 19, 19))
+                                .addGap(36, 36, 36)
+                                .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
+                            .addGroup(panelSelectFunctionLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)))
+                        .addGap(36, 36, 36)
+                        .addComponent(lblHome, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(lblLibrary, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(lblAddMoney, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(lblManage, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
             );
         }
 
@@ -200,24 +200,24 @@ public class MFrame extends JFrame {
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE))
-                        .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
+            contentPaneLayout.createParallelGroup()
+                .addGroup(contentPaneLayout.createSequentialGroup()
+                    .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE))
+                .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
-                contentPaneLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addGroup(contentPaneLayout.createParallelGroup()
-                                        .addGroup(contentPaneLayout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)))
+            contentPaneLayout.createParallelGroup()
+                .addGroup(GroupLayout.Alignment.TRAILING, contentPaneLayout.createSequentialGroup()
+                    .addGap(0, 0, 0)
+                    .addComponent(headerPanel, GroupLayout.PREFERRED_SIZE, 94, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, 0)
+                    .addGroup(contentPaneLayout.createParallelGroup()
+                        .addGroup(contentPaneLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPane1, GroupLayout.Alignment.TRAILING)))
         );
         pack();
         setLocationRelativeTo(getOwner());
