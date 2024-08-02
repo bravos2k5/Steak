@@ -8,6 +8,7 @@ import com.formdev.flatlaf.FlatDarkLaf;
 import steamfake.view.admin.account.AccountManagement;
 import steamfake.view.admin.addmoney.AddMoneyManagement;
 import steamfake.view.admin.game.KiemDuyet;
+import steamfake.view.admin.statistic.StatisticDialog;
 import steamfake.view.admin.withdrawmoney.WithdrawManagement;
 
 import javax.swing.*;
@@ -33,7 +34,7 @@ public class MainAdmin extends JDialog {
         btnGame = new JButton();
         btnWithdraw = new JButton();
         btnAddMoney = new JButton();
-        btnAddMoney2 = new JButton();
+        btnStatistic = new JButton();
 
         //======== this ========
         var contentPane = getContentPane();
@@ -58,10 +59,10 @@ public class MainAdmin extends JDialog {
         btnAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
         btnAddMoney.setBackground(new Color(0x252730));
 
-        //---- btnAddMoney2 ----
-        btnAddMoney2.setText("Th\u1ed1ng k\u00ea");
-        btnAddMoney2.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
-        btnAddMoney2.setBackground(new Color(0x252730));
+        //---- btnStatistic ----
+        btnStatistic.setText("Th\u1ed1ng k\u00ea");
+        btnStatistic.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 20));
+        btnStatistic.setBackground(new Color(0x252730));
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
@@ -70,7 +71,7 @@ public class MainAdmin extends JDialog {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addGap(28, 28, 28)
                     .addGroup(contentPaneLayout.createParallelGroup()
-                        .addComponent(btnAddMoney2, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnStatistic, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnWithdraw, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnGame, GroupLayout.PREFERRED_SIZE, 151, GroupLayout.PREFERRED_SIZE)
@@ -89,7 +90,7 @@ public class MainAdmin extends JDialog {
                     .addGap(18, 18, 18)
                     .addComponent(btnAddMoney, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(btnAddMoney2, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStatistic, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
                     .addContainerGap(31, Short.MAX_VALUE))
         );
         pack();
@@ -103,7 +104,7 @@ public class MainAdmin extends JDialog {
     private JButton btnGame;
     private JButton btnWithdraw;
     private JButton btnAddMoney;
-    private JButton btnAddMoney2;
+    private JButton btnStatistic;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {
@@ -111,6 +112,7 @@ public class MainAdmin extends JDialog {
         btnAddMoney.addActionListener(e -> new AddMoneyManagement(this).setVisible(true));
         btnAccount.addActionListener(e -> new AccountManagement(this).setVisible(true));
         btnWithdraw.addActionListener(e -> new WithdrawManagement(this).setVisible(true));
+        btnStatistic.addActionListener(e -> new StatisticDialog(this).setVisible(true));
     }
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
