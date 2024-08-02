@@ -1,4 +1,4 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
@@ -9,8 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {par t:::p {seq t {space :::x, comp btnCancel:::p::p, space s:::p, comp btnBan:::p::p, space s:::p, comp btnUpdate:::p::p, space :p:16:p}, seq l {space :p:50:p, par t {comp panel2:::p::p, seq {par l {comp label1::l:p:220:p, comp label3::l:p:210:p}, space :p:342:p, par l {seq t {comp lblSoDuGame:::p:220:p, space :::p, comp label14:::p:30:p}, comp lblName::t:p:300:p, seq t {comp lblSoDuDoanhThu:::p:220:p, space :6:6:p, comp label17:::p::p}}, space s:::p, comp lblAvatar:::p:120:p}}}}, space ::50:x}}"
-				"$verticalGroup": "par l {seq l {space :p:30:p, par l {seq {comp label1:::p:60:p, space :p:36:p, comp label3:::p:30:p}, comp lblAvatar:::p:120:p, seq l {comp lblName:::p:30:p, space s:::p, par l {comp lblSoDuDoanhThu:::p:30:p, comp label17:::p:30:p}, space :::p, par l:::p {comp label14:::p:30:p, comp lblSoDuGame:::::x}}}, space :::p, comp panel2:::p::p, space :p:20:p, par b {comp btnBan::b:p:45:p, comp btnCancel::b:p:45:p, comp btnUpdate::b:p:45:p}, space ::21:x}}"
+				"$horizontalGroup": "par l {seq l {par t:::p {seq t {space :::x, comp btnCancel:::p::p, space s:::p, comp btnBan:::p::p, space :p:114:p}, seq l {space :p:50:p, par t {comp panel2:::p::p, seq {par l {comp label1::l:p:220:p, comp label3::l:p:210:p}, space :p:342:p, par l {seq t {comp lblSoDuGame:::p:220:p, space :::p, comp label14:::p:30:p}, comp lblName::t:p:300:p, seq t {comp lblSoDuDoanhThu:::p:220:p, space :6:6:p, comp label17:::p::p}}, space s:::p, comp lblAvatar:::p:120:p}}}}, space ::50:x}}"
+				"$verticalGroup": "par l {seq l {space :p:30:p, par l {seq {comp label1:::p:60:p, space :p:36:p, comp label3:::p:30:p}, comp lblAvatar:::p:120:p, seq l {comp lblName:::p:30:p, space s:::p, par l {comp lblSoDuDoanhThu:::p:30:p, comp label17:::p:30:p}, space :::p, par l:::p {comp label14:::p:30:p, comp lblSoDuGame:::::x}}}, space :::p, comp panel2:::p::p, space :p:20:p, par b {comp btnBan::b:p:45:p, comp btnCancel::b:p:45:p}, space ::21:x}}"
 			} ) {
 				name: "panel1"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -215,15 +215,6 @@ new FormModel {
 					"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
 					"radius": 5
 					"font": &Font3 new java.awt.Font( "SansSerif", 1, 14 )
-				} )
-				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-					name: "btnUpdate"
-					"text": "Update"
-					"background": new java.awt.Color( 53, 69, 42, 255 )
-					"hoverColor": new java.awt.Color( 66, 149, 9, 255 )
-					"originColor": new java.awt.Color( 53, 69, 42, 255 )
-					"radius": 5
-					"font": new java.awt.Font( "SansSerif", 1, 14 )
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnCancel"

@@ -65,7 +65,7 @@ public class RutTienDAO implements DataAccessObject<PhieuRutTien> {
 
     public int rejectWithdraw(PhieuRutTien phieuRutTien) {
         String sql = "{Call SP_TU_CHOI_RUT_BANK(?)}";
-        return XJdbc.update(sql,phieuRutTien.getAccountID());
+        return XJdbc.update(sql,phieuRutTien.getId());
     }
 
     public List<Integer> selectListYear() {

@@ -10,6 +10,7 @@ import steamfake.dao.RutTienDAO;
 import steamfake.model.Account;
 import steamfake.model.PhieuRutTien;
 import steamfake.utils.MonthYear;
+import steamfake.view.admin.game.KiemDuyet;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -251,6 +252,7 @@ public class WithdrawManagement extends JDialog {
         fillYear();
         fillMoth();
         fillToWithdraw();
+        cbbYear.setSelectedIndex(cbbYear.getItemCount() - 1);
         initEvent();
     }
 
@@ -310,10 +312,8 @@ public class WithdrawManagement extends JDialog {
     public void fillMoth() {
         cbbMouth.removeAllItems();
         cbbMouth.addItem("Tất Cả");
-
         for (int i = 1; i <= 12; i++) {
             cbbMouth.addItem(i + "");
-
         }
 
     }
@@ -321,10 +321,12 @@ public class WithdrawManagement extends JDialog {
     public void fillToWithdraw() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblWithdraw.getModel();
         defaultTableModel.setRowCount(0);
+
+        int status = cbbStatus.getSelectedIndex();
+        int method = cbbMethod.getSelectedIndex();
         rutTienList = fillMapPRT();
         for (PhieuRutTien phieuRutTien : rutTienList) {
-            int status = cbbStatus.getSelectedIndex();
-            int method = cbbMethod.getSelectedIndex();
+
             if (status != phieuRutTien.getTrangThai() || method != phieuRutTien.getMethod() && method != 2) {
                 continue;
             }

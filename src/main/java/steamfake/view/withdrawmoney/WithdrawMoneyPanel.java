@@ -63,14 +63,17 @@ public class WithdrawMoneyPanel extends JPanel {
 
         //======== this ========
         setBackground(new Color(0x191b20));
+        setMaximumSize(new Dimension(1141, 766));
 
         //======== panel1 ========
         {
             panel1.setBackground(new Color(0x252730));
+            panel1.setMaximumSize(new Dimension(1129, 685));
 
             //======== panel2 ========
             {
                 panel2.setBackground(new Color(0x191b20));
+                panel2.setMaximumSize(new Dimension(479, 630));
 
                 //---- txtWithdrawMoney ----
                 txtWithdrawMoney.setRadius(7);
@@ -218,7 +221,7 @@ public class WithdrawMoneyPanel extends JPanel {
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addComponent(label5, GroupLayout.PREFERRED_SIZE, 250, GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnConfirm, GroupLayout.PREFERRED_SIZE, 74, GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnConfirm, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                                     .addGap(29, 29, 29)))
                             .addContainerGap(27, Short.MAX_VALUE))
                 );
@@ -281,7 +284,7 @@ public class WithdrawMoneyPanel extends JPanel {
                 label8.setPreferredSize(new Dimension(73, 20));
 
                 //---- label9 ----
-                label9.setText("Ng\u00e0y r\u00fat");
+                label9.setText("Tr\u1ea1ng th\u00e1i");
                 label9.setHorizontalAlignment(SwingConstants.CENTER);
                 label9.setFont(new Font("Inter", Font.BOLD, 16));
 
@@ -316,6 +319,7 @@ public class WithdrawMoneyPanel extends JPanel {
 
                 //======== historyPanel ========
                 {
+                    historyPanel.setMaximumSize(new Dimension(1000, 10000));
                     historyPanel.setLayout(new BoxLayout(historyPanel, BoxLayout.Y_AXIS));
                 }
                 scrollPane1.setViewportView(historyPanel);

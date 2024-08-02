@@ -34,15 +34,15 @@ new FormModel {
 					"font": #Font0
 					"horizontalAlignment": 11
 					"text": " Thư viện      "
-					"icon": &SwingIcon0 new com.jformdesigner.model.SwingIcon( 0, "/icon/Book Shelf.png" )
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Book Shelf.png" )
 					"background": #Color0
 					"opaque": true
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "lblAddMoney"
 					"font": #Font0
-					"text": " Nạp tiền       "
-					"icon": #SwingIcon0
+					"text": " Rút tiiền       "
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Request Money.png" )
 					"background": #Color0
 					"opaque": true
 					"horizontalAlignment": 11
@@ -52,7 +52,7 @@ new FormModel {
 					"font": #Font0
 					"horizontalAlignment": 11
 					"text": " Quản lý        "
-					"icon": #SwingIcon0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Business.png" )
 					"background": #Color0
 					"opaque": true
 				} )
@@ -61,7 +61,7 @@ new FormModel {
 					"font": #Font0
 					"horizontalAlignment": 0
 					"text": " Thoát       "
-					"icon": #SwingIcon0
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Export.png" )
 					"background": #Color0
 					"opaque": true
 				} )

@@ -1,11 +1,11 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq t {space :p:14:p, comp lblAvata:::p:62:p, space u:::p, par l {comp lblName:::p::p, comp lblRole:::p:138:p}, space ::84:x, comp btnLogin:::p:91:p, space :p:110:p, comp txtSearch:::p:555:p, space :0:0:p, comp lblSearch:::p:60:p, space s:::p, comp lblMoney:::p:216:p, space :p:18:p, comp lblAdmin:::p::p, space s:::p, comp iconAddMoney:::p::p, space :p:33:p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
-			"$verticalGroup": "par l {seq l {space :::p, comp lblAvata:::p:51:p, space :0:8:x}, seq l {space :p:7:p, par l {seq l {space :p:11:p, par l {comp lblSearch:::::x, par b {comp txtSearch::b:p::p, comp btnLogin::b:p::p}}, space :p:17:p}, seq {par l {comp lblMoney::l:p:50:p, seq l {space :p:12:p, par l {comp iconAddMoney:::p::p, comp lblAdmin:::p::p, comp iconSettingAccount::l:p:30:p, comp iconLogOut::l:p::p}}}, space ::8:x}, seq {comp lblName:::p::p, space :7:7:p, comp lblRole:::p::p, space :0:8:x}}}}"
+			"$horizontalGroup": "par l {seq t {space :p:14:p, comp lblAvata:::p:62:p, space u:::p, par l {comp lblName:::p::p, comp lblRole:::p:138:p}, space ::75:x, comp btnLogin:::p:100:p, space :p:110:p, comp txtSearch:::p:555:p, space :0:0:p, comp lblSearch:::p:60:p, space s:::p, comp lblMoney:::p:216:p, space :p:18:p, comp lblAdmin:::p::p, space s:::p, comp iconAddMoney:::p::p, space :p:33:p, comp iconSettingAccount:::p::p, space s:::p, comp iconLogOut:::p::p, space :p:31:p}}"
+			"$verticalGroup": "par l {seq l {space :::p, comp lblAvata:::p:51:p, space :0:8:x}, seq l {space :p:7:p, par l {seq l {space :p:11:p, par l {comp lblSearch:::::x, par b {comp txtSearch::b:p::p, comp btnLogin::b:p:30:p}}, space :p:17:p}, seq {par l {comp lblMoney::l:p:50:p, seq l {space :p:12:p, par l {comp iconAddMoney:::p::p, comp lblAdmin:::p::p, comp iconSettingAccount::l:p:30:p, comp iconLogOut::l:p::p}}}, space ::8:x}, seq {comp lblName:::p::p, space :7:7:p, comp lblRole:::p::p, space :0:8:x}}}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 37, 39, 48, 255 )
