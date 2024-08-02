@@ -18,6 +18,7 @@ import steamfake.view.gamelib.LibraryPanel;
 import steamfake.view.login.LoginDialog;
 import steamfake.view.managegame.GameManagement;
 import steamfake.view.waiting.LoadingScreen;
+import steamfake.view.waiting.WaitingDialog;
 import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
@@ -253,6 +254,7 @@ public class MFrame extends JFrame {
     }
 
     private void initEventMenu() {
+
         lblBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 back();
@@ -439,7 +441,20 @@ public class MFrame extends JFrame {
     }
 
     public void search(String key) {
-        handleBeforeChange();
+        WaitingDialog waitingDialog = new WaitingDialog(MFrame.gI());
+        waitingDialog.start();
+        Thread thread = new Thread(() -> {
+            handleBeforeChange();
+            List<GameDisplay> searchedGames = GameDAO.gI().selectGameByKeyword(key);
+            mainPanel.add(new SearchInfo(searchedGames.size(), key));
+            for(GameDisplay game : searchedGames) {
+                ResourceManager.downloadAvatarGameOnly(game);
+                mainPanel.add(new NormalGameItem(game));
+            }
+            refreshPanel();
+            waitingDialog.stop();
+        });
+        thread.start();
     }
 
     private void saveCurrentState() {

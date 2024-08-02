@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp btnAddMoney2:::p:151:p, comp btnAddMoney:::p:151:p, comp btnWithdraw:::p:151:p, comp btnGame:::p:151:p, comp btnAccount:::p:151:p}, space ::29:x}}"
-			"$verticalGroup": "par l {seq l {space :p:21:p, comp btnAccount:::p:40:p, space s:::p, comp btnGame:::p:40:p, space s:::p, comp btnWithdraw:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space s:::p, comp btnAddMoney2:::p:40:p, space ::31:x}}"
+			"$horizontalGroup": "par l {seq l {space :p:28:p, par l {comp btnStatistic:::p:151:p, comp btnAddMoney:::p:151:p, comp btnWithdraw:::p:151:p, comp btnGame:::p:151:p, comp btnAccount:::p:151:p}, space ::29:x}}"
+			"$verticalGroup": "par l {seq l {space :p:21:p, comp btnAccount:::p:40:p, space s:::p, comp btnGame:::p:40:p, space s:::p, comp btnWithdraw:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space s:::p, comp btnStatistic:::p:40:p, space ::31:x}}"
 		} ) {
 			name: "this"
 			add( new FormComponent( "javax.swing.JButton" ) {
@@ -33,7 +33,7 @@ new FormModel {
 				"background": #Color0
 			} )
 			add( new FormComponent( "javax.swing.JButton" ) {
-				name: "btnAddMoney2"
+				name: "btnStatistic"
 				"text": "Thống kê"
 				"font": #Font0
 				"background": #Color0

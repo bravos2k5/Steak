@@ -4,13 +4,15 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp tabbedPane1::l:::x}"
-			"$verticalGroup": "par l {comp tabbedPane1::l:::x}"
+			"$horizontalGroup": "par l {comp tabs::l::1103:x}"
+			"$verticalGroup": "par l {comp tabs::l:::x}"
 		} ) {
 			name: "this"
 			"maximumSize": new java.awt.Dimension( 1105, 730 )
+			"modal": true
+			"defaultCloseOperation": 2
 			add( new FormContainer( "javax.swing.JTabbedPane", new FormLayoutManager( class javax.swing.JTabbedPane ) ) {
-				name: "tabbedPane1"
+				name: "tabs"
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
 					"axis": 1
 				} ) {
@@ -19,6 +21,88 @@ new FormModel {
 					"preferredSize": new java.awt.Dimension( 1105, 600 )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Doanh thu"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane2::::1091:x, space :::p}}"
+					"$verticalGroup": "par l {seq t {space :p:16:p, comp scrollPane2::::644:x, space :::p}}"
+				} ) {
+					name: "pnlTopNapTien"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane2"
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tblNapTien"
+							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+								add( new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								} )
+							}, new java.util.Vector {
+								add( "Username" )
+								add( "Tổng tiền nạp" )
+								add( "Tổng nạp tháng" )
+								add( "Tổng tiền đã chi" )
+							}, new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+								add( null )
+							}, new java.util.Vector {
+								add( false )
+								add( false )
+								add( false )
+								add( false )
+							}, new java.util.Vector {
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+							} )
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Top nạp tiền"
+				} )
+				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+					"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane1::::1091:x, space :::p}}"
+					"$verticalGroup": "par l {seq {space :p:26:p, comp scrollPane1::::634:x, space :::p}}"
+				} ) {
+					name: "pnlTopDoiTac"
+					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+						name: "scrollPane1"
+						"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+						add( new FormComponent( "javax.swing.JTable" ) {
+							name: "tblDoiTac"
+							"border": sfield com.jformdesigner.model.FormObject NULL_VALUE
+							"background": new java.awt.Color( 37, 39, 48, 255 )
+							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+								add( new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+								} )
+							}, new java.util.Vector {
+								add( "Tên người dùng" )
+								add( "Tổng doanh thu" )
+								add( "Tổng doanh thu tháng này" )
+							}, new java.util.Vector {
+								add( null )
+								add( null )
+								add( null )
+							}, new java.util.Vector {
+								add( false )
+								add( false )
+								add( false )
+							}, new java.util.Vector {
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+							} )
+						} )
+					} )
+				}, new FormLayoutConstraints( null ) {
+					"title": "Top đối tác"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
