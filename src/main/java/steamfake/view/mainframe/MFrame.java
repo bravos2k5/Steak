@@ -95,8 +95,8 @@ public class MFrame extends JFrame {
 
             //---- lblAddMoney ----
             lblAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-            lblAddMoney.setText(" N\u1ea1p ti\u1ec1n       ");
-            lblAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblAddMoney.setText(" R\u00fat tii\u1ec1n       ");
+            lblAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Request Money.png")));
             lblAddMoney.setBackground(new Color(0x191b20));
             lblAddMoney.setOpaque(true);
             lblAddMoney.setHorizontalAlignment(SwingConstants.TRAILING);
@@ -105,7 +105,7 @@ public class MFrame extends JFrame {
             lblManage.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
             lblManage.setHorizontalAlignment(SwingConstants.TRAILING);
             lblManage.setText(" Qu\u1ea3n l\u00fd        ");
-            lblManage.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblManage.setIcon(new ImageIcon(getClass().getResource("/icon/Business.png")));
             lblManage.setBackground(new Color(0x191b20));
             lblManage.setOpaque(true);
 
@@ -113,7 +113,7 @@ public class MFrame extends JFrame {
             lblOut.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
             lblOut.setHorizontalAlignment(SwingConstants.CENTER);
             lblOut.setText(" Tho\u00e1t       ");
-            lblOut.setIcon(new ImageIcon(getClass().getResource("/icon/Book Shelf.png")));
+            lblOut.setIcon(new ImageIcon(getClass().getResource("/icon/Export.png")));
             lblOut.setBackground(new Color(0x191b20));
             lblOut.setOpaque(true);
 
