@@ -36,8 +36,6 @@ public class BillGame extends JDialog {
         initialize();
     }
 
-
-
     private void initComponents() {
         // JFormDesigner - Component initialization - DO NOT MODIFY  //GEN-BEGIN:initComponents  @formatter:off
         lblAvatar = new RadiusLabel();
@@ -316,7 +314,7 @@ public class BillGame extends JDialog {
     }
 
     public boolean payGame() {
-            int result = GameDAO.gI().muaGame(game, SessionManager.user);
+            int result = GameDAO.gI().buyGame(game, SessionManager.user);
             return result > 0;
     }
 

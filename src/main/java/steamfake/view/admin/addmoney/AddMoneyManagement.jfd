@@ -61,24 +61,7 @@ new FormModel {
 						name: "scrollPane1"
 						add( new FormComponent( "javax.swing.JTable" ) {
 							name: "tblPhieuNap"
-							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
-								add( new java.util.Vector {
-									add( "1" )
-									add( "2" )
-									add( "3" )
-									add( "4" )
-									add( "5" )
-									add( "6" )
-								} )
-								add( new java.util.Vector {
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-									add( null )
-								} )
-							}, new java.util.Vector {
+							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector, new java.util.Vector {
 								add( "ID" )
 								add( "ID account" )
 								add( "Hình thức" )

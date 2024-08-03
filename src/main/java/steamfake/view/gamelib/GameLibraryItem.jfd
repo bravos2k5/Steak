@@ -4,8 +4,8 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:43:p, par l:::p {seq {comp lblIcon:::p:100:p, space s:::p, comp txtName:::p:681:p, space :::x, comp lblInfo:::p:50:p, space s:::p, comp lblPlay:::p:110:p}, comp separator2:::p:1093:p}, space ::54:x}}"
-			"$verticalGroup": "par l {seq t {space :p:11:p, par t {par l:::p {comp lblPlay::l::60:x, comp lblInfo::l::60:x}, comp lblIcon:::p:60:p, seq {comp txtName:::p::p, space :p:11:p}}, space u:::p, comp separator2:::p:2:p, space :::p}}"
+			"$horizontalGroup": "par l {seq l {space :p:43:p, par l:::p {seq {comp lblIcon:::p:100:p, space s:::p, comp txtName:::p:681:p, space s:::p, comp btnUninstall:::p::p, space :::x, comp lblInfo:::p:50:p, space s:::p, comp lblPlay:::p:110:p}, comp separator2:::p:1093:p}, space ::54:x}}"
+			"$verticalGroup": "par l {seq t {space :p:11:p, par t {par l:::p {comp lblPlay::l::60:x, comp lblInfo::l::60:x}, comp lblIcon:::p:60:p, seq t {par l {comp txtName:::p::p, comp btnUninstall:::p::p}, space :p:11:p}}, space u:::p, comp separator2:::p:2:p, space :::p}}"
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -38,6 +38,10 @@ new FormModel {
 			} )
 			add( new FormComponent( "javax.swing.JLabel" ) {
 				name: "lblIcon"
+			} )
+			add( new FormComponent( "javax.swing.JButton" ) {
+				name: "btnUninstall"
+				"text": "Uninstall"
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 0, 0 )

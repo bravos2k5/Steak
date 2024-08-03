@@ -67,6 +67,7 @@ public class AccountPanel extends JPanel {
         label11 = new JLabel();
         cboBankAccount = new JComboBox();
         btnBankManagement = new RadiusButton();
+        label12 = new JLabel();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
@@ -131,7 +132,7 @@ public class AccountPanel extends JPanel {
                 btnChangeEmail.setIcon(new ImageIcon(getClass().getResource("/icon/Refresh.png")));
 
                 //---- label6 ----
-                label6.setText("Ng\u00e0y tham gia:");
+                label6.setText("Ng\u00e0y tham gia");
                 label6.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
 
                 //---- label7 ----
@@ -220,6 +221,10 @@ public class AccountPanel extends JPanel {
                 btnBankManagement.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
                 btnBankManagement.setIcon(new ImageIcon(getClass().getResource("/icon/Bank.png")));
 
+                //---- label12 ----
+                label12.setText("Ng\u00e2n h\u00e0ng");
+                label12.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
                 panel2Layout.setHorizontalGroup(
@@ -240,9 +245,6 @@ public class AccountPanel extends JPanel {
                                             .addComponent(btnChangeEmail, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)))
                                     .addGap(72, 72, 72))
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 820, Short.MAX_VALUE))
-                                .addGroup(panel2Layout.createSequentialGroup()
                                     .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING, false)
                                         .addGroup(panel2Layout.createSequentialGroup()
                                             .addGroup(panel2Layout.createParallelGroup()
@@ -260,9 +262,11 @@ public class AccountPanel extends JPanel {
                                             .addGroup(panel2Layout.createParallelGroup()
                                                 .addComponent(txtPhoneNumber, GroupLayout.PREFERRED_SIZE, 350, GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(label7, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
                                             .addGap(30, 30, 30)
                                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                                 .addGroup(panel2Layout.createSequentialGroup()
                                                     .addComponent(cboBankAccount)
                                                     .addGap(18, 18, 18)
@@ -300,7 +304,9 @@ public class AccountPanel extends JPanel {
                                     .addComponent(txtJoinDate, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                                     .addComponent(btnChangePassword, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)))
                             .addGap(31, 31, 31)
-                            .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                                .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                .addComponent(label12, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(btnBankManagement, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
@@ -476,6 +482,7 @@ public class AccountPanel extends JPanel {
     private JLabel label11;
     private JComboBox cboBankAccount;
     private RadiusButton btnBankManagement;
+    private JLabel label12;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
     private JLabel label14;

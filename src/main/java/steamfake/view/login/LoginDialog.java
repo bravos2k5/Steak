@@ -51,14 +51,12 @@ public class LoginDialog extends JDialog {
     }
 
     private void lbDangKyMouseClicked(MouseEvent e) {
-        RegisterDialog RegisterDialog = new RegisterDialog(MFrame.gI());
-        LoginDialog.this.dispose();
+        RegisterDialog RegisterDialog = new RegisterDialog(this);
         RegisterDialog.setVisible(true);
     }
 
     private void lbQuenMKMouseClicked(MouseEvent e) {
         QuenMKDialog QuenMKDialog = new QuenMKDialog(MFrame.gI());
-        LoginDialog.this.dispose();
         QuenMKDialog.setVisible(true);
     }
 
@@ -331,6 +329,10 @@ public class LoginDialog extends JDialog {
         Account account = AccountDAO.gI().login(username,new String(password));
         if(account == null) {
             XMessage.alert(this, "Tài khoản hoặc mật khẩu không đúng");
+            return;
+        }
+        if(account.isBan()) {
+            XMessage.alert(this, "Tài khoản của bạn đã bị khóa");
             return;
         }
         SessionManager.user = account;

@@ -92,8 +92,6 @@ public class AddMoneyManagement extends JDialog {
                     //---- tblPhieuNap ----
                     tblPhieuNap.setModel(new DefaultTableModel(
                         new Object[][] {
-                            {"1", "2", "3", "4", "5", "6"},
-                            {null, null, null, null, null, null},
                         },
                         new String[] {
                             "ID", "ID account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"

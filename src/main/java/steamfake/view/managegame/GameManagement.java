@@ -440,7 +440,7 @@ public class GameManagement extends JPanel {
                 case PhieuKiemDuyet.REJECTED -> "Từ chối";
                 default -> "";
             };
-            Object[] rowData = {phieuKiemDuyet.getId(),phieuKiemDuyet.getMoTa(),phieuKiemDuyet.getNgayTao(),status};
+            Object[] rowData = {phieuKiemDuyet.getId(),phieuKiemDuyet.getMoTa(),phieuKiemDuyet.getNgayTao(),status,phieuKiemDuyet.getThongBao()};
             defaultTableModel.addRow(rowData);
         }
     }

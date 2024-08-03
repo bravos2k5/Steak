@@ -34,12 +34,10 @@ public class RutTienDAO implements DataAccessObject<PhieuRutTien> {
             return XJdbc.update(sql, phieuRut.getId(), phieuRut.getAccountID(),
                     phieuRut.getSoTienRut(), phieuRut.getBankID(), phieuRut.getSoTaiKhoan());
         } else {
-            String sql = "INSERT INTO PHIEU_RUT_TIEN(id,account_id,so_tien_rut,method,trang_thai) VALUES(?,?,?,?,?)";
-            return XJdbc.update(sql, object.getId(), object.getAccountID(), object.getSoTienRut(),
-                    object.getMethod(), PhieuRutTien.ACCEPTED);
+            String sql = "{CALL SP_TAO_RUT_TIEN_GAME(?,?,?)}";
+            return XJdbc.update(sql, object.getId(), object.getAccountID(), object.getSoTienRut());
         }
     }
-
 
     @Override
     public int update(PhieuRutTien object) {

@@ -40,6 +40,7 @@ public class GameLibraryItem extends JPanel {
         lblPlay = new RadiusLabel();
         lblInfo = new JLabel();
         lblIcon = new JLabel();
+        btnUninstall = new JButton();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -67,6 +68,9 @@ public class GameLibraryItem extends JPanel {
         lblInfo.setHorizontalAlignment(SwingConstants.CENTER);
         lblInfo.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
+        //---- btnUninstall ----
+        btnUninstall.setText("Uninstall");
+
         GroupLayout layout = new GroupLayout(this);
         setLayout(layout);
         layout.setHorizontalGroup(
@@ -78,6 +82,8 @@ public class GameLibraryItem extends JPanel {
                             .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
                             .addComponent(txtName, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btnUninstall)
                             .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblInfo, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -95,7 +101,9 @@ public class GameLibraryItem extends JPanel {
                             .addComponent(lblInfo, GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
                         .addComponent(lblIcon, GroupLayout.PREFERRED_SIZE, 60, GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtName)
+                            .addGroup(layout.createParallelGroup()
+                                .addComponent(txtName)
+                                .addComponent(btnUninstall))
                             .addGap(11, 11, 11)))
                     .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(separator2, GroupLayout.PREFERRED_SIZE, 2, GroupLayout.PREFERRED_SIZE)
@@ -110,6 +118,7 @@ public class GameLibraryItem extends JPanel {
     private RadiusLabel lblPlay;
     private JLabel lblInfo;
     private JLabel lblIcon;
+    private JButton btnUninstall;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -120,7 +129,18 @@ public class GameLibraryItem extends JPanel {
         lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()),lblIcon));
         initEvent();
         lblPlay.setText(isDownloaded() ? "Chơi" : "Tải");
+        btnUninstall.setVisible(isDownloaded());
+        btnUninstall.addActionListener(e -> uninstall());
         lblPlay.repaint();
+    }
+
+    private void uninstall() {
+        if (XMessage.confirm(MFrame.gI(),"Ban co chac muon go cai dat?") == JOptionPane.YES_OPTION) {
+            new File("games/" + game.getId() + "/" + game.getVersion() + "/" + game.getExecPath()).delete();
+            btnUninstall.setVisible(false);
+            lblPlay.setText("Tải");
+            LibraryPanel.gI().handleUninstall(this);
+        }
     }
 
     private void initEvent() {

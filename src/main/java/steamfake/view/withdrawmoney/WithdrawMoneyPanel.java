@@ -451,7 +451,11 @@ public class WithdrawMoneyPanel extends JPanel {
                 } else {
                     phieuRutTien.setBankID(bankAccount.getBankID());
                     phieuRutTien.setSoTaiKhoan(bankAccount.getSoTaiKhoan());
+                    phieuRutTien.setTrangThai(PhieuRutTien.PENDING);
                 }
+            }
+            if(selectedMethod == PhieuRutTien.METHOD_GAME) {
+                phieuRutTien.setTrangThai(PhieuRutTien.ACCEPTED);
             }
             if (RutTienDAO.gI().insert(phieuRutTien) > 0) {
                 addRow(phieuRutTien);
