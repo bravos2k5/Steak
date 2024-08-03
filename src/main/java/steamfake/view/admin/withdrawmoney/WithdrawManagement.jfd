@@ -1,10 +1,10 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {comp tabbedPane1::l:::x}"
+			"$horizontalGroup": "par l {comp tabbedPane1::l::1198:x}"
 			"$verticalGroup": "par l {comp tabbedPane1::l:::x}"
 		} ) {
 			name: "this"
@@ -15,7 +15,7 @@ new FormModel {
 				"font": new java.awt.Font( "SansSerif", 1, 16 )
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:20:p, par l:::p {seq {comp label3:::p:96:p, space :::p, comp cbbStatus:::::x}, seq {comp label1:::p:62:p, space :::p, comp cbbMouth:::p::p, space :p:37:p, comp label2:::p:50:p}}, par l {seq {space :::p, comp cbbYear:::p::p}, seq l {space :p:37:p, comp label4:::p:96:p, space :6:6:p, comp cbbMethod:::p:125:p}}, space ::687:x}, comp scrollPane1::l::1198:x}"
+					"$horizontalGroup": "par l {seq l {space :p:20:p, par l:::p {seq {comp label3:::p:96:p, space :::p, comp cbbStatus:::::x}, seq {comp label1:::p:62:p, space :::p, comp cbbMouth:::p::p, space :p:37:p, comp label2:::p:50:p}}, par l {seq {space :::p, comp cbbYear:::p::p}, seq l {space :p:37:p, comp label4:::p:96:p, space :6:6:p, comp cbbMethod:::p:125:p}}, space ::683:x}, comp scrollPane1::l::1198:x}"
 					"$verticalGroup": "par l {seq l {space :p:10:p, par l {par b {comp label1::b:p:20:p, comp cbbMouth::b:p:20:p}, par b:l {comp label2::b:p:20:p, comp cbbYear::b:p:20:p}}, space s:::p, par t {par b {comp label3::b:p:20:p, comp cbbStatus::b:p:20:p}, par l {comp label4:::p:20:p, comp cbbMethod:::p:20:p}}, space s:::p, comp scrollPane1::::650:x}}"
 				} ) {
 					name: "panel3"
@@ -128,14 +128,6 @@ new FormModel {
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Duyệt"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {space :0:1198:x}"
-					"$verticalGroup": "par l {space :0:736:x}"
-				} ) {
-					name: "panel4"
-				}, new FormLayoutConstraints( null ) {
-					"title": "text"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

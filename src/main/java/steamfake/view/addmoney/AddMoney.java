@@ -732,17 +732,28 @@ public class AddMoney extends JPanel {
     }
 
     private void addCard() {
-        NapCard card = addNapTien(new NapCard(), NapCard.NAP_CARD);
-        card.setSecretKey(txtID.getText());
-        card.setSeri(txtSeri.getText());
-        card.setNhaMang(cbbMobieNetwork.getSelectedIndex() + 1);
-        card.setNgayNap(Date.valueOf(LocalDate.now()));
-        if (NapTienDAO.getInstance().insert(card) > 0) {
-            fillCardHistory();
-            XMessage.notificate(MFrame.gI(), "Thêm thành công");
-        }else {
-            XMessage.notificate(MFrame.gI(), "Thêm thất bại");
+        if (isValidCard()) {
+            NapCard card = addNapTien(new NapCard(), NapCard.NAP_CARD);
+            card.setSecretKey(txtID.getText());
+            card.setSeri(txtSeri.getText());
+            card.setNhaMang(cbbMobieNetwork.getSelectedIndex() + 1);
+            card.setNgayNap(Date.valueOf(LocalDate.now()));
+            if (NapTienDAO.getInstance().insert(card) > 0) {
+                fillCardHistory();
+                XMessage.notificate(MFrame.gI(), "Thêm thành công");
+            }else {
+                XMessage.notificate(MFrame.gI(), "Thêm thất bại");
+            }
         }
+        else {
+            XMessage.alert(MFrame.gI(), "Vui lòng nhập đúng thông tin");
+        }
+    }
+
+    private boolean isValidCard() {
+        return (txtID.getText().length() >= 12 || txtID.getText().length() <= 16) && txtID.getText().matches("\\d+") &&
+                txtSeri.getText().length() == 15 && txtSeri.getText().matches("\\d+") &&
+                cbbMobieNetwork.getSelectedIndex() != -1;
     }
 
     public void addBank(int method) {

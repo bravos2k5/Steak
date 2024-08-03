@@ -488,6 +488,7 @@ public class GameDetail extends JPanel {
             return;
         }
         if (parentPanel.getGameLibrary() == null) {
+            checkSystem();
             if (SessionManager.user.getSoDuGame() >= game.getGiaTien()) {
                 BillGame billGame = new BillGame(MFrame.gI(),this, game);
                 billGame.setVisible(true);
@@ -501,6 +502,25 @@ public class GameDetail extends JPanel {
                 }
             }
         }
+    }
+
+    private void checkSystem() {
+        long requiredRam = game.getRam();
+        long requiredRom = game.getRom();
+        long userRam = CheckSystem.getTotalMemory();
+        long userRom = CheckSystem.getAvailableSpace(new File("."));
+        String message = "Ram hệ thống yêu cầu: " + requiredRam + " MB\n" +
+                "Ram hệ thống hiện tại: " + userRam / 1024 / 1024 + " MB\n" +
+                "Rom hệ thống yêu cầu: " + requiredRom / 1024 / 1024 + " MB\n" +
+                "Rom hệ thống hiện tại: " + userRom + " MB\n";
+        if(requiredRom > userRom) {
+            message += "Rom không đủ\n";
+        }
+        if(requiredRam > userRam) {
+            message += "Ram không đủ\n";
+        }
+        message += "Bạn có muốn tiếp tục mua game không?";
+        XMessage.notificate(MFrame.gI(), message);
     }
 
     public void loadBuy() {

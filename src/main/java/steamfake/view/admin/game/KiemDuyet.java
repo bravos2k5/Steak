@@ -47,7 +47,6 @@ public class KiemDuyet extends JDialog {
         cboStatus = new JComboBox<>();
         scrollPane1 = new JScrollPane();
         tblPhieuKD = new JTable();
-        panel4 = new JPanel();
 
         //======== this ========
         setModal(true);
@@ -167,22 +166,6 @@ public class KiemDuyet extends JDialog {
                 );
             }
             tabbedPane1.addTab("Phi\u1ebfu ki\u1ec3m duy\u1ec7t", panel3);
-
-            //======== panel4 ========
-            {
-
-                GroupLayout panel4Layout = new GroupLayout(panel4);
-                panel4.setLayout(panel4Layout);
-                panel4Layout.setHorizontalGroup(
-                    panel4Layout.createParallelGroup()
-                        .addGap(0, 1203, Short.MAX_VALUE)
-                );
-                panel4Layout.setVerticalGroup(
-                    panel4Layout.createParallelGroup()
-                        .addGap(0, 791, Short.MAX_VALUE)
-                );
-            }
-            tabbedPane1.addTab("Th\u1ed1ng k\u00ea", panel4);
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
@@ -211,7 +194,6 @@ public class KiemDuyet extends JDialog {
     private JComboBox<String> cboStatus;
     private JScrollPane scrollPane1;
     private JTable tblPhieuKD;
-    private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void initialize() {

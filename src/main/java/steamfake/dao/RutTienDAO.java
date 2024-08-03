@@ -1,13 +1,11 @@
 package steamfake.dao;
 
 import steamfake.model.Account;
-import steamfake.model.PhieuKiemDuyet;
 import steamfake.model.PhieuRutNganHang;
 import steamfake.model.PhieuRutTien;
 import steamfake.utils.MonthYear;
 import steamfake.utils.database.XJdbc;
 
-import javax.swing.plaf.PanelUI;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,7 +36,7 @@ public class RutTienDAO implements DataAccessObject<PhieuRutTien> {
         } else {
             String sql = "INSERT INTO PHIEU_RUT_TIEN(id,account_id,so_tien_rut,method,trang_thai) VALUES(?,?,?,?,?)";
             return XJdbc.update(sql, object.getId(), object.getAccountID(), object.getSoTienRut(),
-                    object.getMethod(), object.getTrangThai());
+                    object.getMethod(), PhieuRutTien.ACCEPTED);
         }
     }
 

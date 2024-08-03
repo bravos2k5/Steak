@@ -55,7 +55,6 @@ public class WithdrawManagement extends JDialog {
         tblWithdraw = new JTable();
         label4 = new JLabel();
         cbbMethod = new JComboBox<>();
-        panel4 = new JPanel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -177,7 +176,7 @@ public class WithdrawManagement extends JDialog {
                                     .addComponent(label4, GroupLayout.PREFERRED_SIZE, 96, GroupLayout.PREFERRED_SIZE)
                                     .addGap(6, 6, 6)
                                     .addComponent(cbbMethod, GroupLayout.PREFERRED_SIZE, 125, GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(687, Short.MAX_VALUE))
+                            .addContainerGap(683, Short.MAX_VALUE))
                         .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
                 );
                 panel3Layout.setVerticalGroup(
@@ -204,29 +203,13 @@ public class WithdrawManagement extends JDialog {
                 );
             }
             tabbedPane1.addTab("Duy\u1ec7t", panel3);
-
-            //======== panel4 ========
-            {
-
-                GroupLayout panel4Layout = new GroupLayout(panel4);
-                panel4.setLayout(panel4Layout);
-                panel4Layout.setHorizontalGroup(
-                    panel4Layout.createParallelGroup()
-                        .addGap(0, 1198, Short.MAX_VALUE)
-                );
-                panel4Layout.setVerticalGroup(
-                    panel4Layout.createParallelGroup()
-                        .addGap(0, 736, Short.MAX_VALUE)
-                );
-            }
-            tabbedPane1.addTab("text", panel4);
         }
 
         GroupLayout contentPaneLayout = new GroupLayout(contentPane);
         contentPane.setLayout(contentPaneLayout);
         contentPaneLayout.setHorizontalGroup(
             contentPaneLayout.createParallelGroup()
-                .addComponent(tabbedPane1)
+                .addComponent(tabbedPane1, GroupLayout.DEFAULT_SIZE, 1198, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
             contentPaneLayout.createParallelGroup()
@@ -352,7 +335,6 @@ public class WithdrawManagement extends JDialog {
     private JTable tblWithdraw;
     private JLabel label4;
     private JComboBox<String> cbbMethod;
-    private JPanel panel4;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
         UIManager.setLookAndFeel(new FlatDarkLaf());

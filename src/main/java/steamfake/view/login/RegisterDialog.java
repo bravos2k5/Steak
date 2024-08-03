@@ -518,7 +518,7 @@ public class RegisterDialog extends JDialog {
             }
 
             private void checkPassword() {
-                String password = Arrays.toString(txtMk.getPassword());
+                String password = new String(txtMk.getPassword());
                 int power = XRegex.checkPassword(password);
                 if(power == XRegex.CANT_USE) {
                     lblPasswordStatus.setText("Mật khẩu không hợp lệ");

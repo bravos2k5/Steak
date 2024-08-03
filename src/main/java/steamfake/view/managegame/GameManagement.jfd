@@ -20,7 +20,7 @@ new FormModel {
 					"background": new java.awt.Color( 25, 27, 32, 255 )
 					"font": new java.awt.Font( "SansSerif", 1, 16 )
 					add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :p:33:p, par l {comp scrollPane1::::1014:x, seq {comp cboGameFilter:::p:150:p, space ::694:x, comp btnAddGame:::p:170:p}}, space :p:34:p}}"
+						"$horizontalGroup": "par l {seq l {space :p:33:p, par l {comp scrollPane1::::1014:x, seq {comp cboGameFilter:::p:268:p, space ::576:x, comp btnAddGame:::p:170:p}}, space :p:34:p}}"
 						"$verticalGroup": "par l {seq t {space :p:25:p, par b {comp btnAddGame::b:p:40:p, comp cboGameFilter::b:p:40:p}, space ::27:x, comp scrollPane1:::p:580:p, space :p:22:p}}"
 					} ) {
 						name: "panel2"
@@ -83,8 +83,8 @@ new FormModel {
 						"title": "Game của tôi"
 					} )
 					add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-						"$horizontalGroup": "par l {seq l {space :p:33:p, par l:::p {comp scrollPane2:::p:1016:p, seq {comp cboReviewFilter:::p:150:p, space :::x, comp btnRefresh:::p:102:p}}, space ::32:x}}"
-						"$verticalGroup": "par l {seq t {space :p:22:p, par l {comp cboReviewFilter:::p:40:p, comp btnRefresh:::::x}, space u:::p, comp scrollPane2:::p:604:p, space ::15:x}}"
+						"$horizontalGroup": "par l {seq l {space :p:33:p, par l:::p {comp scrollPane2:::p:1016:p, seq t {comp cboReviewFilter:::p:253:p, space :::x, comp btnRefresh:::p:102:p}}, space ::32:x}}"
+						"$verticalGroup": "par l {seq t {space :p:22:p, par l {comp btnRefresh:::::x, seq {comp cboReviewFilter:::p:40:p, space :0:0:x}}, space u:::p, comp scrollPane2:::p:604:p, space ::15:x}}"
 					} ) {
 						name: "panel3"
 						"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -150,6 +150,56 @@ new FormModel {
 						} )
 					}, new FormLayoutConstraints( null ) {
 						"title": "Phiếu duyệt"
+					} )
+					add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+						"$horizontalGroup": "par l {seq l {space :::p, comp scrollPane3::::1069:x, space :::p}}"
+						"$verticalGroup": "par l {seq {space :p:25:p, comp scrollPane3::::663:x, space :::p}}"
+					} ) {
+						name: "panel4"
+						"background": new java.awt.Color( 25, 27, 32, 255 )
+						add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+							name: "scrollPane3"
+							add( new FormComponent( "javax.swing.JTable" ) {
+								name: "tblStatisticGame"
+								"background": new java.awt.Color( 37, 39, 48, 255 )
+								"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+									add( new java.util.Vector {
+										add( null )
+										add( null )
+										add( null )
+										add( null )
+									} )
+								}, new java.util.Vector {
+									add( "Tên game" )
+									add( "Tổng lượt tải" )
+									add( "Tổng doanh thu" )
+									add( "Doanh thu tháng" )
+								}, new java.util.Vector {
+									add( null )
+									add( null )
+									add( null )
+									add( null )
+								}, new java.util.Vector {
+									add( false )
+									add( false )
+									add( false )
+									add( false )
+								}, new java.util.Vector {
+									add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+									add( new com.jformdesigner.model.SwingTableColumn( null, 0, 0, 0, false ) )
+								} )
+							} )
+						} )
+					}, new FormLayoutConstraints( null ) {
+						"title": "Thống kê"
 					} )
 				} )
 			} )

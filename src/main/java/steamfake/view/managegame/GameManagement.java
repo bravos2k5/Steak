@@ -10,6 +10,7 @@ import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusPanel;
 import steamfake.model.Game;
 import steamfake.model.PhieuKiemDuyet;
+import steamfake.model.join.statistic.GameDoiTac;
 import steamfake.utils.SessionManager;
 import steamfake.view.mainframe.MFrame;
 
@@ -59,6 +60,9 @@ public class GameManagement extends JPanel {
         tblReviews = new JTable();
         cboReviewFilter = new JComboBox<>();
         btnRefresh = new JButton();
+        panel4 = new JPanel();
+        scrollPane3 = new JScrollPane();
+        tblStatisticGame = new JTable();
 
         //======== this ========
         setBackground(new Color(0x191b20));
@@ -139,8 +143,8 @@ public class GameManagement extends JPanel {
                                 .addGroup(panel2Layout.createParallelGroup()
                                     .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1014, Short.MAX_VALUE)
                                     .addGroup(panel2Layout.createSequentialGroup()
-                                        .addComponent(cboGameFilter, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 694, Short.MAX_VALUE)
+                                        .addComponent(cboGameFilter, GroupLayout.PREFERRED_SIZE, 268, GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 576, Short.MAX_VALUE)
                                         .addComponent(btnAddGame, GroupLayout.PREFERRED_SIZE, 170, GroupLayout.PREFERRED_SIZE)))
                                 .addGap(34, 34, 34))
                     );
@@ -217,8 +221,8 @@ public class GameManagement extends JPanel {
                                 .addGap(33, 33, 33)
                                 .addGroup(panel3Layout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                     .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 1016, GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(panel3Layout.createSequentialGroup()
-                                        .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
+                                        .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(btnRefresh, GroupLayout.PREFERRED_SIZE, 102, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(32, Short.MAX_VALUE))
@@ -228,14 +232,71 @@ public class GameManagement extends JPanel {
                             .addGroup(GroupLayout.Alignment.TRAILING, panel3Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addGroup(panel3Layout.createParallelGroup()
-                                    .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnRefresh, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(btnRefresh, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(panel3Layout.createSequentialGroup()
+                                        .addComponent(cboReviewFilter, GroupLayout.PREFERRED_SIZE, 40, GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(scrollPane2, GroupLayout.PREFERRED_SIZE, 604, GroupLayout.PREFERRED_SIZE)
                                 .addContainerGap(15, Short.MAX_VALUE))
                     );
                 }
                 tabs.addTab("Phi\u1ebfu duy\u1ec7t", panel3);
+
+                //======== panel4 ========
+                {
+                    panel4.setBackground(new Color(0x191b20));
+
+                    //======== scrollPane3 ========
+                    {
+
+                        //---- tblStatisticGame ----
+                        tblStatisticGame.setBackground(new Color(0x252730));
+                        tblStatisticGame.setModel(new DefaultTableModel(
+                            new Object[][] {
+                                {null, null, null, null},
+                                {null, null, null, null},
+                            },
+                            new String[] {
+                                "T\u00ean game", "T\u1ed5ng l\u01b0\u1ee3t t\u1ea3i", "T\u1ed5ng doanh thu", "Doanh thu th\u00e1ng"
+                            }
+                        ) {
+                            boolean[] columnEditable = new boolean[] {
+                                false, false, false, false
+                            };
+                            @Override
+                            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                return columnEditable[columnIndex];
+                            }
+                        });
+                        {
+                            TableColumnModel cm = tblStatisticGame.getColumnModel();
+                            cm.getColumn(0).setResizable(false);
+                            cm.getColumn(1).setResizable(false);
+                            cm.getColumn(2).setResizable(false);
+                            cm.getColumn(3).setResizable(false);
+                        }
+                        scrollPane3.setViewportView(tblStatisticGame);
+                    }
+
+                    GroupLayout panel4Layout = new GroupLayout(panel4);
+                    panel4.setLayout(panel4Layout);
+                    panel4Layout.setHorizontalGroup(
+                        panel4Layout.createParallelGroup()
+                            .addGroup(panel4Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 1069, Short.MAX_VALUE)
+                                .addContainerGap())
+                    );
+                    panel4Layout.setVerticalGroup(
+                        panel4Layout.createParallelGroup()
+                            .addGroup(panel4Layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(scrollPane3, GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+                                .addContainerGap())
+                    );
+                }
+                tabs.addTab("Th\u1ed1ng k\u00ea", panel4);
             }
 
             GroupLayout panel1Layout = new GroupLayout(panel1);
@@ -288,6 +349,9 @@ public class GameManagement extends JPanel {
     private JTable tblReviews;
     private JComboBox<String> cboReviewFilter;
     private JButton btnRefresh;
+    private JPanel panel4;
+    private JScrollPane scrollPane3;
+    private JTable tblStatisticGame;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
@@ -311,9 +375,15 @@ public class GameManagement extends JPanel {
         for(int i = 0; i < tblReviews.getColumnModel().getColumnCount(); i++) {
             tblReviews.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
         }
+        for(int i = 0; i < tblStatisticGame.getColumnModel().getColumnCount(); i++) {
+            tblStatisticGame.getColumnModel().getColumn(i).setCellRenderer(cellRenderer);
+        }
         tabs.addChangeListener(e -> {
             if(tabs.getSelectedIndex() == 1) {
                 fillTheReviewTable();
+            }
+            if(tabs.getSelectedIndex() == 2) {
+                fillTheStatisticTable();
             }
         });
         tblGames.addMouseListener(new MouseAdapter() {
@@ -371,6 +441,16 @@ public class GameManagement extends JPanel {
                 default -> "";
             };
             Object[] rowData = {phieuKiemDuyet.getId(),phieuKiemDuyet.getMoTa(),phieuKiemDuyet.getNgayTao(),status};
+            defaultTableModel.addRow(rowData);
+        }
+    }
+
+    private void fillTheStatisticTable() {
+        DefaultTableModel defaultTableModel = (DefaultTableModel) tblStatisticGame.getModel();
+        defaultTableModel.setRowCount(0);
+        List<GameDoiTac> gameDoiTacList = GameDAO.gI().selectThongKe();
+        for(GameDoiTac gameDoiTac : gameDoiTacList) {
+            Object[] rowData = {gameDoiTac.getGameName(),gameDoiTac.getDownload(),gameDoiTac.getTotalRevenue(),gameDoiTac.getMonthlyRevenue()};
             defaultTableModel.addRow(rowData);
         }
     }

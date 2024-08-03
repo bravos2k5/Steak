@@ -4,6 +4,7 @@
 
 package steamfake.view.mainframe;
 
+import steamfake.dao.AccountDAO;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusTextField;
 import steamfake.model.Account;
@@ -18,6 +19,7 @@ import steamfake.view.login.LoginDialog;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -203,10 +205,12 @@ public class HeaderPanel extends JPanel {
 
 
     private void initialize() {
-        lblName.setText("Chưa đăng nhập");
-        lblAdmin.setVisible(false);
-        lblRole.setText("Khách");
-        lblMoney.setText("0");
+        if (!SessionManager.isLogin()) {
+            lblName.setText("Chưa đăng nhập");
+            lblAdmin.setVisible(false);
+            lblRole.setText("Khách");
+            lblMoney.setText("Cái nịt");
+        }
         lblAvata.setText("");
         lblAvata.setSize(new Dimension(50,50));
         initEffectHover();
@@ -217,6 +221,21 @@ public class HeaderPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 search();
+            }
+        });
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    search();
+                }
+            }
+        });
+        lblMoney.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(SessionManager.isLogin()) {
+                    updateMoney();
+                }
             }
         });
         iconLogOut.setVisible(SessionManager.isLogin());
@@ -282,6 +301,7 @@ public class HeaderPanel extends JPanel {
     }
 
     public void updateMoney(){
+        SessionManager.user.setSoDuGame(AccountDAO.gI().selectSoDuGameByID(SessionManager.user.getId()));
         SwingUtilities.invokeLater(() -> lblMoney.setText(SessionManager.user.getSoDuGame() + " VND"));
     }
 
@@ -321,6 +341,7 @@ public class HeaderPanel extends JPanel {
     private void login() {
         new LoginDialog(MFrame.gI()).setVisible(true);
         MFrame.gI().getMainPanel().removeAll();
+        updateAccount();
         MFrame.gI().showHomePage();
     }
 
@@ -329,9 +350,11 @@ public class HeaderPanel extends JPanel {
         if(!key.isBlank()) {
             MFrame.gI().search(key);
         }
+        txtSearch.setText("");
     }
 
     private void logout() {
+        instance = null;
         MFrame.gI().clearAllData();
         LibraryPanel.gI().clearAllData();
         DownloadQueue.gI().cancelAllDownload();

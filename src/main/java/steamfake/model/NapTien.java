@@ -1,6 +1,7 @@
 package steamfake.model;
 
 import java.sql.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 public abstract class NapTien {
@@ -72,4 +73,18 @@ public abstract class NapTien {
     public void setSoTien(double soTien) {
         this.soTien = soTien;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NapTien napTien = (NapTien) o;
+        return Objects.equals(id, napTien.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
 }
