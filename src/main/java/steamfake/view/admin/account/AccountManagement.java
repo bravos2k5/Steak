@@ -30,8 +30,17 @@ public class AccountManagement extends JDialog {
         initComponents();
         init();
         scrollPane1.setBorder(null);
+        centerTable();
         fillTableAccount();
         initEvent();
+    }
+
+    private void centerTable() {
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
+            tblAccount.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
     }
 
 

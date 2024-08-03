@@ -95,7 +95,7 @@ public class MFrame extends JFrame {
 
             //---- lblAddMoney ----
             lblAddMoney.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 32));
-            lblAddMoney.setText(" R\u00fat tii\u1ec1n       ");
+            lblAddMoney.setText(" R\u00fat ti\u1ec1n       ");
             lblAddMoney.setIcon(new ImageIcon(getClass().getResource("/icon/Request Money.png")));
             lblAddMoney.setBackground(new Color(0x191b20));
             lblAddMoney.setOpaque(true);
@@ -118,7 +118,7 @@ public class MFrame extends JFrame {
             lblOut.setOpaque(true);
 
             //---- lblDownload ----
-            lblDownload.setText("    Download");
+            lblDownload.setText("T\u1ea3i xu\u1ed1ng");
             lblDownload.setIcon(new ImageIcon(getClass().getResource("/icon/Download.png")));
             lblDownload.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 24));
 

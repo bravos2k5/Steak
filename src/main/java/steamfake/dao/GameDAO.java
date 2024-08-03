@@ -3,6 +3,7 @@ package steamfake.dao;
 import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.model.join.GameDisplay;
+import steamfake.model.join.statistic.GameDoiTac;
 import steamfake.utils.SessionManager;
 import steamfake.utils.database.XJdbc;
 
@@ -237,6 +238,24 @@ public class GameDAO implements DataAccessObject<Game> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<GameDoiTac> selectThongKe() {
+        String sql = "{CALL SP_THONG_KE_GAME_DOI_TAC(?)}";
+        List<GameDoiTac> gameDoiTacList = new ArrayList<>();
+        try(ResultSet rs = XJdbc.getResultSet(sql,SessionManager.user.getId())) {
+            while (rs.next()) {
+                GameDoiTac gameDoiTac = new GameDoiTac();
+                gameDoiTac.setGameName(rs.getNString("name"));
+                gameDoiTac.setTotalRevenue(rs.getDouble("total_revenue"));
+                gameDoiTac.setMonthlyRevenue(rs.getDouble("monthly_revenue"));
+                gameDoiTac.setDownload(rs.getInt("total_download"));
+                gameDoiTacList.add(gameDoiTac);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return gameDoiTacList;
     }
 
 

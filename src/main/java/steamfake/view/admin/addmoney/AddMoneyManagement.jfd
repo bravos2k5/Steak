@@ -15,8 +15,8 @@ new FormModel {
 				"font": new java.awt.Font( "SansSerif", 1, 16 )
 				"background": new java.awt.Color( 37, 39, 48, 255 )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:20:p, par l:::p {seq {comp label3:::p:96:p, space :::p, comp comboBox3:::::x}, seq {comp label1:::p:62:p, space :::p, comp comboBox1:::p::p, space :p:37:p, comp label2:::p:50:p}}, space :::p, comp comboBox2:::p::p, space ::850:x}, comp scrollPane1::l::1198:x}"
-					"$verticalGroup": "par l {seq l {space :p:10:p, par l {par b {comp label1::b:p:20:p, comp comboBox1::b:p:20:p}, par b:l {comp label2::b:p:20:p, comp comboBox2::b:p:20:p}}, space s:::p, par b {comp label3::b:p:20:p, comp comboBox3::b:p:20:p}, space s:::p, comp scrollPane1::::650:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:20:p, par l {seq {comp label3:::p:96:p, space :::p, comp cboStatus:::::x}, seq {comp label1:::p:62:p, space :::p, comp cboMonth:::p::p, space ::37:x, comp label2:::p:50:p}}, space :::p, comp cboYear:::p::p, space ::850:x}, comp scrollPane1::l::1198:x}"
+					"$verticalGroup": "par l {seq l {space :p:10:p, par l {par b:l {comp cboMonth::b::26:x, comp label1::b:p:20:p}, par b:l {comp cboYear::b::26:x, comp label2::b:p:20:p}}, space s:::p, par b {comp cboStatus::b:p:26:p, comp label3::b:p:20:p}, space u:::p, comp scrollPane1::::644:x}}"
 				} ) {
 					name: "panel3"
 					"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -26,8 +26,11 @@ new FormModel {
 						"font": &Font0 new java.awt.Font( "SansSerif", 0, 16 )
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox1"
+						name: "cboMonth"
 						"font": &Font1 new java.awt.Font( "SansSerif", 0, 16 )
+						auxiliary() {
+							"JavaCodeGenerator.typeParameters": "String"
+						}
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
 						name: "label2"
@@ -35,11 +38,14 @@ new FormModel {
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox2"
+						name: "cboYear"
 						"font": #Font1
 						"model": new javax.swing.DefaultComboBoxModel {
 							selectedItem: "2024"
 							addElement( "2024" )
+						}
+						auxiliary() {
+							"JavaCodeGenerator.typeParameters": "String"
 						}
 					} )
 					add( new FormComponent( "javax.swing.JLabel" ) {
@@ -48,17 +54,13 @@ new FormModel {
 						"font": #Font0
 					} )
 					add( new FormComponent( "javax.swing.JComboBox" ) {
-						name: "comboBox3"
+						name: "cboStatus"
 						"font": #Font1
-						"model": new javax.swing.DefaultComboBoxModel {
-							selectedItem: "Chưa duyệt"
-							addElement( "Chưa duyệt" )
-						}
 					} )
 					add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
 						name: "scrollPane1"
 						add( new FormComponent( "javax.swing.JTable" ) {
-							name: "table1"
+							name: "tblPhieuNap"
 							"model": new com.jformdesigner.model.SwingTableModel( new java.util.Vector {
 								add( new java.util.Vector {
 									add( "1" )
@@ -78,7 +80,7 @@ new FormModel {
 								} )
 							}, new java.util.Vector {
 								add( "ID" )
-								add( "ID Account" )
+								add( "ID account" )
 								add( "Hình thức" )
 								add( "Số tiền" )
 								add( "Ngày Nạp" )
@@ -113,14 +115,6 @@ new FormModel {
 					} )
 				}, new FormLayoutConstraints( null ) {
 					"title": "Duyệt"
-				} )
-				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {space :0:1198:x}"
-					"$verticalGroup": "par l {space :0:736:x}"
-				} ) {
-					name: "panel4"
-				}, new FormLayoutConstraints( null ) {
-					"title": "text"
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {

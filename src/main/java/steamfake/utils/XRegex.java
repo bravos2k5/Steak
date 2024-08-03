@@ -39,4 +39,16 @@ public class XRegex {
         return email.matches(regex);
     }
 
+    public static void main(String[] args) {
+        System.out.println(checkPassword("12345"));
+        System.out.println(checkPassword("12345678"));
+        System.out.println(checkPassword("12345678a"));
+        System.out.println(checkPassword("12345678aA"));
+        System.out.println(checkPassword("12345678aA!"));
+        System.out.println(isPhone("1234567890"));
+        System.out.println(isPhone("+1234567890"));
+        System.out.println(isPhone("+1234567890a"));
+        System.out.println(isEmail(""));
+    }
+
 }

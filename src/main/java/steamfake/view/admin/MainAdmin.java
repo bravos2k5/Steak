@@ -4,7 +4,6 @@
 
 package steamfake.view.admin;
 
-import com.formdev.flatlaf.FlatDarkLaf;
 import steamfake.view.admin.account.AccountManagement;
 import steamfake.view.admin.addmoney.AddMoneyManagement;
 import steamfake.view.admin.game.KiemDuyet;
@@ -18,14 +17,12 @@ import java.awt.*;
  * @author ACER
  */
 public class MainAdmin extends JDialog {
+
     public MainAdmin(Window owner) {
         super(owner);
         initComponents();
         initialize();
         this.getContentPane().setBackground(new Color(0x191b20));
-        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     private void initComponents() {
@@ -37,6 +34,9 @@ public class MainAdmin extends JDialog {
         btnStatistic = new JButton();
 
         //======== this ========
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
+        setResizable(false);
         var contentPane = getContentPane();
 
         //---- btnAccount ----
@@ -113,11 +113,5 @@ public class MainAdmin extends JDialog {
         btnAccount.addActionListener(e -> new AccountManagement(this).setVisible(true));
         btnWithdraw.addActionListener(e -> new WithdrawManagement(this).setVisible(true));
         btnStatistic.addActionListener(e -> new StatisticDialog(this).setVisible(true));
-    }
-
-    public static void main(String[] args) throws UnsupportedLookAndFeelException {
-        UIManager.setLookAndFeel(new FlatDarkLaf());
-        new MainAdmin(null).setVisible(true);
-
     }
 }

@@ -8,6 +8,8 @@ new FormModel {
 			"$verticalGroup": "par l {seq {space :::p, comp panel1:::::x, space :::p}}"
 		} ) {
 			name: "this"
+			"defaultCloseOperation": 2
+			"modal": true
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {space :p:23:p, comp panel2:::p::p, space ::35:x}}"
 				"$verticalGroup": "par l {seq l {space :p:15:p, comp panel2:::p::p, space ::16:x}}"

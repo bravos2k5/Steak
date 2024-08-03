@@ -8,6 +8,9 @@ new FormModel {
 			"$verticalGroup": "par l {seq l {space :p:21:p, comp btnAccount:::p:40:p, space s:::p, comp btnGame:::p:40:p, space s:::p, comp btnWithdraw:::p:40:p, space s:::p, comp btnAddMoney:::p:40:p, space s:::p, comp btnStatistic:::p:40:p, space ::31:x}}"
 		} ) {
 			name: "this"
+			"defaultCloseOperation": 2
+			"modal": true
+			"resizable": false
 			add( new FormComponent( "javax.swing.JButton" ) {
 				name: "btnAccount"
 				"text": "Tài khoản"

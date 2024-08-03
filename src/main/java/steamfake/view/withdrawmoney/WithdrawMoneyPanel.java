@@ -27,6 +27,7 @@ import java.util.UUID;
  * @author ACER
  */
 public class WithdrawMoneyPanel extends JPanel {
+    
     public WithdrawMoneyPanel() {
         initComponents();
         scrollPane1.getVerticalScrollBar().setUnitIncrement(20);
@@ -400,7 +401,7 @@ public class WithdrawMoneyPanel extends JPanel {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private final List<PhieuRutTien> phieuRutTienList = RutTienDAO.gI().selectByAccountID(SessionManager.user);
-    private int selectedMethod = PhieuRutTien.METHOD_GAME;
+    private Integer selectedMethod = null;
 
     private void initialize() {
         lblBalance.setText(SessionManager.user.getSoDuThuNhap() + "");
@@ -422,6 +423,10 @@ public class WithdrawMoneyPanel extends JPanel {
 
     private void btnConfirmActionPerformed() {
         String txtTienRut = txtWithdrawMoney.getText();
+        if(selectedMethod == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn phương thức rút tiền");
+            return;
+        }
         if(txtTienRut.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập số tiền muốn rút");
             return;
@@ -451,6 +456,8 @@ public class WithdrawMoneyPanel extends JPanel {
             if (RutTienDAO.gI().insert(phieuRutTien) > 0) {
                 addRow(phieuRutTien);
                 SessionManager.user.setSoDuThuNhap(SessionManager.user.getSoDuThuNhap() - soTienRut);
+                lblBalance.setText(SessionManager.user.getSoDuThuNhap() + "");
+                XMessage.notificate(MFrame.gI(), "Đã tạo lệnh rút tiền");
             } else {
                 XMessage.notificate(MFrame.gI(), "Rút tiền thất bại");
             }

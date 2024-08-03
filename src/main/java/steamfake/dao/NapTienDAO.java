@@ -4,6 +4,7 @@ import steamfake.model.NapCK;
 import steamfake.model.NapCard;
 import steamfake.model.NapTien;
 import steamfake.utils.database.XJdbc;
+import steamfake.view.admin.addmoney.AddMoneyManagement;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -27,12 +28,11 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
 
     @Override
     public int insert(NapTien object) {
-        String sql = "INSERT INTO PHIEU_NAP VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO PHIEU_NAP(id,account_id,method,trang_thai,so_tien) VALUES(?,?,?,?,?)";
         if (XJdbc.update(sql,
                 object.getId(),
                 object.getAccountID(),
                 object.getMethod(),
-                object.getNgayNap(),
                 object.getStatus(),
                 object.getSoTien()) > 0) {
             if (object instanceof NapCard napCard) {
@@ -102,6 +102,7 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
                 list.add(napTien);
             }
         } catch (Exception e) {
+            System.err.println(e.getMessage());
             throw new RuntimeException(e);
         }
         return list;
@@ -125,6 +126,41 @@ public class NapTienDAO implements DataAccessObject<NapTien> {
     public int rejectPhieuNap(NapTien napTien) {
         String sql = "{CALL SP_DUYET_PHIEU_NAP(?,?,?,?,?)}";
         return XJdbc.update(sql, napTien.getId(), napTien.getAccountID(), napTien.getSoTien(),napTien.getMethod(), NapTien.REJECTED);
+    }
+
+    public List<Integer> selectYearList() {
+        String sql = "SELECT DISTINCT YEAR(ngay_nap) AS year FROM PHIEU_NAP";
+        List<Integer> list = new ArrayList<>();
+        try(ResultSet rs = XJdbc.getResultSet(sql)) {
+            while(rs.next()) {
+                list.add(rs.getInt("year"));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+
+    public List<NapTien> selectByFilter(AddMoneyManagement.Filter filter) {
+        String sql = "{CALL SP_LAY_THONG_TIN_NAP_TIEN_BY_FILTER(?,?,?)}";
+        return selectBySQL(sql, filter.month, filter.year, filter.status);
+    }
+
+    public static void main(String[] args) {
+        AddMoneyManagement.Filter filter = new AddMoneyManagement.Filter(7,2024,NapTien.PENDING);
+        List<NapTien> list = NapTienDAO.getInstance().selectByFilter(filter);
+        System.out.println("Size: " + list.size());
+        System.out.println(filter.month + " " + filter.year + " " + filter.status);
+        for (NapTien napTien : list) {
+            if(napTien instanceof NapCard napCard) {
+                System.out.println(napCard.getNhaMang());
+            }
+            else if(napTien instanceof NapCK napCK) {
+                System.out.println(napCK.getHinhThuc());
+            }
+            else
+            System.out.println(napTien);
+        }
     }
 
 }
