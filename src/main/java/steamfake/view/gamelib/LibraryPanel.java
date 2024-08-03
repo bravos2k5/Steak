@@ -153,6 +153,15 @@ public class LibraryPanel extends JPanel {
         initialize();
     }
 
+    public void handleUninstall(GameLibraryItem item) {
+        downloadedPanel.remove(item);
+        undownloadedPanel.add(item);
+        downloadedPanel.revalidate();
+        downloadedPanel.repaint();
+        undownloadedPanel.revalidate();
+        undownloadedPanel.repaint();
+    }
+
     public HashMap<GameLibrary, Game> getLibraryMap() {
         return libraryMap;
     }

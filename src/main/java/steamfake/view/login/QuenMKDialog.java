@@ -40,10 +40,8 @@ public class QuenMKDialog extends JDialog {
         lbQuayLai.setText("<html>Quay lai</html>");
     }
 
-    private void label8MouseClicked(MouseEvent e) {
-        LoginDialog LoginDialog = new LoginDialog(null);
+    private void label8MouseClicked() {
         QuenMKDialog.this.dispose();
-        LoginDialog.setVisible(true);
     }
 
     private void initComponents() {
@@ -147,7 +145,7 @@ public class QuenMKDialog extends JDialog {
             lbQuayLai.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    label8MouseClicked(e);
+                    label8MouseClicked();
                 }
                 @Override
                 public void mouseEntered(MouseEvent e) {

@@ -10,8 +10,10 @@ import steamfake.graphics.DateTimeTextField;
 import steamfake.graphics.OneRoundedPanel;
 import steamfake.graphics.PanelBorder;
 import steamfake.model.Account;
-import steamfake.utils.*;
-import steamfake.view.mainframe.HeaderPanel;
+import steamfake.utils.XEmail;
+import steamfake.utils.XMessage;
+import steamfake.utils.XRegex;
+import steamfake.utils.XSecurity;
 import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
@@ -381,9 +383,6 @@ public class RegisterDialog extends JDialog {
     private JLabel lblNhapMaStatus;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
-
-
-
     private String verifyCode;
     private String verifyEmail;
     private long lastSendTime;
@@ -440,8 +439,8 @@ public class RegisterDialog extends JDialog {
             if (result > 0) {
                 JOptionPane.showMessageDialog(this,"Đăng ký thành công");
                 RegisterDialog.this.dispose();
-                SessionManager.user = account;
-                HeaderPanel.gI().updateAccount();
+//                SessionManager.user = account;
+//                HeaderPanel.gI().updateAccount();
             }
         }
         else {
