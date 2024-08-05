@@ -4,69 +4,70 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :p:15:p, comp panel1:::p::p, space ::16:x}}"
-			"$verticalGroup": "par l {seq l {space :p:15:p, comp panel1:::p::p, space ::15:x}}"
+			"$horizontalGroup": "par l {seq {par l {seq l {space :p:149:p, comp btnPay:::p:300:p}, seq l {space :p:48:p, par l:::p {comp radiusPanel3:::::x, comp panel1:::::x}}}, space ::50:x}}"
+			"$verticalGroup": "par l {seq t {space :p:18:p, comp panel1:::::x, space s:::p, comp radiusPanel3:::p::p, space :p:28:p, comp btnPay:::p:40:p, space :p:29:p}}"
 		} ) {
 			name: "this"
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::44:x, par l {seq t {comp label21:::p::p, space :p:133:p}, seq t {comp radiusPanel3:::p::p, space :p:23:p}, seq t {comp btnPay:::p:300:p, space :p:122:p}}}}"
-				"$verticalGroup": "par l {seq t {space :p:18:p, comp label21:::p::p, space u:::p, comp radiusPanel3:::p::p, space ::26:x, comp btnPay:::p:40:p, space :p:15:p}}"
+			add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
+				name: "btnPay"
+				"text": "Thanh toán"
+				"font": new java.awt.Font( "SansSerif", 1, 14 )
+			} )
+			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label22::l:p:120:p, comp label23::l:p:120:p, comp label24::l:p:120:p}, space :p:29:p, par l {seq {par l {comp label28::::308:x, comp label27::::308:x}, space :p:24:p}, seq l {comp lblNoiDung:::p:308:p, space ::24:x}}}}"
+				"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq {comp label27:::p:25:p, space :p:12:p, comp label28:::p:25:p, space :p:12:p, comp lblNoiDung:::p:25:p}, seq {comp label22:::p:25:p, space u:::p, comp label23:::p:25:p, space u:::p, comp label24:::p:25:p}}, space ::43:x}}"
 			} ) {
-				name: "panel1"
-				"background": new java.awt.Color( 37, 39, 48, 255 )
-				add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq {space :p:19:p, par l {comp label22::l:p:120:p, comp label23::l:p:120:p, comp label24::l:p:120:p}, space :p:29:p, par l {seq {par l {comp label28::::308:x, comp label27::::308:x}, space :p:24:p}, seq l {comp lblNoiDung:::p:308:p, space ::24:x}}}}"
-					"$verticalGroup": "par l {seq l {space :p:14:p, par l {seq {comp label27:::p:25:p, space :p:12:p, comp label28:::p:25:p, space :p:12:p, comp lblNoiDung:::p:25:p}, seq {comp label22:::p:25:p, space u:::p, comp label23:::p:25:p, space u:::p, comp label24:::p:25:p}}, space ::15:x}}"
-				} ) {
-					name: "radiusPanel3"
-					"background": new java.awt.Color( 70, 72, 76, 255 )
-					"borderColor": sfield java.awt.Color white
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label22"
-						"text": "Số tài khoản :"
-						"font": &Font0 new java.awt.Font( "SansSerif", 0, 14 )
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label23"
-						"text": "Tên tài khoản"
-						"font": #Font0
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label24"
-						"text": "Nội dung"
-						"font": #Font0
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label27"
-						"font": #Font0
-						"horizontalAlignment": 0
-						"text": "0704795312"
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "label28"
-						"text": "Nguyễn Quốc Bảo"
-						"font": #Font0
-						"horizontalAlignment": 0
-					} )
-					add( new FormComponent( "javax.swing.JLabel" ) {
-						name: "lblNoiDung"
-						"font": #Font0
-						"horizontalAlignment": 0
-					} )
+				name: "radiusPanel3"
+				"background": new java.awt.Color( 70, 72, 76, 255 )
+				"borderColor": sfield java.awt.Color white
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label22"
+					"text": "Số tài khoản :"
+					"font": &Font0 new java.awt.Font( "SansSerif", 0, 14 )
 				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
-					name: "label21"
-					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/image 8.png" )
+					name: "label23"
+					"text": "Tên tài khoản"
+					"font": #Font0
 				} )
-				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
-					name: "btnPay"
-					"text": "Thanh toán"
-					"font": new java.awt.Font( "SansSerif", 1, 14 )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label24"
+					"text": "Nội dung"
+					"font": #Font0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label27"
+					"font": #Font0
+					"horizontalAlignment": 0
+					"text": "0704795312"
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "label28"
+					"text": "Nguyễn Quốc Bảo"
+					"font": #Font0
+					"horizontalAlignment": 0
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblNoiDung"
+					"font": #Font0
+					"horizontalAlignment": 0
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :::p, comp lblQR::::488:x, space :::p}}"
+				"$verticalGroup": "par l {seq l {space :::p, comp lblQR::::383:x, space :::p}}"
+			} ) {
+				name: "panel1"
+				"opaque": false
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblQR"
+					"horizontalAlignment": 0
+					"horizontalTextPosition": 0
 				} )
 			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 90, 40 )
-			"size": new java.awt.Dimension( 600, 600 )
+			"size": new java.awt.Dimension( 600, 715 )
 		} )
 	}
 }

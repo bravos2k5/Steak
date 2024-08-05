@@ -1,5 +1,6 @@
 package steamfake.view.gamedetail;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import steamfake.dao.AccountDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.graphics.CustomTextBox;
@@ -457,11 +458,12 @@ public class GameDetail extends JPanel {
     }
 
     private void addImage() {
-        List<String> images = XJson.fromJson(game.getImages(), List.class);
+        List<String> images = XJson.fromJson(game.getImages(), new TypeReference<>() {
+        });
         List<PictureBox> boxList = new ArrayList<>();
         if (images != null) {
             for (String image : images) {
-                if (!image.equals(game.getAvatar())) {
+                if (!image.isBlank()) {
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.setImage(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + image));
                     boxList.add(pictureBox);
