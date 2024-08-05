@@ -7,12 +7,15 @@ package steamfake.view.addmoney;
 import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusPanel;
 import steamfake.model.NapCK;
+import steamfake.utils.Payment;
 import steamfake.utils.SessionManager;
+import steamfake.utils.XImage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 
 /**
@@ -26,7 +29,7 @@ public class BankMoney extends JDialog {
         initComponents();
         this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         this.getContentPane().setBackground(new Color(0x191b20));
-        lblNoiDungCK.setText(SessionManager.user.getId().toString());
+        lblNoiDungCK.setText(SessionManager.user.getId().toString().replaceAll("-",""));
         lblSoTienCK.setText(addMoney.getSoTienNapBank());
         btnPay.addMouseListener(new MouseAdapter() {
             @Override
@@ -35,6 +38,7 @@ public class BankMoney extends JDialog {
                 dispose();
             }
         });
+        loadQR();
     }
 
     private void initComponents() {
@@ -54,6 +58,8 @@ public class BankMoney extends JDialog {
         lblSoTienCK = new JLabel();
         label25 = new JLabel();
         btnPay = new RadiusButton();
+        panel3 = new JPanel();
+        lblQR = new JLabel();
 
         //======== this ========
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -94,17 +100,17 @@ public class BankMoney extends JDialog {
                     label5.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
 
                     //---- label6 ----
-                    label6.setText("104879865299");
+                    label6.setText("0704795312");
                     label6.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label6.setHorizontalAlignment(SwingConstants.CENTER);
 
                     //---- label7 ----
-                    label7.setText("Tr\u1ecbnh V\u0103n Thu\u1eadt");
+                    label7.setText("NGUYEN QUOC BAO");
                     label7.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label7.setHorizontalAlignment(SwingConstants.CENTER);
 
                     //---- label8 ----
-                    label8.setText("Vietinbank");
+                    label8.setText("MBBANK");
                     label8.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 14));
                     label8.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -178,6 +184,9 @@ public class BankMoney extends JDialog {
                 //---- btnPay ----
                 btnPay.setText("Thanh to\u00e1n");
                 btnPay.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+                btnPay.setBackground(new Color(0x00ff33));
+                btnPay.setForeground(Color.black);
+                btnPay.setOriginColor(new Color(0x00ff33));
 
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
@@ -208,21 +217,51 @@ public class BankMoney extends JDialog {
                 );
             }
 
+            //======== panel3 ========
+            {
+                panel3.setOpaque(false);
+
+                //---- lblQR ----
+                lblQR.setHorizontalAlignment(SwingConstants.CENTER);
+                lblQR.setHorizontalTextPosition(SwingConstants.CENTER);
+
+                GroupLayout panel3Layout = new GroupLayout(panel3);
+                panel3.setLayout(panel3Layout);
+                panel3Layout.setHorizontalGroup(
+                    panel3Layout.createParallelGroup()
+                        .addGroup(panel3Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lblQR, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addContainerGap())
+                );
+                panel3Layout.setVerticalGroup(
+                    panel3Layout.createParallelGroup()
+                        .addGroup(panel3Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(lblQR, GroupLayout.PREFERRED_SIZE, 424, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                );
+            }
+
             GroupLayout panel1Layout = new GroupLayout(panel1);
             panel1.setLayout(panel1Layout);
             panel1Layout.setHorizontalGroup(
                 panel1Layout.createParallelGroup()
                     .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(35, Short.MAX_VALUE))
+                        .addGap(21, 21, 21)
+                        .addGroup(panel1Layout.createParallelGroup()
+                            .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panel3, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(37, Short.MAX_VALUE))
             );
             panel1Layout.setVerticalGroup(
                 panel1Layout.createParallelGroup()
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
+                    .addGroup(GroupLayout.Alignment.TRAILING, panel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(panel3, GroupLayout.DEFAULT_SIZE, 411, Short.MAX_VALUE)
+                        .addGap(34, 34, 34)
                         .addComponent(panel2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))
+                        .addGap(35, 35, 35))
             );
         }
 
@@ -264,7 +303,24 @@ public class BankMoney extends JDialog {
     private JLabel lblSoTienCK;
     private JLabel label25;
     private RadiusButton btnPay;
+    private JPanel panel3;
+    private JLabel lblQR;
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
+
+    private void loadQR() {
+        btnPay.setEnabled(false);
+        lblQR.setSize(new Dimension(540, 369));
+        lblQR.setText("Đang tải...");
+        new Thread(() -> {
+            BufferedImage image = Payment.gI().getPaymentQR(SessionManager.user.getId().toString(),
+                    Integer.parseInt(addMoney.getSoTienNapBank().replaceAll("\\.","")));
+            SwingUtilities.invokeLater(() -> {
+                lblQR.setText("");
+                lblQR.setIcon(XImage.scaleImageForLabel(new ImageIcon(image), lblQR));
+                btnPay.setEnabled(true);
+            });
+        }).start();
+    }
 
 
 }
