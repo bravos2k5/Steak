@@ -23,6 +23,8 @@ import steamfake.view.withdrawmoney.WithdrawMoneyPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.util.Stack;
 
@@ -61,6 +63,7 @@ public class MFrame extends JFrame {
         lblOut = new JLabel();
         lblDownload = new JLabel();
         lblBack = new JLabel();
+        lblDeleteCache = new JLabel();
         headerPanel = new JPanel();
         scrollPane1 = new JScrollPane();
         mainPanel = new JPanel();
@@ -128,12 +131,17 @@ public class MFrame extends JFrame {
             lblBack.setOpaque(true);
             lblBack.setBackground(new Color(0x252730));
 
+            //---- lblDeleteCache ----
+            lblDeleteCache.setIcon(new ImageIcon(getClass().getResource("/icon/Delete.png")));
+
             GroupLayout panelSelectFunctionLayout = new GroupLayout(panelSelectFunction);
             panelSelectFunction.setLayout(panelSelectFunctionLayout);
             panelSelectFunctionLayout.setHorizontalGroup(
                 panelSelectFunctionLayout.createParallelGroup()
                     .addGroup(GroupLayout.Alignment.TRAILING, panelSelectFunctionLayout.createSequentialGroup()
-                        .addGap(0, 96, Short.MAX_VALUE)
+                        .addGap(14, 14, 14)
+                        .addComponent(lblDeleteCache)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 202, GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90))
                     .addGroup(panelSelectFunctionLayout.createSequentialGroup()
@@ -141,7 +149,7 @@ public class MFrame extends JFrame {
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(148, 148, 148)
                                 .addComponent(lblLogo, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 118, Short.MAX_VALUE)
                                 .addComponent(lblBack, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelSelectFunctionLayout.createSequentialGroup()
                                 .addGap(61, 61, 61)
@@ -175,7 +183,9 @@ public class MFrame extends JFrame {
                         .addGap(35, 35, 35)
                         .addComponent(lblOut, GroupLayout.PREFERRED_SIZE, 80, GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelSelectFunctionLayout.createParallelGroup()
+                            .addComponent(lblDownload, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDeleteCache))
                         .addGap(19, 19, 19))
             );
         }
@@ -205,7 +215,7 @@ public class MFrame extends JFrame {
                 .addGroup(contentPaneLayout.createSequentialGroup()
                     .addComponent(panelSelectFunction, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, 0)
-                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1210, Short.MAX_VALUE))
+                    .addComponent(scrollPane1, GroupLayout.DEFAULT_SIZE, 1176, Short.MAX_VALUE))
                 .addComponent(headerPanel, GroupLayout.DEFAULT_SIZE, 1598, Short.MAX_VALUE)
         );
         contentPaneLayout.setVerticalGroup(
@@ -235,6 +245,7 @@ public class MFrame extends JFrame {
     private JLabel lblOut;
     private JLabel lblDownload;
     private JLabel lblBack;
+    private JLabel lblDeleteCache;
     private JPanel headerPanel;
     private JScrollPane scrollPane1;
     private JPanel mainPanel;
@@ -349,6 +360,12 @@ public class MFrame extends JFrame {
                 else {
                     requestLogin();
                 }
+            }
+        });
+        lblDeleteCache.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                clearCache();
             }
         });
     }
@@ -483,11 +500,20 @@ public class MFrame extends JFrame {
         }
     }
 
+    private void clearCache() {
+        int choice = XMessage.confirm(this,"Bạn có muốn xóa bộ nhớ đệm\n" +
+                "Hành động này sẽ phải khởi động lại ứng dụng ?");
+        if(choice == JOptionPane.YES_OPTION) {
+            this.dispose();
+            ResourceManager.clearCache();
+            System.exit(0);
+        }
+    }
 
     @Override
     public void dispose() {
-        super.dispose();
         DownloadQueue.gI().cancelAllDownload();
+        super.dispose();
     }
 
     public void clearAllData() {
