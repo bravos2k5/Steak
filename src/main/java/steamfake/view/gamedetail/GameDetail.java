@@ -512,8 +512,8 @@ public class GameDetail extends JPanel {
         long userRam = CheckSystem.getTotalMemory();
         long userRom = CheckSystem.getAvailableSpace(new File("."));
         String message = "Ram hệ thống yêu cầu: " + requiredRam + " MB\n" +
-                "Ram hệ thống hiện tại: " + userRam / 1024 / 1024 + " MB\n" +
-                "Rom hệ thống yêu cầu: " + requiredRom / 1024 / 1024 + " MB\n" +
+                "Ram hệ thống hiện tại: " + userRam + " MB\n" +
+                "Rom hệ thống yêu cầu: " + requiredRom + " MB\n" +
                 "Rom hệ thống hiện tại: " + userRom + " MB\n";
         if(requiredRom > userRom) {
             message += "Rom không đủ\n";
@@ -521,7 +521,6 @@ public class GameDetail extends JPanel {
         if(requiredRam > userRam) {
             message += "Ram không đủ\n";
         }
-        message += "Bạn có muốn tiếp tục mua game không?";
         XMessage.notificate(MFrame.gI(), message);
     }
 

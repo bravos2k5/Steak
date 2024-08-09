@@ -25,6 +25,7 @@ public class MainTest {
     }
 
     private static void uploadResource(Game game, List<String> localImages, String avatarLocal, String folderGame) {
+        localImages.add(avatarLocal);
         new File("data/temp/game.zip").delete();
         new File("data/temp").mkdirs();
         XFile.zipFolder(folderGame,"data/temp/game.zip");
@@ -57,20 +58,17 @@ public class MainTest {
                         gameIndex = 0;
                     }
                     game.setAvatar(avatars[avatarIndex].getName());
-                    game.setExecPath("Gamevui.com/GAME-SONGOKU-" + gameIndex + 1 + ".exe");
+                    game.setExecPath("Songoku " + (gameIndex + 1) + "/GAME-SONGOKU-" + (gameIndex + 1) + ".exe");
                     while (quantityImage < 6) {
                         int random = new Random().nextInt(imagesLength) - 1;
                         String imgName = null;
                         if (random > 0 && random < images.length - 1) {
                             imgName = images[random].getName();
-                        }
-                        else {
-                            continue;
-                        }
-                        if(!imgListData.contains(imgName)) {
-                            imgListData.add(imgName);
-                            imgListLocal.add(images[random].getAbsolutePath());
-                            quantityImage++;
+                            if(!imgListData.contains(imgName)) {
+                                imgListData.add(imgName);
+                                imgListLocal.add(images[random].getAbsolutePath());
+                                quantityImage++;
+                            }
                         }
                     }
                     game.setImages(XJson.toJson(imgListData));

@@ -4,15 +4,15 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1210:x}, comp headerPanel::l::1598:x}"
+			"$horizontalGroup": "par l {seq {comp panelSelectFunction:::p::p, space :0:0:p, comp scrollPane1::::1176:x}, comp headerPanel::l::1598:x}"
 			"$verticalGroup": "par l {seq t {space :0:0:p, comp headerPanel:::p:94:p, space :0:0:p, par l {seq {space :0:0:x, comp panelSelectFunction:::p::p}, comp scrollPane1::t:::x}}}"
 		} ) {
 			name: "this"
 			"defaultCloseOperation": 2
 			"iconImage": new com.jformdesigner.model.SwingIcon( 0, "/icon/Steambig.png" )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq t {space :0:96:x, comp lblDownload:::p:202:p, space :p:90:p}, seq {par l {seq l {space :p:148:p, comp lblLogo:::p:100:p, space ::84:x, comp lblBack:::p:50:p}, seq l {space :p:61:p, par l {comp lblHome::l:p:280:p, comp lblLibrary::l:p:280:p, comp lblAddMoney::l:p:280:p, comp lblManage::l:p:280:p, comp lblOut::l:p:280:p}, space :0:0:x}}, space :::p}}"
-				"$verticalGroup": "par l {seq l {par l {seq {space :p:36:p, comp lblLogo:::p:100:p}, seq l {space :p:18:p, comp lblBack:::p:30:p}}, space :p:36:p, comp lblHome:::p:80:p, space :p:29:p, comp lblLibrary:::p:80:p, space :p:38:p, comp lblAddMoney:::p:80:p, space :p:37:p, comp lblManage:::p:80:p, space :p:35:p, comp lblOut:::p:80:p, space ::33:x, comp lblDownload:::p:50:p, space :p:19:p}}"
+				"$horizontalGroup": "par l {seq t {space :p:14:p, comp lblDeleteCache:::p::p, space ::86:x, comp lblDownload:::p:202:p, space :p:90:p}, seq {par l {seq l {space :p:148:p, comp lblLogo:::p:100:p, space ::118:x, comp lblBack:::p:50:p}, seq l {space :p:61:p, par l {comp lblHome::l:p:280:p, comp lblLibrary::l:p:280:p, comp lblAddMoney::l:p:280:p, comp lblManage::l:p:280:p, comp lblOut::l:p:280:p}, space :0:0:x}}, space :::p}}"
+				"$verticalGroup": "par l {seq l {par l {seq {space :p:36:p, comp lblLogo:::p:100:p}, seq l {space :p:18:p, comp lblBack:::p:30:p}}, space :p:36:p, comp lblHome:::p:80:p, space :p:29:p, comp lblLibrary:::p:80:p, space :p:38:p, comp lblAddMoney:::p:80:p, space :p:37:p, comp lblManage:::p:80:p, space :p:35:p, comp lblOut:::p:80:p, space ::33:x, par l {comp lblDownload:::p:50:p, comp lblDeleteCache:::p::p}, space :p:19:p}}"
 			} ) {
 				name: "panelSelectFunction"
 				"background": new java.awt.Color( 37, 39, 48, 255 )
@@ -77,6 +77,10 @@ new FormModel {
 					"horizontalAlignment": 0
 					"opaque": true
 					"background": new java.awt.Color( 37, 39, 48, 255 )
+				} )
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "lblDeleteCache"
+					"icon": new com.jformdesigner.model.SwingIcon( 0, "/icon/Delete.png" )
 				} )
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {

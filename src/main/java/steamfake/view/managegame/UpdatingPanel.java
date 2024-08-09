@@ -684,6 +684,9 @@ public class UpdatingPanel extends JDialog {
         if(lblAvatar.getIcon().toString().equals(Objects.requireNonNull(getClass().getResource("/icon/plus-sign.png")).toString())) {
             alert.append("Chưa chọn ảnh đại diện\n");
         }
+        if(cboImages.getItemCount() < 2) {
+            alert.append("Vui lòng chọn 2 ảnh trở lên\n");
+        }
         if (rdoNewVersion.isSelected()) {
             if (txtFolderPath.getText().isEmpty()) {
                 alert.append("Chưa chọn folder game\n");

@@ -1,12 +1,14 @@
 package steamfake.utils;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.sun.jna.platform.FileUtils;
 import steamfake.model.Account;
 import steamfake.model.Game;
 import steamfake.model.PendingGame;
 import steamfake.utils.azure.AzureBlobService;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ResourceManager {
@@ -72,7 +74,13 @@ public class ResourceManager {
     }
 
     public static void clearCache() {
-        new File("data").deleteOnExit();
+        if (new File("data").exists()) {
+            try {
+                FileUtils.getInstance().moveToTrash(new File("data"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }
