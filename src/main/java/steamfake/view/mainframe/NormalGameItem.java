@@ -43,6 +43,8 @@ public class NormalGameItem extends JPanel {
 
         //======== this ========
         setBackground(new Color(0x191b20));
+        setMaximumSize(new Dimension(1195, 200));
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 
         //======== radiusPanel1 ========
         {

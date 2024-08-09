@@ -455,8 +455,6 @@ public class PreviewDetail extends JDialog {
     }
 
     private void accept() {
-        String notification = XMessage.prompt(this,"Nhập thông điệp gửi đến người dùng:");
-        phieuKiemDuyet.setThongBao(notification);
         phieuKiemDuyet.setStatus(PhieuKiemDuyet.ACCEPTED);
         int result = KiemDuyetDAO.getInstance().acceptGame(phieuKiemDuyet);
         if(result > 0) {
@@ -476,7 +474,7 @@ public class PreviewDetail extends JDialog {
     }
 
     private void reject() {
-        String notification = XMessage.prompt(this,"Nhập thông điệp gửi đến người dùng:");
+        String notification = XMessage.prompt(this,"Nhập lý do từ chối:");
         phieuKiemDuyet.setThongBao(notification);
         int result = KiemDuyetDAO.getInstance().rejectGame(phieuKiemDuyet);
         if(result > 0) {

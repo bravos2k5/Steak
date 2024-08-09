@@ -463,7 +463,7 @@ public class GameDetail extends JPanel {
         List<PictureBox> boxList = new ArrayList<>();
         if (images != null) {
             for (String image : images) {
-                if (!image.isBlank()) {
+                if (image != null && !image.isBlank()) {
                     PictureBox pictureBox = new PictureBox();
                     pictureBox.setImage(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + image));
                     boxList.add(pictureBox);

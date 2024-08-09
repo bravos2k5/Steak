@@ -11,8 +11,8 @@ import java.util.Properties;
 
 public class XEmail {
 
-    private static final String email = "zenith@quocbao2k5.id.vn";
-    private static final String password = "16122005viP@";
+    private static final String email = "steak@quocbao2k5.id.vn";
+    private static final String password = "Steak2005@";
     private static final String host = "163.44.207.67";
     private static final String port = "587";
     private static final Properties props = getProps();

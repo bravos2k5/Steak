@@ -399,6 +399,7 @@ public class GameManagement extends JPanel {
             }
         });
         cboGameFilter.addItemListener(e -> fillTheGameTable());
+        cboReviewFilter.addItemListener(e -> fillTheReviewTable());
         fillTheGameTable();
         btnRefresh.addActionListener(e -> refresh());
     }
@@ -433,7 +434,13 @@ public class GameManagement extends JPanel {
         if (phieuKiemDuyetList == null || phieuKiemDuyetList.isEmpty()) {
             phieuKiemDuyetList = KiemDuyetDAO.getInstance().selectByPublisherID(SessionManager.user.getId());
         }
+        int selectedFilter = cboReviewFilter.getSelectedIndex();
         for(PhieuKiemDuyet phieuKiemDuyet : phieuKiemDuyetList) {
+            if(selectedFilter != ALL) {
+                if(selectedFilter - 1 != phieuKiemDuyet.getStatus()) {
+                    continue;
+                }
+            }
             String status = switch (phieuKiemDuyet.getStatus()) {
                 case PhieuKiemDuyet.PENDING -> "Chờ duyệt";
                 case PhieuKiemDuyet.ACCEPTED -> "Đã duyệt";
