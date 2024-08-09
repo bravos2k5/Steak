@@ -433,6 +433,7 @@ public class MFrame extends JFrame {
         mainPanel.add(addMoneyPanel);
         refreshPanel();
     }
+
     public void showGameDetail(Game game) {
         handleBeforeChange();
         GameDetailPanel gameDetail = new GameDetailPanel(game);
@@ -466,7 +467,6 @@ public class MFrame extends JFrame {
 
     private void handleBeforeChange() {
         saveCurrentState();
-        scrollPane1.getVerticalScrollBar().setValue(0);
         mainPanel.removeAll();
     }
 

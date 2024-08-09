@@ -22,6 +22,7 @@ import java.util.function.Predicate;
  * @author ADMIN
  */
 public class AccountManagement extends JDialog {
+
     private final List<Account> accountList = AccountDAO.gI().selectAll();
     private List<Account> listAccountChange = accountList;
 
@@ -33,97 +34,6 @@ public class AccountManagement extends JDialog {
         centerTable();
         fillTableAccount();
         initEvent();
-    }
-
-    private void centerTable() {
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
-            tblAccount.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
-        }
-    }
-
-
-    private void initEvent() {
-        tblAccount.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    showDetail();
-                }
-            }
-        });
-        cboFilter.addItemListener(e -> {
-            if (e.getStateChange() == ItemEvent.SELECTED) {
-                cbbFill();
-                if (!txtSearch.getText().isEmpty()) {
-                    btnSearch.doClick();
-                }
-            }
-        });
-        btnSearch.addActionListener(e -> {
-            listAccountChange = accountList;
-            if (!txtSearch.getText().isEmpty()) {
-                fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
-                cbbFill();
-            } else {
-                if (cboFilter.getSelectedIndex() != 0) {
-                    cbbFill();
-                } else {
-                    fillTableAccount();
-                }
-            }
-
-        });
-        txtSearch.addKeyListener(new KeyAdapter() {
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    btnSearch.doClick();
-                }
-            }
-        });
-    }
-
-    private void showDetail() {
-        int index = tblAccount.getSelectedRow();
-        if (!txtSearch.getText().isEmpty()) {
-            new AccountDetail(listAccountChange(account -> account.getUsername().contains(txtSearch.getText()), index), AccountManagement.this).setVisible(true);
-        } else {
-            if (cboFilter.getSelectedIndex() == 1) {
-                new AccountDetail(listAccountChange(Account::isBan, index), AccountManagement.this).setVisible(true);
-            }
-            if (cboFilter.getSelectedIndex() == 0) {
-                new AccountDetail(accountList.get(index), AccountManagement.this).setVisible(true);
-            }
-            if (cboFilter.getSelectedIndex() == 2) {
-                new AccountDetail(listAccountChange(Account::isAdmin, index), AccountManagement.this).setVisible(true);
-            }
-        }
-    }
-
-    private void cbbFill() {
-        if (!listAccountChange.isEmpty()) {
-            if (cboFilter.getSelectedIndex() == 0) {
-                listAccountChange = accountList;
-                fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
-            }
-            if (cboFilter.getSelectedIndex() == 1) {
-                fillTableChange(Account::isBan);
-            }
-            if (cboFilter.getSelectedIndex() == 2) {
-                fillTableChange(Account::isAdmin);
-            }
-        } else {
-            listAccountChange = accountList;
-        }
-    }
-
-    private Account listAccountChange(Predicate<Account> filter, int selectedIndex) {
-        if (!txtSearch.getText().isEmpty()) {
-            return listAccountChange.stream().filter(filter).toList().get(selectedIndex);
-        }
-        return accountList.stream().filter(filter).toList().get(selectedIndex);
     }
 
     private void init() {
@@ -336,6 +246,100 @@ public class AccountManagement extends JDialog {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
 
+    private void centerTable() {
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int i = 0; i < tblAccount.getColumnCount(); i++) {
+            tblAccount.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+    }
+
+
+    private void initEvent() {
+        tblAccount.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    showDetail();
+                }
+            }
+        });
+        cboFilter.addItemListener(e -> {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                cbbFill();
+                if (!txtSearch.getText().isEmpty()) {
+                    btnSearch.doClick();
+                }
+            }
+        });
+        btnSearch.addActionListener(e -> search());
+
+        txtSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    btnSearch.doClick();
+                }
+            }
+        });
+    }
+
+    private void search() {
+        listAccountChange = accountList;
+        if (!txtSearch.getText().isEmpty()) {
+            fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
+            cbbFill();
+        } else {
+            if (cboFilter.getSelectedIndex() != 0) {
+                cbbFill();
+            } else {
+                fillTableAccount();
+            }
+        }
+    }
+
+    private void showDetail() {
+        int index = tblAccount.getSelectedRow();
+        if (!txtSearch.getText().isEmpty()) {
+            new AccountDetail(listAccountChange(account -> account.getUsername().contains(txtSearch.getText()), index), AccountManagement.this).setVisible(true);
+        } else {
+            if (cboFilter.getSelectedIndex() == 1) {
+                new AccountDetail(listAccountChange(Account::isBan, index), AccountManagement.this).setVisible(true);
+            }
+            if (cboFilter.getSelectedIndex() == 0) {
+                new AccountDetail(accountList.get(index), AccountManagement.this).setVisible(true);
+            }
+            if (cboFilter.getSelectedIndex() == 2) {
+                new AccountDetail(listAccountChange(Account::isAdmin, index), AccountManagement.this).setVisible(true);
+            }
+        }
+    }
+
+    private void cbbFill() {
+        if (!listAccountChange.isEmpty()) {
+            if (cboFilter.getSelectedIndex() == 0) {
+                listAccountChange = accountList;
+                fillTableChange(account -> account.getUsername().contains(txtSearch.getText()));
+            }
+            if (cboFilter.getSelectedIndex() == 1) {
+                fillTableChange(Account::isBan);
+            }
+            if (cboFilter.getSelectedIndex() == 2) {
+                fillTableChange(Account::isAdmin);
+            }
+        } else {
+            listAccountChange = accountList;
+        }
+    }
+
+    private Account listAccountChange(Predicate<Account> filter, int selectedIndex) {
+        if (!txtSearch.getText().isEmpty()) {
+            return listAccountChange.stream().filter(filter).toList().get(selectedIndex);
+        }
+        return accountList.stream().filter(filter).toList().get(selectedIndex);
+    }
+
+
     private void fillTableAccount() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblAccount.getModel();
         defaultTableModel.setRowCount(0);
@@ -388,9 +392,5 @@ public class AccountManagement extends JDialog {
 
     public JButton getBtnSearch() {
         return btnSearch;
-    }
-
-    public void setBtnSearch(JButton btnSearch) {
-        this.btnSearch = btnSearch;
     }
 }

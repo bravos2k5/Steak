@@ -23,12 +23,13 @@ import java.util.List;
 /**
  * @author ADMIN
  */
-public class AccountDetail extends JFrame {
+public class AccountDetail extends JDialog {
 
     private final Account account;
     private final AccountManagement accountManagement;
 
     public AccountDetail(Account account, AccountManagement accountManagement) {
+        super(accountManagement);
         this.account = account;
         this.accountManagement = accountManagement;
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -62,6 +63,7 @@ public class AccountDetail extends JFrame {
         cboBankAccount = new JComboBox();
         label12 = new JLabel();
         txtRole = new RadiusTextField();
+        label13 = new JLabel();
         lblAvatar = new RadiusLabel();
         lblName = new JLabel();
         label14 = new JLabel();
@@ -72,6 +74,8 @@ public class AccountDetail extends JFrame {
         btnCancel = new RadiusButton();
 
         //======== this ========
+        setModal(true);
+        setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         var contentPane = getContentPane();
 
         //======== panel1 ========
@@ -213,6 +217,10 @@ public class AccountDetail extends JFrame {
                 txtRole.setEditable(false);
                 txtRole.setEnabled(false);
 
+                //---- label13 ----
+                label13.setText("Ng\u00e2n h\u00e0ng");
+                label13.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 20));
+
                 GroupLayout panel2Layout = new GroupLayout(panel2);
                 panel2.setLayout(panel2Layout);
                 panel2Layout.setHorizontalGroup(
@@ -220,9 +228,6 @@ public class AccountDetail extends JFrame {
                         .addGroup(panel2Layout.createSequentialGroup()
                             .addGap(30, 30, 30)
                             .addGroup(panel2Layout.createParallelGroup()
-                                .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 820, Short.MAX_VALUE))
                                 .addGroup(panel2Layout.createSequentialGroup()
                                     .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addGroup(panel2Layout.createSequentialGroup()
@@ -265,7 +270,12 @@ public class AccountDetail extends JFrame {
                                     .addGroup(panel2Layout.createParallelGroup()
                                         .addComponent(label12, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(txtRole, GroupLayout.PREFERRED_SIZE, 130, GroupLayout.PREFERRED_SIZE))
-                                    .addGap(60, 60, 60))))
+                                    .addGap(60, 60, 60))
+                                .addGroup(GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                                    .addComponent(label13, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 390, Short.MAX_VALUE))))
                 );
                 panel2Layout.setVerticalGroup(
                     panel2Layout.createParallelGroup()
@@ -291,7 +301,9 @@ public class AccountDetail extends JFrame {
                             .addGap(33, 33, 33)
                             .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                 .addGroup(panel2Layout.createSequentialGroup()
-                                    .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
+                                        .addComponent(label8, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(label13, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
                                     .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                     .addGroup(panel2Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                                         .addComponent(txtUUID, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
@@ -347,7 +359,7 @@ public class AccountDetail extends JFrame {
             label17.setIcon(new ImageIcon(getClass().getResource("/icon/coin.png")));
 
             //---- btnBan ----
-            btnBan.setText("Ban!");
+            btnBan.setText("Kh\u00f3a");
             btnBan.setBackground(new Color(0x3e3737));
             btnBan.setOriginColor(new Color(0x3e3737));
             btnBan.setHoverColor(new Color(0x9d2424));
@@ -355,7 +367,7 @@ public class AccountDetail extends JFrame {
             btnBan.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
 
             //---- btnCancel ----
-            btnCancel.setText("Cancel");
+            btnCancel.setText("Tho\u00e1t");
             btnCancel.setBackground(new Color(0x3e3737));
             btnCancel.setOriginColor(new Color(0x3e3737));
             btnCancel.setHoverColor(new Color(0x999999));
@@ -477,13 +489,12 @@ public class AccountDetail extends JFrame {
         btnBan.addActionListener(e -> {
             boolean ban = !account.isBan();
             account.setBan(ban);
-            btnBan.setText(ban ? "Unban" : "Ban");
+            btnBan.setText(ban ? "Mở khóa" : "Khóa");
             if (AccountDAO.gI().khoaTaiKhoan(account, ban) > 0) {
                 JOptionPane.showMessageDialog(this, "Thay đổi thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "Thay đổi thất bại");
             }
-
         });
         btnCancel.addActionListener(e -> {
             dispose();
@@ -575,6 +586,7 @@ public class AccountDetail extends JFrame {
     private JComboBox cboBankAccount;
     private JLabel label12;
     private RadiusTextField txtRole;
+    private JLabel label13;
     private RadiusLabel lblAvatar;
     private JLabel lblName;
     private JLabel label14;

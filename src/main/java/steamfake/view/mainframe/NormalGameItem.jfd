@@ -9,6 +9,8 @@ new FormModel {
 		} ) {
 			name: "this"
 			"background": new java.awt.Color( 25, 27, 32, 255 )
+			"maximumSize": new java.awt.Dimension( 1195, 200 )
+			"cursor": new java.awt.Cursor( 12 )
 			add( new FormContainer( "steamfake.graphics.RadiusPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {space :p:21:p, comp lblImageGame:::p:200:p, space s:::p, par l {seq {comp lblReviews:::p:112:p, space :0:0:p, comp label4:::p:30:p, space :p:43:p, comp lblDownload:::p:134:p, space ::49:x, comp lblPublisher:::p:487:p}, seq {comp lblNameGame::::567:x, space s:::p, comp lblPrice:::p:270:p}}, space :p:36:p}}"
 				"$verticalGroup": "par l {seq l {space :p:23:p, par t {comp lblImageGame::t:p:100:p, seq {par b {comp lblPrice::b:p:50:p, comp lblNameGame::b:p:50:p}, space :p:20:p, par l {par b:t {comp lblDownload::b:p::p, comp lblPublisher::b:p:30:p}, comp label4::t:p::p, comp lblReviews::t:p::p}}}, space ::27:x}}"

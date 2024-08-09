@@ -580,8 +580,16 @@ public class UpdatingPanel extends JDialog {
         JDialog dialog = new JDialog(this);
         SlideShow slideShow = new SlideShow();
         for(String image : images) {
+            String path = "data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + image;
+            if(new File(path).exists()) {
+                PictureBox pictureBox = new PictureBox();
+                pictureBox.setImage(new ImageIcon(path));
+                pictureBoxes.add(pictureBox);
+            }
+        }
+        for(String image : imagesToAdd) {
             PictureBox pictureBox = new PictureBox();
-            pictureBox.setImage(new ImageIcon("data/games/" + game.getId() + "/" + game.getVersion() + "/images/" + image));
+            pictureBox.setImage(new ImageIcon(image));
             pictureBoxes.add(pictureBox);
         }
         dialog.setLayout(new BoxLayout(dialog.getContentPane(), BoxLayout.Y_AXIS));
@@ -608,7 +616,7 @@ public class UpdatingPanel extends JDialog {
             if (images.contains(fileName)) {
                 XMessage.alert(this, "Ảnh đã tồn tại");
             } else {
-                images.add(fileName);
+//                images.add(fileName);
                 imagesToAdd.add(fileChooser.getSelectedFile().getAbsolutePath());
                 lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
                 if(!images.contains(game.getAvatar())) {
@@ -703,7 +711,7 @@ public class UpdatingPanel extends JDialog {
         g.setRam(Integer.parseInt(txtRam.getText()));
         g.setRom(Integer.parseInt(txtRom.getText()));
         g.setImages(XJson.toJson(images));
-        g.setVersion(txtNewVersion.getText());
+        g.setVersion(txtVersion.getText());
         g.setAvatar(game.getAvatar());
         g.setImageToDelete(XJson.toJson(imagesToDelete));
         if(rdoNewVersion.isSelected()) {
@@ -711,6 +719,7 @@ public class UpdatingPanel extends JDialog {
             String parentExec = parent.substring(parent.lastIndexOf("\\") + 1);
             String execFilePath = parentExec + "\\" + new File(txtExecFilePath.getText()).getName();
             g.setExecPath(execFilePath);
+            g.setVersion(txtNewVersion.getText());
         }
         else {
             g.setExecPath(game.getExecPath());

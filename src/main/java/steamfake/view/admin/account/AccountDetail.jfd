@@ -1,13 +1,15 @@
-JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.10" encoding: "UTF-8"
+JFDML JFormDesigner: "8.2.3.0.386" Java: "17.0.11" encoding: "UTF-8"
 
 new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
-		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+		add( new FormWindow( "javax.swing.JDialog", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 			"$horizontalGroup": "par l {space :0:1108:x};par l {seq {space :0:0:x, comp panel1:::p::p, space :0:0:x}}"
 			"$verticalGroup": "par l {space :0:744:x};par l {seq {space :0:0:x, comp panel1:::p::p, space :0:0:x}}"
 		} ) {
 			name: "this"
+			"modal": true
+			"defaultCloseOperation": 2
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
 				"$horizontalGroup": "par l {seq l {par t:::p {seq t {space :::x, comp btnCancel:::p::p, space s:::p, comp btnBan:::p::p, space :p:114:p}, seq l {space :p:50:p, par t {comp panel2:::p::p, seq {par l {comp label1::l:p:220:p, comp label3::l:p:210:p}, space :p:342:p, par l {seq t {comp lblSoDuGame:::p:220:p, space :::p, comp label14:::p:30:p}, comp lblName::t:p:300:p, seq t {comp lblSoDuDoanhThu:::p:220:p, space :6:6:p, comp label17:::p::p}}, space s:::p, comp lblAvatar:::p:120:p}}}}, space ::50:x}}"
 				"$verticalGroup": "par l {seq l {space :p:30:p, par l {seq {comp label1:::p:60:p, space :p:36:p, comp label3:::p:30:p}, comp lblAvatar:::p:120:p, seq l {comp lblName:::p:30:p, space s:::p, par l {comp lblSoDuDoanhThu:::p:30:p, comp label17:::p:30:p}, space :::p, par l:::p {comp label14:::p:30:p, comp lblSoDuGame:::::x}}}, space :::p, comp panel2:::p::p, space :p:20:p, par b {comp btnBan::b:p:45:p, comp btnCancel::b:p:45:p}, space ::21:x}}"
@@ -25,8 +27,8 @@ new FormModel {
 					"font": new java.awt.Font( "SansSerif", 0, 20 )
 				} )
 				add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq {comp label8:::p:150:p, space :0:820:x}, seq l {par t {seq {par l {comp lbl123:::p:150:p, comp txtNameAccount:::p:350:p}, space :::x, par l {comp label5:::p:150:p, comp txtEmail:::p:468:p}}, par t:::p {seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p}, space :p:80:p, par l:::p {seq {comp label6:::p:150:p, space :p:318:p}, comp txtJoinDate:::::x}}, seq l {comp txtUUID:::p:400:p, space :::x, comp cboBankAccount:::p:468:p}}}, space ::72:x}, seq t {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:28:p, par l:::p {comp label11:::::x, comp cboSex:::p:130:p}, space s:::p, par l {comp label12:::p:150:p, comp txtRole:::p:130:p}, space :p:60:p}}}}"
-					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtNameAccount:::p:50:p}, seq {comp label5:::p:30:p, space :::p, comp txtEmail:::p:50:p}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, comp txtJoinDate:::p:50:p}, space :p:33:p, par t {seq {comp label8:::p:30:p, space :::p, par t {comp txtUUID:::p:50:p, comp cboBankAccount:::p:50:p}, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}, seq t {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}}}, seq {comp label12:::p:30:p, space :6:6:p, comp txtRole:::p:45:p}}, space ::23:x}}"
+					"$horizontalGroup": "par l {seq l {space :p:30:p, par l {seq l {par t {seq {par l {comp lbl123:::p:150:p, comp txtNameAccount:::p:350:p}, space :::x, par l {comp label5:::p:150:p, comp txtEmail:::p:468:p}}, par t:::p {seq l {par l {comp txtPhoneNumber::l:p:350:p, comp label7::l:p:150:p}, space :p:80:p, par l:::p {seq {comp label6:::p:150:p, space :p:318:p}, comp txtJoinDate:::::x}}, seq l {comp txtUUID:::p:400:p, space :::x, comp cboBankAccount:::p:468:p}}}, space ::72:x}, seq t {par l {comp label9::l:p:150:p, comp txtName::l:p:350:p}, space :::x, par l {comp label10::l:p:130:p, comp txtDob::l:p:152:p}, space :p:28:p, par l:::p {comp label11:::::x, comp cboSex:::p:130:p}, space s:::p, par l {comp label12:::p:150:p, comp txtRole:::p:130:p}, space :p:60:p}, seq t {comp label8:::p:150:p, space ::280:x, comp label13:::p:150:p, space :0:390:x}}}}"
+					"$verticalGroup": "par l {seq l {space :p:14:p, par t {seq {comp lbl123:::p:30:p, space :::p, comp txtNameAccount:::p:50:p}, seq {comp label5:::p:30:p, space :::p, comp txtEmail:::p:50:p}}, space :p:59:p, par b {comp label7::b:p:30:p, comp label6::b:p:30:p}, space :6:6:p, par l {comp txtPhoneNumber:::p:50:p, comp txtJoinDate:::p:50:p}, space :p:33:p, par t {seq {par t {comp label8:::p:30:p, comp label13:::p:30:p}, space :::p, par t {comp txtUUID:::p:50:p, comp cboBankAccount:::p:50:p}, space u:::p, par l {seq {comp label9:::p:30:p, space :p:6:p, comp txtName:::p:45:p}, seq l {comp label10:::p:30:p, space :p:6:p, comp txtDob:::p:45:p}, seq t {comp label11:::p:30:p, space :::p, comp cboSex:::p:45:p}}}, seq {comp label12:::p:30:p, space :6:6:p, comp txtRole:::p:45:p}}, space ::23:x}}"
 				} ) {
 					name: "panel2"
 					"background": new java.awt.Color( 25, 27, 32, 255 )
@@ -172,6 +174,11 @@ new FormModel {
 						"editable": false
 						"enabled": false
 					} )
+					add( new FormComponent( "javax.swing.JLabel" ) {
+						name: "label13"
+						"text": "Ngân hàng"
+						"font": #Font0
+					} )
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusLabel" ) {
 					name: "lblAvatar"
@@ -209,7 +216,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnBan"
-					"text": "Ban!"
+					"text": "Khóa"
 					"background": &Color6 new java.awt.Color( 62, 55, 55, 255 )
 					"originColor": &Color7 new java.awt.Color( 62, 55, 55, 255 )
 					"hoverColor": new java.awt.Color( 157, 36, 36, 255 )
@@ -218,7 +225,7 @@ new FormModel {
 				} )
 				add( new FormComponent( "steamfake.graphics.RadiusButton" ) {
 					name: "btnCancel"
-					"text": "Cancel"
+					"text": "Thoát"
 					"background": #Color6
 					"originColor": #Color7
 					"hoverColor": new java.awt.Color( 153, 153, 153, 255 )

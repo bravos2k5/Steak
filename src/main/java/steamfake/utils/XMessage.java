@@ -21,4 +21,8 @@ public class XMessage {
         return JOptionPane.showInputDialog(window,msg);
     }
 
+    public static void main(String[] args) {
+        System.out.println(prompt(null,"Test"));
+    }
+
 }
