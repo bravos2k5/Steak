@@ -38,6 +38,8 @@ public class AddMoney extends JPanel {
         scrollPane2.setBorder(null);
         scrollPane3.setBorder(null);
         initialize();
+        scrollPane2.getVerticalScrollBar().setUnitIncrement(25);
+        scrollPane3.getVerticalScrollBar().setUnitIncrement(25);
     }
 
     private void initComponents() {

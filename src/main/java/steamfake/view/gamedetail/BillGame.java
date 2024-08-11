@@ -304,7 +304,7 @@ public class BillGame extends JDialog {
                     }
                     XMessage.notificate(MFrame.gI(), "Thanh toan thanh cong");
                     gameDetail.loadBuy();
-                    XEmail.sendInvoice2(SessionManager.user, SessionManager.user.getSoDuGame() + game.getGiaTien(),game);
+                    XEmail.sendInvoice(SessionManager.user, SessionManager.user.getSoDuGame() + game.getGiaTien(),game);
                     dispose();
                 } else {
                     XMessage.alert(MFrame.gI(), "Vui lòng xác nhận diều khoản mua");

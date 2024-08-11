@@ -8,9 +8,7 @@ import steamfake.utils.azure.AzureBlobService;
 import steamfake.utils.database.XJdbc;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class MainTest {
 
@@ -41,7 +39,9 @@ public class MainTest {
         File[] images = new File("D:\\TestCase\\Image").listFiles();
         File[] avatars = new File("D:\\TestCase\\Avatar").listFiles();
         File[] games = new File("C:\\Program Files (x86)\\GameVui.com").listFiles();
-        if (images != null && avatars != null && games != null) {
+        Arrays.sort(games, Comparator.comparing(file -> file.getName().length()));
+
+        if (images != null && avatars != null) {
             int imagesLength = images.length;
             int avatarIndex = 0;
             int gameIndex = 0;
@@ -60,9 +60,9 @@ public class MainTest {
                     game.setAvatar(avatars[avatarIndex].getName());
                     game.setExecPath("Songoku " + (gameIndex + 1) + "/GAME-SONGOKU-" + (gameIndex + 1) + ".exe");
                     while (quantityImage < 6) {
-                        int random = new Random().nextInt(imagesLength) - 1;
+                        int random = new Random().nextInt(imagesLength);
                         String imgName = null;
-                        if (random > 0 && random < images.length - 1) {
+                        if (random < images.length) {
                             imgName = images[random].getName();
                             if(!imgListData.contains(imgName)) {
                                 imgListData.add(imgName);

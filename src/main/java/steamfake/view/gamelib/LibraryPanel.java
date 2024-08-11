@@ -32,6 +32,8 @@ public class LibraryPanel extends JPanel {
         initComponents();
         libraryMap = GameLibraryDAO.gI().selectLibraryMap(SessionManager.user);
         initialize();
+        scrollbar1.getVerticalScrollBar().setUnitIncrement(25);
+        scrollbar2.getVerticalScrollBar().setUnitIncrement(25);
     }
 
     private void initComponents() {
