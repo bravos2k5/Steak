@@ -170,9 +170,9 @@ public class LibraryPanel extends JPanel {
 
     public void clearAllData() {
         libraryMap.clear();
-        instance = null;
         downloadedPanel.removeAll();
         undownloadedPanel.removeAll();
+        instance = null;
     }
 
 
