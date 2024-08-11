@@ -31,9 +31,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-/**
- * @author ACER
- */
+
 public class UpdatingPanel extends JDialog {
 
     private final Game game;
@@ -616,7 +614,6 @@ public class UpdatingPanel extends JDialog {
             if (images.contains(fileName)) {
                 XMessage.alert(this, "Ảnh đã tồn tại");
             } else {
-//                images.add(fileName);
                 imagesToAdd.add(fileChooser.getSelectedFile().getAbsolutePath());
                 lblAvatar.setIcon(XImage.scaleImageForLabel(new ImageIcon(fileChooser.getSelectedFile().getAbsolutePath()), lblAvatar));
                 if(!images.contains(game.getAvatar())) {
@@ -819,7 +816,7 @@ public class UpdatingPanel extends JDialog {
         if (choice == JOptionPane.YES_OPTION) {
             int result = GameDAO.gI().closeGame(game);
             if (result > 0) {
-                XMessage.alert(this, "Đã đóng game");
+                XMessage.notificate(this, "Đã đóng game");
                 dispose();
             } else {
                 XMessage.alert(this, "Đóng game thất bại");
