@@ -354,11 +354,11 @@ public class HeaderPanel extends JPanel {
     }
 
     private void logout() {
-        instance = null;
         MFrame.gI().clearAllData();
         LibraryPanel.gI().clearAllData();
         DownloadQueue.gI().cancelAllDownload();
         SessionManager.logOut();
+        instance = null;
         updateAccount();
         MFrame.gI().showHomePage();
     }

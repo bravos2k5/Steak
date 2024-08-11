@@ -302,6 +302,7 @@ public class LoginDialog extends JDialog {
         lblGuest.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                SessionManager.logOut();
                 LoginDialog.this.dispose();
             }
 
