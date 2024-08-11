@@ -521,6 +521,7 @@ public class MFrame extends JFrame {
         theMostDownloadedGame = null;
         stack.clear();
         mainPanel.removeAll();
+        this.dispose();
         instance = null;
     }
 
