@@ -13,7 +13,8 @@ target/
 *.ipr
 target
 src/main/resources/azure.properties
-src/main/resources/azure.properties
+src/main/resources/database.properties
+src/main/java/steamfake/utils/XEmail.java
 
 data
 src/main/java/Test.java

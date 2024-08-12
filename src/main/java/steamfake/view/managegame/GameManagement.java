@@ -19,6 +19,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
@@ -390,15 +392,25 @@ public class GameManagement extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2){
+                    int selectedFilter = cboReviewFilter.getSelectedIndex();
                     int row = tblGames.getSelectedRow();
-                    if(row != -1) {
+                    if(row != -1 && selectedFilter == ALL) {
                         Game game = gameList.get(row);
-                        new UpdatingPanel(MFrame.gI(),game).setVisible(true);
+                        if (game.isOpened()) {
+                            new UpdatingPanel(MFrame.gI(),game).setVisible(true);
+                        }
                     }
                 }
             }
         });
-        cboGameFilter.addItemListener(e -> fillTheGameTable());
+        cboGameFilter.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.DESELECTED) {
+                    fillTheGameTable();
+                }
+            }
+        });
         cboReviewFilter.addItemListener(e -> fillTheReviewTable());
         fillTheGameTable();
         btnRefresh.addActionListener(e -> refresh());
@@ -407,8 +419,16 @@ public class GameManagement extends JPanel {
     private void fillTheGameTable() {
         DefaultTableModel defaultTableModel = (DefaultTableModel) tblGames.getModel();
         defaultTableModel.setRowCount(0);
-        gameList = GameDAO.gI().selectGameByPublisher(SessionManager.user);
         int selectedFillter = cboGameFilter.getSelectedIndex();
+        if(selectedFillter == ALL) {
+            gameList = GameDAO.gI().selectGameByPublisher(SessionManager.user);
+        }
+        if(selectedFillter == OPENED) {
+            gameList = GameDAO.gI().selectGameByPublisher(SessionManager.user,true);
+        }
+        if(selectedFillter == CLOSED) {
+            gameList = GameDAO.gI().selectGameByPublisher(SessionManager.user,false);
+        }
         for(Game game : gameList) {
             if(selectedFillter != ALL) {
                 if(selectedFillter == OPENED && !game.isOpened()) {

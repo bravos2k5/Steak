@@ -92,6 +92,7 @@ public class AddMoneyManagement extends JDialog {
                     //---- tblPhieuNap ----
                     tblPhieuNap.setModel(new DefaultTableModel(
                         new Object[][] {
+                            {null, null, null, null, null, null},
                         },
                         new String[] {
                             "ID", "ID account", "H\u00ecnh th\u1ee9c", "S\u1ed1 ti\u1ec1n", "Ng\u00e0y N\u1ea1p", "Tr\u1ea1ng th\u00e1i"
@@ -107,8 +108,8 @@ public class AddMoneyManagement extends JDialog {
                     });
                     {
                         TableColumnModel cm = tblPhieuNap.getColumnModel();
-                        cm.getColumn(0).setResizable(false);
-                        cm.getColumn(1).setResizable(false);
+                        cm.getColumn(0).setPreferredWidth(100);
+                        cm.getColumn(1).setPreferredWidth(100);
                         cm.getColumn(2).setResizable(false);
                         cm.getColumn(3).setResizable(false);
                         cm.getColumn(4).setResizable(false);
@@ -237,6 +238,7 @@ public class AddMoneyManagement extends JDialog {
     }
 
     private void fillCbo() {
+        cboYear.removeAllItems();
         yearList = NapTienDAO.getInstance().selectYearList();
         for (Integer year : yearList) {
             cboYear.addItem(year + "");
