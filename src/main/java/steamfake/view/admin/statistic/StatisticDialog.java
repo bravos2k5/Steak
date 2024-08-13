@@ -254,7 +254,8 @@ public class StatisticDialog extends JDialog {
                 defaultTableModel.addRow(new Object[] {
                         topNapTien.getUsername(),
                         topNapTien.getTongNapTien(),
-                        topNapTien.getTongNapTienThangNay()
+                        topNapTien.getTongNapTienThangNay(),
+                        topNapTien.getSoTienDaChiTieu()
                 });
             }
         }

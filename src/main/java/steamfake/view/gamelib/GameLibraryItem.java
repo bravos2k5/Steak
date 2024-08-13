@@ -8,6 +8,7 @@ import steamfake.graphics.RadiusLabel;
 import steamfake.model.Game;
 import steamfake.model.GameLibrary;
 import steamfake.utils.GameChecker;
+import steamfake.utils.ResourceManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;
 import steamfake.view.mainframe.MFrame;
@@ -126,6 +127,9 @@ public class GameLibraryItem extends JPanel {
         txtName.setText(game.getName());
         lblIcon.setText("");
         lblIcon.setSize(new Dimension(100,60));
+        if(!new File("data/games/" + game.getId() + "/images/" + game.getAvatar()).exists()) {
+            ResourceManager.downloadAvatarGameOnly(game);
+        }
         lblIcon.setIcon(XImage.scaleImageForLabel(new ImageIcon(game.getAvatarPath()),lblIcon));
         initEvent();
         lblPlay.setText(isDownloaded() ? "Chơi" : "Tải");

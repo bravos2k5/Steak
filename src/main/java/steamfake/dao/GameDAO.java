@@ -165,6 +165,11 @@ public class GameDAO implements DataAccessObject<Game> {
         return selectBySQL(sql);
     }
 
+    public List<Game> selectGameByPublisher(Account account, boolean isOpen) {
+        String sql = "SELECT * FROM Game WHERE publisher_id = ? AND isOpened = ?";
+        return selectBySQL(sql,account.getId(),isOpen);
+    }
+
     public List<Game> selectGameByPublisher(Account account) {
         String sql = "SELECT * FROM Game WHERE publisher_id = ?";
         return selectBySQL(sql,account.getId());

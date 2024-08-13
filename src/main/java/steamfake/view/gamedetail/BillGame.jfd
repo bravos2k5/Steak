@@ -103,11 +103,12 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTextArea" ) {
 					name: "textArea1"
 					"lineWrap": true
-					"text": "Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it.Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it."
+					"text": "Ấn vào đây đồng nghĩa bạn sẽ mất tiền và không đòi lại được, game đã mua sẽ không thể trả lại. Chúng tôi sẽ chắc chắn đảm bảo rằng game của bạn sẽ không mất đi, trừ việc bạn bị pay acc hoặc phần mềm chúng tôi sập, game trên đây chỉ mang tính chất minh họa, không giống 100% và được dùng để phục vụ môn học dự án mẫu của chúng tôi. Ahehehehehe"
 					"font": new java.awt.Font( "Segoe UI", 0, 12 )
 					"background": sfield java.awt.Color lightGray
 					"foreground": sfield java.awt.Color black
 					"editable": false
+					"wrapStyleWord": true
 				} )
 			} )
 			add( new FormComponent( "javax.swing.JSeparator" ) {

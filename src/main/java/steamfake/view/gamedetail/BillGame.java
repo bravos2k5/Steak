@@ -139,11 +139,12 @@ public class BillGame extends JDialog {
 
             //---- textArea1 ----
             textArea1.setLineWrap(true);
-            textArea1.setText("Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it.Click here to agree to share your email with Bethesda Softworks LLC. Bethesda Softworks LLC will use your email address for marketing and otherwise in accordance with its privacy policy, so we encourage you to read it.");
+            textArea1.setText("\u1ea4n v\u00e0o \u0111\u00e2y \u0111\u1ed3ng ngh\u0129a b\u1ea1n s\u1ebd m\u1ea5t ti\u1ec1n v\u00e0 kh\u00f4ng \u0111\u00f2i l\u1ea1i \u0111\u01b0\u1ee3c, game \u0111\u00e3 mua s\u1ebd kh\u00f4ng th\u1ec3 tr\u1ea3 l\u1ea1i. Ch\u00fang t\u00f4i s\u1ebd ch\u1eafc ch\u1eafn \u0111\u1ea3m b\u1ea3o r\u1eb1ng game c\u1ee7a b\u1ea1n s\u1ebd kh\u00f4ng m\u1ea5t \u0111i, tr\u1eeb vi\u1ec7c b\u1ea1n b\u1ecb pay acc ho\u1eb7c ph\u1ea7n m\u1ec1m ch\u00fang t\u00f4i s\u1eadp, game tr\u00ean \u0111\u00e2y ch\u1ec9 mang t\u00ednh ch\u1ea5t minh h\u1ecda, kh\u00f4ng gi\u1ed1ng 100% v\u00e0 \u0111\u01b0\u1ee3c d\u00f9ng \u0111\u1ec3 ph\u1ee5c v\u1ee5 m\u00f4n h\u1ecdc d\u1ef1 \u00e1n m\u1eabu c\u1ee7a ch\u00fang t\u00f4i. Ahehehehehe");
             textArea1.setFont(new Font("Segoe UI", Font.PLAIN, 12));
             textArea1.setBackground(Color.lightGray);
             textArea1.setForeground(Color.black);
             textArea1.setEditable(false);
+            textArea1.setWrapStyleWord(true);
             scrollPane1.setViewportView(textArea1);
         }
 

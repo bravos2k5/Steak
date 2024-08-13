@@ -98,7 +98,7 @@ public class RutTienDAO implements DataAccessObject<PhieuRutTien> {
     }
 
     public List<PhieuRutTien> selectByAccountID(Account account) {
-        String sql = "SELECT * FROM PHIEU_RUT_TIEN WHERE account_id = ?";
+        String sql = "SELECT * FROM PHIEU_RUT_TIEN WHERE account_id = ? ORDER BY ngay_rut DESC ";
         return selectBySQL(sql, account.getId());
     }
 
