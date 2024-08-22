@@ -11,7 +11,6 @@ import steamfake.graphics.PanelBorder;
 import steamfake.utils.XEmail;
 import steamfake.utils.XMessage;
 import steamfake.utils.XSecurity;
-import steamfake.view.mainframe.MFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -304,9 +303,7 @@ public class QuenMKDialog extends JDialog {
         if(code.equals(verifyCode)) {
             if(newMK.equals(confirmMK) && AccountDAO.gI().changePassword(verifyUsername, XSecurity.hashPassword(newMK)) > 0) {
                 XMessage.notificate(this,"Đổi mật khẩu thành công");
-                LoginDialog loginDialog = new LoginDialog(MFrame.gI());
                 QuenMKDialog.this.dispose();
-                loginDialog.setVisible(true);
             }
             else {
                 XMessage.alert(this,"Mật khẩu không khớp");
