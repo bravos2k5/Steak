@@ -284,7 +284,7 @@ public class QuenMKDialog extends JDialog {
                 XMessage.alert(this,"Tài khoản không tồn tại");
             }
             else {
-                XEmail.sendEmail(email, "SteaK forget password","Mã xác nhận đổi mật khẩu của bạn là: <b> " + code + "</b>");
+                XEmail.gI().sendEmail(email, "SteaK forget password","Mã xác nhận đổi mật khẩu của bạn là: <b> " + code + "</b>");
                 verifyUsername = username;
                 verifyCode = code;
                 XMessage.notificate(this,"Mã xác nhận đã được gửi đến email đăng ký của bạn");

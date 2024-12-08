@@ -2,8 +2,8 @@ package steamfake.dao;
 
 import steamfake.model.Account;
 import steamfake.model.Game;
-import steamfake.model.join.GameDisplay;
-import steamfake.model.join.statistic.GameDoiTac;
+import steamfake.model.dto.GameDisplay;
+import steamfake.model.dto.statistic.GameDoiTac;
 import steamfake.utils.SessionManager;
 import steamfake.utils.database.XJdbc;
 

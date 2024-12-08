@@ -1,6 +1,6 @@
 package steamfake.dao;
 
-import steamfake.model.join.Evaluation;
+import steamfake.model.dto.Evaluation;
 import steamfake.utils.database.XJdbc;
 
 import java.sql.ResultSet;

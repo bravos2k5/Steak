@@ -6,7 +6,7 @@ package steamfake.view.mainframe;
 
 import steamfake.dao.GameDAO;
 import steamfake.model.Game;
-import steamfake.model.join.GameDisplay;
+import steamfake.model.dto.GameDisplay;
 import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XMessage;

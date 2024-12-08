@@ -7,7 +7,7 @@ package steamfake.view.gamedetail;
 import steamfake.dao.EvaluationDAO;
 import steamfake.graphics.CustomTextBox;
 import steamfake.model.Account;
-import steamfake.model.join.Evaluation;
+import steamfake.model.dto.Evaluation;
 import steamfake.utils.ResourceManager;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;

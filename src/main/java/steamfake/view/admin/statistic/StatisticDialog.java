@@ -5,8 +5,8 @@
 package steamfake.view.admin.statistic;
 
 import steamfake.dao.StatisticDAO;
-import steamfake.model.join.statistic.TopDoiTac;
-import steamfake.model.join.statistic.TopNapTien;
+import steamfake.model.dto.statistic.TopDoiTac;
+import steamfake.model.dto.statistic.TopNapTien;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;

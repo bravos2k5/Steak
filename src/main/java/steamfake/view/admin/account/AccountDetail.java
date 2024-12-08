@@ -486,6 +486,7 @@ public class AccountDetail extends JDialog {
     }
 
     private void initEvent() {
+        btnBan.setText(account.isBan() ? "Mở khóa" : "Khóa");
         btnBan.addActionListener(e -> {
             boolean ban = !account.isBan();
             account.setBan(ban);

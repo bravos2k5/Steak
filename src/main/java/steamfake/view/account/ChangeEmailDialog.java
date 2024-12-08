@@ -155,7 +155,7 @@ public class ChangeEmailDialog extends JDialog {
             if (XRegex.isEmail(email)) {
                 newEmail = email.trim();
                 otp = new Random().nextInt(899999) + 100000 + "";
-                XEmail.sendEmail(email,"Xác thực email mới","Mã xác thực của bạn là: <b>" + otp + "</b>");
+                XEmail.gI().sendEmail(email,"Xác thực email mới","Mã xác thực của bạn là: <b>" + otp + "</b>");
                 lastSendOTP = System.currentTimeMillis();
                 XMessage.notificate(this,"Đã gửi mã xác thực đến email của bạn");
             }

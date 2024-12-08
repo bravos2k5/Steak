@@ -8,7 +8,7 @@ import steamfake.dao.EvaluationDAO;
 import steamfake.dao.GameLibraryDAO;
 import steamfake.model.Game;
 import steamfake.model.GameLibrary;
-import steamfake.model.join.Evaluation;
+import steamfake.model.dto.Evaluation;
 import steamfake.utils.SessionManager;
 
 import javax.swing.*;

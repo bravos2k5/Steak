@@ -11,19 +11,42 @@ import java.util.Properties;
 
 public class XEmail {
 
-    private static final String email = "steak@quocbao2k5.id.vn";
-    private static final String password = "Steak2005@";
-    private static final String host = "163.44.207.67";
-    private static final String port = "587";
-    private static final Properties props = getProps();
-    private static final Authenticator authenticator = new Authenticator() {
-        @Override
-        protected PasswordAuthentication getPasswordAuthentication() {
-            return new PasswordAuthentication(email,password);
-        }
-    };
+    private final String email;
+    private final String password;
+    private final String host;
+    private final String port;
+    private final Properties props;
+    private final Authenticator authenticator;
 
-    private static Properties getProps() {
+    private static XEmail i;
+
+    private XEmail() {
+        Properties properties = XProperties.getInstance().loadResourceProperties("email.properties");
+        email = properties.getProperty("email.email");
+        password = properties.getProperty("email.password");
+        host = properties.getProperty("email.host");
+        port = properties.getProperty("email.port");
+        authenticator = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(email,password);
+            }
+        };
+        this.props = getProps();
+    }
+
+    public static XEmail gI() {
+        return getInstance();
+    }
+
+    public static XEmail getInstance() {
+        if(i == null) {
+            i = new XEmail();
+        }
+        return i;
+    }
+
+    private Properties getProps() {
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port",port);
@@ -33,7 +56,7 @@ public class XEmail {
         return props;
     }
 
-    public static void sendEmail(String to, String subject, String text) {
+    public void sendEmail(String to, String subject, String text) {
         Session session = Session.getInstance(props,authenticator);
         MimeMessage msg = new MimeMessage(session);
         try {
@@ -55,7 +78,7 @@ public class XEmail {
         }
     }
 
-    public static void sendInvoice(Account account, double moneyBeforePurchase, Game game) {
+    public void sendInvoice(Account account, double moneyBeforePurchase, Game game) {
         String subject = "Hóa đơn thanh toán mua game";
         String text = "    <h1>Hóa đơn</h1>\n" +
                 "    \n" +

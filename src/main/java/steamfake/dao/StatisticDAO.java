@@ -1,7 +1,7 @@
 package steamfake.dao;
 
-import steamfake.model.join.statistic.TopDoiTac;
-import steamfake.model.join.statistic.TopNapTien;
+import steamfake.model.dto.statistic.TopDoiTac;
+import steamfake.model.dto.statistic.TopNapTien;
 import steamfake.utils.XMessage;
 import steamfake.utils.database.XJdbc;
 

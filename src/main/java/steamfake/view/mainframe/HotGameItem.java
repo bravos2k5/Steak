@@ -6,7 +6,7 @@ package steamfake.view.mainframe;
 
 import steamfake.graphics.slider.SlideShow;
 import steamfake.graphics.swing.PictureBox;
-import steamfake.model.join.GameDisplay;
+import steamfake.model.dto.GameDisplay;
 import steamfake.utils.XJson;
 import steamfake.view.waiting.WaitingDialog;
 

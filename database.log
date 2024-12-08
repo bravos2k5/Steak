@@ -1,4 +1,4 @@
-DriverManager.getConnection("jdbc:sqlserver://bravosdb.database.windows.net:1433;databaseName=steakvn; encrypt=false;trustServerCertificate=true;integratedSecurity=false;")
+DriverManager.getConnection("jdbc:sqlserver://localhost\bravosdb:1433;databaseName=bravosdb; encrypt=false;trustServerCertificate=true;integratedSecurity=false;")
 registerDriver: SQLServerDriver:1
 DriverManager.initialize: jdbc.drivers = null
 JDBC DriverManager initialized

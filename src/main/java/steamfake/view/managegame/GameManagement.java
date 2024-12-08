@@ -10,7 +10,7 @@ import steamfake.graphics.RadiusButton;
 import steamfake.graphics.RadiusPanel;
 import steamfake.model.Game;
 import steamfake.model.PhieuKiemDuyet;
-import steamfake.model.join.statistic.GameDoiTac;
+import steamfake.model.dto.statistic.GameDoiTac;
 import steamfake.utils.SessionManager;
 import steamfake.view.mainframe.MFrame;
 

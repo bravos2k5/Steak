@@ -27,7 +27,6 @@ public class MomoBank extends JDialog {
         initComponents();
         this.addMoney = addMoney;
         initialize();
-        loadQR();
     }
 
     private void initComponents() {
@@ -192,6 +191,7 @@ public class MomoBank extends JDialog {
             }
         });
         lblNoiDung.setText(SessionManager.user.getId().toString());
+        loadQR();
     }
 
     // JFormDesigner - Variables declaration - DO NOT MODIFY  //GEN-BEGIN:variables  @formatter:off
@@ -208,7 +208,6 @@ public class MomoBank extends JDialog {
     // JFormDesigner - End of variables declaration  //GEN-END:variables  @formatter:on
 
     private void loadQR() {
-        btnPay.setEnabled(false);
         lblQR.setIcon(null);
         lblQR.setSize(new Dimension(488, 383));
         lblQR.setText("Đang tải...");
@@ -218,7 +217,6 @@ public class MomoBank extends JDialog {
             SwingUtilities.invokeLater(() -> {
                 lblQR.setText("");
                 lblQR.setIcon(XImage.scaleImageForLabel(new ImageIcon(image), lblQR));
-                btnPay.setEnabled(true);
             });
         }).start();
     }

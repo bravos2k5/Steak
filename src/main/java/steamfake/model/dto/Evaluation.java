@@ -1,4 +1,4 @@
-package steamfake.model.join;
+package steamfake.model.dto;
 
 import steamfake.model.GameLibrary;
 

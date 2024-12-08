@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 public class Payment {
 
-    private final static String LOOK_UP = "https://api.vietqr.io/v2/lookup";
     private final static String QR = "https://api.vietqr.io/v2/generate";
 
     private static Payment instance;
@@ -40,20 +39,6 @@ public class Payment {
             byte[] decodedString = Base64.getDecoder().decode(base64);
             return ImageIO.read(new ByteArrayInputStream(decodedString));
         } catch (IOException e) {
-            XMessage.alert(null,e.getMessage());
-            throw new RuntimeException(e);
-        }
-    }
-
-    public String getNameOfBankAccount(String accountNo, String binCode) {
-        try {
-            String httpString = requestHTTP(createRequestCheckAccount(accountNo, binCode),LOOK_UP);
-            Map<String,Object> response = XJson.fromJson(httpString, new TypeReference<>() {});
-            if(!response.get("code").toString().contains("00")) {
-                return null;
-            }
-            return ((Map<?, ?>) (response.get("data"))).get("accountName").toString();
-        } catch (Exception e) {
             XMessage.alert(null,e.getMessage());
             throw new RuntimeException(e);
         }
@@ -118,8 +103,6 @@ public class Payment {
             URL urls = URI.create(type).toURL();
             HttpURLConnection conn = (HttpURLConnection) urls.openConnection();
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("x-client-id", "e5f92bbc-1ee4-4a64-9ad2-0354a0c8974a");
-            conn.setRequestProperty("x-api-key", "b33239fd-4867-442a-bfc9-e0df54ec7e1c");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setDoOutput(true);
             return conn;

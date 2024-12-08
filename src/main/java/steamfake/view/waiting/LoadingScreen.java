@@ -6,6 +6,7 @@ package steamfake.view.waiting;
 
 import steamfake.graphics.CurvesPanel;
 import steamfake.graphics.ProgressBarCustom;
+import steamfake.utils.XMessage;
 import steamfake.utils.database.DatabaseConnector;
 import steamfake.view.login.LoginDialog;
 import steamfake.view.mainframe.MFrame;
@@ -40,7 +41,12 @@ public class LoadingScreen extends JDialog {
                 for(int i = 0; i < 100; i++) {
                     doTask("Loading " + i + "%...", i);
                     if(i == 10) {
-                        Connection connection = DatabaseConnector.getInstance().getConnection();
+                        Connection connection = null;
+                        try {
+                            connection = DatabaseConnector.getInstance().getConnection();
+                        } catch (Exception ex) {
+                            XMessage.alert(null,"Thiếu file config");
+                        }
                         if(connection == null) {
                             doTask("Database connection failed", 100);
                             System.exit(-1);

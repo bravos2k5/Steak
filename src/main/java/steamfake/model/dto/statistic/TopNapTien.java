@@ -1,4 +1,4 @@
-package steamfake.model.join.statistic;
+package steamfake.model.dto.statistic;
 
 public class TopNapTien {
 

@@ -11,10 +11,6 @@ public class BankAccount {
     private int bankID;
     private String soTaiKhoan;
 
-    public BankAccount(UUID id) {
-        this.id = id;
-    }
-
     public BankAccount() {
     }
 

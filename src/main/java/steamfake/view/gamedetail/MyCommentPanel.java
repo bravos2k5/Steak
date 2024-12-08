@@ -6,7 +6,7 @@ package steamfake.view.gamedetail;
 
 import steamfake.dao.EvaluationDAO;
 import steamfake.graphics.RadiusButton;
-import steamfake.model.join.Evaluation;
+import steamfake.model.dto.Evaluation;
 import steamfake.utils.SessionManager;
 import steamfake.utils.XImage;
 import steamfake.utils.XMessage;

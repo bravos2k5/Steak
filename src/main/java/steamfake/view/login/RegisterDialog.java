@@ -456,7 +456,7 @@ public class RegisterDialog extends JDialog {
                 return;
             }
             String code = new Random().nextInt(899999) + 100000 + "";
-            XEmail.sendEmail(email,"SteaK Verification","Mã xác thực để đăng ký tài khoản của bạn là: " + "<b>" + code + "</b>");
+            XEmail.gI().sendEmail(email,"SteaK Verification","Mã xác thực để đăng ký tài khoản của bạn là: " + "<b>" + code + "</b>");
             XMessage.notificate(this,"Đã gửi mã xác thực đến email của bạn");
             verifyCode = code;
             verifyEmail = email;

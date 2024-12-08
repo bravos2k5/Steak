@@ -6,7 +6,7 @@ package steamfake.view.mainframe;
 
 import steamfake.graphics.RadiusLabel;
 import steamfake.graphics.RadiusPanel;
-import steamfake.model.join.GameDisplay;
+import steamfake.model.dto.GameDisplay;
 import steamfake.utils.XImage;
 import steamfake.view.waiting.WaitingDialog;
 
