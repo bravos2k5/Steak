@@ -73,6 +73,7 @@ GO
 ALTER TABLE [dbo].[BANK] SET (LOCK_ESCALATION = TABLE)
 GO
 
+	
 
 -- ----------------------------
 -- Records of BANK
