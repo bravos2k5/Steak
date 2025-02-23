@@ -1,6 +1,0 @@
-DriverManager.getConnection("jdbc:sqlserver://localhost\bravosdb:1433;databaseName=bravosdb; encrypt=false;trustServerCertificate=true;integratedSecurity=false;")
-registerDriver: SQLServerDriver:1
-DriverManager.initialize: jdbc.drivers = null
-JDBC DriverManager initialized
-    trying com.microsoft.sqlserver.jdbc.SQLServerDriver
-getConnection returning com.microsoft.sqlserver.jdbc.SQLServerDriver
